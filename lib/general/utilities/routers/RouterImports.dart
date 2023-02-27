@@ -1,0 +1,36 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:hwzn_herstation/general/packages/localization/Localizations.dart';
+import 'package:hwzn_herstation/general/screens/about/AboutImports.dart';
+import 'package:hwzn_herstation/general/screens/complete_register/CompleteRegisterImports.dart';
+import 'package:hwzn_herstation/general/screens/contact_us/ContactUsImports.dart';
+import 'package:hwzn_herstation/general/screens/forget_password/ForgetPasswordImports.dart';
+import 'package:hwzn_herstation/general/screens/image_zoom/ImageZoom.dart';
+import 'package:hwzn_herstation/general/screens/login/LoginImports.dart';
+import 'package:hwzn_herstation/general/screens/register/RegisterImports.dart';
+import 'package:hwzn_herstation/general/screens/reset_password/ResetPasswordImports.dart';
+import 'package:hwzn_herstation/general/screens/select_user/SelectUserImports.dart';
+import 'package:hwzn_herstation/general/screens/splash/SplashImports.dart';
+import 'package:hwzn_herstation/general/screens/terms/TermsImports.dart';
+import 'package:hwzn_herstation/general/screens/verify_code/VerifyCodeImports.dart';
+import 'package:hwzn_herstation/general/screens/welcome_page/WelcomePageImports.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/AvailableTimesImports.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/MakeupArtistHomeImports.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/makeup_artist_appointment_details/MakeupArtistAppointmentImports.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/my_services/MyServicesImports.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/subscriptions/SubscriptionsImports.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/wallet/my_wallet/MyWalletImports.dart';
+import 'package:hwzn_herstation/user/screens/appointment_details/AppointmentDetailsImports.dart';
+import 'package:hwzn_herstation/user/screens/categories/CategoriesImports.dart';
+import 'package:hwzn_herstation/user/screens/main_home/tabs/home/HomeImports.dart';
+import 'package:hwzn_herstation/user/screens/makeup_artists/rates/RatesImports.dart';
+import 'package:hwzn_herstation/user/screens/search/SearchImport.dart';
+
+import 'package:hwzn_herstation/user/screens/main_home/MainHomeImports.dart';
+import 'package:hwzn_herstation/user/screens/makeup_artists/makeup_artist_details/MakeupArtistDetailsImports.dart';
+import '../../../makeup_artist/screens/wallet/wallet_details/WalletDetailsImports.dart';
+import '../../../user/screens/makeup_artists/service_request/ServiceRequestImports.dart';
+import '../../screens/edit_profile/EditProfileImports.dart';
+import '../../screens/forget_pass_verify_code/ForgetPassVerifyCodeImports.dart';
+import '../../screens/notifications/NotificationsImports.dart';
+
+part 'Router.dart';
