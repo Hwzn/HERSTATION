@@ -75,7 +75,7 @@
   "enterAsCustomer": "الدخول كمستخدم",
   "enterAsDelegate": "الدخول كمندوب",
   "activeCode": "كود التفعيل",
-  "resetPassword": "إعادة تعيين كلمة المرور",
+  "resetPassword": "اعد تعيين كلمة المرور",
   "contactOnMail": "التواصل عبر البريد الإلكتروني",
   "contactOnPhone": "التواصل عبر الهاتف",
   "contactOnChat": "التواصل عبر الدردشة ",
@@ -330,8 +330,31 @@
   "enterCost": "ادخل التكلفة",
   "addExtra": "أضافة المزيد",
   "service": "الخدمة",
-  "enterService": "ادخل الخدمة"
-
+  "enterService": "ادخل الخدمة",
+  "orUse": "او باستخدام",
+  "mobNum": "رقم الجوال",
+  "myAppointment": "حجوزاتي",
+  "favourite": "المفضلة",
+  "main": "الرئيسية",
+  "tryAgainAfter": "حاول مرة اخري بعد ",
+  "second": "ثانية",
+  "pass": "ادخل كلمة المرور",
+  "retryPass": "اعد ادخال كلمة المرور",
+  "sendAfter": "اعد ارسال الرمز بعد ",
+  "enterUserName": "ادخل اسم المستخدم",
+  "brideMakeup": "ميكب عروس",
+  "sahraMakeup": "ميكب سهرة",
+  "categoryName": "اسم التخصص",
+  "rates": "التقييمات",
+  "makeupBrideMades": "ميكب مرافقات",
+  "totalAmount": "المجموع الكلي",
+  "depositPaidFirst": "العربون ( يدفع قبل ميعاد الحجز )",
+  "payDeposit": "دفع العربون فقط",
+  "payTotalAmount": "دفع كامل المبلغ",
+  "cancelled": "تم الغاء",
+  "otherServices": "خدمات اخري",
+  "herStationTitle": "هيرستشن محطتك للجمال",
+  "herStationDesc": "يوضع هنا وصف الميزة والذي تكون عاده من عدة اسطر كهذا المثال"
 
 }
 

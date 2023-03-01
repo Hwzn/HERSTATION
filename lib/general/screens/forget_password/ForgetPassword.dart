@@ -14,7 +14,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return AuthScaffold(
       appBar: const BuildAuthAppBar(haveLeading: true),
-      title: "نسيت كلمه المرور",
+      title: tr(context,"forgetPassword"),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height - 150,

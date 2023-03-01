@@ -40,7 +40,7 @@ class BuildChooseWayPayDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyText(
-                  title: "تسديد العربون فقط",
+                  title: tr(context,"payDeposit"),
                   color: MyColors.black,
                   size: 13,
                 ),
@@ -62,7 +62,7 @@ class BuildChooseWayPayDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyText(
-                  title: "تسديد كامل المبلغ",
+                  title: tr(context,"payTotalAmount"),
                   color: MyColors.black,
                   size: 13,
                 ),

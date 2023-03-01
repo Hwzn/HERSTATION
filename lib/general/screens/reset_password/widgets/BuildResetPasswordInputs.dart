@@ -26,7 +26,7 @@ class BuildResetPasswordInputs extends StatelessWidget {
                   type: TextInputType.text,
                   action: TextInputAction.next,
                   validate: (value) => value?.validatePassword(context),
-                  label: "كلمه المرور",
+                  hint: tr(context,"pass"),
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: IconButton(
                     onPressed: () => resetPasswordData.passwordCubit
@@ -54,7 +54,7 @@ class BuildResetPasswordInputs extends StatelessWidget {
                   radius: 10,
                   validate: (value) => value?.validatePasswordConfirm(context,
                       pass: resetPasswordData.confirmPassword.text),
-                  label: "تاكيد كلمه المرور",
+                  hint: tr(context,"retryPass"),
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: IconButton(
                     onPressed: () => resetPasswordData.passwordCubit

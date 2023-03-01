@@ -43,13 +43,13 @@ class BuildResendCode extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         MyText(
-                          title: "اعاده ارسال الكود بعد ",
+                          title: tr(context, "sendAfter"),
                           color: MyColors.black,
                           size: 13,
                         ),
                         const SizedBox(width: 5),
                         MyText(
-                          title: "${state.data} ثانيه ",
+                          title: "${state.data}  ${tr(context, "second")}",
                           color: MyColors.primary,
                           fontWeight: FontWeight.bold,
                           size: 13,
@@ -65,7 +65,7 @@ class BuildResendCode extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
                     child: MyText(
-                      title: "ارسال الكود",
+                      title: tr(context, "sendCode"),
                       color: MyColors.black,
                       fontWeight: FontWeight.bold,
                       size: 13,

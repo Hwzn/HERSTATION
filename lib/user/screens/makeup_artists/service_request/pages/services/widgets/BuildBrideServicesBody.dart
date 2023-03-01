@@ -18,7 +18,7 @@ class BuildBrideServicesBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyText(
-                title: "ميكب عروس",
+                title: tr(context,"brideMakeup"),
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,

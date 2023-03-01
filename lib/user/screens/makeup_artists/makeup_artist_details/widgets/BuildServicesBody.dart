@@ -28,14 +28,14 @@ class BuildServicesBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           color: state.data
                               ? MyColors.primary
-                              : MyColors.bgPrimary),
+                              : MyColors.secondary),
                       padding: const EdgeInsets.all(15),
                       margin: const EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MyText(
-                            title: "ميكب عروس",
+                            title:tr(context,"brideMakeup"),
                             color: MyColors.white,
                             size: 14,
                             fontWeight: FontWeight.bold,
@@ -57,7 +57,7 @@ class BuildServicesBody extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: state.data
-                              ? MyColors.bgPrimary
+                              ? MyColors.secondary
                               : MyColors.primary),
                       padding: const EdgeInsets.all(15),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
@@ -66,7 +66,7 @@ class BuildServicesBody extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MyText(
-                            title: "ميكب سهرة",
+                            title: tr(context,"sahraMakeup"),
                             color: MyColors.white,
                             size: 14,
                             fontWeight: FontWeight.bold,

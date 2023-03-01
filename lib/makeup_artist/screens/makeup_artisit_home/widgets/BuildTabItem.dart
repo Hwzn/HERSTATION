@@ -28,7 +28,7 @@ class BuildTabItem extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 5),
             child: MyText(
-                title: makeupArtistHomeData.listHome.elementAt(index).title!,
+                title: tr(context,makeupArtistHomeData.listHome.elementAt(index).title!),
                 color: isActive ? MyColors.primary : MyColors.secondary,
                 size: 11),
           ),

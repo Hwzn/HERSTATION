@@ -8,7 +8,7 @@ class BuildSocial extends StatelessWidget {
     return Column(
       children: [
         MyText(
-          title: " او باستخدام",
+          title: tr(context,"orUse"),
           color: MyColors.black,
           size: 12,
           fontWeight: FontWeight.bold,

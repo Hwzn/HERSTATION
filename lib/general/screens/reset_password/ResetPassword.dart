@@ -30,7 +30,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      title: "اعد تعيين كلمة المرور",
+      title: tr(context,"resetPassword"),
       appBar: const BuildAuthAppBar(haveLeading: true),
       body: Container(
         width: MediaQuery.of(context).size.width,

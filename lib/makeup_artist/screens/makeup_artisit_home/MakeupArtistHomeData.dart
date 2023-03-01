@@ -13,8 +13,8 @@ class MakeupArtistHomeData{
 
   void  initData() {
 
-    listHome.add(HomeModel(title:"الرئيسية" ,activeImg:Res.active_home ,unactiveImg:Res.home ));
-    listHome.add(HomeModel(title:"حجوزاتي" ,activeImg:Res.active_appointment ,unactiveImg:Res.appointment ));
+    listHome.add(HomeModel(title:"main" ,activeImg:Res.active_home ,unactiveImg:Res.home ));
+    listHome.add(HomeModel(title:"myAppointment" ,activeImg:Res.active_appointment ,unactiveImg:Res.appointment ));
     viewsList = [
       const MakeupArtistMain(),
       const MyAppointments(),

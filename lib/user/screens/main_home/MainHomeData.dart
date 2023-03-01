@@ -12,17 +12,17 @@ class MainHomeData {
 
   void initData() {
     listHome.add(HomeModel(
-        title: "الرئيسية", activeImg: Res.active_home, unactiveImg: Res.home));
+        title: "main", activeImg: Res.active_home, unactiveImg: Res.home));
     listHome.add(
-        HomeModel(title: "المفضلة", activeImg: Res.active_fav, unactiveImg: Res.fav));
+        HomeModel(title: "favourite", activeImg: Res.active_fav, unactiveImg: Res.fav));
     listHome.add(HomeModel(
-        title: "حجوزاتي",
+        title: "myAppointment",
         activeImg: Res.active_appointment,
         unactiveImg: Res.appointment));
     viewsList = [
       const Home(),
-      const MyAppointments(),
       const Favourite(),
+      const MyAppointments(),
       const UserProfile(),
     ];
   }

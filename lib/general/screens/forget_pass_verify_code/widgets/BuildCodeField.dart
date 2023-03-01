@@ -15,6 +15,7 @@ class BuildCodeField extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            alignment: AlignmentDirectional.topStart,
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: MyText(
                 title: tr(context, "enterCodePhone"),
@@ -39,13 +40,13 @@ class BuildCodeField extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MyText(
-                            title: "حاول مرة أخري بعد ",
+                            title:tr(context, "tryAgainAfter"),
                             color: MyColors.black,
                             size: 13,
                           ),
                           const SizedBox(width: 5),
                           MyText(
-                            title: "${state.data} ثانيه ",
+                            title: "${state.data}  ${tr(context, "second")}" ,
                             color: MyColors.black,
                             fontWeight: FontWeight.bold,
                             size: 13,
@@ -61,7 +62,7 @@ class BuildCodeField extends StatelessWidget {
                       padding:
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
                       child: MyText(
-                        title: "ارسال الكود",
+                        title: tr(context, "sendCode"),
                         color: MyColors.black,
                         fontWeight: FontWeight.bold,
                         size: 13,

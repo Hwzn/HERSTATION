@@ -42,15 +42,15 @@ class Res {
   static const String pass = "assets/images/pass.png";
   static const String password = "assets/images/password.svg";
   static const String pay_apple = "assets/images/pay_apple.svg";
-  static const String pay_color = "assets/images/pay_color.svg";
-  static const String pay_grey = "assets/images/pay_grey.svg";
-  static const String place_color = "assets/images/place_color.svg";
-  static const String place_grey = "assets/images/place_grey.svg";
+  static const String pay_color = "assets/images/pay_color.png";
+  static const String pay_grey = "assets/images/pay_grey.png";
+  static const String place_color = "assets/images/place_color.png";
+  static const String place_grey = "assets/images/place_grey.png";
   static const String plus = "assets/images/plus.svg";
   static const String profile = "assets/images/profile.png";
   static const String receipt = "assets/images/receipt.png";
   static const String search = "assets/images/search.svg";
-  static const String services = "assets/images/services.svg";
+  static const String services = "assets/images/services.png";
   static const String share = "assets/images/share.png";
   static const String subscriptions = "assets/images/subscriptions.png";
   static const String time = "assets/images/time.png";
@@ -61,5 +61,5 @@ class Res {
   static const String usericon = "assets/images/usericon.png";
   static const String visa = "assets/images/visa.svg";
   static const String whatsapp = "assets/images/whatsapp.svg";
-  static const String white_whats = "assets/images/white_whats.svg";
+  static const String white_whats = "assets/images/white_whats.png";
 }

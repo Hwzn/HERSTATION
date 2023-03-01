@@ -13,6 +13,7 @@ import 'package:hwzn_herstation/res.dart';
 import 'package:hwzn_herstation/user/model/general_model.dart';
 import 'dialogs/UserProfileDialogsImports.dart';
 import 'widgets/UserProfileWidgetsImports.dart';
+import 'package:hwzn_herstation/general/utilities/utils_functions/UtilsImports.dart';
 
 part 'UserProfile.dart';
 part 'UserProfileData.dart';

@@ -9,7 +9,7 @@ class BuildServicesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topCenter,
-      margin: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+      margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
       child: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Column(
@@ -51,7 +51,7 @@ class BuildServicesBody extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              MyText(title: "ميك اب عروس", color: MyColors.black, size: 13),
+              MyText(title: tr(context,"brideMakeup"), color: MyColors.black, size: 13),
             ],
           ),
           MyText(title: "1x  ر.س 70", color: MyColors.black, size: 13),

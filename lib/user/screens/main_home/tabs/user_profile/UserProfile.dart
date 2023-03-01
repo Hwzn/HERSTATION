@@ -14,6 +14,7 @@ class _UserProfile extends State<UserProfile> {
   void initState() {
     userProfileData.initListData();
     userProfileData.checkUser();
+    userProfileData.getLang();
     super.initState();
   }
   @override

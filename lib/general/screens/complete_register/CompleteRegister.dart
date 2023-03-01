@@ -13,7 +13,7 @@ class _CompleteRegister extends State<CompleteRegister> {
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      title: "ادخل اسم المستخدم",
+      title:tr(context,"enterUserName"),
       appBar: const BuildAuthAppBar(haveLeading: true),
       body: Container(
         width: MediaQuery.of(context).size.width,

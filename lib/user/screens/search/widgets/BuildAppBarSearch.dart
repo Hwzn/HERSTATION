@@ -15,7 +15,7 @@ class BuildAppBarSearch extends StatelessWidget {
         Container(
           alignment: AlignmentDirectional.topStart,
           decoration: BoxDecoration(
-            color: MyColors.primary,
+            color: MyColors.secondary,
             borderRadius: const BorderRadius.vertical(
               bottom: Radius.circular(15),
             ),
@@ -30,7 +30,7 @@ class BuildAppBarSearch extends StatelessWidget {
               InkWell(
                 child: Icon(
                   Icons.arrow_back_ios,
-                  color: MyColors.white,
+                  color: MyColors.primary,
                   size: 20,
                 ),
                 onTap: () => AutoRouter.of(context).pop(),
@@ -38,7 +38,8 @@ class BuildAppBarSearch extends StatelessWidget {
               MyText(
                 title: tr(context, "search"),
                 size: 16,
-                color: MyColors.white,
+                color: MyColors.primary,
+                fontWeight: FontWeight.bold,
               ),
               const SizedBox(
                 width: 20,

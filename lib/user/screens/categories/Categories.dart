@@ -13,8 +13,9 @@ class _Categories extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(
-        title: "اسم التخصص",haveLeading: true,
+      appBar:  DefaultAppBar(
+        title: tr(context, "categoryName"),
+        haveLeading: true,
       ),
       body: Container(
         margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),

@@ -23,7 +23,7 @@ class BuildHeaderTaps extends StatelessWidget {
                     SizedBox(
                       height: 50,
                       width: 50,
-                      child: SvgPicture.asset(Res.services),
+                      child: Image.asset(Res.services),
                     ),
                     const SizedBox(
                       height: 10,
@@ -61,8 +61,8 @@ class BuildHeaderTaps extends StatelessWidget {
                       height: 50,
                       width: 50,
                       child: state.data == 0
-                          ? SvgPicture.asset(Res.place_grey)
-                          : SvgPicture.asset(Res.place_color),
+                          ? Image.asset(Res.place_grey)
+                          : Image.asset(Res.place_color),
                     ),
                     const SizedBox(
                       height: 10,
@@ -103,8 +103,8 @@ class BuildHeaderTaps extends StatelessWidget {
                       height: 50,
                       width: 50,
                       child: state.data == 2
-                          ? SvgPicture.asset(Res.pay_color)
-                          : SvgPicture.asset(Res.pay_grey),
+                          ? Image.asset(Res.pay_color)
+                          : Image.asset(Res.pay_grey),
                     ),
                     const SizedBox(
                       height: 10,

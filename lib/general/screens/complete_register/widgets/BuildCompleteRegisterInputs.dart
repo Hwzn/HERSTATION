@@ -1,12 +1,11 @@
-
 part of 'CompleteRegisterWidgetsImports.dart';
 
-class BuildCompleteRegisterInputs extends StatelessWidget{
+class BuildCompleteRegisterInputs extends StatelessWidget {
+  final CompleteRegisterData completeRegisterData;
 
- final CompleteRegisterData completeRegisterData;
-
- const BuildCompleteRegisterInputs({Key? key, required this.completeRegisterData})
-     : super(key: key);
+  const BuildCompleteRegisterInputs(
+      {Key? key, required this.completeRegisterData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +15,14 @@ class BuildCompleteRegisterInputs extends StatelessWidget{
         children: [
           GenericTextField(
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             controller: completeRegisterData.phone,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.phone,
             radius: 10,
             action: TextInputAction.next,
             validate: (value) => value?.validatePhone(context),
-            label: tr(context,"name"),
+            label: tr(context, "name"),
             fillColor: MyColors.white,
             margin: const EdgeInsets.symmetric(vertical: 10),
           ),
@@ -41,16 +40,16 @@ class BuildCompleteRegisterInputs extends StatelessWidget{
               builder: (context, state) {
                 return GenericTextField(
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   controller: completeRegisterData.password,
                   fieldTypes:
-                  !state.data ? FieldTypes.password : FieldTypes.normal,
+                      !state.data ? FieldTypes.password : FieldTypes.normal,
                   fillColor: MyColors.white,
                   radius: 10,
                   type: TextInputType.text,
                   action: TextInputAction.next,
                   validate: (value) => value?.validatePassword(context),
-                  label: "كلمه المرور",
+                  hint: tr(context, "pass"),
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: IconButton(
                     onPressed: () => completeRegisterData.passwordCubit
@@ -68,17 +67,17 @@ class BuildCompleteRegisterInputs extends StatelessWidget{
               builder: (context, state) {
                 return GenericTextField(
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   controller: completeRegisterData.confirmPassword,
                   fieldTypes:
-                  !state.data ? FieldTypes.password : FieldTypes.normal,
+                      !state.data ? FieldTypes.password : FieldTypes.normal,
                   type: TextInputType.text,
                   action: TextInputAction.done,
                   fillColor: MyColors.white,
                   radius: 10,
                   validate: (value) => value?.validatePasswordConfirm(context,
                       pass: completeRegisterData.confirmPassword.text),
-                  label: "تاكيد كلمه المرور",
+                  hint: tr(context, "retryPass"),
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: IconButton(
                     onPressed: () => completeRegisterData.passwordCubit
@@ -94,6 +93,5 @@ class BuildCompleteRegisterInputs extends StatelessWidget{
         ],
       ),
     );
-
   }
 }

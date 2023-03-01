@@ -12,6 +12,7 @@ class UserProfileData {
   ///////////// cubits /////////////
 
   final GenericBloc<bool> isMakeupArtistCubit = GenericBloc(false);
+  final GenericBloc<bool> isArabicLangCubit = GenericBloc(false);
 
   List<GeneralModel> list = [];
   List<GeneralModel> infoList = [];
@@ -25,7 +26,7 @@ class UserProfileData {
 
   void initListData() {
     list.add(GeneralModel(title: "aboutUs", img: Res.aboutus));
-    list.add(GeneralModel(title: "language", img: Res.lang));
+    list.add(GeneralModel(title: "changeLang", img: Res.lang));
     list.add(GeneralModel(title: "terms", img: Res.contactus));
     list.add(GeneralModel(title: "contactUs", img: Res.contactus));
     list.add(GeneralModel(title: "shareApp", img: Res.share));
@@ -126,7 +127,24 @@ class UserProfileData {
     return;
   }
 
-  void changeLanguage() {}
+  void changeLanguage(BuildContext context, String lang) {
+    Utils.changeLanguage(lang, context);
+    if (lang == "ar") {
+      isArabicLangCubit.onUpdateData(true);
+    } else {
+      isArabicLangCubit.onUpdateData(false);
+    }
+    Navigator.of(context).pop();
+  }
+
+  void getLang() async {
+    var lang = await Storage.getLang();
+    if (lang == "ar") {
+      isArabicLangCubit.onUpdateData(true);
+    } else {
+      isArabicLangCubit.onUpdateData(false);
+    }
+  }
 
   //////////////////// share ////////////////////
 

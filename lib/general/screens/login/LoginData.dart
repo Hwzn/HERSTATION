@@ -14,6 +14,10 @@ class LoginData {
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<int> userTypeCubit = GenericBloc(0);
 
+
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+
   // methods
   void userLogin(BuildContext context) async {
     FocusScope.of(context).requestFocus(FocusNode());
@@ -35,6 +39,10 @@ class LoginData {
     //     print("=========================>>> true");
     //   }
     // }
+
+    String? token = await messaging.getToken();
+    print("token : ${token!}");
+
 
     String type = await Storage.getUserType() ?? "0";
     if (type == "0") {

@@ -15,7 +15,7 @@ class BuildAppBarBody extends StatelessWidget {
         Container(
           alignment: AlignmentDirectional.topStart,
           decoration: BoxDecoration(
-            color: MyColors.primary,
+            color: MyColors.secondary,
             borderRadius: const BorderRadius.vertical(
               bottom: Radius.circular(15),
             ),
@@ -29,14 +29,15 @@ class BuildAppBarBody extends StatelessWidget {
             children: [
               InkWell(child: Icon(
                 Icons.arrow_back_ios,
-                color: MyColors.white,
+                color: MyColors.primary,
                 size: 20,
               ), onTap: () => AutoRouter.of(context).pop(),
               ),
               MyText(
                 title: "مايان عمران",
                 size: 16,
-                color: MyColors.white,
+                color: MyColors.primary,
+                fontWeight: FontWeight.bold,
               ),
               const SizedBox(
                 width: 20,

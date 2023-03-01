@@ -187,15 +187,15 @@ flutter:
     - assets/images/pass.png
     - assets/images/password.svg
     - assets/images/pay_apple.svg
-    - assets/images/pay_color.svg
-    - assets/images/pay_grey.svg
-    - assets/images/place_color.svg
-    - assets/images/place_grey.svg
+    - assets/images/pay_color.png
+    - assets/images/pay_grey.png
+    - assets/images/place_color.png
+    - assets/images/place_grey.png
     - assets/images/plus.svg
     - assets/images/profile.png
     - assets/images/receipt.png
     - assets/images/search.svg
-    - assets/images/services.svg
+    - assets/images/services.png
     - assets/images/share.png
     - assets/images/subscriptions.png
     - assets/images/time.png
@@ -206,7 +206,7 @@ flutter:
     - assets/images/usericon.png
     - assets/images/visa.svg
     - assets/images/whatsapp.svg
-    - assets/images/white_whats.svg
+    - assets/images/white_whats.png
     - assets/lang/ar.json
     - assets/lang/en.json
   # An image asset can refer to one or more resolution-specific "variants", see

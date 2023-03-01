@@ -18,7 +18,7 @@ class BuildSahraServicesBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyText(
-                title: "ميكب سهرة",
+                title: tr(context,"sahraMakeup"),
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,

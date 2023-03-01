@@ -11,9 +11,11 @@ class BuildForgetForm extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 10, 15, 20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            margin: const EdgeInsets.fromLTRB(5, 10, 5, 10),
             child: MyText(
                 title: tr(context, "enterPhoneOrEmail"),
                 color: MyColors.grey,

@@ -43,10 +43,10 @@ class BuildAppointmentItem extends StatelessWidget {
                       child: MyText(
                         alien: TextAlign.center,
                         title: index == 0
-                            ? "قيد التنفيذ"
+                            ? tr(context,"underway")
                             : index == 1
-                                ? "تم الغاء"
-                                : "تم بنجاح",
+                                ?tr(context,"cancelled")
+                                : tr(context,"done"),
                         color: index == 0
                             ? MyColors.grey2
                             : index == 1

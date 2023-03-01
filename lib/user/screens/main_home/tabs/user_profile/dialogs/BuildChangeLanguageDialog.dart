@@ -10,9 +10,7 @@ class BuildChangeLanguageDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width -
-        (MediaQuery.of(context).size.width / 3);
-    double widthCancel = MediaQuery.of(context).size.width - width - 40;
+    double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -29,31 +27,58 @@ class BuildChangeLanguageDialog extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Column(
-            children: [
-              LoadingButton(
-                borderRadius: 15,
-                borderColor: MyColors.primary,
-                title: tr(context, "langAr"),
-                onTap: () => userProfileData.cancelAccount(context),
-                color: MyColors.primary,
-                textColor: MyColors.white,
-                btnKey: userProfileData.btnChangeLanguage,
-                fontSize: 13,
-              ),
-              Container(
-                height: 60,
-                width: widthCancel,
-                alignment: AlignmentDirectional.center,
-                child: MyText(
-                  title: tr(context, "langEn"),
-                  color: MyColors.grey,
-                  size: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+              bloc: userProfileData.isArabicLangCubit,
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    InkWell(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: state.data ?MyColors.primary:Colors.transparent,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        width: width,
+                        alignment: AlignmentDirectional.center,
+                        child: MyText(
+                          title: tr(context, "langAr"),
+                          color:state.data? MyColors.white:MyColors.grey,
+                          size: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onTap: () =>
+                          userProfileData.changeLanguage(context, "ar"),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    InkWell(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color:state.data?Colors.transparent: MyColors.primary,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        width: width,
+                        alignment: AlignmentDirectional.center,
+                        child: MyText(
+                          title: tr(context, "langEn"),
+                          color:state.data?MyColors.grey: MyColors.white,
+                          size: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onTap: () =>
+                          userProfileData.changeLanguage(context, "en"),
+                    ),
+                  ],
+                );
+              }),
         ],
       ),
     );

@@ -15,7 +15,8 @@ class BuildHeaderMainHome extends StatelessWidget {
         builder: (context, state) {
           if (state.data == 1 || state.data == 2) {
             return DefaultAppBar(
-              title: state.data ==1 ? "حجوزاتي":"المفضلة",
+
+              title: state.data ==1 ? tr(context,"favourite"): tr(context,"myAppointment"),
               haveLeading: false,
               actions: [
                 Container(

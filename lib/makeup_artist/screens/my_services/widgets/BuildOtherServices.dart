@@ -35,7 +35,7 @@ class BuildOtherServices extends StatelessWidget {
                             },
                           ),
                           MyText(
-                              title: "خدمات اخري",
+                              title:tr(context,"otherServices"),
                               color: MyColors.black,
                               alien: TextAlign.center,
                               size: 14),

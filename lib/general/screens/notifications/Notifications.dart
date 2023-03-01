@@ -13,8 +13,9 @@ class _Notifications extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(
-        title: "الاشعارات",haveLeading: true,
+      appBar: DefaultAppBar(
+        title: tr(context, "notifications"),
+        haveLeading: true,
       ),
       body: Container(
         margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),

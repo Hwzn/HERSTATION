@@ -6,7 +6,7 @@ class SplashController {
 
   // methods
   void checkingData(BuildContext context) async {
-    // if (!kIsWeb) GlobalNotification.instance.setupNotification(context);
+    if (!kIsWeb) GlobalNotification.instance.setupNotification(context);
     Future.delayed(const Duration(milliseconds: 1500),() => manipulateSplashData(context));
   }
 
@@ -17,6 +17,7 @@ class SplashController {
     InitUtils.initDio(lang: lang ?? "ar");
     InitUtils.initCustomWidgets(language: lang ?? "ar");
     Utils.changeLanguage(lang ?? "ar", context);
+    // Phoenix.rebirth(context);
     setType();
     // await GeneralRepository(context).getAppSetting();
     AutoRouter.of(context).push(const WelcomePageRoute());

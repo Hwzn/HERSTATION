@@ -31,7 +31,7 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                        title: "ميك اب عروس",
+                        title:  tr(context,"brideMakeup"),
                         color: MyColors.black,
                         size: 13,
                       ),
@@ -47,7 +47,7 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                        title: "ميك اب مرافقات",
+                        title:tr(context,"makeupBrideMades"),
                         color: MyColors.black,
                         size: 13,
                       ),
@@ -64,7 +64,7 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                        title: "المجموع الكلي",
+                        title: tr(context,"totalAmount"),
                         color: MyColors.black,
                         size: 13,
                         fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class BuildDetailsPaymentBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyText(
-                  title: "العربون ( يدفع قبل ميعاد الحجز )",
+                  title: tr(context,"depositPaidFirst"),
                   color: MyColors.black,
                   size: 13,
                 ),

@@ -64,7 +64,7 @@ class BuildCategoriesBody extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MyText(
-              title: index == 0 ? "ميكب عروس" : "ميكب سهرة",
+              title: index == 0 ?tr(context,"brideMakeup") : tr(context,"sahraMakeup"),
               size: 14,
               fontWeight: FontWeight.bold,
               color: MyColors.primary,

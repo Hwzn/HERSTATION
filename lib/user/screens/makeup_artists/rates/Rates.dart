@@ -14,8 +14,8 @@ class _Rates extends State<Rates> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.greyWhite,
-      appBar: const DefaultAppBar(
-        title: "التقييمات",
+      appBar:  DefaultAppBar(
+        title: tr(context,"rates"),
         haveLeading: true,
       ),
       body: Container(

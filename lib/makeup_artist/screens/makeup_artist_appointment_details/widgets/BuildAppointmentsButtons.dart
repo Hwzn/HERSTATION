@@ -37,7 +37,7 @@ class BuildAppointmentsButtons extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset(
+                Image.asset(
                   Res.white_whats,
                   width: 15,
                   height: 15,

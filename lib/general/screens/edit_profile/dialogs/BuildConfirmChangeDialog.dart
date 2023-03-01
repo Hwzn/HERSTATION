@@ -30,7 +30,7 @@ class BuildConfirmChangeDialog extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            margin: const EdgeInsets.all(10),
             child: MyText(
               title: tr(context, "confirmChange"),
               color: MyColors.grey,
