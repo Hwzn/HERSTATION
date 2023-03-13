@@ -10,6 +10,7 @@ class SplashController {
     Future.delayed(const Duration(milliseconds: 1500),() => manipulateSplashData(context));
   }
 
+
   Future<void> manipulateSplashData(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //await location.requestPermission();

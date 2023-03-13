@@ -35,10 +35,11 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                         color: MyColors.black,
                         size: 13,
                       ),
-                      MyText(
-                        title: "x1 70 ر.س",
-                        color: MyColors.black,
-                        size: 13,
+                      Row(
+                        children: [
+                          MyText(title: "  1x  ", color: MyColors.black, size: 13),
+                          MyText(title: "70 ر.س", color: MyColors.black, size: 13),
+                        ],
                       ),
                     ],
                   ),
@@ -51,10 +52,11 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                         color: MyColors.black,
                         size: 13,
                       ),
-                      MyText(
-                        title: "x3 40 ر.س",
-                        color: MyColors.black,
-                        size: 13,
+                      Row(
+                        children: [
+                          MyText(title: "  3x  ", color: MyColors.black, size: 13),
+                          MyText(title: "40 ر.س", color: MyColors.black, size: 13),
+                        ],
                       ),
                     ],
                   ),

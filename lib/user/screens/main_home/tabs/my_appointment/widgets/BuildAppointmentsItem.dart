@@ -36,8 +36,8 @@ class BuildAppointmentItem extends StatelessWidget {
                         color: index == 0
                             ? MyColors.bgGrey2
                             : index == 1
-                                ? MyColors.bgRed
-                                : MyColors.bgGreen,
+                                ? MyColors.bgGreen
+                                : MyColors.bgRed,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: MyText(
@@ -45,13 +45,13 @@ class BuildAppointmentItem extends StatelessWidget {
                         title: index == 0
                             ? tr(context,"underway")
                             : index == 1
-                                ?tr(context,"cancelled")
-                                : tr(context,"done"),
+                                ?tr(context,"done")
+                                : tr(context,"cancelled"),
                         color: index == 0
                             ? MyColors.grey2
                             : index == 1
-                                ? MyColors.red
-                                : MyColors.green,
+                                ? MyColors.green
+                                : MyColors.red,
                         size: 12,
                         fontWeight: FontWeight.bold,
                       ),

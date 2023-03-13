@@ -195,6 +195,7 @@ flutter:
     - assets/images/profile.png
     - assets/images/receipt.png
     - assets/images/search.svg
+    - assets/images/search_slider.png
     - assets/images/services.png
     - assets/images/share.png
     - assets/images/subscriptions.png

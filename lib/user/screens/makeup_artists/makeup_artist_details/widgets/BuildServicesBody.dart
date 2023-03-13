@@ -28,7 +28,7 @@ class BuildServicesBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           color: state.data
                               ? MyColors.primary
-                              : MyColors.secondary),
+                              : MyColors.bgChoose),
                       padding: const EdgeInsets.all(15),
                       margin: const EdgeInsets.symmetric(vertical: 10),
                       child: Row(
@@ -57,7 +57,7 @@ class BuildServicesBody extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: state.data
-                              ? MyColors.secondary
+                              ? MyColors.bgChoose
                               : MyColors.primary),
                       padding: const EdgeInsets.all(15),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),

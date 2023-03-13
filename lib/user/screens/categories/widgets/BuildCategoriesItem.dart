@@ -26,8 +26,8 @@ class BuildCategoriesItem extends StatelessWidget {
                 url:
                     "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
                 // boxShape: BoxShape.circle,
-                width: 120,
-                height: 120,
+                width: 130,
+                height: 130,
               ),
             ),
             MyText(

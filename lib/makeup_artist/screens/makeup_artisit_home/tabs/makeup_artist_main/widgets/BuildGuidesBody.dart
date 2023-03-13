@@ -63,14 +63,14 @@ class BuildGuidesBody extends StatelessWidget {
                 height: 15,
               ),
               MyText(
-                  title: "توضع هنا ارشادات الحجز",
+                  title: "توضع هنا إرشادات الحجز",
                   color: MyColors.black,
                   size: 14),
               const SizedBox(
                 height: 15,
               ),
               MyText(
-                  title: "توضع هنا ارشادات الحجز",
+                  title: "توضع هنا إرشادات الحجز",
                   color: MyColors.black,
                   size: 14),
             ],

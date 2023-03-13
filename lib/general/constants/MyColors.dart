@@ -28,6 +28,8 @@ class MyColors{
   static Color bgGreen=const Color(0xff67c586);
   static Color bgGrey2=const Color(0xffd5d5d5);
   static Color grey2=const Color(0xff747474);
+  static Color bgChoose=const Color(0xffa08770);
+
 
 
 

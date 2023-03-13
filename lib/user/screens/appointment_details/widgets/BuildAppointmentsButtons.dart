@@ -46,11 +46,11 @@ class BuildAppointmentsButtons extends StatelessWidget {
           LoadingButton(
             borderRadius: 15,
             borderColor: MyColors.primary,
-            title: index == 2
+            title: index == 1
                 ? tr(context, "rateMakeupArtist")
                 : tr(context, "cancelRequest"),
             onTap: () {
-              if (index == 2) {
+              if (index == 1) {
                 appointmentDetailsData.showRateDialog(context);
               } else {
                 appointmentDetailsData.showCancelRequestDialog(context);

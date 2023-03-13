@@ -10,18 +10,22 @@ class BuildAppointmentBody extends StatelessWidget {
     return MediaQuery.removePadding(
       context: context,
       removeTop: true,
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 3,
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index) {
-          return BuildAppointmentItem(
-            buildContext: context,
-            index: index,
-            myAppointments: myAppointmentsData,
-          );
-        },
-      ),
+      child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+          bloc: myAppointmentsData.isCurrentAppointmentCubit,
+          builder: (context, state) {
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: state.data ? 1:2,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return BuildAppointmentItem(
+                  buildContext: context,
+                  index: index,
+                  myAppointments: myAppointmentsData,
+                );
+              },
+            );
+          }),
     );
   }
 }

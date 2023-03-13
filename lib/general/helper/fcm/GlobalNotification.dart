@@ -79,6 +79,7 @@ class GlobalNotification {
       );
     }
 
+
     var android = AndroidNotificationDetails(
       "${DateTime.now()}",
       "DEFAULT",

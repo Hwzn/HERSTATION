@@ -21,7 +21,7 @@ class _Categories extends State<Categories> {
         margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 0.85),
+              crossAxisCount: 2, childAspectRatio: 0.8),
           itemCount: 10,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {

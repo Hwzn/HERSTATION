@@ -54,8 +54,12 @@ class BuildServicesBody extends StatelessWidget {
               MyText(title: tr(context,"brideMakeup"), color: MyColors.black, size: 13),
             ],
           ),
-          MyText(title: "1x  ر.س 70", color: MyColors.black, size: 13),
-        ],
+          Row(
+            children: [
+              MyText(title: "  1x  ", color: MyColors.black, size: 13),
+              MyText(title: "70 ر.س", color: MyColors.black, size: 13),
+            ],
+          ),        ],
       ),
     );
   }

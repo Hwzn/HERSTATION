@@ -50,6 +50,7 @@ class Res {
   static const String profile = "assets/images/profile.png";
   static const String receipt = "assets/images/receipt.png";
   static const String search = "assets/images/search.svg";
+  static const String search_slider = "assets/images/search_slider.png";
   static const String services = "assets/images/services.png";
   static const String share = "assets/images/share.png";
   static const String subscriptions = "assets/images/subscriptions.png";

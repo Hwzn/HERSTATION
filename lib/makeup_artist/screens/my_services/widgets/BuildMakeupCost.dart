@@ -35,7 +35,7 @@ class BuildMakeupCost extends StatelessWidget {
                               },
                             ),
                             MyText(
-                                title: tr(context,"brideMakeup"),
+                                title: tr(context, "brideMakeup"),
                                 color: MyColors.black,
                                 alien: TextAlign.center,
                                 size: 14),
@@ -144,7 +144,7 @@ class BuildMakeupCost extends StatelessWidget {
                               },
                             ),
                             MyText(
-                                title:tr(context,"sahraMakeup"),
+                                title: tr(context, "sahraMakeup"),
                                 color: MyColors.black,
                                 alien: TextAlign.center,
                                 size: 14),
@@ -253,7 +253,7 @@ class BuildMakeupCost extends StatelessWidget {
                               },
                             ),
                             MyText(
-                                title: tr(context,"makeupBrideMades"),
+                                title: tr(context, "makeupBrideMades"),
                                 color: MyColors.black,
                                 alien: TextAlign.center,
                                 size: 14),

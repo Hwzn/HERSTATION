@@ -31,32 +31,31 @@ class BuildServicesBody extends StatelessWidget {
                 builder: (context, state) {
                   return state.data
                       ? Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        child: Divider(),
-                      ),
-                      MyText(
-                        title: tr(context,"address"),
-                        color: MyColors.black,
-                        size: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      MyText(
-                        title: "الرياض - العليا",
-                        color: MyColors.black,
-                        size: 13,
-                      ),
-                    ],
-                  )
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              child: Divider(),
+                            ),
+                            MyText(
+                              title: tr(context, "address"),
+                              color: MyColors.black,
+                              size: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            MyText(
+                              title: "الرياض - العليا",
+                              color: MyColors.black,
+                              size: 13,
+                            ),
+                          ],
+                        )
                       : Container();
                 }),
-
           ],
         ),
       ),
@@ -82,10 +81,18 @@ class BuildServicesBody extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              MyText(title: tr(context,"brideMakeup"), color: MyColors.black, size: 13),
+              MyText(
+                  title: tr(context, "brideMakeup"),
+                  color: MyColors.black,
+                  size: 13),
             ],
           ),
-          MyText(title: "1x  ر.س 70", color: MyColors.black, size: 13),
+          Row(
+            children: [
+              MyText(title: "  1x  ", color: MyColors.black, size: 13),
+              MyText(title: "70 ر.س", color: MyColors.black, size: 13),
+            ],
+          ),
         ],
       ),
     );
