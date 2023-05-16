@@ -28,6 +28,7 @@ class BuildSliderBody extends StatelessWidget {
                 },
               ),
             ),
+
             Container(
               height: 60,
               padding: const EdgeInsets.all(15),
