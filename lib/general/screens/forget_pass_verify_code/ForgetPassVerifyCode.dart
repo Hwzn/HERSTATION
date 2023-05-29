@@ -1,7 +1,9 @@
 part of 'ForgetPassVerifyCodeImports.dart';
 
 class ForgetPassVerifyCode extends StatefulWidget {
-  const ForgetPassVerifyCode({Key? key}) : super(key: key);
+  final String phone;
+  final String verifyCode;
+  const ForgetPassVerifyCode({Key? key,required this.phone,required this.verifyCode}) : super(key: key);
 
   @override
   _ForgetPassVerifyCode createState() => _ForgetPassVerifyCode();
@@ -13,6 +15,7 @@ class _ForgetPassVerifyCode extends State<ForgetPassVerifyCode> {
 
   @override
   void initState() {
+    forgetPassVerifyCodeData.verifyCode=widget.verifyCode;
     forgetPassVerifyCodeData.handleStopWatchConfig();
     super.initState();
   }
@@ -41,7 +44,7 @@ class _ForgetPassVerifyCode extends State<ForgetPassVerifyCode> {
             ),
             const Spacer(),
             BuildVerifyButton(
-                forgetPassVerifyCodeData: forgetPassVerifyCodeData),
+                forgetPassVerifyCodeData: forgetPassVerifyCodeData,phone: widget.phone,),
           ],
         ),
       ),

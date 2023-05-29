@@ -35,7 +35,6 @@ class BuildHaveAccount extends StatelessWidget {
         BlocBuilder<GenericBloc<int>, GenericState<int>>(
             bloc: registerDate.userTypeCubit,
             builder: (context, state) {
-              print(state.data.toString());
               return Visibility(
                 visible: state.data == 0,
                 child: Padding(

@@ -5,16 +5,19 @@ class MainHomeData {
 
   List<HomeModel> listHome = [];
   List<Widget> viewsList = [];
+  String userProfile = "";
+  String location = "";
+  String userName = "";
 
   void changePage(int index) {
     tabsCubit.onUpdateData(index);
   }
 
-  void initData() {
+  void initData(BuildContext context) {
     listHome.add(HomeModel(
         title: "main", activeImg: Res.active_home, unactiveImg: Res.home));
-    listHome.add(
-        HomeModel(title: "favourite", activeImg: Res.active_fav, unactiveImg: Res.fav));
+    listHome.add(HomeModel(
+        title: "favourite", activeImg: Res.active_fav, unactiveImg: Res.fav));
     listHome.add(HomeModel(
         title: "myAppointment",
         activeImg: Res.active_appointment,
@@ -25,6 +28,18 @@ class MainHomeData {
       const MyAppointments(),
       const UserProfile(),
     ];
+
+    initUserData(context);
+  }
+
+  void initUserData(BuildContext context) {
+    var isAuth = context.read<AuthCubit>().state.authorized;
+    if (isAuth) {
+      var user = context.read<UserCubit>().state.model;
+      userProfile = user.image ?? "";
+      userName = user.name ?? "";
+      location = "";
+    }
   }
 
   void showDialogEnable(BuildContext buildContext) {

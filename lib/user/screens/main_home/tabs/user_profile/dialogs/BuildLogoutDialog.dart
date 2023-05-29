@@ -46,7 +46,7 @@ class BuildLogoutDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "yes"),
-                  onTap: () => userProfileData.logout(context),
+                  onTap: () => userProfileData.logout(buildContext),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: userProfileData.btnLogout,

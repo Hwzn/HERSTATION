@@ -12,7 +12,6 @@ import 'package:hwzn_herstation/general/helper/dio/utils/GlobalState.dart';
 import 'package:hwzn_herstation/general/helper/fcm/GlobalNotification.dart';
 import 'package:hwzn_herstation/general/helper/helper_methods/HelperMethods.dart';
 import 'package:hwzn_herstation/general/helper/storage/Storage.dart';
-import 'package:hwzn_herstation/general/models/UserModel.dart';
 import 'package:hwzn_herstation/general/packages/animation_container/AnimationContainer.dart';
 import 'package:hwzn_herstation/general/resources/GeneralRepoImports.dart';
 import 'package:hwzn_herstation/general/utilities/routers/RouterImports.gr.dart';
@@ -21,6 +20,12 @@ import 'package:hwzn_herstation/res.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telephony/telephony.dart';
+
+import '../../blocks/lang_cubit/lang_cubit.dart';
+import '../../blocks/setting_cubit/setting_cubit.dart';
+import '../../blocks/user_cubit/user_cubit.dart';
+import '../../models/setting_model/setting_model.dart';
+import '../../models/user_model/user_model.dart';
 
 part 'Splash.dart';
 part 'SplashData.dart';

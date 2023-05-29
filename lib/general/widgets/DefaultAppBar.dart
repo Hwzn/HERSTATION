@@ -9,6 +9,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final double? size;
   final bool? haveLeading;
+  final Function()? fun;
 
   const DefaultAppBar(
       {Key? key,
@@ -16,6 +17,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.actions = const [],
       this.leading,
       this.size,
+      this.fun,
       required this.haveLeading})
       : super(key: key);
 
@@ -24,7 +26,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: haveLeading!
           ? InkWell(
-              onTap: () => AutoRouter.of(context).pop(),
+              onTap: () => fun ?? AutoRouter.of(context).pop(),
               child: Icon(
                 Icons.arrow_back_ios,
                 color: MyColors.primary,

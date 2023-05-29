@@ -162,7 +162,7 @@
   "pass": "Enter password",
   "retryPass": "Retry password",
   "sendAfter": "Resend code after ",
-  "enterUserName": "Enter user name",
+  "enterUserName": "Enter user data",
   "brideMakeup": "Bride makeup",
   "sahraMakeup": "Sahra makeup",
   "categoryName": "Category name",
@@ -183,5 +183,9 @@
   "otherServices": "Other services",
   "save": "Save",
   "herStationTitle": "Her station is your station for beauty",
-  "herStationDesc": "Feature description is provided here Feature description is provided here Feature description is provided here Feature description is provided here"
+  "herStationDesc": "Feature description is provided here Feature description is provided here Feature description is provided here Feature description is provided here",
+  "placeUser": "Place",
+  "experience": "Experience",
+  "email": "Email",
+  "contactPhone": "Contact phone"
 }

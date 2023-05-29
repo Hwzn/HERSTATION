@@ -41,11 +41,11 @@ class BuildDontHaveAccount extends StatelessWidget {
             builder: (context, state) {
               print(state.data.toString());
               return Visibility(
-                visible: state.data == 0,
+                visible: state.data == 2,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   child: InkWell(
-                    onTap: () => loginData.setType(),
+                    onTap: () => loginData.setMakeupArtistType(),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: MyText(

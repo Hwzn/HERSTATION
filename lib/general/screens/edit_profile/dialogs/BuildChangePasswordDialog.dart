@@ -38,22 +38,26 @@ class BuildChangePasswordDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "save"),
-                  onTap: () =>    editProfileData.confirmChange(context),
+                  onTap: () =>
+                      editProfileData.confirmChange(context, buildContext,1),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: editProfileData.btnSavePass,
                   fontSize: 13,
                 ),
               ),
-              Container(
-                width: widthCancel,
-                alignment: AlignmentDirectional.center,
-                child: MyText(
-                  title: tr(context, "cancel"),
-                  color: MyColors.grey,
-                  size: 14,
-                  fontWeight: FontWeight.bold,
+              InkWell(
+                child: Container(
+                  width: widthCancel,
+                  alignment: AlignmentDirectional.center,
+                  child: MyText(
+                    title: tr(context, "cancel"),
+                    color: MyColors.grey,
+                    size: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                onTap: () => AutoRouter.of(context).pop(),
               ),
             ],
           ),

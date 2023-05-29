@@ -4,6 +4,7 @@ class VerifyCodeData {
   // variables
   String? code;
   StopWatchTimer? stopWatchTimer;
+  String? verifyCode;
 
   // blocs
   final GenericBloc<bool> codeCubit = GenericBloc(false);
@@ -32,23 +33,26 @@ class VerifyCodeData {
     code = value;
   }
 
-  void onActiveAccount(BuildContext context, String email) async {
+  void onActiveAccount(
+      BuildContext context, String email) async {
     if (formKey.currentState!.validate()) {
-      btnKey.currentState?.animateForward();
-
-      AutoRouter.of(context).push(const CompleteRegisterRoute());
-
-      // var result =  await GeneralRepository(context).activeAccount(code??'', email);
-      // btnKey.currentState?.animateReverse();
-      // if(result){
-      //   AutoRouter.of(context).popUntilRouteWithName(LoginRoute.name);
-      // }
+      var result = await GeneralRepository(context)
+          .activeAccount(code ?? '', email, verifyCode??"");
+      if (result && context.mounted) {
+        int userType = await Storage.getUserType();
+        AutoRouter.of(context).push(CompleteRegisterRoute(userType: userType));
+      }
     }
   }
 
   void onResendCode(BuildContext context, String email) async {
     await LoadingDialog.showLoadingDialog();
-    // await GeneralRepository(context).resendCode(email);
-    EasyLoading.dismiss();
+    if (context.mounted) {
+      String result = await GeneralRepository(context).resendCode(email);
+      if (result != "") {
+        verifyCode = result;
+      }
+      EasyLoading.dismiss();
+    }
   }
 }

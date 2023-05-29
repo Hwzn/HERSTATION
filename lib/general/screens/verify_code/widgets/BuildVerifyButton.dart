@@ -3,11 +3,12 @@ part of 'VerifyCodeWidgetsImports.dart';
 class BuildVerifyButton extends StatelessWidget {
   final VerifyCodeData verifyCodeData;
   final String email;
+  final String verifyToken;
 
   const BuildVerifyButton(
       {Key? key,
       required this.verifyCodeData,
-      required this.email})
+      required this.email,required this.verifyToken})
       : super(key: key);
 
   @override

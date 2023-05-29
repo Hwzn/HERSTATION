@@ -2,8 +2,9 @@ part of 'ForgetPassVerfiyCodeWidgetImports.dart';
 
 class BuildVerifyButton extends StatelessWidget {
   final ForgetPassVerifyCodeData forgetPassVerifyCodeData;
+  final String phone;
 
-  const BuildVerifyButton({Key? key, required this.forgetPassVerifyCodeData})
+  const BuildVerifyButton({Key? key, required this.forgetPassVerifyCodeData,required this.phone})
       : super(key: key);
 
   @override
@@ -20,8 +21,8 @@ class BuildVerifyButton extends StatelessWidget {
                 height: 100,
                 alignment: Alignment.center,
                 child: GestureDetector(
-                  onTap: () => AutoRouter.of(context)
-                      .push(ResetPasswordRoute(email: "", code: "")),
+                  onTap: () =>
+                      forgetPassVerifyCodeData.sendCode(context, phone),
                   child: Container(
                       margin: const EdgeInsets.all(17),
                       child: CircleProgressBar(

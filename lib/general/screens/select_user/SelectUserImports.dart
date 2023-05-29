@@ -5,8 +5,8 @@ import 'package:hwzn_herstation/general/helper/configration/CustomButtonAnimatio
 import 'package:hwzn_herstation/general/screens/select_user/widgets/SelectUserWidgetsImports.dart';
 
 import '../../blocks/user_cubit/user_cubit.dart';
-import '../../models/UserModel.dart';
-import '../../models/customer_model.dart';
+
+import '../../models/user_model/user_model.dart';
 import '../../utilities/routers/RouterImports.gr.dart';
 import '../../widgets/AuthScaffold.dart';
 

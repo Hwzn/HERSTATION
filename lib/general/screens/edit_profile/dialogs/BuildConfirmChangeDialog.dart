@@ -3,9 +3,13 @@ part of 'EditProfileDialogsImports.dart';
 class BuildConfirmChangeDialog extends StatelessWidget {
   final BuildContext buildContext;
   final EditProfileData editProfileData;
+  final int type;
 
   const BuildConfirmChangeDialog(
-      {Key? key, required this.buildContext, required this.editProfileData})
+      {Key? key,
+      required this.buildContext,
+      required this.editProfileData,
+      required this.type})
       : super(key: key);
 
   @override
@@ -45,7 +49,13 @@ class BuildConfirmChangeDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "yes"),
-                  onTap: () => editProfileData.saveChange(context),
+                  onTap: () {
+                    if (type == 0) {
+                      editProfileData.updateProfile(context);
+                    } else {
+                      editProfileData.changePass(context);
+                    }
+                  },
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: editProfileData.btnConfirmChange,

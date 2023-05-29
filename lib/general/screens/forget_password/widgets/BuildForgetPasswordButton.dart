@@ -20,7 +20,8 @@ class BuildForgetPasswordButton extends StatelessWidget {
                 height: 100,
                 alignment: Alignment.center,
                 child: GestureDetector(
-                  onTap: () => AutoRouter.of(context).push( ForgetPassVerifyCodeRoute()),
+                  onTap: ()=>forgetPasswordData.resetPassword(context),
+                  // onTap: () => AutoRouter.of(context).push( ForgetPassVerifyCodeRoute()),
 
                   // onTap: () => AutoRouter.of(context).push( ResetPasswordRoute(email: "", code: "")),
                   child: Container(

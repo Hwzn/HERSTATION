@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hwzn_herstation/general/models/UserModel.dart';
-import 'package:hwzn_herstation/general/models/customer_model.dart';
+import '../../models/user_model/user_model.dart';
 
 part 'user_state.dart';
 

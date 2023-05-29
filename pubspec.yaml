@@ -165,6 +165,7 @@ flutter:
     - assets/images/facebook.svg
     - assets/images/fav.png
     - assets/images/filter.svg
+    - assets/images/gallery.png
     - assets/images/home.png
     - assets/images/icon.png
     - assets/images/insta.svg

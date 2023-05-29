@@ -13,7 +13,7 @@ class _MainHome extends State<MainHome> {
 
   @override
   void initState() {
-    mainHomeData.initData();
+    mainHomeData.initData(context);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       mainHomeData.showDialogEnable(context);

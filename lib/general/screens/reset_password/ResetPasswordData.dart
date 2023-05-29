@@ -32,28 +32,30 @@ class ResetPasswordData {
   void onResetPassword(BuildContext context, String phone) async {
     // AutoRouter.of(context).pushAndPopUntil(const LoginRoute(), predicate: (_)=>false);
 
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder( // <-- SEE HERE
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(25.0),
-          ),
-        ),
-        builder: (context) {
-          return BuildResetConfirmDialog(
-            buildContext: context,
-            resetPasswordData: this,
-          );
-        });
-    return;
     FocusScope.of(context).requestFocus(FocusNode());
     if (formKey.currentState!.validate()) {
-      btnKey.currentState!.animateForward();
       var data = await GeneralRepository(context)
-          .resetUserPassword(phone, password.text);
-      btnKey.currentState!.animateReverse();
-      CustomToast.showSimpleToast(msg: data["msg"]);
+          .resetUserPassword(password.text, confirmPassword.text);
+      if (data == true &&context.mounted ) {
+        showModalBottomSheet(
+            context: context,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(25.0),
+              ),
+            ),
+            builder: (context) {
+              return BuildResetConfirmDialog(
+                buildContext: context,
+                resetPasswordData: this,
+              );
+            });
+
+      }
     }
+
+
+    return;
   }
 
   void onResendCode(BuildContext context, String phoneOrEmail) async {

@@ -9,20 +9,20 @@ class WelcomePageData {
 
   void initPagesData(BuildContext context) {
     var pages = context.read<SettingCubit>().state.model.onboardPages;
-    // if(pages!=null){
-    //   pages.reversed;
-    //   data = List.generate(pages.length, (index) => BuildPageView(
-    //   key:  Key("$index"),
-    //   model: WelcomeEntity(
-    //       title: pages[index].title,
-    //       desc:pages[index].desc,
-    //       image: index == 0 ? Res.onboardingOne:index==1?Res.onboardingTwo:Res.onboardingThree,
-    //       index: index,
-    //       last: index == pages.length-1,
-    //       pageCubit: pagesCubit),
-    // ));
-    //   return;
-    // }
+    if(pages!=null){
+      pages.reversed;
+      data = List.generate(pages.length, (index) => BuildPageView(
+      key:  Key("$index"),
+      model: WelcomeEntity(
+          title: pages[index].title,
+          desc:pages[index].desc,
+          image: index == 0 ? Res.onboardingOne:index==1?Res.onboardingTwo:Res.onboardingThree,
+          index: index,
+          last: index == pages.length-1,
+          pageCubit: pagesCubit), welcomePageData: this,
+    ));
+      return;
+    }
 
     data = [
       BuildPageView(

@@ -238,7 +238,6 @@
   "enterTitleMsg": "ادخل عنوان الرساله",
   "msg": "ادخل الرسالة",
   "cancel": "إلغاء",
-
   "oldPassword": " ادخل كلمة المرور القديمة ",
   "newPassword": " ادخل كلمة المرور الجديدة ",
   "reTryNewPass": " اعد ادخال كلمة المرور الجديدة ",
@@ -311,7 +310,6 @@
   "takePhoto": "Take photo",
   "chooseGalley": "Choose from galley",
   "clientInfo": "معلومات العميل",
-
   "callClient": "اتصل بالعميل",
   "changeRequestStatus": "تغيير حالة الطلب",
   "underway": "قيد التنفيذ",
@@ -341,7 +339,7 @@
   "pass": "ادخل كلمة المرور",
   "retryPass": "اعد ادخال كلمة المرور",
   "sendAfter": "اعد ارسال الرمز بعد ",
-  "enterUserName": "ادخل اسم المستخدم",
+  "enterUserName": "ادخل بيانات المستخدم",
   "brideMakeup": "ميكب عروس",
   "sahraMakeup": "ميكب سهرة",
   "categoryName": "اسم التخصص",
@@ -354,7 +352,13 @@
   "cancelled": "تم إلغاء",
   "otherServices": "خدمات اخري",
   "herStationTitle": "هيرستشن محطتك للجمال",
-  "herStationDesc": "يوضع هنا وصف الميزة والذي تكون عاده من عدة اسطر كهذا المثال"
+  "herStationDesc": "يوضع هنا وصف الميزة والذي تكون عاده من عدة اسطر كهذا المثال",
+  "placeUser": "المكان",
+  "experience": "الخبرة",
+  "email": "البريد الالكتروني",
+  "contactPhone": "رقم االتواصل"
+
+
 
 }
 

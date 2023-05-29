@@ -6,24 +6,22 @@ class ContactUsData{
   final GlobalKey<CustomButtonState> btnKey =  GlobalKey<CustomButtonState>();
 
   // contrillers
-  final TextEditingController name =  TextEditingController();
-  final TextEditingController email =  TextEditingController();
+  final TextEditingController phone =  TextEditingController();
+  final TextEditingController title =  TextEditingController();
   final TextEditingController notes =  TextEditingController();
 
   // methods
   void addContactUs(BuildContext context) async {
-    // if (formKey.currentState!.validate()) {
-    //   btnKey.currentState!.animateForward();
-    //
-    //   var send = await GeneralRepository(context)
-    //       .sendMessage(name: name.text, mail: email.text, message: notes.text);
-    //   btnKey.currentState!.animateReverse();
-    //   if (send) {
-    //     name.clear();
-    //     email.clear();
-    //     notes.clear();
-    //     CustomToast.showSimpleToast(msg: tr(context, "thanks"));
-    //   }
-    // }
+    if (formKey.currentState!.validate()) {
+
+      var send = await GeneralRepository(context)
+          .sendMessage(phone: phone.text, title: title.text, message: notes.text);
+      if (send) {
+        phone.clear();
+        title.clear();
+        notes.clear();
+        CustomToast.showSimpleToast(msg: tr(context, "thanks"));
+      }
+    }
   }
 }

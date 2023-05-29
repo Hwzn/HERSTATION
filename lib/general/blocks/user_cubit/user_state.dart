@@ -11,12 +11,13 @@ class UserInitial extends UserState {
   UserInitial()
       : super(
             model: UserModel(
-              data: CustomerModel(
+
                 phone: "",
                 email: "",
                 id: 0,
-                username: "",
-              ),
+              name: ""
+
+
             ),
             changed: false);
 

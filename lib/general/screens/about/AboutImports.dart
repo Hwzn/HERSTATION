@@ -5,6 +5,8 @@ import 'package:hwzn_herstation/general/constants/MyColors.dart';
 import 'package:hwzn_herstation/general/widgets/AuthScaffold.dart';
 import 'package:hwzn_herstation/general/widgets/DefaultAppBar.dart';
 
+import '../../models/setting_model/setting_model.dart';
+import '../../packages/generic_bloc/generic_cubit.dart';
 import '../../packages/localization/Localizations.dart';
 import 'widgets/AboutWidgetsImports.dart';
 

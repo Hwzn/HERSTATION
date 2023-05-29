@@ -160,16 +160,25 @@ class AppRouter extends _i32.RootStackRouter {
       );
     },
     CompleteRegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<CompleteRegisterRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i11.CompleteRegister(),
+        child: _i11.CompleteRegister(
+          key: args.key,
+          userType: args.userType,
+        ),
         opaque: true,
       );
     },
     ForgetPassVerifyCodeRoute.name: (routeData) {
+      final args = routeData.argsAs<ForgetPassVerifyCodeRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i12.ForgetPassVerifyCode(),
+        child: _i12.ForgetPassVerifyCode(
+          key: args.key,
+          phone: args.phone,
+          verifyCode: args.verifyCode,
+        ),
         opaque: true,
       );
     },
@@ -186,7 +195,8 @@ class AppRouter extends _i32.RootStackRouter {
         routeData: routeData,
         child: _i14.VerifyCode(
           key: args.key,
-          email: args.email,
+          phone: args.phone,
+          verifyToken: args.verifyToken,
         ),
         opaque: true,
       );
@@ -630,26 +640,77 @@ class ImageZoomRouteArgs {
 
 /// generated route for
 /// [_i11.CompleteRegister]
-class CompleteRegisterRoute extends _i32.PageRouteInfo<void> {
-  const CompleteRegisterRoute()
-      : super(
+class CompleteRegisterRoute
+    extends _i32.PageRouteInfo<CompleteRegisterRouteArgs> {
+  CompleteRegisterRoute({
+    _i33.Key? key,
+    required int userType,
+  }) : super(
           CompleteRegisterRoute.name,
           path: '/complete-register',
+          args: CompleteRegisterRouteArgs(
+            key: key,
+            userType: userType,
+          ),
         );
 
   static const String name = 'CompleteRegisterRoute';
 }
 
+class CompleteRegisterRouteArgs {
+  const CompleteRegisterRouteArgs({
+    this.key,
+    required this.userType,
+  });
+
+  final _i33.Key? key;
+
+  final int userType;
+
+  @override
+  String toString() {
+    return 'CompleteRegisterRouteArgs{key: $key, userType: $userType}';
+  }
+}
+
 /// generated route for
 /// [_i12.ForgetPassVerifyCode]
-class ForgetPassVerifyCodeRoute extends _i32.PageRouteInfo<void> {
-  const ForgetPassVerifyCodeRoute()
-      : super(
+class ForgetPassVerifyCodeRoute
+    extends _i32.PageRouteInfo<ForgetPassVerifyCodeRouteArgs> {
+  ForgetPassVerifyCodeRoute({
+    _i33.Key? key,
+    required String phone,
+    required String verifyCode,
+  }) : super(
           ForgetPassVerifyCodeRoute.name,
           path: '/forget-pass-verify-code',
+          args: ForgetPassVerifyCodeRouteArgs(
+            key: key,
+            phone: phone,
+            verifyCode: verifyCode,
+          ),
         );
 
   static const String name = 'ForgetPassVerifyCodeRoute';
+}
+
+class ForgetPassVerifyCodeRouteArgs {
+  const ForgetPassVerifyCodeRouteArgs({
+    this.key,
+    required this.phone,
+    required this.verifyCode,
+  });
+
+  final _i33.Key? key;
+
+  final String phone;
+
+  final String verifyCode;
+
+  @override
+  String toString() {
+    return 'ForgetPassVerifyCodeRouteArgs{key: $key, phone: $phone, verifyCode: $verifyCode}';
+  }
 }
 
 /// generated route for
@@ -669,13 +730,15 @@ class RegisterRoute extends _i32.PageRouteInfo<void> {
 class VerifyCodeRoute extends _i32.PageRouteInfo<VerifyCodeRouteArgs> {
   VerifyCodeRoute({
     _i33.Key? key,
-    required String email,
+    required String phone,
+    required String verifyToken,
   }) : super(
           VerifyCodeRoute.name,
           path: '/verify-code',
           args: VerifyCodeRouteArgs(
             key: key,
-            email: email,
+            phone: phone,
+            verifyToken: verifyToken,
           ),
         );
 
@@ -685,16 +748,19 @@ class VerifyCodeRoute extends _i32.PageRouteInfo<VerifyCodeRouteArgs> {
 class VerifyCodeRouteArgs {
   const VerifyCodeRouteArgs({
     this.key,
-    required this.email,
+    required this.phone,
+    required this.verifyToken,
   });
 
   final _i33.Key? key;
 
-  final String email;
+  final String phone;
+
+  final String verifyToken;
 
   @override
   String toString() {
-    return 'VerifyCodeRouteArgs{key: $key, email: $email}';
+    return 'VerifyCodeRouteArgs{key: $key, phone: $phone, verifyToken: $verifyToken}';
   }
 }
 

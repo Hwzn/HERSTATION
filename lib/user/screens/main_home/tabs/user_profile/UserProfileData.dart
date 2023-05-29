@@ -18,8 +18,8 @@ class UserProfileData {
   List<GeneralModel> infoList = [];
 
   void checkUser() async {
-    String type = await Storage.getUserType() ?? "0";
-    if (type == "1") {
+    int type = await Storage.getUserType() ?? 2;
+    if (type == 3) {
       isMakeupArtistCubit.onUpdateData(true);
     }
   }
@@ -104,8 +104,18 @@ class UserProfileData {
     return;
   }
 
-  void logout(BuildContext context) {
-    Navigator.of(context).pop();
+  void logout(BuildContext context) async {
+    var data = await GeneralRepository(context).logOut();
+    if (data == true &&context.mounted) {
+      EasyLoading.dismiss();
+      GlobalState.instance.set("token", "");
+      Storage.clearSavedData();
+      context.read<AuthCubit>().onUpdateAuth(false);
+      context.read<UserCubit>().onUpdateUserData(UserModel());
+      CustomToast.showSimpleToast(msg: "تم تسجيل الخروج بنجاح");
+      // Phoenix.rebirth(context);
+      AutoRouter.of(context).push(const LoginRoute());
+    }
   }
 
 //////////////// change language ////////////////

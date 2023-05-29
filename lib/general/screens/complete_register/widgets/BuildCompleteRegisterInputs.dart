@@ -2,9 +2,11 @@ part of 'CompleteRegisterWidgetsImports.dart';
 
 class BuildCompleteRegisterInputs extends StatelessWidget {
   final CompleteRegisterData completeRegisterData;
+  final int userType;
+
 
   const BuildCompleteRegisterInputs(
-      {Key? key, required this.completeRegisterData})
+      {Key? key, required this.completeRegisterData, required this.userType})
       : super(key: key);
 
   @override
@@ -13,18 +15,80 @@ class BuildCompleteRegisterInputs extends StatelessWidget {
       key: completeRegisterData.formKey,
       child: Column(
         children: [
+          userType == 3
+              ? BuildUploadImage(completeRegisterData: completeRegisterData)
+              : Container(),
           GenericTextField(
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            controller: completeRegisterData.phone,
+            controller: completeRegisterData.name,
             fieldTypes: FieldTypes.normal,
-            type: TextInputType.phone,
+            type: TextInputType.name,
             radius: 10,
             action: TextInputAction.next,
-            validate: (value) => value?.validatePhone(context),
+            validate: (value) => value?.validateEmpty(context),
             label: tr(context, "name"),
             fillColor: MyColors.white,
             margin: const EdgeInsets.symmetric(vertical: 10),
+          ),
+          GenericTextField(
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            controller: completeRegisterData.email,
+            fieldTypes: FieldTypes.normal,
+            type: TextInputType.emailAddress,
+            radius: 10,
+            action: TextInputAction.next,
+            validate: (value) => value?.validateEmail(context),
+            label: tr(context, "email"),
+            fillColor: MyColors.white,
+            margin: const EdgeInsets.symmetric(vertical: 10),
+          ),
+          Visibility(
+            visible: userType == 3,
+            child: Column(
+              children: [
+                GenericTextField(
+                  contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  controller: completeRegisterData.contactPhone,
+                  fieldTypes: FieldTypes.normal,
+                  type: TextInputType.name,
+                  radius: 10,
+                  action: TextInputAction.next,
+                  validate: (value) => value?.validatePhone(context),
+                  label: tr(context, "contactPhone"),
+                  fillColor: MyColors.white,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                ),
+                GenericTextField(
+                  contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  controller: completeRegisterData.place,
+                  fieldTypes: FieldTypes.normal,
+                  type: TextInputType.name,
+                  radius: 10,
+                  action: TextInputAction.next,
+                  validate: (value) => value?.validateEmpty(context),
+                  label: tr(context, "placeUser"),
+                  fillColor: MyColors.white,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                ),
+                GenericTextField(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  controller: completeRegisterData.experience,
+                  fieldTypes: FieldTypes.normal,
+                  type: TextInputType.name,
+                  radius: 10,
+                  action: TextInputAction.next,
+                  validate: (value) => value?.validateEmpty(context),
+                  label: tr(context, "experience"),
+                  fillColor: MyColors.white,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                ),
+              ],
+            ),
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(0, 20, 0, 25),

@@ -14,15 +14,15 @@ class MyAppointmentsData {
   }
 
   void checkingTyp() async {
-    String type = await Storage.getUserType() ?? "0";
-    if (type == "1") {
+    int type = await Storage.getUserType() ??2;
+    if (type == 3) {
       isMakeupArtistCubit.onUpdateData(true);
     }
   }
 
   void moveToDetails(BuildContext context,int index) async {
-    String type = await Storage.getUserType() ?? "0";
-    if (type == "0") {
+    int type = await Storage.getUserType() ?? 2;
+    if (type ==2 &&context.mounted) {
       AutoRouter.of(context).push(AppointmentDetailsRoute(index: index));
     } else {
       AutoRouter.of(context).push(MakeupArtistAppointmentDetailsRoute(index: index));

@@ -1,9 +1,10 @@
 part of 'VerifyCodeImports.dart';
 
 class VerifyCode extends StatefulWidget {
-  final String email;
+  final String phone;
+  final String verifyToken;
 
-  const VerifyCode({Key? key, required this.email}) : super(key: key);
+  const VerifyCode({Key? key, required this.phone,required this.verifyToken}) : super(key: key);
 
   @override
   _VerifyCodeState createState() => _VerifyCodeState();
@@ -15,6 +16,7 @@ class _VerifyCodeState extends State<VerifyCode> {
   @override
   void initState() {
     verifyCodeData.handleStopWatchConfig();
+    verifyCodeData.verifyCode=widget.verifyToken;
     super.initState();
   }
 
@@ -57,12 +59,13 @@ class _VerifyCodeState extends State<VerifyCode> {
                 ),
                 BuildResendCode(
                     verifyCodeData: verifyCodeData,
-                    email: widget.email,
+                    email: widget.phone,
                     stopWatchTimer: verifyCodeData.stopWatchTimer!),
                 BuildCodeField(verifyCodeData: verifyCodeData),
                 BuildVerifyButton(
                   verifyCodeData: verifyCodeData,
-                  email: widget.email,
+                  email: widget.phone,
+                  verifyToken: widget.verifyToken ,
                 ),
               ],
             ),

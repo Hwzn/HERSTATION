@@ -1,7 +1,13 @@
 part of 'TermsImports.dart';
 
 class TermsData {
-  // keys
-  GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
+
+  String data="";
+  void getTerms(BuildContext context){
+    var termsData = context.read<SettingCubit>().state.model.terms;
+    if(termsData !=null){
+      data=termsData;
+    }
+  }
 
 }

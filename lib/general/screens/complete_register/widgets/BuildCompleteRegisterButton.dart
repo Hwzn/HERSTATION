@@ -22,7 +22,7 @@ class BuildCompleteRegisterButton extends StatelessWidget {
               height: 100,
               alignment: Alignment.center,
               child: GestureDetector(
-                onTap: () => AutoRouter.of(context).push(LoginRoute()),
+                onTap: () => {completeRegisterData.completeAccount(context)},
                 child: Container(
                     margin: const EdgeInsets.all(17),
                     child: CircleProgressBar(

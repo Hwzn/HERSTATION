@@ -42,8 +42,8 @@ class BuildResetConfirmDialog extends StatelessWidget {
             borderRadius: 8,
             borderColor: MyColors.primary,
             title: tr(context, "great"),
-            onTap: () => AutoRouter.of(context).push(const LoginRoute()),
-
+            onTap: () => AutoRouter.of(context)
+                .pushAndPopUntil(const LoginRoute(), predicate: (_) => false),
             color: MyColors.primary,
             textColor: MyColors.white,
             btnKey: resetPasswordData.btnConfirmDialogKey,

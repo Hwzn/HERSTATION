@@ -14,7 +14,7 @@ class _SplashState extends State<Splash> {
 
   @override
   void initState() {
-    controller.checkingData(context);
+    controller.manipulateSaveData(context);
     super.initState();
   }
 

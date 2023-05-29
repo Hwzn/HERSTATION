@@ -33,7 +33,7 @@ class BuildSaveChangesDialog extends StatelessWidget {
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "great"),
-            onTap: () => Navigator.pop(context),
+            onTap: () => AutoRouter.of(context).push(const EditProfileRoute()),
             color: MyColors.primary,
             textColor: MyColors.white,
             btnKey: editProfileData.btnDoneChange,

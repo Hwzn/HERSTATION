@@ -8,6 +8,7 @@ class BuildEditProfileInputs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  int userType=context.read<UserCubit>().state.model.userType!.id!;
     return Form(
       key: editProfileData.formKey,
       child: Column(
@@ -26,7 +27,6 @@ class BuildEditProfileInputs extends StatelessWidget {
             fieldTypes: FieldTypes.normal,
             fillColor: Colors.white,
             radius: 10,
-            hint: "maya@gmail.com",
             controller: editProfileData.name,
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 15),
             action: TextInputAction.next,
@@ -42,7 +42,6 @@ class BuildEditProfileInputs extends StatelessWidget {
           ),
           GenericTextField(
             fieldTypes: FieldTypes.normal,
-            hint: "maya@gmail.com",
             controller: editProfileData.email,
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 15),
             fillColor: Colors.white,
@@ -51,6 +50,29 @@ class BuildEditProfileInputs extends StatelessWidget {
             type: TextInputType.emailAddress,
             validate: (value) => value!.validateEmail(context),
           ),
+          userType==3?Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              MyText(
+                title: tr(context, "contactPhone"),
+                color: Colors.black,
+                size: 14,
+                fontWeight: FontWeight.bold,
+              ),
+              GenericTextField(
+                fieldTypes: FieldTypes.normal,
+                fillColor: Colors.white,
+                controller: editProfileData.contactPhone,
+                radius: 10,
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 15),
+                action: TextInputAction.next,
+                type: TextInputType.text,
+                validate: (value) => value!.validatePhone(context),
+              ),
+            ],
+          ):Container(),
           const SizedBox(height: 10),
           MyText(
             title: tr(context, "phone"),
@@ -61,7 +83,6 @@ class BuildEditProfileInputs extends StatelessWidget {
           GenericTextField(
             fieldTypes: FieldTypes.normal,
             fillColor: Colors.white,
-            hint: tr(context, "maya@gmail.com"),
             controller: editProfileData.phone,
             radius: 10,
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 15),

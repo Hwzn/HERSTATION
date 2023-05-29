@@ -1,7 +1,8 @@
 class ApiNames{
 
   // base
-  static const String baseUrl = "https://h.hwzn.sa/api/";
+  static const String baseUrl = "https://admin.herstation.hwzn.sa/api/";
+
   static const String branch = "1";
 
   // Setting
@@ -10,22 +11,28 @@ class ApiNames{
 
 
   // auth
-  static const String aboutApp = "AboutApp";
-  static const String terms = "api/mobile/termsAndConditions";
   static const String login = "login";
+  static const String logOut = "logout";
   static const String activateAccount = "activate-account";
-  static const String sendCode = "api/mobile/checkVerificationCode";
+  static const String register = "register";
   static const String resendCode = "send-code";
+  static const String forgetPassword = "send-code";
+  static const String resetPassword = "reset-password";
+  static const String checkCode = "check-code";
+
+  static const String completeAccount = "complete-profile";
+  static const String contactUs = "contact";
+  static const String changePassword = "update-password";
+  static const String updateProfile = "update-profile";
+
+
+  static const String terms = "api/mobile/termsAndConditions";
+  static const String sendCode = "api/mobile/checkVerificationCode";
   static const String repeatedQuestions = "api/mobile/faq";
   static const String switchNotify = "SwitchNotify";
-  static const String forgetPassword = "api/mobile/sendResetPassCode";
-  static const String resetPassword = "api/mobile/resetPassword";
-  static const String contactUs = "ContactUs";
   static const String boarding = "api/mobile/splash";
 
   // customer
-  static const String register = "register";
-  static const String logOut = "api/mobile/logout";
   static const String editProfile = "api/mobile/editProfile";
   static const String updatePassword = "api/mobile/updatePassword";
   static const String getHome = "api/mobile/homePage";

@@ -12,60 +12,46 @@ class LoginData {
 
   // blocs
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
-  final GenericBloc<int> userTypeCubit = GenericBloc(0);
-
+  final GenericBloc<int> userTypeCubit = GenericBloc(2);
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-
   // methods
   void userLogin(BuildContext context) async {
-    FocusScope.of(context).requestFocus(FocusNode());
-    //
-    // // check validation
-    // if (formKey.currentState!.validate()) {
-    //   btnKey.currentState!.animateForward();
-    //
-    //   // convert arabic numbers to english
-    //   String passEn = HelperMethods.convertDigitsToLatin(password.text);
-    //
-    //   // call api
-    //   bool data = await GeneralRepository(context).setUserLogin(phone.text, passEn);
-    //   btnKey.currentState!.animateReverse();
-    //
-    //   // navigation action when user is logged in successfully
-    //   if(data == true){
-    //     // AutoRouter.of(context).push(BuyerHomeRoute());
-    //     print("=========================>>> true");
-    //   }
-    // }
+    if (context.mounted) {
+      FocusScope.of(context).requestFocus(FocusNode());
 
-
-    String? token = await messaging.getToken();
-    print("token : ${token!}");
-
-
-    String type = await Storage.getUserType() ?? "0";
-    if (type == "0") {
-      AutoRouter.of(context).push(const MainHomeRoute());
-    }else{
-      AutoRouter.of(context).push(const MakeupArtistHomeRoute());
-
+      if (formKey.currentState!.validate()) {
+        String passEn = HelperMethods.convertDigitsToLatin(password.text);
+        var data =
+            await GeneralRepository(context).setUserLogin(phone.text, passEn);
+        if (data != null && context.mounted) {
+          await Utils.manipulateLoginData(context, data);
+          int type = await Storage.getUserType() ?? 2;
+          if (context.mounted) {
+            if (type == 2) {
+              AutoRouter.of(context).push(const MainHomeRoute());
+            } else {
+              AutoRouter.of(context).push(const MakeupArtistHomeRoute());
+            }
+          }
+        }
+      }
     }
   }
 
-  void setType() async {
-    await Storage.setUserType("1");
-    userTypeCubit.onUpdateData(1);
+  void setMakeupArtistType() async {
+    await Storage.setUserType(3);
+    userTypeCubit.onUpdateData(3);
   }
 
   void getType() async {
-    String type = await Storage.getUserType() ?? "0";
-    userTypeCubit.onUpdateData(int.parse(type));
+    int type = await Storage.getUserType() ?? 2;
+    userTypeCubit.onUpdateData(type);
   }
 
-  void skipLogin(BuildContext context) async{
-    await Storage.setUserType("0");
+  void skipLogin(BuildContext context) async {
+    await Storage.setUserType(2);
     AutoRouter.of(context).push(const MainHomeRoute());
   }
 }

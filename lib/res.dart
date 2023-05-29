@@ -20,6 +20,7 @@ class Res {
   static const String facebook = "assets/images/facebook.svg";
   static const String fav = "assets/images/fav.png";
   static const String filter = "assets/images/filter.svg";
+  static const String gallery = "assets/images/gallery.png";
   static const String home = "assets/images/home.png";
   static const String icon = "assets/images/icon.png";
   static const String insta = "assets/images/insta.svg";

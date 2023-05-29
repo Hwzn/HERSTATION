@@ -7,7 +7,15 @@ class Terms extends StatefulWidget {
   _TermsState createState() => _TermsState();
 }
 
-class _TermsState extends State<Terms> with TermsData {
+class _TermsState extends State<Terms> {
+  TermsData termsData = TermsData();
+
+  @override
+  void initState() {
+    termsData.getTerms(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // var terms = context.read<SettingCubit>().state.model.terms;
@@ -17,8 +25,6 @@ class _TermsState extends State<Terms> with TermsData {
           haveLeading: true,
         ),
         backgroundColor: MyColors.bgPrimary,
-        body: const BuildTermsView(
-            text:
-                "توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. توضع هنا الشروط والاحكام والتي عادة ما تتكون من عدة اسطر. "));
+        body: BuildTermsView(text: termsData.data ?? ""));
   }
 }

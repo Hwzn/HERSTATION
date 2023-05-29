@@ -8,7 +8,7 @@ class SelectUserData {
 
   // methods
   void onSelectManager(BuildContext context) {
-    context.read<UserCubit>().onUpdateUserData(UserModel(data: CustomerModel()),);
+    // context.read<UserCubit>().onUpdateUserData(UserModel(data: CustomerModel()),);
     AutoRouter.of(context).push(const LoginRoute());
   }
 

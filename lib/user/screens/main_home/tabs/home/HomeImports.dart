@@ -14,6 +14,8 @@ import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/user/screens/main_home/tabs/home/widgets/HomeWidgetsImports.dart';
 import 'package:telephony/telephony.dart';
 
+import '../../../../../general/blocks/auth_cubit/auth_cubit.dart';
+import '../../../../../general/blocks/user_cubit/user_cubit.dart';
 import '../../../../../general/packages/localization/Localizations.dart';
 
 

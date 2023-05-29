@@ -11,7 +11,6 @@ class _LoginState extends State<Login> {
   final LoginData loginData = LoginData();
   @override
   void initState() {
-    loginData.getType();
     super.initState();
   }
 

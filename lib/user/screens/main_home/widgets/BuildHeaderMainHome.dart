@@ -15,8 +15,9 @@ class BuildHeaderMainHome extends StatelessWidget {
         builder: (context, state) {
           if (state.data == 1 || state.data == 2) {
             return DefaultAppBar(
-
-              title: state.data ==1 ? tr(context,"favourite"): tr(context,"myAppointment"),
+              title: state.data == 1
+                  ? tr(context, "favourite")
+                  : tr(context, "myAppointment"),
               haveLeading: false,
               actions: [
                 Container(
@@ -43,11 +44,25 @@ class BuildHeaderMainHome extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Image.asset(
-                        Res.usericon,
+                      mainHomeData.userProfile.isEmpty
+                          ? Container(
                         width: 60,
                         height: 60,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: MyColors.primary),
+                            shape: BoxShape.circle,
+                            color: MyColors.offWhite),
+                        child: Image.asset(Res.usericon),
+                      )
+                          : CachedImage(
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                        haveRadius: false,
+                        boxShape: BoxShape.circle,
+                        url: mainHomeData.userProfile,
                       ),
+
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
@@ -55,7 +70,7 @@ class BuildHeaderMainHome extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MyText(
-                              title: "أهلا مايا",
+                              title: "أهلا ${mainHomeData.userName}",
                               color: MyColors.primary,
                               size: 16,
                               fontWeight: FontWeight.bold,
