@@ -2,8 +2,10 @@ part of 'CategoriesWidgetImports.dart';
 
 class BuildCategoriesItem extends StatelessWidget {
   final CategoriesData categoriesData;
+  final ProvidersModel providerModel;
 
-  const BuildCategoriesItem({super.key, required this.categoriesData});
+  const BuildCategoriesItem(
+      {super.key, required this.categoriesData, required this.providerModel});
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +23,18 @@ class BuildCategoriesItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClipOval(
+            ClipOval(
               child: CachedImage(
-                url:
-                    "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                url: providerModel.image ?? "",
                 // boxShape: BoxShape.circle,
                 width: 130,
                 height: 130,
               ),
             ),
             MyText(
-              title:"مايان عمران",
+              title: providerModel.name ?? "",
               size: 14,
               fontWeight: FontWeight.bold,
-
               color: MyColors.black,
             ),
           ],

@@ -29,7 +29,7 @@ class CompleteRegisterData {
         name: name.text,
         password: password.text,
         email: email.text,
-        contactPhone: contactPhone.text,
+        contactPhone: type ==2? null: contactPhone.text ,
         userType: type.toString(),
         image: imageCubit.state.data,
 
@@ -45,7 +45,7 @@ class CompleteRegisterData {
           int type = await Storage.getUserType() ?? 2;
           if (context.mounted) {
             if (type == 2) {
-              AutoRouter.of(context).push(const MainHomeRoute());
+              AutoRouter.of(context).push( MainHomeRoute(firstTime: true));
             } else {
               AutoRouter.of(context).push(const MakeupArtistHomeRoute());
             }

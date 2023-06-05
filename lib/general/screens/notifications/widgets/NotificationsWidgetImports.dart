@@ -7,5 +7,6 @@ import 'package:hwzn_herstation/general/widgets/CachedImage.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 
 import '../../../../res.dart';
+import '../../../models/notifications_model/notification_model.dart';
 
 part  'BuildNotificationsItem.dart';

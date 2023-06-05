@@ -50,4 +50,10 @@ class GeneralRepository {
       _generalHttpMethods.updateProfile(updateProfileData);
 
   Future<bool> logOut() => _generalHttpMethods.logOut();
+
+  Future<List<NotificationModel>> getNotifications() =>
+      _generalHttpMethods.getNotifications();
+
+  Future<dynamic> updateAddress(UpdateAddressData updateAddressData) =>
+      _generalHttpMethods.updateAddress(updateAddressData);
 }

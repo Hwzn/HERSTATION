@@ -4,7 +4,6 @@ class SplashController {
   // variables
   Location location = Location();
 
-
   void manipulateSaveData(BuildContext context) async {
     await _determinePosition(context);
 
@@ -15,11 +14,8 @@ class SplashController {
     if (context.mounted) {
       await updateLang(context);
     }
-    if (strUser != null &&strSettings!=null&& context.mounted) {
-     print("about ${context.read<SettingCubit>().state.model.about}");
-
+    if (strUser != null && strSettings != null && context.mounted) {
       context.read<AuthCubit>().onUpdateAuth(true);
-      print("settings : $strSettings");
       UserModel user = UserModel.fromJson(json.decode("$strUser"));
       GlobalState.instance.set("token", user.token);
       context.read<UserCubit>().onUpdateUserData(user);
@@ -28,12 +24,10 @@ class SplashController {
           SettingModel.fromJson(json.decode("$strSettings"));
       context.read<SettingCubit>().onUpdateSettingData(settings);
 
-
       var userType = context.read<UserCubit>().state.model.userType?.id;
       if (context.mounted) {
         if (userType == 2) {
-
-          AutoRouter.of(context).push(const MainHomeRoute());
+          AutoRouter.of(context).push(MainHomeRoute(firstTime: true));
         } else {
           AutoRouter.of(context).push(const MakeupArtistHomeRoute());
         }
@@ -61,7 +55,6 @@ class SplashController {
       context.read<LangCubit>().onUpdateLanguage(lang ?? "ar");
     }
   }
-
 
   void setType() async {
     await Storage.setUserType(2);

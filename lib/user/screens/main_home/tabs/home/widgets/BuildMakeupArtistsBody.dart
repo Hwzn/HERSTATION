@@ -2,8 +2,10 @@ part of 'HomeWidgetsImports.dart';
 
 class BuildMakeupArtistsBody extends StatelessWidget {
   final HomeData homeData;
+  final List<ProviderModel> providers;
 
-  const BuildMakeupArtistsBody({super.key, required this.homeData});
+  const BuildMakeupArtistsBody(
+      {super.key, required this.homeData, required this.providers});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class BuildMakeupArtistsBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            alignment: AlignmentDirectional.topStart,
             margin: const EdgeInsets.fromLTRB(10, 0, 10, 5),
             child: MyText(
               title: tr(context, "makeupArtists"),
@@ -28,7 +31,7 @@ class BuildMakeupArtistsBody extends StatelessWidget {
             child: SizedBox(
               height: 200,
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: providers.length,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
@@ -61,10 +64,9 @@ class BuildMakeupArtistsBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const ClipOval(
+                ClipOval(
                   child: CachedImage(
-                    url:
-                        "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                    url: providers[index].image ?? "",
                     width: 100,
                     height: 100,
                     fit: BoxFit.fill,
@@ -72,7 +74,7 @@ class BuildMakeupArtistsBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 MyText(
-                  title: "مايان عمران",
+                  title: providers[index].name ?? "",
                   size: 14,
                   fontWeight: FontWeight.bold,
                   color: MyColors.black,
@@ -82,7 +84,8 @@ class BuildMakeupArtistsBody extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () => AutoRouter.of(context).push(const MakeupArtistDetailsRoute()),
+      onTap: () =>
+          AutoRouter.of(context).push(const MakeupArtistDetailsRoute()),
     );
   }
 }

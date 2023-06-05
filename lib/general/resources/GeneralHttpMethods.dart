@@ -258,4 +258,30 @@ class GeneralHttpMethods {
     );
     return data;
   }
+
+  Future<List<NotificationModel>> getNotifications() async {
+    var data = await GenericHttp<NotificationModel>(context).callApi(
+      name: ApiNames.notifications,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      refresh: false,
+      returnDataFun: (data) => data["data"]["notifications"],
+      toJsonFunc: (json) => NotificationModel.fromJson(json),
+    );
+    return data as List<NotificationModel>;
+  }
+
+  Future<dynamic> updateAddress(UpdateAddressData updateAddressData) async {
+    dynamic data = await GenericHttp<dynamic>(context).callApi(
+      name: ApiNames.updateAddress,
+      returnType: ReturnType.type,
+      json: updateAddressData.toJson(),
+      showLoader: true,
+      toJsonFunc: (json) => UserModel.fromJson(json),
+      returnDataFun: (data) => data,
+      methodType: MethodType.post,
+    );
+    return data;
+  }
 }

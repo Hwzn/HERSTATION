@@ -30,7 +30,7 @@ class LoginData {
           int type = await Storage.getUserType() ?? 2;
           if (context.mounted) {
             if (type == 2) {
-              AutoRouter.of(context).push(const MainHomeRoute());
+              AutoRouter.of(context).push( MainHomeRoute(firstTime: false));
             } else {
               AutoRouter.of(context).push(const MakeupArtistHomeRoute());
             }
@@ -52,6 +52,6 @@ class LoginData {
 
   void skipLogin(BuildContext context) async {
     await Storage.setUserType(2);
-    AutoRouter.of(context).push(const MainHomeRoute());
+    AutoRouter.of(context).push( MainHomeRoute(firstTime: false));
   }
 }

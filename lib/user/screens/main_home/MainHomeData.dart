@@ -58,4 +58,57 @@ class MainHomeData {
         });
     return;
   }
+
+  Future<void> determinePosition(
+      BuildContext context, BuildContext dialogContext) async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      CustomToast.showSimpleToast(msg: "قم بتفعيل خدمات الاتصال بالموقع");
+
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    double longitude = position.longitude;
+    double latitude = position.latitude;
+    final coordinates = c1.Coordinates(latitude, longitude);
+    var addresses =
+        await c1.Geocoder.local.findAddressesFromCoordinates(coordinates);
+    String address = addresses.first.addressLine ?? "";
+
+    if (context.mounted) {
+      context.read<LocationCubit>().onLocationUpdated(
+          LocationModel(lat: latitude ?? 0, lng: longitude ?? 0));
+      Navigator.of(dialogContext).pop();
+      updateAddress(
+          context, latitude.toString(), longitude.toString(), address);
+    }
+  }
+
+  Future<void> updateAddress(
+      BuildContext context, String lat, String lng, String address) async {
+    UpdateAddressData updateAddressData =
+        UpdateAddressData(lng: lng, lat: lat, address: address);
+    var  result =
+        await GeneralRepository(context).updateAddress(updateAddressData);
+    if (result != null && context.mounted) {
+      await Utils.manipulateChangeData(context, result);
+    }
+  }
 }

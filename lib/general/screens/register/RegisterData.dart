@@ -47,7 +47,7 @@ class RegisterDate {
   void skipRegister(BuildContext context) async {
     await Storage.setUserType(2);
     if (context.mounted) {
-      AutoRouter.of(context).push(const MainHomeRoute());
+      AutoRouter.of(context).push( MainHomeRoute(firstTime: false));
     }
   }
 }

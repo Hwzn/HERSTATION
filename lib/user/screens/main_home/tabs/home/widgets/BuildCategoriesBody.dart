@@ -2,8 +2,10 @@ part of 'HomeWidgetsImports.dart';
 
 class BuildCategoriesBody extends StatelessWidget {
   final HomeData homeData;
+  final List<CategoryModel> categories;
 
-  const BuildCategoriesBody({super.key, required this.homeData});
+  const BuildCategoriesBody(
+      {super.key, required this.homeData, required this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +31,11 @@ class BuildCategoriesBody extends StatelessWidget {
             child: SizedBox(
               height: 180,
               child: ListView.builder(
-                itemCount: 2,
+                itemCount: categories.length,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildCategoryItem(index,context);
+                  return buildCategoryItem(index, context);
                 },
               ),
             ),
@@ -43,7 +45,7 @@ class BuildCategoriesBody extends StatelessWidget {
     );
   }
 
-  Widget buildCategoryItem(int index,BuildContext context) {
+  Widget buildCategoryItem(int index, BuildContext context) {
     return InkWell(
       child: Container(
         height: 180,
@@ -52,10 +54,12 @@ class BuildCategoriesBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClipOval(
+            ClipOval(
               child: CachedImage(
-                url:
-                    "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                url: categories[index].image ?? "",
+                // url:
+                //     "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+
                 // boxShape: BoxShape.circle,
                 width: 110,
                 height: 110,
@@ -64,7 +68,8 @@ class BuildCategoriesBody extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MyText(
-              title: index == 0 ?tr(context,"brideMakeup") : tr(context,"sahraMakeup"),
+              title: categories[index].name ?? "",
+              // title: index == 0 ?tr(context,"brideMakeup") : tr(context,"sahraMakeup"),
               size: 14,
               fontWeight: FontWeight.bold,
               color: MyColors.primary,
@@ -72,7 +77,8 @@ class BuildCategoriesBody extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () => AutoRouter.of(context).push(const CategoriesRoute()),
+      onTap: () => AutoRouter.of(context)
+          .push(CategoriesRoute(categoryID: categories[index].id.toString(),categoryName: categories[index].name.toString())),
     );
   }
 }

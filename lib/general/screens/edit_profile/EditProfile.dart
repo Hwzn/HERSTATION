@@ -21,7 +21,7 @@ class _EditProfile extends State<EditProfile> {
     return Scaffold(
         appBar: AppBar(
           leading: InkWell(
-            onTap: () => AutoRouter.of(context).push(const MainHomeRoute()),
+            onTap: () => AutoRouter.of(context).push( MainHomeRoute(firstTime: false)),
             child: Icon(
               Icons.arrow_back_ios,
               color: MyColors.primary,

@@ -19,23 +19,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  final navigatorKey =  GlobalKey<NavigatorState>();
+  final navigatorKey = GlobalKey<NavigatorState>();
   final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: MainData.providers(context),
-      child: BlocBuilder<LangCubit,LangState>(
+      child: BlocBuilder<LangCubit, LangState>(
         builder: (context, state) {
           return MaterialApp.router(
               debugShowCheckedModeBanner: false,
               theme: InitUtils.defaultThem,
               title: "Her station",
-              supportedLocales: const [
-                Locale('en', 'US'),
-                Locale('ar', 'EG')
-              ],
+              supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
               localizationsDelegates: const [
                 LocalizationHelper.localizationsDelegate,
                 GlobalMaterialLocalizations.delegate,
@@ -46,15 +43,10 @@ class _MyAppState extends State<MyApp> {
               routerDelegate: _appRouter.delegate(
                   initialRoutes: [SplashRoute(navigatorKey: navigatorKey)],
                   navigatorObservers: () {
-                    return [
-                      FirebaseAnalyticsObserver(analytics:analytics)
-                    ];
-                  }
-              ),
+                    return [FirebaseAnalyticsObserver(analytics: analytics)];
+                  }),
               routeInformationParser: _appRouter.defaultRouteParser(),
-              builder: (ctx, child) => FlutterEasyLoading(child: child)
-
-          );
+              builder: (ctx, child) => FlutterEasyLoading(child: child));
         },
       ),
     );

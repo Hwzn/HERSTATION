@@ -1,8 +1,10 @@
 part of 'NotificationsWidgetImports.dart';
 
 class BuildNotificationsItem extends StatelessWidget {
+  final NotificationModel notificationModel;
   const BuildNotificationsItem({
     super.key,
+    required this.notificationModel
   });
 
   @override
@@ -28,7 +30,7 @@ class BuildNotificationsItem extends StatelessWidget {
                 children: [
                   MyText(
                     title:
-                        "تفاصيل الاشعار هنا تفاصيل الاشعار هنا هنا تفاصيل الاشعار هنا ",
+                       notificationModel.title??"",
                     size: 13,
                     fontWeight: FontWeight.bold,
                     color: MyColors.black,
@@ -42,7 +44,7 @@ class BuildNotificationsItem extends StatelessWidget {
                         width: 5,
                       ),
                       MyText(
-                        title: "منذ 3 ساعات",
+                        title: notificationModel.time??"",
                         size: 13,
                         color: MyColors.primary,
                       ),

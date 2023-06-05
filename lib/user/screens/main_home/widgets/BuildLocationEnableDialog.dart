@@ -37,26 +37,29 @@ class BuildLocationEnableDialog extends StatelessWidget {
               size: 13,
             ),
           ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-            child: Row(
-              children: [
-                Image.asset(
-                  Res.location2,
-                  width: 20,
-                  height: 20,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                MyText(
-                  title: tr(context, "acceptAdd"),
-                  color: MyColors.primary,
-                  fontWeight: FontWeight.bold,
-                  size: 13,
-                ),
-              ],
+          InkWell(
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              child: Row(
+                children: [
+                  Image.asset(
+                    Res.location2,
+                    width: 20,
+                    height: 20,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  MyText(
+                    title: tr(context, "acceptAdd"),
+                    color: MyColors.primary,
+                    fontWeight: FontWeight.bold,
+                    size: 13,
+                  ),
+                ],
+              ),
             ),
+            onTap: ()=>mainHomeData.determinePosition(context,buildContext),
           ),
         ],
       ),

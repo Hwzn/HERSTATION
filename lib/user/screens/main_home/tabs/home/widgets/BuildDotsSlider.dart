@@ -2,8 +2,9 @@ part of 'HomeWidgetsImports.dart';
 
 class BuildDotsSlider extends StatelessWidget {
   final HomeData homeData;
+  final List<BannerModel> list;
 
-  const BuildDotsSlider({super.key, required this.homeData});
+  const BuildDotsSlider({super.key, required this.homeData,required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class BuildDotsSlider extends StatelessWidget {
         bloc: homeData.dotsCubit,
         builder: (context, state) {
           return DotsIndicator(
-            dotsCount: 3,
+            dotsCount: list.length,
             position: state.data,
             decorator: DotsDecorator(
               spacing: const EdgeInsets.fromLTRB(2, 0, 2, 0),

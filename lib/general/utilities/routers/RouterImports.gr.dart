@@ -209,9 +209,14 @@ class AppRouter extends _i32.RootStackRouter {
       );
     },
     CategoriesRoute.name: (routeData) {
+      final args = routeData.argsAs<CategoriesRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i16.Categories(),
+        child: _i16.Categories(
+          key: args.key,
+          categoryID: args.categoryID,
+          categoryName: args.categoryName,
+        ),
         opaque: true,
       );
     },
@@ -223,9 +228,13 @@ class AppRouter extends _i32.RootStackRouter {
       );
     },
     MainHomeRoute.name: (routeData) {
+      final args = routeData.argsAs<MainHomeRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i18.MainHome(),
+        child: _i18.MainHome(
+          key: args.key,
+          firstTime: args.firstTime,
+        ),
         opaque: true,
       );
     },
@@ -778,14 +787,41 @@ class HomeRoute extends _i32.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.Categories]
-class CategoriesRoute extends _i32.PageRouteInfo<void> {
-  const CategoriesRoute()
-      : super(
+class CategoriesRoute extends _i32.PageRouteInfo<CategoriesRouteArgs> {
+  CategoriesRoute({
+    _i33.Key? key,
+    String? categoryID,
+    required String categoryName,
+  }) : super(
           CategoriesRoute.name,
           path: '/Categories',
+          args: CategoriesRouteArgs(
+            key: key,
+            categoryID: categoryID,
+            categoryName: categoryName,
+          ),
         );
 
   static const String name = 'CategoriesRoute';
+}
+
+class CategoriesRouteArgs {
+  const CategoriesRouteArgs({
+    this.key,
+    this.categoryID,
+    required this.categoryName,
+  });
+
+  final _i33.Key? key;
+
+  final String? categoryID;
+
+  final String categoryName;
+
+  @override
+  String toString() {
+    return 'CategoriesRouteArgs{key: $key, categoryID: $categoryID, categoryName: $categoryName}';
+  }
 }
 
 /// generated route for
@@ -802,14 +838,36 @@ class NotificationsRoute extends _i32.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.MainHome]
-class MainHomeRoute extends _i32.PageRouteInfo<void> {
-  const MainHomeRoute()
-      : super(
+class MainHomeRoute extends _i32.PageRouteInfo<MainHomeRouteArgs> {
+  MainHomeRoute({
+    _i33.Key? key,
+    required bool firstTime,
+  }) : super(
           MainHomeRoute.name,
           path: '/main-home',
+          args: MainHomeRouteArgs(
+            key: key,
+            firstTime: firstTime,
+          ),
         );
 
   static const String name = 'MainHomeRoute';
+}
+
+class MainHomeRouteArgs {
+  const MainHomeRouteArgs({
+    this.key,
+    required this.firstTime,
+  });
+
+  final _i33.Key? key;
+
+  final bool firstTime;
+
+  @override
+  String toString() {
+    return 'MainHomeRouteArgs{key: $key, firstTime: $firstTime}';
+  }
 }
 
 /// generated route for

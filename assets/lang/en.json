@@ -187,5 +187,6 @@
   "placeUser": "Place",
   "experience": "Experience",
   "email": "Email",
-  "contactPhone": "Contact phone"
+  "contactPhone": "Contact phone",
+  "all": "All"
 }

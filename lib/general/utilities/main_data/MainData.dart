@@ -17,7 +17,9 @@ class MainData {
       create: (BuildContext context)=> NotifyCubit()
     ),
     BlocProvider<LangCubit>(
-      create: (BuildContext context)=> LangCubit()
+        create: (BuildContext context)=> LangCubit()
+    ),  BlocProvider<LocationCubit>(
+        create: (BuildContext context)=> LocationCubit()
     ),
   ];
 

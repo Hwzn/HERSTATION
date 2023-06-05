@@ -29,6 +29,7 @@ class Utils {
     if (data != null) {
       await Storage.setDeviceId(firebaseToken!);
       UserModel user = UserModel.fromJson(data["data"]["user"]);
+      print("token : "+user.token!);
       GlobalState.instance.set("token", user.token!);
       await Storage.saveUserData(user);
       if (context.mounted) {
@@ -71,11 +72,27 @@ class Utils {
       return data;
     }
   }
+  static Future<dynamic> manipulateChangeData(
+      BuildContext context, dynamic data) async {
+    if (data != null) {
+      UserModel user = UserModel.fromJson(data["data"]["user"]);
+      await Storage.saveUserData(user);
+      if (context.mounted) {
+        await setCurrentUserData(user, context);
+        CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
+      }
+      return data;
+    } else {
+      CustomToast.showSimpleToast(msg: data["message"]);
+      return data;
+    }
+  }
 
   static Future<bool> setCurrentUserData(
       UserModel model, BuildContext context) async {
     context.read<UserCubit>().onUpdateUserData(model);
     context.read<AuthCubit>().onUpdateAuth(true);
+    print("Updated");
     return true;
   }
 

@@ -1,8 +1,9 @@
 part of 'MainHomeImports.dart';
 
 class MainHome extends StatefulWidget {
+  final bool firstTime;
 
-  const MainHome({Key? key}) : super(key: key);
+  const MainHome({Key? key,required this.firstTime}) : super(key: key);
 
   @override
   State<MainHome> createState() => _MainHome();
@@ -16,7 +17,9 @@ class _MainHome extends State<MainHome> {
     mainHomeData.initData(context);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      mainHomeData.showDialogEnable(context);
+      if (widget.firstTime) {
+
+        mainHomeData.showDialogEnable(context);}
     });
     super.initState();
   }
