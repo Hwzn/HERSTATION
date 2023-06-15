@@ -9,7 +9,7 @@ class BuildCategoriesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return InkWell(child: Card(
       color: MyColors.bgPrimary,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -40,6 +40,9 @@ class BuildCategoriesItem extends StatelessWidget {
           ],
         ),
       ),
+    ),
+      onTap: () => AutoRouter.of(context)
+          .push(MakeupArtistDetailsRoute(id: providerModel.id!)),
     );
   }
 }

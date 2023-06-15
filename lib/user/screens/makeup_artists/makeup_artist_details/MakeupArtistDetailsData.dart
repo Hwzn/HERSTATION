@@ -5,9 +5,10 @@ class MakeupArtistDetailsData {
       GlobalKey<CustomButtonState>();
 
   final GenericBloc<bool> isBrideMakeup = GenericBloc(true);
+  final GenericBloc<ProviderDetailsModel?> providerCubit = GenericBloc(null);
 
   void confirmRequest(BuildContext context) {
-    AutoRouter.of(context).push( ServiceRequestRoute(type: getType()));
+    AutoRouter.of(context).push(ServiceRequestRoute(type: getType()));
   }
 
   int getType() {
@@ -18,5 +19,11 @@ class MakeupArtistDetailsData {
       /// makeup artist ///
       return 1;
     }
+  }
+
+  Future<void> getProviderData(BuildContext context, int id) async {
+    ProviderDetailsModel? providerData =
+        await UserRepository(context).getProviderDetails(id);
+    providerCubit.onUpdateData(providerData);
   }
 }

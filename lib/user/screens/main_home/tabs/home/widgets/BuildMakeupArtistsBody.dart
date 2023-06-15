@@ -84,8 +84,8 @@ class BuildMakeupArtistsBody extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () =>
-          AutoRouter.of(context).push(const MakeupArtistDetailsRoute()),
+      onTap: () => AutoRouter.of(context)
+          .push(MakeupArtistDetailsRoute(id: providers[index].id!)),
     );
   }
 }

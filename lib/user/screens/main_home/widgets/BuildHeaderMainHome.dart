@@ -39,30 +39,32 @@ class BuildHeaderMainHome extends StatelessWidget {
             return Container(
               margin: EdgeInsets.fromLTRB(15, marginTop + 10, 15, 0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
                     children: [
                       mainHomeData.userProfile.isEmpty
                           ? Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: MyColors.primary),
-                            shape: BoxShape.circle,
-                            color: MyColors.offWhite),
-                        child: Image.asset(Res.usericon),
-                      )
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: MyColors.primary),
+                                  shape: BoxShape.circle,
+                                  color: MyColors.offWhite),
+                              child: Image.asset(Res.usericon),
+                            )
                           : CachedImage(
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                        haveRadius: false,
-                        boxShape: BoxShape.circle,
-                        url: mainHomeData.userProfile,
-                      ),
-
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
+                              haveRadius: false,
+                              boxShape: BoxShape.circle,
+                              url: mainHomeData.userProfile,
+                            ),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
@@ -78,20 +80,28 @@ class BuildHeaderMainHome extends StatelessWidget {
                             const SizedBox(
                               height: 2,
                             ),
-                            Row(
-                              children: [
-                                MyText(
-                                  title: "العلياء الرياض",
-                                  color: MyColors.grey,
-                                  size: 14,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15,
-                                  color: MyColors.primary,
-                                )
-                              ],
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width - 140,
+                              child: MyText(
+                                title: mainHomeData.location,
+                                color: MyColors.grey,
+                                size: 14,
+                              ),
                             ),
+                            // Row(
+                            //   children: [
+                            //     MyText(
+                            //       title: mainHomeData.location,
+                            //       color: MyColors.grey,
+                            //       size: 14,
+                            //     ),
+                            //     // Icon(
+                            //     //   Icons.arrow_forward_ios,
+                            //     //   size: 15,
+                            //     //   color: MyColors.primary,
+                            //     // )
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),

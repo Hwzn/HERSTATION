@@ -7,20 +7,30 @@ class BuildAllRatesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return               MediaQuery.removePadding(
+    return MediaQuery.removePadding(
       context: context,
       removeTop: true,
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 5,
+      child: PagedListView<int, RateModel>(
+        padding: const EdgeInsets.only(top: 8, bottom: 150, right: 5, left: 5),
+        pagingController: ratesData.pagingController,
         shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index) {
-          return buildRateItem(context, index);
-        },
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        builderDelegate: PagedChildBuilderDelegate<RateModel>(
+            noItemsFoundIndicatorBuilder: (context) =>
+                 Container(),
+            itemBuilder: (context, item, index) {
+              return buildRateItem(context ,item);
+            },
+            noMoreItemsIndicatorBuilder: (context) => Container(),
+            firstPageProgressIndicatorBuilder: (context) => Container(),
+            newPageProgressIndicatorBuilder: (context) =>
+                const CupertinoActivityIndicator()),
       ),
     );
   }
-  Widget buildRateItem(BuildContext context, int index) {
+
+  Widget buildRateItem(BuildContext context, RateModel rateModel) {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -29,10 +39,9 @@ class BuildAllRatesBody extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       child: Column(
         children: [
-          const ClipOval(
+           ClipOval(
             child: CachedImage(
-              url:
-              "https://www.harrods.com/BWStaticContent/50000/4b524fce-27bd-44ef-8624-f0cbbc0916ba_t-services-hair-beauty-salon-2021-salon-experience-portrait.jpg",
+              url:rateModel.authorImage??"",
               width: 40,
               height: 40,
             ),
@@ -41,7 +50,7 @@ class BuildAllRatesBody extends StatelessWidget {
             height: 5,
           ),
           RatingBar.builder(
-            initialRating: 3,
+            initialRating: double.parse(rateModel.rate.toString()),
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,
@@ -59,7 +68,7 @@ class BuildAllRatesBody extends StatelessWidget {
             height: 5,
           ),
           MyText(
-            title: "حصة العنزي",
+            title: rateModel.author??"",
             color: MyColors.black,
             size: 14,
           ),
@@ -67,7 +76,7 @@ class BuildAllRatesBody extends StatelessWidget {
             height: 5,
           ),
           MyText(
-            title: "فنانة احلي ميكب",
+            title:rateModel.comment??"",
             color: MyColors.grey,
             size: 13,
           ),
@@ -75,5 +84,4 @@ class BuildAllRatesBody extends StatelessWidget {
       ),
     );
   }
-
 }

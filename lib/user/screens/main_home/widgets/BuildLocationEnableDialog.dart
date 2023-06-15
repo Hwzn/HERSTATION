@@ -30,7 +30,7 @@ class BuildLocationEnableDialog extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+            margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: MyText(
               title: tr(context, "addLocation"),
               color: MyColors.grey,
@@ -39,7 +39,7 @@ class BuildLocationEnableDialog extends StatelessWidget {
           ),
           InkWell(
             child: Container(
-              margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 15, 8, 5),
               child: Row(
                 children: [
                   Image.asset(

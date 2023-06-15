@@ -48,50 +48,88 @@ class BuildAppBarSearch extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          height: 60,
-          padding: const EdgeInsets.all(15),
-          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          decoration: BoxDecoration(
-              color: MyColors.white, borderRadius: BorderRadius.circular(15)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      Res.search,
-                      width: 15,
-                      height: 15,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      width: 250,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: tr(context, "searchAbout"),
-                          border: InputBorder.none,
-                        ),
-                        onChanged: (value) {
-                          // filterSearchResults(value);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                child: SvgPicture.asset(
-                  Res.filter,
-                  width: 15,
-                  height: 15,
-                ),
-                onTap: () => searchData.orderResults(context),
-              ),
-            ],
+        GenericTextField(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          controller: searchData.textSearch,
+          fieldTypes: FieldTypes.normal,
+          type: TextInputType.name,
+          radius: 15,
+          action: TextInputAction.search,
+          validate: (value) => value!.noValidate(),
+          // label: tr(context, "searchAbout"),
+          fillColor: MyColors.white,
+          hint: tr(context, "searchAbout"),
+          onChange: (value) {
+            searchData.getProviders(context, searchData.textSearch.text, "");
+          },
+          prefixIcon: Container(
+            padding: const EdgeInsets.all(15),
+            child: SvgPicture.asset(
+              Res.search,
+            ),
           ),
+          suffixIcon: InkWell(
+            onTap: ()=> searchData.orderResults(context),
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              child: SvgPicture.asset(
+                Res.filter,
+              ),
+            ),
+          ),
+          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
         ),
+        // Container(
+        //   height: 60,
+        //   padding: const EdgeInsets.all(15),
+        //   margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+        //   decoration: BoxDecoration(
+        //       color: MyColors.white, borderRadius: BorderRadius.circular(15)),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       InkWell(
+        //         child: Row(
+        //           children: [
+        //             SvgPicture.asset(
+        //               Res.search,
+        //               width: 15,
+        //               height: 15,
+        //             ),
+        //             Container(
+        //               margin: const EdgeInsets.symmetric(horizontal: 10),
+        //               width: 200,
+        //               child: TextField(
+        //                 controller: searchData.textSearch,
+        //                 decoration: InputDecoration(
+        //                   hintText: tr(context, "searchAbout"),
+        //                   border: InputBorder.none,
+        //                 ),
+        //                 textInputAction: TextInputAction.search,
+        //                 onEditingComplete: () {
+        //
+        //                 },
+        //                 onChanged: (value) {
+        //                   searchData.getProviders(
+        //                       context, searchData.textSearch.text, "");
+        //                 },
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //       InkWell(
+        //         child: SvgPicture.asset(
+        //           Res.filter,
+        //           width: 15,
+        //           height: 15,
+        //         ),
+        //         onTap: () => searchData.orderResults(context),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

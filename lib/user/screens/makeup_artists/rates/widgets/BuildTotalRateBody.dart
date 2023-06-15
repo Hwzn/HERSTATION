@@ -2,11 +2,13 @@ part of 'RatesWidgetsImports.dart';
 
 class BuildTotalRateBody extends StatelessWidget {
   final RatesData ratesData;
+  final RatesModel ratesModel;
 
-  const BuildTotalRateBody({super.key, required this.ratesData});
+  const BuildTotalRateBody({super.key, required this.ratesData,required this.ratesModel});
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -16,13 +18,13 @@ class BuildTotalRateBody extends StatelessWidget {
       child: Column(
         children: [
           RatingBar.builder(
-            initialRating: 3,
+            initialRating: double.parse(ratesModel.rateCount.toString()),
 
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,
             itemSize: 40,
-            itemCount: 5,
+            itemCount:5,
             itemBuilder: (context, _) => const Icon(
               Icons.star,
               color: Colors.amber,
@@ -32,7 +34,7 @@ class BuildTotalRateBody extends StatelessWidget {
             },
           ),
           const SizedBox(height: 10,),
-          MyText(title: "4.5 (10)", color: MyColors.grey, size: 14)
+          MyText(title:"${ratesModel.rate} (${ratesModel.rateCount})", color: MyColors.grey, size: 14)
 
         ],
       ),

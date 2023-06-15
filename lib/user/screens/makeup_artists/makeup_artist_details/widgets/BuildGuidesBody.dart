@@ -2,8 +2,9 @@ part of 'MakeupArtistDetailsWidgetsImports.dart';
 
 class BuildGuidesBody extends StatelessWidget {
   final MakeupArtistDetailsData makeupArtistDetailsData;
+  final String text;
 
-  const BuildGuidesBody({super.key, required this.makeupArtistDetailsData});
+  const BuildGuidesBody({super.key, required this.makeupArtistDetailsData,required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +30,11 @@ class BuildGuidesBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyText(
-                  title: "لا يسمح بحضور مرافقين مع العروسة",
+                  title:text,
                   color: MyColors.black,
                   size: 14),
-              const SizedBox(
-                height: 15,
-              ),
-              MyText(
-                  title: "توضع هنا إرشادات الحجز",
-                  color: MyColors.black,
-                  size: 14),
-              const SizedBox(
-                height: 15,
-              ),
-              MyText(
-                  title: "توضع هنا إرشادات الحجز",
-                  color: MyColors.black,
-                  size: 14),
+
+
             ],
           ),
         )

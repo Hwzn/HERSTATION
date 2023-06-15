@@ -13,4 +13,8 @@ class UserRepository {
 
   Future<List<ProvidersModel>> getProviders(ProviderData providerData) =>
       userHttpMethods.getProviders(providerData);
+
+  Future<ProviderDetailsModel> getProviderDetails(int id) => userHttpMethods.getProviderDetails(id);
+  Future<RatesModel> getRates(int id,int page) => userHttpMethods.getRates(id,page);
+
 }

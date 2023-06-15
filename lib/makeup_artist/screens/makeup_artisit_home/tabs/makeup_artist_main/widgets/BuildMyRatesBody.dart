@@ -27,7 +27,7 @@ class BuildMyRatesBody extends StatelessWidget {
                   color: MyColors.primary,
                   size: 13,
                 ),
-                onTap: () => AutoRouter.of(context).push(const RatesRoute()),
+                onTap: () => AutoRouter.of(context).push( RatesRoute(providerID: 1)),
               ),
             ],
           ),

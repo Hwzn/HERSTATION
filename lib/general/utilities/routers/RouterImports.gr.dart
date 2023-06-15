@@ -264,16 +264,24 @@ class AppRouter extends _i32.RootStackRouter {
       );
     },
     MakeupArtistDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<MakeupArtistDetailsRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i22.MakeupArtistDetails(),
+        child: _i22.MakeupArtistDetails(
+          key: args.key,
+          id: args.id,
+        ),
         opaque: true,
       );
     },
     RatesRoute.name: (routeData) {
+      final args = routeData.argsAs<RatesRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i23.Rates(),
+        child: _i23.Rates(
+          key: args.key,
+          providerID: args.providerID,
+        ),
         opaque: true,
       );
     },
@@ -931,26 +939,71 @@ class AppointmentDetailsRouteArgs {
 
 /// generated route for
 /// [_i22.MakeupArtistDetails]
-class MakeupArtistDetailsRoute extends _i32.PageRouteInfo<void> {
-  const MakeupArtistDetailsRoute()
-      : super(
+class MakeupArtistDetailsRoute
+    extends _i32.PageRouteInfo<MakeupArtistDetailsRouteArgs> {
+  MakeupArtistDetailsRoute({
+    _i33.Key? key,
+    required int id,
+  }) : super(
           MakeupArtistDetailsRoute.name,
           path: '/makeup-artist-details',
+          args: MakeupArtistDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
         );
 
   static const String name = 'MakeupArtistDetailsRoute';
 }
 
+class MakeupArtistDetailsRouteArgs {
+  const MakeupArtistDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i33.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'MakeupArtistDetailsRouteArgs{key: $key, id: $id}';
+  }
+}
+
 /// generated route for
 /// [_i23.Rates]
-class RatesRoute extends _i32.PageRouteInfo<void> {
-  const RatesRoute()
-      : super(
+class RatesRoute extends _i32.PageRouteInfo<RatesRouteArgs> {
+  RatesRoute({
+    _i33.Key? key,
+    required int providerID,
+  }) : super(
           RatesRoute.name,
           path: '/Rates',
+          args: RatesRouteArgs(
+            key: key,
+            providerID: providerID,
+          ),
         );
 
   static const String name = 'RatesRoute';
+}
+
+class RatesRouteArgs {
+  const RatesRouteArgs({
+    this.key,
+    required this.providerID,
+  });
+
+  final _i33.Key? key;
+
+  final int providerID;
+
+  @override
+  String toString() {
+    return 'RatesRouteArgs{key: $key, providerID: $providerID}';
+  }
 }
 
 /// generated route for

@@ -38,7 +38,7 @@ class MainHomeData {
       var user = context.read<UserCubit>().state.model;
       userProfile = user.image ?? "";
       userName = user.name ?? "";
-      location = "";
+      location = user.address ?? "";
     }
   }
 
@@ -96,19 +96,28 @@ class MainHomeData {
       context.read<LocationCubit>().onLocationUpdated(
           LocationModel(lat: latitude ?? 0, lng: longitude ?? 0));
       Navigator.of(dialogContext).pop();
-      updateAddress(
-          context, latitude.toString(), longitude.toString(), address);
+      updateAddress(context, dialogContext, latitude.toString(),
+          longitude.toString(), address);
     }
   }
 
-  Future<void> updateAddress(
-      BuildContext context, String lat, String lng, String address) async {
+  Future<void> updateAddress(BuildContext context, BuildContext contextDialog,
+      String lat, String lng, String address) async {
     UpdateAddressData updateAddressData =
         UpdateAddressData(lng: lng, lat: lat, address: address);
-    var  result =
+    var result =
         await GeneralRepository(context).updateAddress(updateAddressData);
-    if (result != null && context.mounted) {
-      await Utils.manipulateChangeData(context, result);
+    if (result != null) {
+      UserModel user = UserModel.fromJson(result["data"]["user"]);
+      await Storage.saveUserData(user);
+      print("Enter 1");
+      contextDialog.read<UserCubit>().onUpdateUserData(user);
+      print("Enter 2");
+      contextDialog.read<AuthCubit>().onUpdateAuth(true);
+
+      CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
+
+      // await Utils.manipulateChangeData(context, result);
     }
   }
 }

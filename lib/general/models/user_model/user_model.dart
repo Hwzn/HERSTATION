@@ -2,7 +2,7 @@ import 'package:hwzn_herstation/general/models/user_model/provider_model.dart';
 import 'package:hwzn_herstation/general/models/user_model/user_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user_model.g.dart'; 
+part 'user_model.g.dart';
 
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
 class UserModel {
@@ -28,11 +28,28 @@ class UserModel {
   UserType? userType;
   @JsonKey(name: 'provider')
   ProviderModel? provider;
+  @JsonKey(name: 'lat')
+  String? lat;
+  @JsonKey(name: 'lng')
+  String? lng;
+  @JsonKey(name: 'address')
+  String? address;
 
-  UserModel({this.id, this.name, this.email, this.phone, this.image, this.lang, this.isNotify, this.verfiyToken, this.token, this.userType, this.provider});
+  UserModel(
+      {this.id,
+      this.name,
+      this.email,
+      this.phone,
+      this.image,
+      this.lang,
+      this.isNotify,
+      this.verfiyToken,
+      this.token,
+      this.userType,
+      this.provider,this.address,this.lat,this.lng});
 
-   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
-   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
-

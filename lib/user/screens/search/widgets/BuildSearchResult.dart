@@ -15,23 +15,48 @@ class BuildSearchResult extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
-            GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 0.85),
-              itemCount: 2,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return buildSearchResultItem(context);
-              },
-            )
+            BlocBuilder<GenericBloc<List<ProvidersModel>>,
+                    GenericState<List<ProvidersModel>>>(
+                bloc: searchData.providersCubit,
+                builder: (context, state) {
+                  if (state is GenericUpdateState) {
+                    if (state.data.isNotEmpty) {
+                      return GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2, childAspectRatio: 0.85),
+                        itemCount: state.data.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buildSearchResultItem(
+                              context, state.data[index]);
+                        },
+                      );
+                    } else {
+                    return
+                      Padding(padding: const EdgeInsets.only(top: 60),
+                        child: MyText(
+                            size: 17,
+                            title: "لا يوجد نتائج",
+                            color: MyColors.primary,fontWeight: FontWeight.bold,alien: TextAlign.center,),
+                      );
+                    }
+                  } else {
+                    return Container(
+                      margin: const EdgeInsets.only(top: 80),
+                      child: LoadingDialog.showLoadingView(),
+                    );
+                  }
+                }),
           ],
         ),
       ),
     );
   }
 
-  Widget buildSearchResultItem(BuildContext context) {
+  Widget buildSearchResultItem(
+      BuildContext context, ProvidersModel providersModel) {
     return Card(
       color: MyColors.bgPrimary,
       shape: const RoundedRectangleBorder(
@@ -46,17 +71,15 @@ class BuildSearchResult extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClipOval(
+            ClipOval(
               child: CachedImage(
-                url:
-                    "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-                // boxShape: BoxShape.circle,
+                url: providersModel.image ?? "",
                 width: 120,
                 height: 120,
               ),
             ),
             MyText(
-              title: "مايان عمران",
+              title: providersModel.name ?? "",
               size: 14,
               fontWeight: FontWeight.bold,
               color: MyColors.black,

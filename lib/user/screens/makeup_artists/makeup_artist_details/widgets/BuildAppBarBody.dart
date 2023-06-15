@@ -2,8 +2,12 @@ part of 'MakeupArtistDetailsWidgetsImports.dart';
 
 class BuildAppBarBody extends StatelessWidget {
   final MakeupArtistDetailsData makeupArtistDetailsData;
+  final ProviderDetailsModel providerDetailsModel;
 
-  const BuildAppBarBody({super.key, required this.makeupArtistDetailsData});
+  const BuildAppBarBody(
+      {super.key,
+      required this.makeupArtistDetailsData,
+      required this.providerDetailsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +31,16 @@ class BuildAppBarBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              InkWell(child: Icon(
-                Icons.arrow_back_ios,
-                color: MyColors.primary,
-                size: 20,
-              ), onTap: () => AutoRouter.of(context).pop(),
+              InkWell(
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: MyColors.primary,
+                  size: 20,
+                ),
+                onTap: () => AutoRouter.of(context).pop(),
               ),
               MyText(
-                title: "مايان عمران",
+                title:providerDetailsModel.name??"",
                 size: 16,
                 color: MyColors.primary,
                 fontWeight: FontWeight.bold,
@@ -51,6 +57,7 @@ class BuildAppBarBody extends StatelessWidget {
           margin: const EdgeInsets.fromLTRB(0, 90, 0, 0),
           child: BuildSliderMakeupArtistImages(
             makeupArtistDetailsData: makeupArtistDetailsData,
+            list: providerDetailsModel.gallery??[],
           ),
         ),
       ],

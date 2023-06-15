@@ -77,10 +77,9 @@ class Utils {
     if (data != null) {
       UserModel user = UserModel.fromJson(data["data"]["user"]);
       await Storage.saveUserData(user);
-      if (context.mounted) {
         await setCurrentUserData(user, context);
         CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
-      }
+
       return data;
     } else {
       CustomToast.showSimpleToast(msg: data["message"]);

@@ -2,9 +2,10 @@ part of 'MakeupArtistDetailsWidgetsImports.dart';
 
 class BuildSliderMakeupArtistImages extends StatelessWidget {
   final MakeupArtistDetailsData makeupArtistDetailsData;
+  final List<GalleryModel> list;
 
   const BuildSliderMakeupArtistImages(
-      {super.key, required this.makeupArtistDetailsData});
+      {super.key, required this.makeupArtistDetailsData, required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class BuildSliderMakeupArtistImages extends StatelessWidget {
           ),
         ),
 
-        itemCount: 3,
+        itemCount: list.length,
         autoplay: true,
 
         // itemWidth: width * 0.9,
@@ -38,8 +39,8 @@ class BuildSliderMakeupArtistImages extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20.0),
-          child: Image.asset(
-            Res.search_slider,
+          child: CachedImage(
+           url:list[index].image??"",
             width: width * .95,
             fit: BoxFit.fill,
             height: 240,

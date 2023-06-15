@@ -18,6 +18,7 @@ import '../../../general/constants/modals/LoadingDialog.dart';
 import '../../../general/helper/storage/Storage.dart';
 import '../../../general/models/LocationModel.dart';
 import '../../../general/models/update_address_data/update_address_data.dart';
+import '../../../general/models/user_model/user_model.dart';
 import '../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../general/resources/GeneralRepoImports.dart';
 

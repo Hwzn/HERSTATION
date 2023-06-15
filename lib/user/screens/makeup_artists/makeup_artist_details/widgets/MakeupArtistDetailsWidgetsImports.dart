@@ -12,6 +12,9 @@ import '../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../general/widgets/CachedImage.dart';
 import '../../../../../general/widgets/MyText.dart';
 
+import '../../../../model/providers_details_model/gallery_model.dart';
+import '../../../../model/providers_details_model/provider_details_model.dart';
+import '../../../../model/providers_details_model/rate_model.dart';
 import '../MakeupArtistDetailsImports.dart';
 
 

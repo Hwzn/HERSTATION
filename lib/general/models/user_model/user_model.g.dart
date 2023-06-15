@@ -22,6 +22,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       provider: json['provider'] == null
           ? null
           : ProviderModel.fromJson(json['provider'] as Map<String, dynamic>),
+      address: json['address'] as String?,
+      lat: json['lat'] as String?,
+      lng: json['lng'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -36,4 +39,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'token': instance.token,
       'user_type': instance.userType,
       'provider': instance.provider,
+      'lat': instance.lat,
+      'lng': instance.lng,
+      'address': instance.address,
     };
