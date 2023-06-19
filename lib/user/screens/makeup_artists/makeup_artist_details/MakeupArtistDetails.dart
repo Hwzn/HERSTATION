@@ -2,8 +2,9 @@ part of 'MakeupArtistDetailsImports.dart';
 
 class MakeupArtistDetails extends StatefulWidget {
   final int id;
+  final int categoryID;
 
-  const MakeupArtistDetails({Key? key, required this.id}) : super(key: key);
+  const MakeupArtistDetails({Key? key, required this.id,required this.categoryID}) : super(key: key);
 
   @override
   State<MakeupArtistDetails> createState() => _MakeupArtistDetails();
@@ -29,14 +30,59 @@ class _MakeupArtistDetails extends State<MakeupArtistDetails> {
               bloc: makeupArtistDetailsData.providerCubit,
               builder: (context, state) {
                 if (state is GenericUpdateState) {
-                  return BuildAppBarBody(
-                      makeupArtistDetailsData: makeupArtistDetailsData,providerDetailsModel: state.data!,);
+                  if (state.data!.gallery!.isNotEmpty) {
+                    return BuildAppBarBody(
+                      makeupArtistDetailsData: makeupArtistDetailsData,
+                      providerDetailsModel: state.data!,
+                      id: widget.id,
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        DefaultAppBar(
+                          title: state.data!.name ?? "",
+                          haveLeading: true,
+                          actions: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: InkWell(
+                                child: Icon(
+                                  state.data!.isFavorite!
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: MyColors.primary,
+                                  size: 20,
+                                ),
+                                onTap: () => makeupArtistDetailsData
+                                    .addRemoveFavourite(context, widget.id),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    );
+                  }
                 } else {
-                  return Container();
+                  return Column(
+                    children: const [
+                      DefaultAppBar(
+                        title: "",
+                        haveLeading: true,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  );
                 }
               }),
           Expanded(
               child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
             child: BlocBuilder<GenericBloc<ProviderDetailsModel?>,
                     GenericState<ProviderDetailsModel?>>(
                 bloc: makeupArtistDetailsData.providerCubit,
@@ -52,14 +98,17 @@ class _MakeupArtistDetails extends State<MakeupArtistDetails> {
                             children: [
                               BuildServicesBody(
                                   makeupArtistDetailsData:
-                                      makeupArtistDetailsData),
+                                      makeupArtistDetailsData,
+                                  listServices: state.data!.services ?? []),
                               BuildGuidesBody(
-                                  makeupArtistDetailsData:
-                                      makeupArtistDetailsData,text: state.data!.instructions??"",),
+                                makeupArtistDetailsData:
+                                    makeupArtistDetailsData,
+                                text: state.data!.instructions ?? "",
+                              ),
                               BuildRateBody(
                                 makeupArtistDetailsData:
                                     makeupArtistDetailsData,
-                                list: state.data!.rates??[],
+                                list: state.data!.rates ?? [],
                               ),
                             ],
                           ),

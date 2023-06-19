@@ -31,7 +31,10 @@ class ApiNames{
   static const String home = "home";
   static const String notifications = "notifications";
   static const String providers = "providers";
+  static const String order = "orders";
+  static const String favourite = "favorites";
   static const String rate = "rates";
+  static const String regions = "regions";
 
 
 

@@ -2,11 +2,18 @@ part of 'PlaceWidgetsImports.dart';
 
 class BuildDatesBody extends StatelessWidget {
   PlaceData placeData;
+  ScheduleModel scheduleModel;
+  int month;
 
-  BuildDatesBody({super.key, required this.placeData});
+  BuildDatesBody(
+      {super.key,
+      required this.placeData,
+      required this.scheduleModel,
+      required this.month});
 
   @override
   Widget build(BuildContext context) {
+    placeData.getDays(month);
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
       child: Column(
@@ -25,7 +32,7 @@ class BuildDatesBody extends StatelessWidget {
             child: SizedBox(
               height: 90,
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: scheduleModel.weekDays!.length,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
@@ -45,7 +52,7 @@ class BuildDatesBody extends StatelessWidget {
             color: MyColors.bgPrimary, borderRadius: BorderRadius.circular(15)),
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-        width: 70,
+        width: 80,
         height: 90,
         alignment: Alignment.center,
         child: Column(
@@ -53,18 +60,18 @@ class BuildDatesBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MyText(
-              title: "21",
+              title: scheduleModel.weekDays![index].day ?? "",
               color: MyColors.black,
-              size: 14,
+              size: 12,
               fontWeight: FontWeight.bold,
             ),
             const SizedBox(
               height: 5,
             ),
             MyText(
-              title: "الاحد",
+              title: scheduleModel.weekDays![index].dayNameAr ?? "",
               color: MyColors.black,
-              size: 14,
+              size: 12,
               fontWeight: FontWeight.bold,
             ),
           ],

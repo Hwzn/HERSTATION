@@ -2,8 +2,9 @@ part of 'PlaceWidgetsImports.dart';
 
 class BuildTimeBody extends StatelessWidget {
   PlaceData placeData;
+  Day day;
 
-  BuildTimeBody({super.key, required this.placeData});
+  BuildTimeBody({super.key, required this.placeData,required this.day});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class BuildTimeBody extends StatelessWidget {
             child: SizedBox(
               height: 50,
               child: ListView.builder(
-                itemCount: 2,
+                itemCount: 1,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
@@ -49,7 +50,7 @@ class BuildTimeBody extends StatelessWidget {
       height: 50,
       alignment: Alignment.center,
       child: MyText(
-        title:"ص 1",
+        title:" من${day.from} الي ${day.to}",
         color: MyColors.black,
         size: 14,
         fontWeight: FontWeight.bold,

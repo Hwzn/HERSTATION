@@ -5,8 +5,10 @@ class SearchData {
   final GenericBloc<List<ProvidersModel>> providersCubit = GenericBloc([]);
   final TextEditingController textSearch = TextEditingController();
 
-  Timer? timer;
-  static const timeout = Duration(seconds: 4);
+  final PagingController<int, ProvidersModel> pagingController =
+      PagingController(firstPageKey: 1);
+
+  final int pageSize = 15;
 
   // cubits
   final GenericBloc<int> orderCubit = GenericBloc(-1);
@@ -45,14 +47,28 @@ class SearchData {
       order = "lowest";
     }
 
-    getProviders(context, textSearch.text, order);
+    getProviders(context, textSearch.text, order, 1);
+    pagingController.addPageRequestListener((pageKey) {
+      getProviders(context, textSearch.text, order, pageKey);
+    });
   }
 
   Future<void> getProviders(
-      BuildContext context, String word, String order) async {
+      BuildContext context, String word, String order, int page) async {
     ProviderData providerData = ProviderData(order: order, word: word);
     List<ProvidersModel> providers =
         await UserRepository(context).getProviders(providerData);
-    providersCubit.onUpdateData(providers);
+
+    final isLastPage = providers.length < pageSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(providers);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(providers, nextPageKey);
+    }
+    // providersCubit.onUpdateData(providers);
   }
 }

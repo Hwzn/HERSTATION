@@ -1,9 +1,11 @@
 import 'package:hwzn_herstation/user/model/providers_details_model/rate_model.dart';
+import 'package:hwzn_herstation/user/model/providers_details_model/schedule_model.dart';
+import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'gallery_model.dart';
 
-part 'provider_details_model.g.dart'; 
+part 'provider_details_model.g.dart';
 
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
 class ProviderDetailsModel {
@@ -17,17 +19,35 @@ class ProviderDetailsModel {
   String? instructions;
   @JsonKey(name: 'rates')
   List<RateModel>? rates;
+  @JsonKey(name: 'services')
+  List<ServiceModel>? services;
   @JsonKey(name: 'rate')
   String? rate;
+
   @JsonKey(name: 'rate_count')
   int? rateCount;
   @JsonKey(name: 'rates_avg')
   double? ratesAvg;
+  @JsonKey(name: 'is_favorite')
+  bool? isFavorite;
+  @JsonKey(name: 'schedules')
+  List<ScheduleModel>? schedules;
 
-  ProviderDetailsModel({this.id, this.name, this.gallery, this.instructions, this.rates, this.rate, this.rateCount, this.ratesAvg});
+  ProviderDetailsModel(
+      {this.id,
+      this.name,
+      this.gallery,
+      this.instructions,
+      this.rates,
+      this.services,
+      this.rate,
+      this.schedules,
+      this.isFavorite,
+      this.rateCount,
+      this.ratesAvg});
 
-   factory ProviderDetailsModel.fromJson(Map<String, dynamic> json) => _$ProviderDetailsModelFromJson(json);
+  factory ProviderDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$ProviderDetailsModelFromJson(json);
 
-   Map<String, dynamic> toJson() => _$ProviderDetailsModelToJson(this);
+  Map<String, dynamic> toJson() => _$ProviderDetailsModelToJson(this);
 }
-

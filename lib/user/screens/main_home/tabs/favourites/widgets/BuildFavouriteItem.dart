@@ -3,13 +3,17 @@ part of 'FavouriteWidgetImports.dart';
 
 
 class BuildFavouriteItem extends StatelessWidget {
+  final ProvidersModel providersModel;
+  final int categoryID;
   const BuildFavouriteItem({
+    required this.providersModel,
+    required this.categoryID,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return InkWell(child:Card(
       color: MyColors.bgPrimary,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -23,17 +27,17 @@ class BuildFavouriteItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClipOval(
+             ClipOval(
               child: CachedImage(
-                url:
-                "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                url:providersModel.image??"",
+
                 // boxShape: BoxShape.circle,
                 width: 120,
                 height: 120,
               ),
             ),
             MyText(
-              title:"مايان عمران",
+              title:providersModel.name??"",
               size: 14,
               fontWeight: FontWeight.bold,
 
@@ -42,6 +46,7 @@ class BuildFavouriteItem extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),onTap: () => AutoRouter.of(context)
+        .push(MakeupArtistDetailsRoute(id: providersModel.id!,categoryID: categoryID)),);
   }
 }

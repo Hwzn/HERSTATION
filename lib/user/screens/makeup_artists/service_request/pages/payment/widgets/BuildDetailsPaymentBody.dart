@@ -2,8 +2,10 @@ part of 'PaymentWidgetsImports.dart';
 
 class BuildDetailsPaymentBody extends StatelessWidget {
   PaymentData paymentData;
+  final ServiceModel serviceModel;
 
-  BuildDetailsPaymentBody({super.key, required this.paymentData});
+  BuildDetailsPaymentBody(
+      {super.key, required this.paymentData, required this.serviceModel});
 
   @override
   Widget build(BuildContext context) {
@@ -25,54 +27,75 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                   color: MyColors.bgPrimary),
               padding: const EdgeInsets.all(15),
               margin: const EdgeInsets.symmetric(vertical: 10),
-              child:   Column(
+              child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                        title:  tr(context,"brideMakeup"),
+                        title: serviceModel.name ?? "",
                         color: MyColors.black,
                         size: 13,
                       ),
                       Row(
                         children: [
-                          MyText(title: "  1x  ", color: MyColors.black, size: 13),
-                          MyText(title: "70 ر.س", color: MyColors.black, size: 13),
+                          MyText(
+                              title: serviceModel.isBride!
+                                  ? "  1x  "
+                                  : "${serviceModel.attachmentsNumber}x ",
+                              color: MyColors.black,
+                              size: 13),
+                          MyText(
+                              title: " ${serviceModel.price} ر.س",
+                              color: MyColors.black,
+                              size: 13),
                         ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MyText(
-                        title:tr(context,"makeupBrideMades"),
-                        color: MyColors.black,
-                        size: 13,
-                      ),
-                      Row(
-                        children: [
-                          MyText(title: "  3x  ", color: MyColors.black, size: 13),
-                          MyText(title: "40 ر.س", color: MyColors.black, size: 13),
-                        ],
-                      ),
-                    ],
+                  const SizedBox(
+                    height: 10,
                   ),
-                  const SizedBox(height: 10,),
-
+                  serviceModel.isBride! &&serviceModel.attachmentsNumber!>0
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MyText(
+                              title: tr(context, "makeupBrideMades"),
+                              color: MyColors.black,
+                              size: 13,
+                            ),
+                            Row(
+                              children: [
+                                MyText(
+                                    title:
+                                        "${serviceModel.attachmentsNumber}x ",
+                                    color: MyColors.black,
+                                    size: 13),
+                                MyText(
+                                    title:
+                                        " ${serviceModel.bridemadesPrice} ر.س",
+                                    color: MyColors.black,
+                                    size: 13),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                        title: tr(context,"totalAmount"),
+                        title: tr(context, "totalAmount"),
                         color: MyColors.black,
                         size: 13,
                         fontWeight: FontWeight.bold,
                       ),
                       MyText(
-                        title: "400 ر.س",
+                        title: " ${serviceModel.totalPrice} ر.س",
                         color: MyColors.black,
                         size: 13,
                         fontWeight: FontWeight.bold,
@@ -91,12 +114,12 @@ class BuildDetailsPaymentBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyText(
-                  title: tr(context,"depositPaidFirst"),
+                  title: tr(context, "depositPaidFirst"),
                   color: MyColors.black,
                   size: 13,
                 ),
                 MyText(
-                  title: "100 ر.س",
+                  title:" ${serviceModel.retainer} ر.س",
                   color: MyColors.black,
                   size: 13,
                 ),
@@ -106,6 +129,5 @@ class BuildDetailsPaymentBody extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

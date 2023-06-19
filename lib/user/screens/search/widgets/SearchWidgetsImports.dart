@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,6 +9,7 @@ import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/user/screens/search/SearchImport.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hwzn_herstation/general/helper/validator/Validator.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../general/packages/input_fields/GenericTextField.dart';

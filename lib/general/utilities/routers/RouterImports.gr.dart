@@ -56,6 +56,10 @@ import 'package:hwzn_herstation/makeup_artist/screens/wallet/my_wallet/MyWalletI
     as _i30;
 import 'package:hwzn_herstation/makeup_artist/screens/wallet/wallet_details/WalletDetailsImports.dart'
     as _i31;
+import 'package:hwzn_herstation/user/model/providers_details_model/schedule_model.dart'
+    as _i35;
+import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart'
+    as _i34;
 import 'package:hwzn_herstation/user/screens/appointment_details/AppointmentDetailsImports.dart'
     as _i21;
 import 'package:hwzn_herstation/user/screens/categories/CategoriesImports.dart'
@@ -270,6 +274,7 @@ class AppRouter extends _i32.RootStackRouter {
         child: _i22.MakeupArtistDetails(
           key: args.key,
           id: args.id,
+          categoryID: args.categoryID,
         ),
         opaque: true,
       );
@@ -292,6 +297,10 @@ class AppRouter extends _i32.RootStackRouter {
         child: _i24.ServiceRequest(
           key: args.key,
           type: args.type,
+          serviceModel: args.serviceModel,
+          bridemadesModel: args.bridemadesModel,
+          providerID: args.providerID,
+          schedules: args.schedules,
         ),
         opaque: true,
       );
@@ -944,12 +953,14 @@ class MakeupArtistDetailsRoute
   MakeupArtistDetailsRoute({
     _i33.Key? key,
     required int id,
+    required int categoryID,
   }) : super(
           MakeupArtistDetailsRoute.name,
           path: '/makeup-artist-details',
           args: MakeupArtistDetailsRouteArgs(
             key: key,
             id: id,
+            categoryID: categoryID,
           ),
         );
 
@@ -960,15 +971,18 @@ class MakeupArtistDetailsRouteArgs {
   const MakeupArtistDetailsRouteArgs({
     this.key,
     required this.id,
+    required this.categoryID,
   });
 
   final _i33.Key? key;
 
   final int id;
 
+  final int categoryID;
+
   @override
   String toString() {
-    return 'MakeupArtistDetailsRouteArgs{key: $key, id: $id}';
+    return 'MakeupArtistDetailsRouteArgs{key: $key, id: $id, categoryID: $categoryID}';
   }
 }
 
@@ -1012,12 +1026,20 @@ class ServiceRequestRoute extends _i32.PageRouteInfo<ServiceRequestRouteArgs> {
   ServiceRequestRoute({
     _i33.Key? key,
     required int type,
+    required _i34.ServiceModel serviceModel,
+    required _i34.ServiceModel bridemadesModel,
+    required int providerID,
+    required List<_i35.ScheduleModel> schedules,
   }) : super(
           ServiceRequestRoute.name,
           path: '/',
           args: ServiceRequestRouteArgs(
             key: key,
             type: type,
+            serviceModel: serviceModel,
+            bridemadesModel: bridemadesModel,
+            providerID: providerID,
+            schedules: schedules,
           ),
         );
 
@@ -1028,15 +1050,27 @@ class ServiceRequestRouteArgs {
   const ServiceRequestRouteArgs({
     this.key,
     required this.type,
+    required this.serviceModel,
+    required this.bridemadesModel,
+    required this.providerID,
+    required this.schedules,
   });
 
   final _i33.Key? key;
 
   final int type;
 
+  final _i34.ServiceModel serviceModel;
+
+  final _i34.ServiceModel bridemadesModel;
+
+  final int providerID;
+
+  final List<_i35.ScheduleModel> schedules;
+
   @override
   String toString() {
-    return 'ServiceRequestRouteArgs{key: $key, type: $type}';
+    return 'ServiceRequestRouteArgs{key: $key, type: $type, serviceModel: $serviceModel, bridemadesModel: $bridemadesModel, providerID: $providerID, schedules: $schedules}';
   }
 }
 

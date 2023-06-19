@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hwzn_herstation/user/screens/search/widgets/SearchWidgetsImports.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../general/constants/MyColors.dart';
 import '../../../general/helper/configration/CustomButtonAnimation.dart';

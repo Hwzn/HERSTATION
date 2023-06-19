@@ -2,8 +2,10 @@ part of 'ServicesWidgetsImports.dart';
 
 class BuildSahraServicesBody extends StatelessWidget {
   final ServicesData servicesData;
+  final ServiceModel serviceModel;
 
-  const BuildSahraServicesBody({super.key, required this.servicesData});
+  const BuildSahraServicesBody(
+      {super.key, required this.servicesData, required this.serviceModel});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,13 @@ class BuildSahraServicesBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyText(
-                title: tr(context,"sahraMakeup"),
+                title: serviceModel.name ?? "",
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,
               ),
               MyText(
-                title: "400 ر.س",
+                title: " ${serviceModel.price} ر.س",
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,
@@ -53,9 +55,18 @@ class BuildSahraServicesBody extends StatelessWidget {
             fillColor: MyColors.white,
             hint: tr(context, "customersNumbers"),
             validate: (String? value) {},
+            onChange: (value) {
+              ServiceModel serviceModel = servicesData.serviceCubit.state.data!;
+              if (value.isNotEmpty) {
+                serviceModel.attachmentsNumber = int.parse(value);
+              } else {
+                serviceModel.attachmentsNumber = 0;
+              }
+              servicesData.serviceCubit.onUpdateData(serviceModel);
+              servicesData.getTotalPrice();
+            },
           ),
         ),
-
       ],
     );
   }

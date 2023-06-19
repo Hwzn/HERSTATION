@@ -18,7 +18,14 @@ ProviderDetailsModel _$ProviderDetailsModelFromJson(
       rates: (json['rates'] as List<dynamic>?)
           ?.map((e) => RateModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      services: (json['services'] as List<dynamic>?)
+          ?.map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rate: json['rate'] as String?,
+      schedules: (json['schedules'] as List<dynamic>?)
+          ?.map((e) => ScheduleModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isFavorite: json['is_favorite'] as bool?,
       rateCount: json['rate_count'] as int?,
       ratesAvg: (json['rates_avg'] as num?)?.toDouble(),
     );
@@ -31,7 +38,10 @@ Map<String, dynamic> _$ProviderDetailsModelToJson(
       'gallery': instance.gallery,
       'instructions': instance.instructions,
       'rates': instance.rates,
+      'services': instance.services,
       'rate': instance.rate,
       'rate_count': instance.rateCount,
       'rates_avg': instance.ratesAvg,
+      'is_favorite': instance.isFavorite,
+      'schedules': instance.schedules,
     };
