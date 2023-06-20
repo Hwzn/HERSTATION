@@ -62,8 +62,8 @@ class BuildMonthsBody extends StatelessWidget {
         ),
       ),
       onTap: () {
-        placeData.daysCubit.onUpdateData(scheduleModel);
-        print("Sc"+scheduleModel.toString());
+        List<ScheduleModel> list = placeData.scheduleCubit.state.data;
+        placeData.getDays(list[index].monthNum!,scheduleModel, index);
       },
     );
   }

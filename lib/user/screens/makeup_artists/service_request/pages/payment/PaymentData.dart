@@ -33,7 +33,7 @@ class PaymentData {
     RequestOrderData createOrderData =
         serviceRequestData.requestOrderCubit.state.data;
     createOrderData.categoryId = serviceModel.categoryId!;
-    createOrderData.date = "2025-05-31 23:30";
+    createOrderData.date = "2025-07-31 01:00";
     createOrderData.services = getServicesList(serviceModel);
 
     LoadingDialog.showLoadingDialog();

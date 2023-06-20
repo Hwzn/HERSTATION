@@ -34,7 +34,8 @@ class BuildConfirmCancelDialog extends StatelessWidget {
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "great"),
-            onTap: () => Navigator.pop(context),
+            onTap: () =>      AutoRouter.of(context).push(MainHomeRoute(firstTime: false))
+            ,
             color: MyColors.primary,
             textColor: MyColors.white,
             btnKey: appointmentDetailsData.btnExit,

@@ -80,7 +80,6 @@ class UserHttpMethods {
       methodType: MethodType.get,
       toJsonFunc: (json) => json["status"],
       returnDataFun: (data) => data,
-
     );
     if (data["status"] == true) {
       CustomToast.showSimpleToast(msg: data["message"]);
@@ -100,7 +99,6 @@ class UserHttpMethods {
     return data as List<ProvidersModel>;
   }
 
-
   ////////// orders ///////////
 
   Future<bool> createOrder(RequestOrderData createOrderData) async {
@@ -112,11 +110,56 @@ class UserHttpMethods {
       methodType: MethodType.post,
       toJsonFunc: (json) => json["status"],
       returnDataFun: (data) => data,
-
     );
     if (data["status"] == true) {
       CustomToast.showSimpleToast(msg: data["message"]);
     }
     return data["status"];
   }
+
+  Future<List<OrderModel>> getOrders(int page, String type) async {
+    String params = "?$type&page=$page";
+    var data = await GenericHttp<OrderModel>(context).callApi(
+      name: ApiNames.order + params,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["orders"],
+      toJsonFunc: (json) => OrderModel.fromJson(json),
+    );
+    return data as List<OrderModel>;
+  }
+
+  Future<bool> updateOrderStatus(int id, String status) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: "${ApiNames.order}/$id",
+      returnType: ReturnType.type,
+      showLoader: true,
+      methodType: MethodType.post,
+      json: {"status": status},
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
+    );
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
+  }
+
+  Future<bool> rateOrder(RateData rateData) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: ApiNames.rate,
+      returnType: ReturnType.type,
+      showLoader: true,
+      methodType: MethodType.post,
+      json: rateData.toJson(),
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
+    );
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
+  }
+
 }

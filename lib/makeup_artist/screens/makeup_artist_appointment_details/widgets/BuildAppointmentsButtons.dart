@@ -2,9 +2,11 @@ part of 'AppointmentDetailsWidgetsImport.dart';
 
 class BuildAppointmentsButtons extends StatelessWidget {
   final MakeupArtistAppointmentDetailsData appointmentDetailsData;
+  final OrderModel orderModel;
 
   const BuildAppointmentsButtons({
     super.key,
+    required this.orderModel,
     required this.appointmentDetailsData,
   });
 

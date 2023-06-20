@@ -47,6 +47,6 @@ class BuildFavouriteItem extends StatelessWidget {
         ),
       ),
     ),onTap: () => AutoRouter.of(context)
-        .push(MakeupArtistDetailsRoute(id: providersModel.id!,categoryID: categoryID)),);
+        .push(MakeupArtistDetailsRoute(id: providersModel.id!)),);
   }
 }

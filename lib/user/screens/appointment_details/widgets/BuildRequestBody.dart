@@ -2,13 +2,19 @@ part of 'AppointmentDetailsWidgetsImports.dart';
 
 class BuildRequestBody extends StatelessWidget {
   final AppointmentDetailsData appointmentDetailsData;
+  final OrderModel orderModel;
   final int index;
 
   const BuildRequestBody(
-      {super.key, required this.appointmentDetailsData, required this.index});
+      {super.key, required this.appointmentDetailsData, required this.index,required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
+    int indexSpace = orderModel.date!.indexOf(" ");
+    String? date = orderModel.date!.substring(0, indexSpace);
+    String? time = orderModel.date!.substring(indexSpace);
+    String dayName =
+    DateFormat(DateFormat.WEEKDAY).format(DateTime.parse(date));
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 15),
       decoration: BoxDecoration(
@@ -22,31 +28,34 @@ class BuildRequestBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MyText(
-                      title: "${tr(context, "request")} #2356658",
+                      title: "${tr(context, "request")} #${orderModel.orderNum}",
                       color: MyColors.black,
                       size: 14),
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: index == 0
-                          ? MyColors.bgGrey2
-                          : index == 1
-                              ? MyColors.bgGreen
-                              : MyColors.bgRed,
+                      color: MyColors.bgGrey2,
+                      // color: index == 0
+                      //     ? MyColors.bgGrey2
+                      //     : index == 1
+                      //         ? MyColors.bgGreen
+                      //         : MyColors.bgRed,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: MyText(
                       alien: TextAlign.center,
-                      title: index == 0
-                          ? tr(context,"underway")
-                          : index == 1
-                              ? tr(context,"done")
-                              :tr(context,"cancelled"),
-                      color: index == 0
-                          ? MyColors.grey2
-                          : index == 1
-                              ? MyColors.green
-                              : MyColors.red,
+                      title: orderModel.status??"",
+                      color: MyColors.grey2,
+                      // title: index == 0
+                      //     ? tr(context,"underway")
+                      //     : index == 1
+                      //         ? tr(context,"done")
+                      //         :tr(context,"cancelled"),
+                      // color: index == 0
+                      //     ? MyColors.grey2
+                      //     : index == 1
+                      //         ? MyColors.green
+                      //         : MyColors.red,
                       size: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -66,7 +75,7 @@ class BuildRequestBody extends StatelessWidget {
                 height: 5,
               ),
               MyText(
-                title: "03:15 مساءا",
+                title: time,
                 color: MyColors.black,
                 fontWeight: FontWeight.bold,
                 size: 20,
@@ -74,11 +83,26 @@ class BuildRequestBody extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              MyText(
-                title: "الاحد 03/04/2023",
-                color: MyColors.black,
-                size: 16,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MyText(
+                    title: date,
+                    color: MyColors.black,
+                    size: 16,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  MyText(
+                    title: dayName,
+                    color: MyColors.black,
+                    size: 16,
+                  ),
+                ],
               ),
+
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 child: Divider(),
@@ -118,6 +142,8 @@ class BuildRequestBody extends StatelessWidget {
                         children: [
                           BuildServicesBody(
                             appointmentDetailsData: appointmentDetailsData,
+                            items: orderModel.items!,
+
                           ),
                           const SizedBox(
                             height: 15,
@@ -132,7 +158,7 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: "100 ر.س",
+                                title:" ${orderModel.paidAmount!} ر.س ",
                                 color: MyColors.black,
                                 size: 14,
                               ),
@@ -151,7 +177,7 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: "40 ر.س",
+                                title: " ${orderModel.retainer!} ر.س ",
                                 color: MyColors.black,
                                 size: 14,
                               ),

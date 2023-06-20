@@ -2,9 +2,8 @@ part of 'MakeupArtistDetailsImports.dart';
 
 class MakeupArtistDetails extends StatefulWidget {
   final int id;
-  final int categoryID;
 
-  const MakeupArtistDetails({Key? key, required this.id,required this.categoryID}) : super(key: key);
+  const MakeupArtistDetails({Key? key, required this.id}) : super(key: key);
 
   @override
   State<MakeupArtistDetails> createState() => _MakeupArtistDetails();

@@ -50,7 +50,6 @@ class _Categories extends State<Categories> {
                 return BuildCategoriesItem(
                   categoriesData: categoriesData,
                   providerModel: item,
-                  categoryID: int.parse(widget.categoryID!),
                 );
               },
               noMoreItemsIndicatorBuilder: (context) => Container(),

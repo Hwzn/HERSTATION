@@ -3,10 +3,9 @@ part of 'CategoriesWidgetImports.dart';
 class BuildCategoriesItem extends StatelessWidget {
   final CategoriesData categoriesData;
   final ProvidersModel providerModel;
-  final int categoryID;
 
   const BuildCategoriesItem(
-      {super.key, required this.categoriesData, required this.providerModel,required this.categoryID});
+      {super.key, required this.categoriesData, required this.providerModel});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class BuildCategoriesItem extends StatelessWidget {
       ),
     ),
       onTap: () => AutoRouter.of(context)
-          .push(MakeupArtistDetailsRoute(id: providerModel.id!,categoryID:categoryID )),
+          .push(MakeupArtistDetailsRoute(id: providerModel.id! )),
     );
   }
 }

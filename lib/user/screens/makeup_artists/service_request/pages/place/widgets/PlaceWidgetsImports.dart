@@ -11,9 +11,11 @@ import '../../../../../../../general/packages/input_fields/GenericTextField.dart
 import '../../../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../../../general/widgets/MyText.dart';
 import '../../../../../../model/providers_details_model/schedule_model.dart';
+import '../../../../../../model/providers_details_model/week_day_model.dart';
 import '../../../../../../model/region_model/city_model.dart';
 import '../../../../../../model/region_model/region_model.dart';
 import '../PlaceImports.dart';
+import 'package:hwzn_herstation/general/helper/validator/Validator.dart';
 
 part 'BuildDatesBody.dart';
 part 'BuildMonthsBody.dart';

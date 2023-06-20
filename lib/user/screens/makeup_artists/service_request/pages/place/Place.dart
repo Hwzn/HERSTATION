@@ -19,8 +19,10 @@ class _Place extends State<Place> {
 
   @override
   void initState() {
-    widget.schedules[0].selected = true;
-    placeData.daysCubit.onUpdateData(widget.schedules[0]);
+    // widget.schedules[0].selected = true;
+    placeData.scheduleCubit.onUpdateData(widget.schedules);
+    // placeData.daysCubit.onUpdateData(widget.schedules[0]);
+    // placeData.dayCubit.onUpdateData(widget.schedules[0].days![0]);
 
     super.initState();
   }
@@ -33,49 +35,62 @@ class _Place extends State<Place> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BuildMonthsBody(
-            placeData: placeData,
-            schedules: widget.schedules,
-          ),
-          BlocBuilder<GenericBloc<ScheduleModel>,
-                  GenericState<ScheduleModel>>(
-              bloc: placeData.daysCubit,
-              builder: (context, state) {
+          BlocBuilder<GenericBloc<List<ScheduleModel>>,
+                  GenericState<List<ScheduleModel>>>(
+              bloc: placeData.scheduleCubit,
+              builder: (context, state3) {
                 return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BuildDatesBody(
+                    BuildMonthsBody(
                       placeData: placeData,
-                      scheduleModel: state.data,
-                      month: state.data.monthNum??0,
+                      schedules: state3.data,
                     ),
-                    // BlocBuilder<GenericBloc<Day?>,
-                    //         GenericState<Day?>>(
-                    //     bloc: placeData.dayCubit,
-                    //     builder: (context, state2) {
-                    //       return BuildTimeBody(
-                    //           placeData: placeData, day: state2.data!);
-                    //     }),
+                    BlocBuilder<GenericBloc<ScheduleModel>,
+                            GenericState<ScheduleModel>>(
+                        bloc: placeData.daysCubit,
+                        builder: (context, state) {
+                          if (state is GenericUpdateState) {
+                            return Column(
+                              children: [
+                                BuildDatesBody(
+                                  placeData: placeData,
+                                  scheduleModel: state.data,
+                                  month: state.data.monthNum ?? 0,
+                                ),
+                                BlocBuilder<GenericBloc<WeekDayModel>,
+                                        GenericState<WeekDayModel>>(
+                                    bloc: placeData.dayCubit,
+                                    builder: (context, state2) {
+                                      if (state is GenericUpdateState) {
+                                        return BuildTimeBody(
+                                            placeData: placeData,
+                                            day: state2.data);
+                                      } else {
+                                        return Container();
+                                      }
+                                    }),
+                              ],
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }),
+                    BuildPlaceForm(
+                      placeData: placeData,
+                    ),
                   ],
                 );
               }),
-          BuildPlaceForm(
-            placeData: placeData,
-          ),
           // const Spacer(),
           LoadingButton(
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "next"),
             onTap: () {
-              RequestOrderData requestOrderData =
-                  serviceRequestData.requestOrderCubit.state.data;
-              requestOrderData.regionId = placeData.selectedRegion!.id!;
-              requestOrderData.cityId = placeData.selectedCity!.id!;
-              requestOrderData.address = placeData.address.text;
+              placeData.moveToNext(serviceRequestData);
 
-              serviceRequestData.requestOrderCubit
-                  .onUpdateData(requestOrderData);
-              serviceRequestData.changePage(2);
             },
             color: MyColors.primary,
             textColor: MyColors.white,

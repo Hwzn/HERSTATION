@@ -1,4 +1,4 @@
-import 'package:hwzn_herstation/user/model/providers_details_model/week_day.dart';
+import 'package:hwzn_herstation/user/model/providers_details_model/week_day_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'schedule_model.g.dart';
@@ -12,7 +12,7 @@ class ScheduleModel {
   @JsonKey(name: 'days')
   List<Day>? days;
 
-  List<WeekDayModel>? weekDays;
+  List<dynamic>? weekDays;
   bool? selected;
 
   ScheduleModel(
@@ -40,8 +40,9 @@ class Day {
   int? num;
   @JsonKey(name: 'is_active')
   bool? isActive;
+  bool? selected;
 
-  Day({this.name, this.from, this.to, this.isActive, this.num});
+  Day({this.name, this.from, this.to, this.isActive,this.selected, this.num});
 
   factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
 

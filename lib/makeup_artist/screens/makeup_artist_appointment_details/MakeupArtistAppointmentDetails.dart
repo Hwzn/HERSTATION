@@ -2,8 +2,9 @@ part of 'MakeupArtistAppointmentImports.dart';
 
 class MakeupArtistAppointmentDetails extends StatefulWidget {
   final int index;
+  final OrderModel orderModel;
 
-  const MakeupArtistAppointmentDetails({Key? key, required this.index})
+  const MakeupArtistAppointmentDetails({Key? key, required this.index,required this.orderModel})
       : super(
           key: key,
         );
@@ -25,7 +26,7 @@ class _MakeupArtistAppointmentDetails
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
-        title: "${tr(context, "request")} #2356658",
+        title: "${tr(context, "request")} #${widget.orderModel.orderNum}",
         haveLeading: true,
       ),
       body: SingleChildScrollView(
@@ -34,13 +35,16 @@ class _MakeupArtistAppointmentDetails
           children: [
             BuildRequestBody(
               appointmentDetailsData: appointmentDetailsData,
+              orderModel: widget.orderModel,
               index: index,
             ),
             BuildInfoBody(
               makeupArtistAppointmentDetailsData: appointmentDetailsData,
+              orderModel: widget.orderModel,
             ),
             BuildAppointmentsButtons(
               appointmentDetailsData: appointmentDetailsData,
+              orderModel: widget.orderModel,
             ),
           ],
         ),

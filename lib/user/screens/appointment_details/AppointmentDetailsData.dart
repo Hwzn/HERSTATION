@@ -11,7 +11,7 @@ class AppointmentDetailsData {
   GlobalKey<CustomButtonState> btnExit = GlobalKey();
   GlobalKey<CustomButtonState> btnSaveChanges = GlobalKey();
 
-  final TextEditingController rate =  TextEditingController();
+  final TextEditingController rateComment = TextEditingController();
 
   void closeDialog(BuildContext context) {
     Navigator.of(context).pop();
@@ -19,7 +19,7 @@ class AppointmentDetailsData {
 
   ////////////////// cancel request /////////////////
 
-  void showCancelRequestDialog(BuildContext context) {
+  void showCancelRequestDialog(BuildContext context, int id) {
     showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
@@ -31,6 +31,7 @@ class AppointmentDetailsData {
           return BuildCancelRequestDialog(
             buildContext: context,
             appointmentDetailsData: this,
+            id: id,
           );
         });
     return;
@@ -58,9 +59,20 @@ class AppointmentDetailsData {
     showCancelConfirmDialog(context);
   }
 
+  Future<void> updateOrderStatus(
+      BuildContext context, int id, String status) async {
+    LoadingDialog.showLoadingDialog();
+    bool result = await UserRepository(context).updateOrderStatus(id, status);
+    EasyLoading.dismiss();
+
+    if (result == true && context.mounted) {
+      cancelRequest(context);
+    }
+  }
+
   ////////////////// rate App /////////////////////////
 
-  void showRateDialog(BuildContext context) {
+  void showRateDialog(BuildContext context,int providerID) {
     showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
@@ -72,12 +84,22 @@ class AppointmentDetailsData {
           return BuildRateMakeupArtistDialog(
             buildContext: context,
             appointmentDetailsData: this,
+            providerID: providerID,
           );
         });
     return;
   }
 
- void saveChanges(){}
+  void saveChanges(BuildContext context, int providerID, double rate) async {
+    RateData rateData=RateData(providerId: providerID,comment: rateComment.text,rate: rate.toInt());
+    LoadingDialog.showLoadingDialog();
+    bool result = await UserRepository(context).rateOrder(rateData);
+    EasyLoading.dismiss();
+
+    if (result == true && context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
 
 ////////////////// complete pay //////////////////////
 

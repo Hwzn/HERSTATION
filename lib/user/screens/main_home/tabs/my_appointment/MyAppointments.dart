@@ -13,6 +13,10 @@ class _MyAppointments extends State<MyAppointments> {
   @override
   void initState() {
     myAppointmentsData.checkingTyp();
+    myAppointmentsData.getOrders(context, "current", 1);
+    myAppointmentsData.pagingController.addPageRequestListener((pageKey) {
+      myAppointmentsData.getOrders(context, "current", pageKey);
+    });
     super.initState();
   }
 
@@ -21,19 +25,17 @@ class _MyAppointments extends State<MyAppointments> {
     return Container(
       alignment: Alignment.topCenter,
       margin: const EdgeInsets.fromLTRB(15, 5, 15, 10),
-      child: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Column(
+     child:   Column(
           children: [
             BuildAppointmentHeader(
               myAppointmentsData: myAppointmentsData,
             ),
-            BuildAppointmentBody(
+           Expanded(child: BuildAppointmentBody(
               myAppointmentsData: myAppointmentsData,
-            ),
+            ),),
           ],
         ),
-      ),
+
     );
   }
 }

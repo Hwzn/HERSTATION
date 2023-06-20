@@ -28,6 +28,7 @@ class HelperMethods{
   }
 
   static void launchWhatsApp(phone) async {
+
     String message = 'مرحبا بك';
     if (phone.startsWith("00966")) {
       phone = phone.substring(5);

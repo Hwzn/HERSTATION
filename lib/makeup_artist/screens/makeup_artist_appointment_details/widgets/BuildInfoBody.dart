@@ -2,11 +2,12 @@ part of 'AppointmentDetailsWidgetsImport.dart';
 
 class BuildInfoBody extends StatelessWidget {
   final MakeupArtistAppointmentDetailsData makeupArtistAppointmentDetailsData;
+  final OrderModel orderModel;
 
-  const BuildInfoBody({
-    super.key,
-    required this.makeupArtistAppointmentDetailsData,
-  });
+  const BuildInfoBody(
+      {super.key,
+      required this.makeupArtistAppointmentDetailsData,
+      required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,9 @@ class BuildInfoBody extends StatelessWidget {
           ),
           Row(
             children: [
-              const ClipOval(
+              ClipOval(
                 child: CachedImage(
-                  url:
-                      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                  url: orderModel.provider!.image??"",
                   width: 50,
                   height: 50,
                 ),
@@ -43,7 +43,7 @@ class BuildInfoBody extends StatelessWidget {
                 width: 10,
               ),
               MyText(
-                title: "مايان عمران",
+                title: orderModel.provider!.name??"",
                 color: MyColors.black,
                 size: 14,
                 fontWeight: FontWeight.bold,

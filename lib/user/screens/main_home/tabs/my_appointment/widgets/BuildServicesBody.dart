@@ -2,8 +2,14 @@ part of 'MyAppointmentsWidgetsImports.dart';
 
 class BuildServicesBody extends StatelessWidget {
   final MyAppointmentsData myAppointmentsData;
+  final List<ItemModel> items;
+  final OrderModel orderModel;
 
-  const BuildServicesBody({super.key, required this.myAppointmentsData});
+  const BuildServicesBody(
+      {super.key,
+      required this.myAppointmentsData,
+      required this.items,
+      required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class BuildServicesBody extends StatelessWidget {
               removeTop: true,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 2,
+                itemCount: items.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return buildServicesItem(context, index);
@@ -48,7 +54,8 @@ class BuildServicesBody extends StatelessWidget {
                               height: 10,
                             ),
                             MyText(
-                              title: "الرياض - العليا",
+                              title:
+                                  "${orderModel.region!.name!} - ${orderModel.city!.name!}",
                               color: MyColors.black,
                               size: 13,
                             ),
@@ -63,37 +70,46 @@ class BuildServicesBody extends StatelessWidget {
   }
 
   Widget buildServicesItem(BuildContext context, int index) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              const ClipOval(
-                child: CachedImage(
-                  url:
-                      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-                  width: 20,
-                  height: 20,
+    return Visibility(
+      visible: items[index].quantity! > 0,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                const ClipOval(
+                  child: CachedImage(
+                    url:
+                        "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                    width: 20,
+                    height: 20,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              MyText(
-                  title: tr(context, "brideMakeup"),
-                  color: MyColors.black,
-                  size: 13),
-            ],
-          ),
-          Row(
-            children: [
-              MyText(title: "  1x  ", color: MyColors.black, size: 13),
-              MyText(title: "70 ر.س", color: MyColors.black, size: 13),
-            ],
-          ),
-        ],
+                const SizedBox(
+                  width: 10,
+                ),
+                MyText(
+                    title: items[index].service!.name!,
+                    color: MyColors.black,
+                    size: 13),
+              ],
+            ),
+            Row(
+              children: [
+                MyText(
+                    title: "  ${items[index].quantity}x  ",
+                    color: MyColors.black,
+                    size: 13),
+                MyText(
+                    title: " ${items[index].service!.price!} ر.س ",
+                    color: MyColors.black,
+                    size: 13),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

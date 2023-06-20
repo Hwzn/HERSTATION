@@ -3,11 +3,12 @@ part of 'AppointmentDetailsDialogsImports.dart';
 class BuildCancelRequestDialog extends StatelessWidget {
   final BuildContext buildContext;
   final AppointmentDetailsData appointmentDetailsData;
+  final int id;
 
   const BuildCancelRequestDialog(
       {Key? key,
       required this.buildContext,
-      required this.appointmentDetailsData})
+      required this.appointmentDetailsData,required this.id})
       : super(key: key);
 
   @override
@@ -48,7 +49,7 @@ class BuildCancelRequestDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "cancelReq"),
-                  onTap: () => appointmentDetailsData.cancelRequest(context),
+                  onTap: () => appointmentDetailsData.updateOrderStatus(context,id,"canceled"),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: appointmentDetailsData.btnCancelKey,

@@ -13,7 +13,6 @@ class BuildDatesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    placeData.getDays(month);
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
       child: Column(
@@ -47,34 +46,54 @@ class BuildDatesBody extends StatelessWidget {
   }
 
   Widget buildDateItem(BuildContext context, int index) {
-    return Container(
-        decoration: BoxDecoration(
-            color: MyColors.bgPrimary, borderRadius: BorderRadius.circular(15)),
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-        width: 80,
-        height: 90,
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            MyText(
-              title: scheduleModel.weekDays![index].day ?? "",
-              color: MyColors.black,
-              size: 12,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            MyText(
-              title: scheduleModel.weekDays![index].dayNameAr ?? "",
-              color: MyColors.black,
-              size: 12,
-              fontWeight: FontWeight.bold,
-            ),
-          ],
-        ));
+    return InkWell(
+      child: Container(
+          decoration: BoxDecoration(
+              color: scheduleModel.weekDays![index].selected!
+                  ? MyColors.primary
+                  : MyColors.bgPrimary,
+              borderRadius: BorderRadius.circular(15)),
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+          width: 80,
+          height: 90,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MyText(
+                title: scheduleModel.weekDays![index].day ?? "",
+                color: scheduleModel.weekDays![index].selected!
+                    ? MyColors.white
+                    : MyColors.black,
+                size: 12,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              MyText(
+                title: scheduleModel.weekDays![index].dayName ?? "",
+                color: scheduleModel.weekDays![index].selected!
+                    ? MyColors.white
+                    : MyColors.black,
+                size: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ],
+          )),
+      onTap: () {
+        ScheduleModel itemDay = placeData.daysCubit.state.data;
+        itemDay.weekDays!.map((item) => item.selected = false).toList();
+        itemDay.weekDays![index].selected = true;
+        itemDay.weekDays![index].listTimes!.map((item) => item.selected = false).toList();
+        itemDay.weekDays![index].listTimes![0].selected = true;
+        placeData.daysCubit.onUpdateData(itemDay);
+        placeData.dayCubit.onUpdateData(itemDay.weekDays![index]);
+
+
+      },
+    );
   }
 }
