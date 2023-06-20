@@ -29,6 +29,7 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
       city: json['city'] == null
           ? null
           : CityModel.fromJson(json['city'] as Map<String, dynamic>),
+      statusCode: json['status_code'] as int?,
       total: (json['total'] as num?)?.toDouble(),
     );
 
@@ -42,6 +43,7 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'payment_method': instance.paymentMethod,
       'payment_status': instance.paymentStatus,
       'status': instance.status,
+      'status_code': instance.statusCode,
       'retainer': instance.retainer,
       'paid_amount': instance.paidAmount,
       'reserved': instance.reserved,

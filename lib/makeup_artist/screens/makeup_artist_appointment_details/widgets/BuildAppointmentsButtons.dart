@@ -21,7 +21,7 @@ class BuildAppointmentsButtons extends StatelessWidget {
             borderColor: MyColors.primary,
             title: tr(context, "changeRequestStatus"),
             onTap: () {
-              appointmentDetailsData.showChangeStatusDialog(context);
+              appointmentDetailsData.showChangeStatusDialog(context,orderModel);
             },
             color: MyColors.primary,
             textColor: MyColors.white,

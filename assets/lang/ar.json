@@ -356,11 +356,10 @@
   "placeUser": "المكان",
   "experience": "الخبرة",
   "email": "البريد الالكتروني",
-  "contactPhone": "رقم االتواصل",  "all": "الكل"
-
-
-
-
+  "contactPhone": "رقم االتواصل",
+  "all": "الكل",
+  "cancelRequestP": "الغاء الطلب",
+  "acceptRequestP": "قبول الطلب"
 }
 
 
