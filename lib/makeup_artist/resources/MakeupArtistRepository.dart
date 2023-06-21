@@ -11,4 +11,10 @@ class MakeUpArtistRepository {
 
   Future<ProviderModel> getHomeProviderData() =>
       makeUpArtistHttpMethods.getHomeProviderData();
+
+  Future<List<ScheduleListModel>> getScheduleData() =>
+      makeUpArtistHttpMethods.getScheduleData();
+
+  Future<WalletDataModel> getWalletData() =>
+      makeUpArtistHttpMethods.getWalletData();
 }

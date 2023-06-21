@@ -297,9 +297,13 @@ class AppRouter extends _i32.RootStackRouter {
       );
     },
     MakeupArtistHomeRoute.name: (routeData) {
+      final args = routeData.argsAs<MakeupArtistHomeRouteArgs>();
       return _i32.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i25.MakeupArtistHome(),
+        child: _i25.MakeupArtistHome(
+          key: args.key,
+          firstTime: args.firstTime,
+        ),
         opaque: true,
       );
     },
@@ -1042,14 +1046,37 @@ class ServiceRequestRouteArgs {
 
 /// generated route for
 /// [_i25.MakeupArtistHome]
-class MakeupArtistHomeRoute extends _i32.PageRouteInfo<void> {
-  const MakeupArtistHomeRoute()
-      : super(
+class MakeupArtistHomeRoute
+    extends _i32.PageRouteInfo<MakeupArtistHomeRouteArgs> {
+  MakeupArtistHomeRoute({
+    _i33.Key? key,
+    required bool firstTime,
+  }) : super(
           MakeupArtistHomeRoute.name,
           path: '/makeup-artist-home',
+          args: MakeupArtistHomeRouteArgs(
+            key: key,
+            firstTime: firstTime,
+          ),
         );
 
   static const String name = 'MakeupArtistHomeRoute';
+}
+
+class MakeupArtistHomeRouteArgs {
+  const MakeupArtistHomeRouteArgs({
+    this.key,
+    required this.firstTime,
+  });
+
+  final _i33.Key? key;
+
+  final bool firstTime;
+
+  @override
+  String toString() {
+    return 'MakeupArtistHomeRouteArgs{key: $key, firstTime: $firstTime}';
+  }
 }
 
 /// generated route for

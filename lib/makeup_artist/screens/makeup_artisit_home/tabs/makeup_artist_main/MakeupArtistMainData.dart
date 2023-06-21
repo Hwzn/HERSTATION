@@ -100,5 +100,7 @@ class MakeupArtistMainData {
   fetchData(BuildContext context) async {
     var data = await MakeUpArtistRepository(context).getHomeProviderData();
     homeProviderBloc.onUpdateData(data);
+    // print('dataHomeProvider $data');
+    //  return data;
   }
 }

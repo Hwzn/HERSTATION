@@ -2,55 +2,64 @@ part of 'MakeupArtistWidgetsImports.dart';
 
 class BuildMyRatesBody extends StatelessWidget {
   final MakeupArtistMainData makeupArtistMainData;
+  ProviderModel? providerModel;
 
-  const BuildMyRatesBody({Key? key, required this.makeupArtistMainData})
+  BuildMyRatesBody(
+      {Key? key, required this.makeupArtistMainData, this.providerModel})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.fromLTRB(5, 25, 5, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyText(
-                title: tr(context, "myRates"),
-                color: MyColors.primary,
-                size: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              GestureDetector(
-                child: MyText(
-                  title: tr(context, "extra"),
-                  color: MyColors.primary,
-                  size: 13,
-                ),
-                onTap: () => AutoRouter.of(context).push( RatesRoute(providerID: 1)),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          height: 190,
-          child: Swiper(
-            pagination: SwiperPagination(
-              alignment: Alignment.bottomCenter,
-              builder: DotSwiperPaginationBuilder(
-                color: MyColors.secondary,
-                activeColor: MyColors.primary,
-              ),
-            ),
-            itemCount: 3,
-            layout: SwiperLayout.DEFAULT,
-            itemBuilder: (BuildContext context, int index) {
-              return buildSliderItem(context, index);
-            },
-          ),
-        )
-      ],
-    );
+    print('isApproved in rates: ${providerModel?.isApproved}');
+    print('hasSubscription in rates: ${providerModel?.hasSubscription}');
+    return providerModel?.isApproved == 0
+        ? const BuildWaitActiveBody()
+        : providerModel?.hasSubscription == false
+            ? const BuildSubscribtionWidget()
+            : Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(5, 25, 5, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MyText(
+                          title: tr(context, "myRates"),
+                          color: MyColors.primary,
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        GestureDetector(
+                          child: MyText(
+                            title: tr(context, "extra"),
+                            color: MyColors.primary,
+                            size: 13,
+                          ),
+                          onTap: () => AutoRouter.of(context)
+                              .push(RatesRoute(providerID: 1)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 190,
+                    child: Swiper(
+                      pagination: SwiperPagination(
+                        alignment: Alignment.bottomCenter,
+                        builder: DotSwiperPaginationBuilder(
+                          color: MyColors.secondary,
+                          activeColor: MyColors.primary,
+                        ),
+                      ),
+                      itemCount: 3,
+                      layout: SwiperLayout.DEFAULT,
+                      itemBuilder: (BuildContext context, int index) {
+                        return buildSliderItem(context, index);
+                      },
+                    ),
+                  )
+                ],
+              );
   }
 
   Widget buildSliderItem(BuildContext context, int index) {
@@ -67,7 +76,7 @@ class BuildMyRatesBody extends StatelessWidget {
             const ClipOval(
               child: CachedImage(
                 url:
-                "https://www.harrods.com/BWStaticContent/50000/4b524fce-27bd-44ef-8624-f0cbbc0916ba_t-services-hair-beauty-salon-2021-salon-experience-portrait.jpg",
+                    "https://www.harrods.com/BWStaticContent/50000/4b524fce-27bd-44ef-8624-f0cbbc0916ba_t-services-hair-beauty-salon-2021-salon-experience-portrait.jpg",
                 width: 40,
                 height: 40,
               ),
@@ -115,4 +124,3 @@ class BuildMyRatesBody extends StatelessWidget {
     ]);
   }
 }
-

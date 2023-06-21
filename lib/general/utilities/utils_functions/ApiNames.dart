@@ -33,4 +33,10 @@ class ApiNames {
 
   //Services
   static const String addServices = "${baseUrl}provider-services";
+
+  //Schedules
+  static const String schedule = "schedule";
+
+  //Wallet
+  static const String wallet = 'wallet';
 }

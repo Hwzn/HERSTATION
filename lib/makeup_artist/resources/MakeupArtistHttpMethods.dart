@@ -13,12 +13,34 @@ class MakeUpArtistHttpMethods {
         returnType: ReturnType.model,
         showLoader: false,
         methodType: MethodType.get,
-        refresh: false,
-        returnDataFun: (data) => data["data"]['provider'],
+        returnDataFun: (data) => data['data']['provider'],
         toJsonFunc: (json) => ProviderModel.fromJson(json));
-    // //UserModel user = UserModel.fromJson(data["data"]["user"]);
-    // //GlobalState.instance.set("token", user.token!);
-    // GlobalState.instance.get('token');
+
+    return data;
+  }
+
+  Future<List<ScheduleListModel>> getScheduleData() async {
+    // var data =
+    return await GenericHttp<ScheduleListModel>(context).callApi(
+            name: ApiNames.schedule,
+            returnType: ReturnType.list,
+            showLoader: false,
+            methodType: MethodType.get,
+            returnDataFun: (json) => json['data']['schedule'],
+            toJsonFunc: (json) => ScheduleListModel.fromJson(json))
+        as List<ScheduleListModel>;
+    //return data;
+  }
+
+  Future<WalletDataModel> getWalletData() async {
+    var data = await GenericHttp<WalletDataModel>(context).callApi(
+        name: ApiNames.wallet,
+        returnType: ReturnType.model,
+        showLoader: false,
+        methodType: MethodType.get,
+        returnDataFun: (data) => data["data"],
+        toJsonFunc: (json) => WalletDataModel.fromJson(json));
+
     return data;
   }
 }

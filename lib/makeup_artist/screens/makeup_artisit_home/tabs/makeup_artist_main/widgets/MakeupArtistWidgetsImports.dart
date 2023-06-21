@@ -12,6 +12,7 @@ import 'package:hwzn_herstation/general/models/homeProviderModel.dart';
 import 'package:hwzn_herstation/general/packages/generic_bloc/generic_cubit.dart';
 import 'package:hwzn_herstation/general/utilities/utils_functions/LoadingDialog.dart';
 import 'package:hwzn_herstation/general/widgets/LoadingButton.dart';
+import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/MakeupArtistHomeImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/makeup_artist_main/MakeupArtistMainImports.dart';
 import 'package:hwzn_herstation/res.dart';
 
@@ -29,3 +30,7 @@ part 'BuildUploadImages.dart';
 part 'BuildMyRatesBody.dart';
 
 part 'BuildWaitActiveBody.dart';
+
+part '../../../widgets/BuildLocationEnableDialogMakeUp.dart';
+
+part 'BuildSubscribtionWidget.dart';

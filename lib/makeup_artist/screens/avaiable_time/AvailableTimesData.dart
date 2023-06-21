@@ -1,6 +1,9 @@
 part of 'AvailableTimesImports.dart';
 
 class AvailableTimesData {
+  //controllers
+  TextEditingController fromController = TextEditingController();
+  TextEditingController toController = TextEditingController();
   // keys
   final GlobalKey<CustomButtonState> btnSave = GlobalKey<CustomButtonState>();
   final GlobalKey<CustomButtonState> btnConfirmChange =
@@ -18,6 +21,15 @@ class AvailableTimesData {
   ];
 
   // methods
+
+  final GenericBloc<List<ScheduleListModel?>> scheduleCubit = GenericBloc([]);
+
+  Future<List<ScheduleListModel>> fetchScheduleData(
+      BuildContext context) async {
+    var data = await MakeUpArtistRepository(context).getScheduleData();
+    scheduleCubit.onUpdateData(data);
+    return data;
+  }
 
   void confirmChange(BuildContext context) {
     Navigator.pop(context);

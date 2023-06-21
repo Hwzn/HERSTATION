@@ -17,7 +17,6 @@ class CompleteRegisterData {
 
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
 
-
   void completeAccount(BuildContext context) async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? firebaseToken = await messaging.getToken();
@@ -29,25 +28,25 @@ class CompleteRegisterData {
         name: name.text,
         password: password.text,
         email: email.text,
-        contactPhone: type ==2? null: contactPhone.text ,
+        contactPhone: type == 2 ? null : contactPhone.text,
         userType: type.toString(),
         image: imageCubit.state.data,
-
         passwordConfirmation: confirmPassword.text);
     if (context.mounted) {
       FocusScope.of(context).requestFocus(FocusNode());
 
       if (formKey.currentState!.validate()) {
-        var data =
-        await GeneralRepository(context).completeAccount(completeAccountData);
+        var data = await GeneralRepository(context)
+            .completeAccount(completeAccountData);
         if (data != null && context.mounted) {
           await Utils.manipulateActiveData(context, data);
           int type = await Storage.getUserType() ?? 2;
           if (context.mounted) {
             if (type == 2) {
-              AutoRouter.of(context).push( MainHomeRoute(firstTime: true));
+              AutoRouter.of(context).push(MainHomeRoute(firstTime: true));
             } else {
-              AutoRouter.of(context).push(const MakeupArtistHomeRoute());
+              AutoRouter.of(context)
+                  .push(MakeupArtistHomeRoute(firstTime: true));
             }
           }
         }
@@ -62,5 +61,4 @@ class CompleteRegisterData {
       imageCubit.onUpdateData(image);
     }
   }
-
 }

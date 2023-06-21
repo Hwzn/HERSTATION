@@ -11,13 +11,27 @@ class _AvailableTimes extends State<AvailableTimes> {
   AvailableTimesData availableTimesData = AvailableTimesData();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    availableTimesData.fetchScheduleData(context);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
         title: tr(context, "availableTime"),
         haveLeading: true,
       ),
-      body: Container(
+      body:
+          // BlocBuilder<GenericBloc<List<ScheduleListModel?>>,
+          //     GenericState<List<ScheduleListModel?>>>(
+          //   bloc: availableTimesData.scheduleCubit,
+          //   builder: (context, state) {
+          //     if (state is GenericUpdateState) {
+          //       if (state.data.isNotEmpty) {
+          //return
+          Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         margin: const EdgeInsets.all(15),
@@ -34,16 +48,16 @@ class _AvailableTimes extends State<AvailableTimes> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-             BuildTimeBody(
+            BuildTimeBody(
               availableTimesData: availableTimesData,
             ),
             BuildMonthsBody(
               availableTimesData: availableTimesData,
+              //scheduleListModel: state.data,
             ),
             BuildDatesBody(
               availableTimesData: availableTimesData,
             ),
-           
             const Spacer(),
             LoadingButton(
               borderRadius: 15,
@@ -59,6 +73,26 @@ class _AvailableTimes extends State<AvailableTimes> {
           ],
         ),
       ),
+      //     } else {
+      //       return Center(
+      //         child: MyText(
+      //           title: 'no data', //tr(context, "noData"),
+      //           color: MyColors.black,
+      //           size: 12,
+      //         ),
+      //       );
+      //     }
+      //   } else {
+      //     return
+      //         // Center(
+      //         //   child: MyText(title: 'null', color: MyColors.black, size: 12),
+      //         // );
+      //         Center(
+      //       child: LoadingDialog.showLoadingView(),
+      //     );
+      //   }
+      // },
+      //),
     );
   }
 }

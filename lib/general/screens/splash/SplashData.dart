@@ -29,7 +29,7 @@ class SplashController {
         if (userType == 2) {
           AutoRouter.of(context).push(MainHomeRoute(firstTime: false));
         } else {
-          AutoRouter.of(context).push(const MakeupArtistHomeRoute());
+          AutoRouter.of(context).push(MakeupArtistHomeRoute(firstTime: false));
         }
       }
     } else {

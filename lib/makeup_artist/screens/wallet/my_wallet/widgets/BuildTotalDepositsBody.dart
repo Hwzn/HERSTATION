@@ -1,9 +1,10 @@
 part of 'MyWalletWidgetsImports.dart';
 
 class BuildTotalDepositsBody extends StatelessWidget {
-  MyWalletData myWalletData;
+  MyWalletData? myWalletData;
+  WalletDataModel? walletDataModel;
 
-  BuildTotalDepositsBody({super.key, required this.myWalletData});
+  BuildTotalDepositsBody({super.key, this.myWalletData, this.walletDataModel});
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +21,22 @@ class BuildTotalDepositsBody extends StatelessWidget {
                 size: 13,
                 fontWeight: FontWeight.bold,
               ),
-              InkWell(child: Container(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: MyText(
-                  title: tr(context, "allDetails"),
-                  color: MyColors.primary,
-                  size: 13,
-                  fontWeight: FontWeight.bold,
-                ),
-              ), onTap: () =>AutoRouter.of(context).push( WalletDetailsRoute(title: tr(context, "totalDeposit")))),
+              InkWell(
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: MyText(
+                      title: tr(context, "allDetails"),
+                      color: MyColors.primary,
+                      size: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onTap: () => AutoRouter.of(context).push(
+                      WalletDetailsRoute(title: tr(context, "totalDeposit")))),
             ],
           ),
-
           Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: MyColors.bgPrimary,
               borderRadius: BorderRadius.circular(15),
@@ -47,7 +47,7 @@ class BuildTotalDepositsBody extends StatelessWidget {
               color: MyColors.primary,
               size: 16,
               fontWeight: FontWeight.bold,
-              title: "1300 ر.س",
+              title: '${walletDataModel?.retainers ?? 0}', //"1300 ر.س",
             ),
           ),
         ],

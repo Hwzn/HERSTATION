@@ -20,48 +20,53 @@ class _MakeupArtistMain extends State<MakeupArtistMain> {
 
   @override
   Widget build(BuildContext context) {
+    print('providerModel.isApproved : ${providerModel?.isApproved}');
     return BlocBuilder<GenericBloc<ProviderModel?>,
         GenericState<ProviderModel?>>(
       bloc: makeupArtistMainData.homeProviderBloc,
       builder: (context, state) {
         if (state is GenericUpdateState) {
           if (state is GenericUpdateState) {
-            return RefreshIndicator(
-              onRefresh: makeupArtistMainData.fetchData(context),
-              child: Stack(
-                children: [
-                  // Visibility(
-                  //   child: BuildWaitActiveBody(),
-                  //   visible: state.data,
-                  // ),
-                  // Visibility(
-                  //visible: !state.data,
-                  // child:
-                  providerModel?.isApproved == 1
-                      ? Container(
-                          alignment: Alignment.topCenter,
-                          margin: const EdgeInsets.fromLTRB(15, 20, 15, 10),
-                          child: SingleChildScrollView(
-                            physics: const ClampingScrollPhysics(),
-                            child: Column(
-                              children: [
-                                BuildUploadImages(
-                                  makeupArtistMainData: makeupArtistMainData,
-                                ),
-                                BuildGuidesBody(
-                                  providerModel: state.data,
-                                ),
-                                BuildMyRatesBody(
-                                  makeupArtistMainData: makeupArtistMainData,
-                                ),
-                              ],
+            return Stack(
+              children: [
+                // Visibility(
+                //   child: BuildWaitActiveBody(),
+                //   visible: state.data,
+                // ),
+                // Visibility(
+                //visible: !state.data,
+                // child:
+
+                providerModel?.isApproved == 0
+                    ? const BuildWaitActiveBody()
+                    : providerModel?.hasSubscription == false
+                        ? const BuildSubscribtionWidget()
+                        : Container(
+                            alignment: Alignment.topCenter,
+                            margin: const EdgeInsets.fromLTRB(15, 20, 15, 10),
+                            child: SingleChildScrollView(
+                              physics: const ClampingScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  BuildUploadImages(
+                                    makeupArtistMainData: makeupArtistMainData,
+                                    providerModel: state.data,
+                                  ),
+                                  BuildGuidesBody(
+                                    providerModel: state.data,
+                                    makeupArtistMainData: makeupArtistMainData,
+                                  ),
+                                  BuildMyRatesBody(
+                                    makeupArtistMainData: makeupArtistMainData,
+                                    providerModel: state.data,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                      : const BuildWaitActiveBody(),
-                  //    )
-                ],
-              ),
+                          )
+
+                //    )
+              ],
             );
           } else {
             return Center(

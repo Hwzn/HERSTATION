@@ -1,9 +1,11 @@
 part of 'MyWalletWidgetsImports.dart';
 
 class BuildTotalAmountServicesBody extends StatelessWidget {
-  MyWalletData myWalletData;
+  MyWalletData? myWalletData;
+  WalletDataModel? walletDataModel;
 
-  BuildTotalAmountServicesBody({super.key, required this.myWalletData});
+  BuildTotalAmountServicesBody(
+      {super.key, this.myWalletData, this.walletDataModel});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,6 @@ class BuildTotalAmountServicesBody extends StatelessWidget {
                       WalletDetailsRoute(title: tr(context, "totalServices")))),
             ],
           ),
-
           Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
@@ -45,11 +46,11 @@ class BuildTotalAmountServicesBody extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: MyText(
-              color: MyColors.primary,
-              size: 16,
-              fontWeight: FontWeight.bold,
-              title: "3000 ر.س",
-            ),
+                color: MyColors.primary,
+                size: 16,
+                fontWeight: FontWeight.bold,
+                title: '${walletDataModel?.totals ?? 0}' //"3000 ر.س",
+                ),
           ),
         ],
       ),

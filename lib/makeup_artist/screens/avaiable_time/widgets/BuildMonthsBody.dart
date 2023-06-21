@@ -1,9 +1,10 @@
 part of 'AvailableTimesWidgetsImports.dart';
 
 class BuildMonthsBody extends StatelessWidget {
-  AvailableTimesData availableTimesData;
-
-  BuildMonthsBody({super.key, required this.availableTimesData});
+  AvailableTimesData availableTimesData; //= AvailableTimesData();
+  List<ScheduleListModel>? scheduleListModel;
+  BuildMonthsBody(
+      {super.key, this.scheduleListModel, required this.availableTimesData});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,28 @@ class BuildMonthsBody extends StatelessWidget {
             child: SizedBox(
               height: 50,
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: scheduleListModel?.length ?? 0,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildMonthItem(context, index);
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: MyColors.bgPrimary,
+                        borderRadius: BorderRadius.circular(15)),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+                    width: 70,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: MyText(
+                      title: //scheduleListModel?[index].month ??'',
+                          availableTimesData.listMonths[index],
+                      color: MyColors.black,
+                      size: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                  //buildMonthItem(context, index);
                 },
               ),
             ),

@@ -17,18 +17,26 @@ class _MyWallet extends State<MyWallet> {
         title: tr(context, "myWallet"),
         haveLeading: true,
       ),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Column(
-          children: [
-            BuildTotalDepositsBody(
-              myWalletData: walletData,
+      body: BlocBuilder<GenericBloc<WalletDataModel?>,
+          GenericState<WalletDataModel?>>(
+        bloc: walletData.walletBloc,
+        builder: (context, state) {
+          return SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                BuildTotalDepositsBody(
+                  // myWalletData: walletData,
+                  walletDataModel: state.data,
+                ),
+                BuildTotalAmountServicesBody(
+                  //myWalletData: walletData,
+                  walletDataModel: state.data,
+                ),
+              ],
             ),
-            BuildTotalAmountServicesBody(
-              myWalletData: walletData,
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

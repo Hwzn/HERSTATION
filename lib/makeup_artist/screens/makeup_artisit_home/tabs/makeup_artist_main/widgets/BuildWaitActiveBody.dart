@@ -17,7 +17,9 @@ class BuildWaitActiveBody extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
         padding: const EdgeInsets.all(15),
         alignment: Alignment.center,
-        child: MyText(
+        child: 
+        
+        MyText(
           title: tr(context, "waitActive"),
           color: MyColors.primary,
           size: 14,
