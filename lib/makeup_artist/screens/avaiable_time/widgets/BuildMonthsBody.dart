@@ -1,7 +1,7 @@
 part of 'AvailableTimesWidgetsImports.dart';
 
 class BuildMonthsBody extends StatelessWidget {
-  AvailableTimesData availableTimesData; //= AvailableTimesData();
+  AvailableTimesData availableTimesData = AvailableTimesData();
   List<ScheduleListModel>? scheduleListModel;
   BuildMonthsBody(
       {super.key, this.scheduleListModel, required this.availableTimesData});
@@ -40,7 +40,7 @@ class BuildMonthsBody extends StatelessWidget {
                     height: 50,
                     alignment: Alignment.center,
                     child: MyText(
-                      title: //scheduleListModel?[index].month ??'',
+                      title: //scheduleListModel?[index].month ?? '',
                           availableTimesData.listMonths[index],
                       color: MyColors.black,
                       size: 14,
