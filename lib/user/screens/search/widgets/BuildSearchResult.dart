@@ -27,7 +27,7 @@ class BuildSearchResult extends StatelessWidget {
             noMoreItemsIndicatorBuilder: (context) => Container(),
             firstPageProgressIndicatorBuilder: (context) => Container(),
             newPageProgressIndicatorBuilder: (context) =>
-                const CupertinoActivityIndicator()),
+            const CupertinoActivityIndicator()),
       ),
       // BlocBuilder<GenericBloc<List<ProvidersModel>>,
       //         GenericState<List<ProvidersModel>>>(
@@ -66,9 +66,9 @@ class BuildSearchResult extends StatelessWidget {
     );
   }
 
-  Widget buildSearchResultItem(
-      BuildContext context, ProvidersModel providersModel) {
-    return Card(
+  Widget buildSearchResultItem(BuildContext context,
+      ProvidersModel providersModel) {
+    return InkWell(child: Card(
       color: MyColors.bgPrimary,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -98,6 +98,9 @@ class BuildSearchResult extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ), onTap: () {
+      AutoRouter.of(context)
+          .push(MakeupArtistDetailsRoute(id: providersModel.id!));
+    },);
   }
 }

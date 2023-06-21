@@ -8,7 +8,7 @@ import 'package:hwzn_herstation/general/widgets/CachedImage.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artist_appointment_details/MakeupArtistAppointmentImports.dart';
 import 'package:intl/intl.dart';
-
+import 'package:hwzn_herstation/general/helper/helper_methods/HelperMethods.dart';
 import '../../../../general/widgets/LoadingButton.dart';
 import '../../../../res.dart';
 import '../../../../user/model/order_model/order_model.dart';

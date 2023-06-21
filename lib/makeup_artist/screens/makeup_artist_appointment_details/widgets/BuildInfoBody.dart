@@ -34,7 +34,7 @@ class BuildInfoBody extends StatelessWidget {
             children: [
               ClipOval(
                 child: CachedImage(
-                  url: orderModel.provider!.image??"",
+                  url: orderModel.provider!.image ?? "",
                   width: 50,
                   height: 50,
                 ),
@@ -43,7 +43,7 @@ class BuildInfoBody extends StatelessWidget {
                 width: 10,
               ),
               MyText(
-                title: orderModel.provider!.name??"",
+                title: orderModel.provider!.name ?? "",
                 color: MyColors.black,
                 size: 14,
                 fontWeight: FontWeight.bold,

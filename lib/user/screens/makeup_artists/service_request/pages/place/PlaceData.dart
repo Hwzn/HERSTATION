@@ -166,6 +166,9 @@ class PlaceData {
             for (int x = 0; x < timeModel.length; x++) {
               if (timeModel[x].selected!) {
                 time = timeModel[x].hour.toString();
+                if(time.length ==1){
+                  time="0$time";
+                }
                 break;
               }
             }
@@ -195,4 +198,21 @@ class PlaceData {
       }
     }
   }
+
+  void getDays2(int month) {
+    int currentYear = DateTime.now().year;
+
+    var now = DateTime(currentYear, month);
+    int totalDays = daysInMonth(now);
+    List<String> days = [];
+    for (int i = 1; i < totalDays + 1; i++) {
+      final DateFormat formatter = DateFormat('yyyy-MM-dd');
+      String formatted = formatter.format(DateTime(currentYear, month, i + 1));
+      print(formatted);
+      days.add(DateFormat(DateFormat.WEEKDAY)
+          .format(DateTime(currentYear, month, i)));
+
+    }
+  }
+
 }

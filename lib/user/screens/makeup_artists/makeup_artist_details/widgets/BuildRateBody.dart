@@ -23,7 +23,7 @@ class BuildRateBody extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               Visibility(
-                visible: list.length < 3,
+                visible: list.length > 3,
                 child: GestureDetector(
                   child: MyText(
                     title: tr(context, "extra"),

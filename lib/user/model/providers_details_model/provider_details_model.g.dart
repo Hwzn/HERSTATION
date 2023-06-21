@@ -21,7 +21,7 @@ ProviderDetailsModel _$ProviderDetailsModelFromJson(
       services: (json['services'] as List<dynamic>?)
           ?.map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      rate: json['rate'] as String?,
+      rate: json['rate'] as int?,
       schedules: (json['schedules'] as List<dynamic>?)
           ?.map((e) => ScheduleModel.fromJson(e as Map<String, dynamic>))
           .toList(),

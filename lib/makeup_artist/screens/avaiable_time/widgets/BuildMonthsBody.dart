@@ -2,8 +2,10 @@ part of 'AvailableTimesWidgetsImports.dart';
 
 class BuildMonthsBody extends StatelessWidget {
   AvailableTimesData availableTimesData;
+  List<ScheduleDays> listMonths;
 
-  BuildMonthsBody({super.key, required this.availableTimesData});
+  BuildMonthsBody(
+      {super.key, required this.availableTimesData, required this.listMonths});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,11 @@ class BuildMonthsBody extends StatelessWidget {
             child: SizedBox(
               height: 50,
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: listMonths.length,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildMonthItem(context, index);
+                  return buildMonthItem(context, index, listMonths[index]);
                 },
               ),
             ),
@@ -39,21 +41,33 @@ class BuildMonthsBody extends StatelessWidget {
     );
   }
 
-  Widget buildMonthItem(BuildContext context, int index) {
-    return Container(
-      decoration: BoxDecoration(
-          color: MyColors.bgPrimary, borderRadius: BorderRadius.circular(15)),
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-      width: 70,
-      height: 50,
-      alignment: Alignment.center,
-      child: MyText(
-        title: availableTimesData.listMonths[index],
-        color: MyColors.black,
-        size: 14,
-        fontWeight: FontWeight.bold,
+  Widget buildMonthItem(
+      BuildContext context, int index, ScheduleDays scheduleDays) {
+    return InkWell(
+      child: Container(
+        decoration: BoxDecoration(
+            color:
+                scheduleDays.selected! ? MyColors.primary : MyColors.bgPrimary,
+            borderRadius: BorderRadius.circular(15)),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+        width: 70,
+        height: 50,
+        alignment: Alignment.center,
+        child: MyText(
+          title: scheduleDays.monthName ?? "",
+          color:scheduleDays.selected!? MyColors.bgPrimary:MyColors.primary,
+          size: 14,
+          fontWeight: FontWeight.bold,
+        ),
       ),
+      onTap: () {
+        List<ScheduleDays> list = availableTimesData.scheduleDays.state.data;
+        list.map((item) => item.selected = false).toList();
+        list[index].selected = true;
+        availableTimesData.scheduleDays.onUpdateData(list);
+        availableTimesData.daysCbit.onUpdateData(scheduleDays.monthDays!);
+      },
     );
   }
 }

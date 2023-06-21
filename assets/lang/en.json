@@ -190,5 +190,17 @@
   "contactPhone": "Contact phone",
   "all": "All",
   "cancelRequestP": "Cancel request",
-  "acceptRequestP": "Accept request"
+  "acceptRequestP": "Accept request",
+  "jan": "January",
+  "fab": "February",
+  "mars": "Mars",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "Juli",
+  "august": "August",
+  "sept": "September",
+  "oct": "October",
+  "nov": "November",
+  "dec": "December"
 }

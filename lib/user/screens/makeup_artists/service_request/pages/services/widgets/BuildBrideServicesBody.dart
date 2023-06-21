@@ -68,6 +68,7 @@ class BuildBrideServicesBody extends StatelessWidget {
                                   servicesData.customersNumber.text="";
                                 }
                                 servicesData.getTotalPrice();
+                                servicesData.getTotalRetainer();
                               },
                             ),
                             MyText(
@@ -117,6 +118,7 @@ class BuildBrideServicesBody extends StatelessWidget {
                                 servicesData.serviceCubit
                                     .onUpdateData(serviceModel);
                                 servicesData.getTotalPrice();
+                                servicesData.getTotalRetainer();
 
                               },
                               validate: (String? value) {},

@@ -6,7 +6,10 @@ class BuildRequestBody extends StatelessWidget {
   final int index;
 
   const BuildRequestBody(
-      {super.key, required this.appointmentDetailsData, required this.index,required this.orderModel});
+      {super.key,
+      required this.appointmentDetailsData,
+      required this.index,
+      required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class BuildRequestBody extends StatelessWidget {
     String? date = orderModel.date!.substring(0, indexSpace);
     String? time = orderModel.date!.substring(indexSpace);
     String dayName =
-    DateFormat(DateFormat.WEEKDAY).format(DateTime.parse(date));
+        DateFormat(DateFormat.WEEKDAY).format(DateTime.parse(date));
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 15),
       decoration: BoxDecoration(
@@ -28,34 +31,28 @@ class BuildRequestBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MyText(
-                      title: "${tr(context, "request")} #${orderModel.orderNum}",
+                      title:
+                          "${tr(context, "request")} #${orderModel.orderNum}",
                       color: MyColors.black,
                       size: 14),
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: MyColors.bgGrey2,
-                      // color: index == 0
-                      //     ? MyColors.bgGrey2
-                      //     : index == 1
-                      //         ? MyColors.bgGreen
-                      //         : MyColors.bgRed,
+                      color: orderModel.statusCode == 5
+                          ? MyColors.bgGreen
+                          : orderModel.statusCode == 6
+                              ? MyColors.bgRed
+                              : MyColors.bgGrey2,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: MyText(
                       alien: TextAlign.center,
-                      title: orderModel.status??"",
-                      color: MyColors.grey2,
-                      // title: index == 0
-                      //     ? tr(context,"underway")
-                      //     : index == 1
-                      //         ? tr(context,"done")
-                      //         :tr(context,"cancelled"),
-                      // color: index == 0
-                      //     ? MyColors.grey2
-                      //     : index == 1
-                      //         ? MyColors.green
-                      //         : MyColors.red,
+                      title: orderModel.status ?? "",
+                      color: orderModel.statusCode == 5
+                          ? MyColors.green
+                          : orderModel.statusCode == 6
+                              ? MyColors.red
+                              : MyColors.grey2,
                       size: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -102,7 +99,6 @@ class BuildRequestBody extends StatelessWidget {
                   ),
                 ],
               ),
-
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 child: Divider(),
@@ -143,7 +139,6 @@ class BuildRequestBody extends StatelessWidget {
                           BuildServicesBody(
                             appointmentDetailsData: appointmentDetailsData,
                             items: orderModel.items!,
-
                           ),
                           const SizedBox(
                             height: 15,
@@ -158,7 +153,7 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title:" ${orderModel.paidAmount!} ر.س ",
+                                title: " ${orderModel.paidAmount!} ر.س ",
                                 color: MyColors.black,
                                 size: 14,
                               ),
@@ -186,21 +181,29 @@ class BuildRequestBody extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          InkWell(
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: MyText(
-                                title: tr(context, "payRest"),
-                                color: MyColors.black,
-                                size: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Visibility(
+                            visible: orderModel.retainer !=0 &&orderModel.statusCode !=6,
+                            child: Column(
+                              children: [
+                                InkWell(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    child: MyText(
+                                      title: tr(context, "payRest"),
+                                      color: MyColors.black,
+                                      size: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  onTap: () => appointmentDetailsData
+                                      .showChoosePaymentWayDialog(
+                                          context, orderModel.id!),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                              ],
                             ),
-                            onTap: () => appointmentDetailsData
-                                .showChoosePaymentWayDialog(context),
-                          ),
-                          const SizedBox(
-                            height: 5,
                           ),
                         ],
                       ),

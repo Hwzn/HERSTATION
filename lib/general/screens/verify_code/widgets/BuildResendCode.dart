@@ -19,7 +19,7 @@ class BuildResendCode extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
           child: MyText(
-            title: "${tr(context, "doneVerify")}05222222222",
+            title: "${tr(context, "doneVerify")}${email}",
             color: MyColors.black,
             size: 13,
           ),

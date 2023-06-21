@@ -45,7 +45,8 @@ class CompleteRegisterData {
           int type = await Storage.getUserType() ?? 2;
           if (context.mounted) {
             if (type == 2) {
-              AutoRouter.of(context).push( MainHomeRoute(firstTime: true));
+              AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: true), predicate: (o) => false);
+
             } else {
               AutoRouter.of(context).push(const MakeupArtistHomeRoute());
             }

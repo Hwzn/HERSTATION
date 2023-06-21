@@ -19,22 +19,25 @@ class ServiceModel {
   int? attachmentsNumber;
   bool? isBride;
   double? totalPrice;
+  double? totalRetainer;
   double? bridemadesPrice;
   int? bridemadesID;
   double? bridemadesRetainer;
 
-  ServiceModel({this.id,
-    this.name,
-    this.categoryId,
-    this.price,
-    this.retainer,
-    this.selected = false,
-    this.attachmentsNumber = 0,
-    this.isBride,
-    this.bridemadesID,
-    this.bridemadesPrice,
-    this.bridemadesRetainer,
-    this.totalPrice = 0});
+  ServiceModel(
+      {this.id,
+      this.name,
+      this.categoryId,
+      this.price,
+      this.retainer,
+      this.selected = false,
+      this.attachmentsNumber = 0,
+      this.isBride,
+      this.bridemadesID,
+      this.bridemadesPrice,
+      this.bridemadesRetainer,
+      this.totalPrice = 0,
+      this.totalRetainer = 0});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) =>
       _$ServiceModelFromJson(json);

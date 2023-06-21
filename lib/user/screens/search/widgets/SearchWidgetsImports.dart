@@ -13,6 +13,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../general/packages/input_fields/GenericTextField.dart';
+import '../../../../general/utilities/routers/RouterImports.gr.dart';
 import '../../../../general/utilities/utils_functions/LoadingDialog.dart';
 import '../../../../general/widgets/LoadingButton.dart';
 import '../../../../res.dart';

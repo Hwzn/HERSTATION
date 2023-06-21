@@ -19,7 +19,7 @@ class _Categories extends State<Categories> {
     String categoryId = widget.categoryID ?? "";
     // categoriesData.getProviders(context,categoryId);
 
-    categoriesData.getProviders(context, categoryId, 1);
+    categoriesData.getProviders(context, categoryId, 0);
     categoriesData.pagingController.addPageRequestListener((pageKey) {
       categoriesData.getProviders(context, categoryId, pageKey);
     });
@@ -52,7 +52,11 @@ class _Categories extends State<Categories> {
                   providerModel: item,
                 );
               },
-              noMoreItemsIndicatorBuilder: (context) => Container(),
+              noMoreItemsIndicatorBuilder: (context) {
+                return Container(
+                  height: 5,
+                );
+              },
               firstPageProgressIndicatorBuilder: (context) => Container(
                     margin: const EdgeInsets.only(top: 80),
                     child: LoadingDialog.showLoadingView(),

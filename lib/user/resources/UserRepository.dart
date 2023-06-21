@@ -37,6 +37,9 @@ class UserRepository {
   Future<bool> updateOrderStatus(int id, String status) =>
       userHttpMethods.updateOrderStatus(id, status);
 
+  Future<bool> updateOrderMethod(int id, String method) =>
+      userHttpMethods.updateOrderMethod(id, method);
+
   Future<List<OrderModel>> getOrders(int page, String type) =>
       userHttpMethods.getOrders(page, type);
 }

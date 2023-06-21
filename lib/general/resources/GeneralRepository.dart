@@ -56,4 +56,7 @@ class GeneralRepository {
 
   Future<dynamic> updateAddress(UpdateAddressData updateAddressData) =>
       _generalHttpMethods.updateAddress(updateAddressData);
+
+  Future<bool> deleteNotification(String id) => _generalHttpMethods.deleteNotification(id);
+
 }

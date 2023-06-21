@@ -20,12 +20,22 @@ class BuildTabBody extends StatelessWidget {
                 itemCount: 4,
                 tabBuilder: (int index, bool isActive) {
                   if (index == 3) {
-                    return Padding(
+                    return Container(
+                      margin: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: MyColors.primary,
+                            width:  1),
+                      ),
                       padding: const EdgeInsets.all(5),
-                      child: Image.asset(
-                        Res.usericon,
+                      child: CachedImage(
                         width: 25,
                         height: 25,
+                        fit: BoxFit.fill,
+                        haveRadius: false,
+                        boxShape: BoxShape.circle,
+                        url: mainHomeData.userProfile,
                       ),
                     );
                   } else {

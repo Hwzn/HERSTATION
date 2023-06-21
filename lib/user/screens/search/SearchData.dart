@@ -8,7 +8,7 @@ class SearchData {
   final PagingController<int, ProvidersModel> pagingController =
       PagingController(firstPageKey: 1);
 
-  final int pageSize = 15;
+  final int pageSize = 10;
 
   // cubits
   final GenericBloc<int> orderCubit = GenericBloc(-1);
@@ -55,7 +55,8 @@ class SearchData {
 
   Future<void> getProviders(
       BuildContext context, String word, String order, int page) async {
-    ProviderData providerData = ProviderData(order: order, word: word);
+    ProviderData providerData =
+        ProviderData(order: order, word: word, page: page);
     List<ProvidersModel> providers =
         await UserRepository(context).getProviders(providerData);
 
@@ -71,4 +72,5 @@ class SearchData {
     }
     // providersCubit.onUpdateData(providers);
   }
+
 }

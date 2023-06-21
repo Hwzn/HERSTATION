@@ -13,7 +13,6 @@ class BuildBrideCostBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Sexx : ${servicesData.serviceCubit.state.data!.name}");
 
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
@@ -124,6 +123,10 @@ class BuildBrideCostBody extends StatelessWidget {
                       }),
                 ],
               )),
+    BlocBuilder<GenericBloc<ServiceModel?>,
+    GenericState<ServiceModel?>>(
+    bloc: servicesData.serviceCubit,
+    builder: (context, state) {return
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -139,13 +142,13 @@ class BuildBrideCostBody extends StatelessWidget {
                   size: 13,
                 ),
                 MyText(
-                  title: " ${serviceModel.retainer} ر.س",
+                  title: " ${serviceModel.totalRetainer} ر.س",
                   color: MyColors.black,
                   size: 13,
                 ),
               ],
             ),
-          ),
+          );}),
         ],
       ),
     );

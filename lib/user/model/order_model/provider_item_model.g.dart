@@ -11,6 +11,8 @@ ProviderItemModel _$ProviderItemModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       name: json['name'] as String?,
       image: json['image'] as String?,
+      rate: json['rate'] as int?,
+      rateCount: json['rate_count'] as int?,
       contactPhone: json['contact_phone'] as String?,
     );
 
@@ -20,4 +22,6 @@ Map<String, dynamic> _$ProviderItemModelToJson(ProviderItemModel instance) =>
       'name': instance.name,
       'image': instance.image,
       'contact_phone': instance.contactPhone,
+      'rate': instance.rate,
+      'rate_count': instance.rateCount,
     };

@@ -40,50 +40,58 @@ class BuildChangeRequestDialog extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                       Visibility(
+                        visible: orderModel.statusCode != 2,
                         child: Column(
                           children: [
-                            LoadingButton(
-                              borderRadius: 15,
-                              title: tr(context, "underway"),
-                              borderColor: MyColors.bgPrimary,
-                              onTap: () {
-                                appointmentDetailsData.isDoneRequestCubit
-                                    .onUpdateData(1);
-                              },
-                              color: state.data == 1
-                                  ? MyColors.primary
-                                  : MyColors.bgPrimary,
-                              textColor: state.data == 1
-                                  ? MyColors.bgPrimary
-                                  : MyColors.primary,
-                              margin:
-                                  const EdgeInsets.only(bottom: 15, top: 20),
-                              btnKey: appointmentDetailsData.btnUnderway,
-                              fontSize: 13,
+                            Visibility(
+                              visible: orderModel.statusCode != 4,
+                              child: LoadingButton(
+                                borderRadius: 15,
+                                title: tr(context, "underway"),
+                                borderColor: MyColors.bgPrimary,
+                                onTap: () {
+                                  appointmentDetailsData.isDoneRequestCubit
+                                      .onUpdateData(1);
+                                },
+                                color: state.data == 1
+                                    ? MyColors.primary
+                                    : MyColors.bgPrimary,
+                                textColor: state.data == 1
+                                    ? MyColors.bgPrimary
+                                    : MyColors.primary,
+                                margin:
+                                    const EdgeInsets.only(bottom: 5, top: 20),
+                                btnKey: appointmentDetailsData.btnUnderway,
+                                fontSize: 13,
+                              ),
                             ),
-                            LoadingButton(
-                              borderRadius: 15,
-                              title: tr(context, "doneExecute"),
-                              borderColor: MyColors.bgPrimary,
-                              margin: const EdgeInsets.only(bottom: 20),
-                              onTap: () {
-                                appointmentDetailsData.isDoneRequestCubit
-                                    .onUpdateData(2);
-                              },
-                              color: state.data == 2
-                                  ? MyColors.primary
-                                  : MyColors.bgPrimary,
-                              textColor: state.data == 2
-                                  ? MyColors.bgPrimary
-                                  : MyColors.primary,
-                              btnKey: appointmentDetailsData.btnDoneExecute,
-                              fontSize: 13,
+                            Visibility(
+                              visible: orderModel.statusCode != 3,
+                              child: LoadingButton(
+                                borderRadius: 15,
+                                title: tr(context, "doneExecute"),
+                                borderColor: MyColors.bgPrimary,
+                                margin:
+                                    const EdgeInsets.only(top: 10, bottom: 20),
+                                onTap: () {
+                                  appointmentDetailsData.isDoneRequestCubit
+                                      .onUpdateData(2);
+                                },
+                                color: state.data == 2
+                                    ? MyColors.primary
+                                    : MyColors.bgPrimary,
+                                textColor: state.data == 2
+                                    ? MyColors.bgPrimary
+                                    : MyColors.primary,
+                                btnKey: appointmentDetailsData.btnDoneExecute,
+                                fontSize: 13,
+                              ),
                             ),
                           ],
                         ),
                       ),
                       Visibility(
-
+                        visible: orderModel.statusCode == 2,
                         child: Column(
                           children: [
                             LoadingButton(

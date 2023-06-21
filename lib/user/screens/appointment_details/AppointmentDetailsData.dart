@@ -72,7 +72,7 @@ class AppointmentDetailsData {
 
   ////////////////// rate App /////////////////////////
 
-  void showRateDialog(BuildContext context,int providerID) {
+  void showRateDialog(BuildContext context, int providerID) {
     showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
@@ -91,7 +91,8 @@ class AppointmentDetailsData {
   }
 
   void saveChanges(BuildContext context, int providerID, double rate) async {
-    RateData rateData=RateData(providerId: providerID,comment: rateComment.text,rate: rate.toInt());
+    RateData rateData = RateData(
+        providerId: providerID, comment: rateComment.text, rate: rate.toInt());
     LoadingDialog.showLoadingDialog();
     bool result = await UserRepository(context).rateOrder(rateData);
     EasyLoading.dismiss();
@@ -103,7 +104,7 @@ class AppointmentDetailsData {
 
 ////////////////// complete pay //////////////////////
 
-  void showChoosePaymentWayDialog(BuildContext context) {
+  void showChoosePaymentWayDialog(BuildContext context,int orderID) {
     showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
@@ -115,6 +116,7 @@ class AppointmentDetailsData {
           return BuildPaymentWayDialog(
             buildContext: context,
             appointmentDetailsData: this,
+            orderID: orderID,
           );
         });
     return;
@@ -136,5 +138,21 @@ class AppointmentDetailsData {
     payAppleCubit.onUpdateData(false);
     payVisaCubit.onUpdateData(true);
     payReceiptCubit.onUpdateData(false);
+  }
+
+  Future<void> executePay(int orderID, BuildContext context) async {
+    if (payReceiptCubit.state.data) {
+      LoadingDialog.showLoadingDialog();
+      bool result =
+          await UserRepository(context).updateOrderMethod(orderID, "cash");
+      EasyLoading.dismiss();
+
+      if (result == true && context.mounted) {
+        AutoRouter.of(context).pushAndPopUntil(MainHomeRoute(firstTime: false),
+            predicate: (o) => false);
+      }
+    } else {
+      Navigator.of(context).pop();
+    }
   }
 }

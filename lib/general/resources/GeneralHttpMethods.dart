@@ -265,7 +265,6 @@ class GeneralHttpMethods {
       returnType: ReturnType.list,
       showLoader: false,
       methodType: MethodType.get,
-      refresh: false,
       returnDataFun: (data) => data["data"]["notifications"],
       toJsonFunc: (json) => NotificationModel.fromJson(json),
     );
@@ -278,10 +277,26 @@ class GeneralHttpMethods {
       returnType: ReturnType.type,
       json: updateAddressData.toJson(),
       showLoader: true,
-      toJsonFunc: (json) => UserModel.fromJson(json),
+      // toJsonFunc: (json) => UserModel.fromJson(json),
       returnDataFun: (data) => data,
       methodType: MethodType.post,
     );
+
     return data;
+  }
+
+  Future<bool> deleteNotification(String id) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: "${ApiNames.deleteNotifications}/$id",
+      returnType: ReturnType.type,
+      showLoader: true,
+      methodType: MethodType.delete,
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
+    );
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
   }
 }

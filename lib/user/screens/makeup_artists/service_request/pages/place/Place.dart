@@ -53,6 +53,8 @@ class _Place extends State<Place> {
                         builder: (context, state) {
                           if (state is GenericUpdateState) {
                             return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BuildDatesBody(
                                   placeData: placeData,
@@ -90,7 +92,6 @@ class _Place extends State<Place> {
             title: tr(context, "next"),
             onTap: () {
               placeData.moveToNext(serviceRequestData);
-
             },
             color: MyColors.primary,
             textColor: MyColors.white,

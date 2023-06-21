@@ -4,7 +4,8 @@ class MakeupArtistAppointmentDetails extends StatefulWidget {
   final int index;
   final OrderModel orderModel;
 
-  const MakeupArtistAppointmentDetails({Key? key, required this.index,required this.orderModel})
+  const MakeupArtistAppointmentDetails(
+      {Key? key, required this.index, required this.orderModel})
       : super(
           key: key,
         );

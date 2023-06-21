@@ -119,7 +119,7 @@ class BuildDetailsPaymentBody extends StatelessWidget {
                   size: 13,
                 ),
                 MyText(
-                  title:" ${serviceModel.retainer} ر.س",
+                  title:" ${serviceModel.totalRetainer} ر.س",
                   color: MyColors.black,
                   size: 13,
                 ),

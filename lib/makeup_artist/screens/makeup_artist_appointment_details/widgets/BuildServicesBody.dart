@@ -30,6 +30,24 @@ class BuildServicesBody extends StatelessWidget {
                 },
               ),
             ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MyText(
+                  title: tr(context, "total"),
+                  color: MyColors.black,
+                  size: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                MyText(
+                  title: " ${orderModel.total} ر.س ",
+                  color: MyColors.black,
+                  size: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ],
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +66,7 @@ class BuildServicesBody extends StatelessWidget {
                   height: 10,
                 ),
                 MyText(
-                  title: "${orderModel.region!.name} ${orderModel.city!.name}",
+                  title: "${orderModel.region!.name} - ${orderModel.city!.name}",
                   color: MyColors.black,
                   size: 13,
                 ),
@@ -82,7 +100,7 @@ class BuildServicesBody extends StatelessWidget {
                   width: 10,
                 ),
                 MyText(
-                    title: orderModel.items![index].service!.name??"",
+                    title: orderModel.items![index].service!.name ?? "",
                     color: MyColors.black,
                     size: 13),
               ],

@@ -64,6 +64,7 @@ class BuildSahraServicesBody extends StatelessWidget {
               }
               servicesData.serviceCubit.onUpdateData(serviceModel);
               servicesData.getTotalPrice();
+              servicesData.getTotalRetainer();
             },
           ),
         ),

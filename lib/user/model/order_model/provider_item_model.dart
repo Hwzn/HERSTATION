@@ -12,8 +12,12 @@ class ProviderItemModel {
   String? image;
   @JsonKey(name: 'contact_phone')
   String? contactPhone;
+  @JsonKey(name: 'rate')
+  int? rate;
+  @JsonKey(name: 'rate_count')
+  int? rateCount;
 
-  ProviderItemModel({this.id, this.name, this.image, this.contactPhone});
+  ProviderItemModel({this.id, this.name, this.image, this.rate, this.rateCount,this.contactPhone});
 
    factory ProviderItemModel.fromJson(Map<String, dynamic> json) => _$ProviderItemModelFromJson(json);
 

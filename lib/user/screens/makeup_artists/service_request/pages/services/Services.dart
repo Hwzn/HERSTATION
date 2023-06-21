@@ -33,6 +33,7 @@ class _Services extends State<Services> {
     widget.serviceModel.bridemadesRetainer = widget.bridemadesModel.retainer;
     servicesData.serviceCubit.onUpdateData(widget.serviceModel);
     servicesData.getTotalPrice();
+    servicesData.getTotalRetainer();
 
 
     super.initState();

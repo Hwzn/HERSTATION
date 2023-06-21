@@ -33,28 +33,21 @@ class BuildRequestBody extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      // color: index == 0
-                      //     ? MyColors.bgGrey2
-                      //     : index == 1
-                      //         ? MyColors.bgGreen
-                      //         : MyColors.bgRed,
-                      color: MyColors.bgGrey2,
+                     color: orderModel.statusCode == 5
+                          ? MyColors.bgGreen
+                          : orderModel.statusCode == 6
+                          ? MyColors.bgRed
+                          : MyColors.bgGrey2,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: MyText(
                       title: orderModel.status??"",
-                      color: MyColors.grey2,
                       alien: TextAlign.center,
-                      // title: index == 0
-                      //     ? tr(context, "underway")
-                      //     : index == 1
-                      //         ? tr(context, "done")
-                      //         : tr(context, "cancelled"),
-                      // color: index == 0
-                      //     ? MyColors.grey2
-                      //     : index == 1
-                      //         ? MyColors.green
-                      //         : MyColors.red,
+                      color: orderModel.statusCode == 5
+                          ? MyColors.green
+                          : orderModel.statusCode == 6
+                          ? MyColors.red
+                          : MyColors.grey2,
                       size: 12,
                       fontWeight: FontWeight.bold,
                     ),

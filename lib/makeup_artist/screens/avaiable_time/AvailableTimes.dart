@@ -11,6 +11,14 @@ class _AvailableTimes extends State<AvailableTimes> {
   AvailableTimesData availableTimesData = AvailableTimesData();
 
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      availableTimesData.initList(context);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
@@ -21,42 +29,51 @@ class _AvailableTimes extends State<AvailableTimes> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         margin: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 5),
-              child: MyText(
-                title: tr(context, "chooseTimes"),
-                color: MyColors.primary,
-                size: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            BuildMonthsBody(
-              availableTimesData: availableTimesData,
-            ),
-            BuildDatesBody(
-              availableTimesData: availableTimesData,
-            ),
-            BuildTimeBody(
-              availableTimesData: availableTimesData,
-            ),
-            const Spacer(),
-            LoadingButton(
-              borderRadius: 15,
-              borderColor: MyColors.primary,
-              title: tr(context, "saveChange"),
-              onTap: () => availableTimesData.confirmChange(context),
-              color: MyColors.primary,
-              textColor: MyColors.white,
-              btnKey: availableTimesData.btnSave,
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              fontSize: 13,
-            ),
-          ],
-        ),
+        child: BlocBuilder<GenericBloc<List<ScheduleDays>>,
+                GenericState<List<ScheduleDays>>>(
+            bloc: availableTimesData.scheduleDays,
+            builder: (context, state) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 5),
+                    child: MyText(
+                      title: tr(context, "chooseTimes"),
+                      color: MyColors.primary,
+                      size: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  BuildMonthsBody(
+                    listMonths: state.data,
+                    availableTimesData: availableTimesData,
+                  ),
+                  BlocBuilder<GenericBloc<List<WeekDayModel>>,
+                          GenericState<List<WeekDayModel>>>(
+                      bloc: availableTimesData.daysCbit,
+                      builder: (context, state2) {
+                        return BuildDatesBody(
+                          listDays: state2.data,
+                          availableTimesData: availableTimesData,
+                        );
+                      }),
+                  const Spacer(),
+                  LoadingButton(
+                    borderRadius: 15,
+                    borderColor: MyColors.primary,
+                    title: tr(context, "saveChange"),
+                    onTap: () => availableTimesData.confirmChange(context),
+                    color: MyColors.primary,
+                    textColor: MyColors.white,
+                    btnKey: availableTimesData.btnSave,
+                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    fontSize: 13,
+                  ),
+                ],
+              );
+            }),
       ),
     );
   }

@@ -8,8 +8,9 @@ class ProviderData {
   String? word;
   String? order;
   String? refresh;
+  int? page;
 
-  ProviderData({this.categoryId, this.word, this.order, this.refresh});
+  ProviderData({this.categoryId, this.word, this.order,this.page, this.refresh});
 
 
 }

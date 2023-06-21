@@ -18,9 +18,9 @@ class ServicesData {
   void getTotalPrice() {
     double total = 0;
     ServiceModel? serviceModel = serviceCubit.state.data;
-    int attachmentsNumber=0;
-    if(serviceModel!.attachmentsNumber !=null){
-      attachmentsNumber=serviceModel.attachmentsNumber!;
+    int attachmentsNumber = 0;
+    if (serviceModel!.attachmentsNumber != null) {
+      attachmentsNumber = serviceModel.attachmentsNumber!;
     }
     if (serviceModel.isBride!) {
       total = serviceModel.price! +
@@ -28,9 +28,27 @@ class ServicesData {
     } else {
       total = (serviceModel.price! * attachmentsNumber);
     }
-    print("Total : "+total.toString());
+    print("Total : " + total.toString());
     serviceModel.totalPrice = total;
-    print("Total : "+serviceModel.totalPrice.toString());
+    print("Total : " + serviceModel.totalPrice.toString());
+
+    serviceCubit.onUpdateData(serviceModel);
+  }
+
+  void getTotalRetainer() {
+    double retainer = 0;
+    ServiceModel? serviceModel = serviceCubit.state.data;
+    int attachmentsNumber = 0;
+    if (serviceModel!.attachmentsNumber != null) {
+      attachmentsNumber = serviceModel.attachmentsNumber!;
+    }
+    if (serviceModel.isBride!) {
+      retainer = serviceModel.retainer! +
+          (serviceModel.bridemadesRetainer! * attachmentsNumber);
+    } else {
+      retainer = (serviceModel.retainer! * attachmentsNumber);
+    }
+    serviceModel.totalRetainer = retainer;
 
     serviceCubit.onUpdateData(serviceModel);
   }

@@ -56,7 +56,7 @@ class BuildInfoBody extends StatelessWidget {
                   Row(
                     children: [
                       RatingBar.builder(
-                        initialRating: 5,
+                        initialRating: providerItemModel.rate!.toDouble(),
                         direction: Axis.horizontal,
                         itemSize: 18,
                         itemCount: 5,
@@ -69,7 +69,7 @@ class BuildInfoBody extends StatelessWidget {
                           print(rating);
                         },
                       ),
-                      MyText(title: " (10) ", color: MyColors.grey, size: 14)
+                      MyText(title: " (${providerItemModel.rateCount}) ", color: MyColors.grey, size: 14)
                     ],
                   )
                 ],

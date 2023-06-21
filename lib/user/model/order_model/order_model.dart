@@ -1,4 +1,5 @@
 import 'package:hwzn_herstation/user/model/order_model/provider_item_model.dart';
+import 'package:hwzn_herstation/user/model/order_model/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../region_model/city_model.dart';
@@ -38,9 +39,13 @@ class OrderModel {
   CityModel? region;
   @JsonKey(name: 'city')
   CityModel? city;
+  @JsonKey(name: 'user')
+  UserModel? user;
+  bool? selected;
 
   OrderModel(
       {this.id,
+      this.user,
       this.orderNum,
       this.items,
       this.provider,
@@ -53,8 +58,9 @@ class OrderModel {
       this.reserved,
       this.region,
       this.city,
-        this.statusCode,
-      this.total});
+      this.statusCode,
+      this.total,
+      this.selected});
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
       _$OrderModelFromJson(json);

@@ -62,7 +62,7 @@ class HelperMethods{
     }
   }
 
-  static void callPhone({phone}) async {
+  static void callPhone(phone) async {
     await launch("tel:$phone");
   }
 

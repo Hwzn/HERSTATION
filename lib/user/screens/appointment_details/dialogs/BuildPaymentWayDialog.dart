@@ -3,18 +3,28 @@ part of 'AppointmentDetailsDialogsImports.dart';
 class BuildPaymentWayDialog extends StatelessWidget {
   final BuildContext buildContext;
   final AppointmentDetailsData appointmentDetailsData;
+  final int orderID;
 
-  const BuildPaymentWayDialog(
-      {Key? key,
-      required this.buildContext,
-      required this.appointmentDetailsData})
+  const BuildPaymentWayDialog({Key? key,
+    required this.buildContext,
+    required this.orderID,
+    required this.appointmentDetailsData})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width -
-        (MediaQuery.of(context).size.width / 3);
-    double widthCancel = MediaQuery.of(context).size.width - width - 40;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width -
+        (MediaQuery
+            .of(context)
+            .size
+            .width / 3);
+    double widthCancel = MediaQuery
+        .of(context)
+        .size
+        .width - width - 40;
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -187,7 +197,8 @@ class BuildPaymentWayDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "completePay"),
-                  onTap: () => appointmentDetailsData.cancelRequest(context),
+                  onTap: () =>
+                      appointmentDetailsData.executePay(orderID, context),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: appointmentDetailsData.btnCancelKey,

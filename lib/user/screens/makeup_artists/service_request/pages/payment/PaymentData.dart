@@ -33,7 +33,7 @@ class PaymentData {
     RequestOrderData createOrderData =
         serviceRequestData.requestOrderCubit.state.data;
     createOrderData.categoryId = serviceModel.categoryId!;
-    createOrderData.date = "2025-07-31 01:00";
+    // createOrderData.date = "2025-07-31 01:00";
     createOrderData.services = getServicesList(serviceModel);
 
     LoadingDialog.showLoadingDialog();
@@ -41,7 +41,8 @@ class PaymentData {
     EasyLoading.dismiss();
 
     if (result == true && context.mounted) {
-      AutoRouter.of(context).push(MainHomeRoute(firstTime: false));
+      AutoRouter.of(context).pushAndPopUntil(MainHomeRoute(firstTime: false),
+          predicate: (o) => false);
     }
   }
 
@@ -69,16 +70,23 @@ class PaymentData {
     List<Map<String, int>> services = [];
     if (serviceModel.isBride!) {
       services.add({"service_id": serviceModel.id!, "quantity": 1});
-      if(serviceModel.attachmentsNumber!>0){
-      services.add({
-        "service_id": serviceModel.bridemadesID!,
-        "quantity": serviceModel.attachmentsNumber!
-      });}
+      if (serviceModel.attachmentsNumber! > 0) {
+        services.add({
+          "service_id": serviceModel.bridemadesID!,
+          "quantity": serviceModel.attachmentsNumber!
+        });
+      }
     } else {
-      services.add({
-        "service_id": serviceModel.id!,
-        "quantity": serviceModel.attachmentsNumber!
-      });
+      // if (serviceModel.attachmentsNumber == 0) {
+      //   CustomToast.showSimpleToast(msg: "يرجي ادخال عدد الزبائن");
+      // } else {
+
+
+        services.add({
+          "service_id": serviceModel.id!,
+          "quantity": serviceModel.attachmentsNumber!
+        });
+      // }
     }
 
     return services;

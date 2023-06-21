@@ -23,7 +23,9 @@ class UserHttpMethods {
     String? categoryID = providerData.categoryId ?? "";
     String? word = providerData.word ?? "";
     String? order = providerData.order ?? "";
-    String params = "?category_id=$categoryID&word=$word&order=$order";
+    int? page = providerData.page!;
+
+    String params = "?page=$page&category_id=$categoryID&word=$word&order=$order";
     var data = await GenericHttp<ProvidersModel>(context).callApi(
       name: ApiNames.providers + params,
       returnType: ReturnType.list,
@@ -53,7 +55,6 @@ class UserHttpMethods {
         returnType: ReturnType.model,
         showLoader: false,
         methodType: MethodType.get,
-        refresh: false,
         returnDataFun: (data) => data["data"],
         toJsonFunc: (json) => RatesModel.fromJson(json));
 
@@ -137,6 +138,20 @@ class UserHttpMethods {
       showLoader: true,
       methodType: MethodType.post,
       json: {"status": status},
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
+    );
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
+  }Future<bool> updateOrderMethod(int id, String method) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: "${ApiNames.order}/$id",
+      returnType: ReturnType.type,
+      showLoader: true,
+      methodType: MethodType.post,
+      json: {"payment_method": method},
       toJsonFunc: (json) => json["status"],
       returnDataFun: (data) => data,
     );

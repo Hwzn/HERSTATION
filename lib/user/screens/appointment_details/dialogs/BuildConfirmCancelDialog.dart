@@ -1,4 +1,3 @@
-
 part of 'AppointmentDetailsDialogsImports.dart';
 
 class BuildConfirmCancelDialog extends StatelessWidget {
@@ -6,7 +5,9 @@ class BuildConfirmCancelDialog extends StatelessWidget {
   final AppointmentDetailsData appointmentDetailsData;
 
   const BuildConfirmCancelDialog(
-      {Key? key, required this.buildContext, required this.appointmentDetailsData})
+      {Key? key,
+      required this.buildContext,
+      required this.appointmentDetailsData})
       : super(key: key);
 
   @override
@@ -34,8 +35,9 @@ class BuildConfirmCancelDialog extends StatelessWidget {
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "great"),
-            onTap: () =>      AutoRouter.of(context).push(MainHomeRoute(firstTime: false))
-            ,
+            onTap: () => AutoRouter.of(context).pushAndPopUntil(
+                MainHomeRoute(firstTime: false),
+                predicate: (o) => false),
             color: MyColors.primary,
             textColor: MyColors.white,
             btnKey: appointmentDetailsData.btnExit,

@@ -22,7 +22,7 @@ class ProviderDetailsModel {
   @JsonKey(name: 'services')
   List<ServiceModel>? services;
   @JsonKey(name: 'rate')
-  String? rate;
+  int? rate;
 
   @JsonKey(name: 'rate_count')
   int? rateCount;

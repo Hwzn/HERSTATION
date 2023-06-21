@@ -2,10 +2,12 @@ part of 'NotificationsWidgetImports.dart';
 
 class BuildNotificationsItem extends StatelessWidget {
   final NotificationModel notificationModel;
-  const BuildNotificationsItem({
-    super.key,
-    required this.notificationModel
-  });
+  final NotificationsData notificationData;
+
+  const BuildNotificationsItem(
+      {super.key,
+      required this.notificationData,
+      required this.notificationModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,16 @@ class BuildNotificationsItem extends StatelessWidget {
             Flexible(
               flex: 1,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyText(
-                    title:
-                       notificationModel.title??"",
+                    title: notificationModel.body ?? "",
                     size: 13,
                     fontWeight: FontWeight.bold,
                     color: MyColors.black,
-                  ),   const SizedBox(
+                  ),
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
@@ -44,7 +48,7 @@ class BuildNotificationsItem extends StatelessWidget {
                         width: 5,
                       ),
                       MyText(
-                        title: notificationModel.time??"",
+                        title: notificationModel.time ?? "",
                         size: 13,
                         color: MyColors.primary,
                       ),
@@ -53,7 +57,11 @@ class BuildNotificationsItem extends StatelessWidget {
                 ],
               ),
             ),
-            SvgPicture.asset(Res.close, height: 10, width: 10),
+            InkWell(
+              child: SvgPicture.asset(Res.close, height: 10, width: 10),
+              onTap: () =>
+                  notificationData.deleteNotification(notificationModel.id.toString(),context),
+            ),
           ],
         ),
       ),
