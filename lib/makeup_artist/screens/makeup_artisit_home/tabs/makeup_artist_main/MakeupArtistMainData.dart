@@ -95,7 +95,6 @@ class MakeupArtistMainData {
 
   // blocs
   final GenericBloc<ProviderModel?> homeProviderBloc = GenericBloc(null);
-
   // methods
   fetchData(BuildContext context) async {
     var data = await MakeUpArtistRepository(context).getHomeProviderData();

@@ -9,8 +9,6 @@ import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/makeup_artist_main/dialogs/MakeupArtistHomeDialogs.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/makeup_artist_main/widgets/MakeupArtistWidgetsImports.dart';
-import 'package:hwzn_herstation/res.dart';
-import 'package:hwzn_herstation/user/screens/main_home/widgets/MainHomeWidgetsImports.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../general/packages/generic_bloc/generic_cubit.dart';

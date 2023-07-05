@@ -30,10 +30,9 @@ class LoginData {
           int type = await Storage.getUserType() ?? 2;
           if (context.mounted) {
             if (type == 2) {
-              AutoRouter.of(context).push(MainHomeRoute(firstTime: false));
+              AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false), predicate: (o) => false);
             } else {
-              AutoRouter.of(context)
-                  .push(MakeupArtistHomeRoute(firstTime: false));
+              AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false), predicate: (o) => false);
             }
           }
         }
@@ -53,6 +52,6 @@ class LoginData {
 
   void skipLogin(BuildContext context) async {
     await Storage.setUserType(2);
-    AutoRouter.of(context).push(MainHomeRoute(firstTime: false));
+    AutoRouter.of(context).push( MainHomeRoute(firstTime: false));
   }
 }

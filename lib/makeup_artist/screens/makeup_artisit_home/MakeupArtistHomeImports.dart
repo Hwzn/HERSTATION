@@ -1,4 +1,3 @@
-
 // import 'package:auto_route/auto_route.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +36,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hwzn_herstation/general/blocks/auth_cubit/auth_cubit.dart';
 import 'package:hwzn_herstation/general/blocks/user_cubit/user_cubit.dart';
 import 'package:hwzn_herstation/general/constants/modals/LoadingDialog.dart';
-import 'package:hwzn_herstation/general/helper/configration/CustomButtonAnimation.dart';
 import 'package:hwzn_herstation/general/helper/storage/Storage.dart';
 import 'package:hwzn_herstation/general/models/LocationModel.dart';
 import 'package:hwzn_herstation/general/models/home_model.dart';
@@ -54,6 +52,5 @@ import 'package:hwzn_herstation/user/screens/main_home/tabs/my_appointment/MyApp
 import 'package:hwzn_herstation/user/screens/main_home/tabs/user_profile/UserProfileImports.dart';
 import 'package:flutter_geocoder/geocoder.dart' as c1;
 import '../../../general/packages/generic_bloc/generic_cubit.dart';
-
- part 'MakeupArtistHome.dart';
- part 'MakeupArtistHomeData.dart';
+part 'MakeupArtistHome.dart';
+part 'MakeupArtistHomeData.dart';

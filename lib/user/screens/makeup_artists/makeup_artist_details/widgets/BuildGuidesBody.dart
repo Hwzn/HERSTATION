@@ -4,11 +4,14 @@ class BuildGuidesBody extends StatelessWidget {
   final MakeupArtistDetailsData makeupArtistDetailsData;
   final String text;
 
-  const BuildGuidesBody({super.key, required this.makeupArtistDetailsData,required this.text});
+  const BuildGuidesBody(
+      {super.key, required this.makeupArtistDetailsData, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Visibility(
+      visible: text.isNotEmpty,
+        child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,16 +32,11 @@ class BuildGuidesBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MyText(
-                  title:text,
-                  color: MyColors.black,
-                  size: 14),
-
-
+              MyText(title: text, color: MyColors.black, size: 14),
             ],
           ),
         )
       ],
-    );
+    ));
   }
 }

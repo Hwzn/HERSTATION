@@ -7,7 +7,7 @@ part 'rates_model.g.dart';
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
 class RatesModel {
   @JsonKey(name: 'rate')
-  String? rate;
+  int? rate;
   @JsonKey(name: 'rate_count')
   int? rateCount;
   @JsonKey(name: 'comment_count')

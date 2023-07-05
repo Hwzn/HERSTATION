@@ -9,7 +9,7 @@ import 'package:hwzn_herstation/general/constants/modals/LoadingDialog.dart';
 import 'package:hwzn_herstation/general/helper/dio/http/GenericHttp.dart';
 import 'package:hwzn_herstation/general/models/addServices_model.dart';
 import 'package:hwzn_herstation/general/models/dropdown_model/dropdown_model.dart';
-import 'package:hwzn_herstation/general/models/homeProviderModel.dart';
+import 'package:hwzn_herstation/general/models/notifications_model/notification_model.dart';
 import 'package:hwzn_herstation/general/models/setting_model/setting_model.dart';
 import 'package:hwzn_herstation/general/utilities/routers/RouterImports.gr.dart';
 import 'package:hwzn_herstation/general/utilities/utils_functions/ApiNames.dart';
@@ -17,7 +17,6 @@ import 'package:hwzn_herstation/general/utilities/utils_functions/LoadingDialog.
 
 import '../helper/dio/utils/GlobalState.dart';
 import '../models/completeAccountModel/CompleteAccountData.dart';
-import '../models/notifications_model/notification_model.dart';
 import '../models/register_model/register_model.dart';
 import '../models/update_address_data/update_address_data.dart';
 import '../models/user_model/update_profile_data.dart';

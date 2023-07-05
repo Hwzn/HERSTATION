@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:hwzn_herstation/general/utilities/routers/RouterImports.gr.dart';
 import 'package:hwzn_herstation/res.dart';
+import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart';
 
 import '../../../../../general/constants/MyColors.dart';
 import '../../../../../general/packages/generic_bloc/generic_cubit.dart';

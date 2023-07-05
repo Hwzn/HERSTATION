@@ -8,6 +8,7 @@ class ApiNames {
   static const String setting = "settings";
   static const String userTypes = "user-types";
 
+
   // auth
   static const String login = "login";
   static const String logOut = "logout";
@@ -30,6 +31,10 @@ class ApiNames {
   static const String providers = "providers";
   static const String rate = "rates";
   static const String homeProvider = "${baseUrl}home";
+  static const String deleteNotifications = "delete-notification";
+  static const String order = "orders";
+  static const String favourite = "favorites";
+  static const String regions = "regions";
 
   //Services
   static const String addServices = "${baseUrl}provider-services";
@@ -40,3 +45,9 @@ class ApiNames {
   //Wallet
   static const String wallet = 'wallet';
 }
+
+  
+
+
+
+

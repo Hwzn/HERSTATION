@@ -65,7 +65,8 @@ class BuildTimeBody extends StatelessWidget {
                 child: SizedBox(
                   width: 100,
                   child: TextField(
-                    readOnly: true,
+                    // readOnly: true,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide:
@@ -86,7 +87,9 @@ class BuildTimeBody extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: TextField(
-                  readOnly: true,
+                  // readOnly: true,
+                  keyboardType: TextInputType.number,
+
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide:
@@ -126,18 +129,3 @@ class BuildTimeBody extends StatelessWidget {
     );
   }
 }
-
-// buildCustomTimer(BuildContext context) {
-//   return CustomHourPicker(
-//     elevation: 2,
-//     onPositivePressed: (context, time) {
-//       Text('$time');
-//       Navigator.pop(context);
-//       print('onPositive');
-//     },
-//     onNegativePressed: (context) {
-//       Navigator.pop(context);
-//       print('onNegative');
-//     },
-//   );
-// }

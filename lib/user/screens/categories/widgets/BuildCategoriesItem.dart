@@ -42,7 +42,7 @@ class BuildCategoriesItem extends StatelessWidget {
       ),
     ),
       onTap: () => AutoRouter.of(context)
-          .push(MakeupArtistDetailsRoute(id: providerModel.id!)),
+          .push(MakeupArtistDetailsRoute(id: providerModel.id! )),
     );
   }
 }

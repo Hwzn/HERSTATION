@@ -34,7 +34,10 @@ class _Notifications extends State<Notifications> {
                   itemCount: state.data.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return BuildNotificationsItem(notificationModel: state.data[index],);
+                    return BuildNotificationsItem(
+                      notificationModel: state.data[index],
+                      notificationData: notificationsData,
+                    );
                   },
                 );
               } else {

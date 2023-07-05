@@ -2,11 +2,18 @@ part of 'ServicesWidgetsImports.dart';
 
 class BuildBrideCostBody extends StatelessWidget {
   final ServicesData servicesData;
+  final ServiceModel serviceModel;
+  final ServiceModel bridemadesModel;
 
-  const BuildBrideCostBody({super.key, required this.servicesData});
+  const BuildBrideCostBody(
+      {super.key,
+      required this.servicesData,
+      required this.serviceModel,
+      required this.bridemadesModel});
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
       child: Column(
@@ -31,7 +38,7 @@ class BuildBrideCostBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                        title: tr(context, "brideMakeup"),
+                        title: serviceModel.name ?? "",
                         color: MyColors.black,
                         size: 13,
                       ),
@@ -40,7 +47,9 @@ class BuildBrideCostBody extends StatelessWidget {
                           MyText(
                               title: "  1x  ", color: MyColors.black, size: 13),
                           MyText(
-                              title: "70 ر.س", color: MyColors.black, size: 13),
+                              title: " ${serviceModel.price} ر.س",
+                              color: MyColors.black,
+                              size: 13),
                         ],
                       ),
                     ],
@@ -48,46 +57,76 @@ class BuildBrideCostBody extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MyText(
-                        title: tr(context, "makeupBrideMades"),
-                        color: MyColors.black,
-                        size: 13,
-                      ),
-                      Row(
-                        children: [
-                          MyText(
-                              title: "  3x  ", color: MyColors.black, size: 13),
-                          MyText(
-                              title: "40 ر.س", color: MyColors.black, size: 13),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MyText(
-                        title: tr(context, "totalAmount"),
-                        color: MyColors.black,
-                        size: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      MyText(
-                        title: "400 ر.س",
-                        color: MyColors.black,
-                        size: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ],
-                  )
+                  BlocBuilder<GenericBloc<ServiceModel?>,
+                          GenericState<ServiceModel?>>(
+                      bloc: servicesData.serviceCubit,
+                      builder: (context, state) {
+                        if (state.data!.attachmentsNumber != null &&
+                            state.data!.attachmentsNumber! != 0) {
+                          return Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  MyText(
+                                    title: tr(context, "makeupBrideMades"),
+                                    color: MyColors.black,
+                                    size: 13,
+                                  ),
+                                  Row(
+                                    children: [
+                                      MyText(
+                                          title:
+                                              "${serviceModel.attachmentsNumber}x ",
+                                          color: MyColors.black,
+                                          size: 13),
+                                      MyText(
+                                          title:
+                                              " ${serviceModel.bridemadesPrice} ر.س",
+                                          color: MyColors.black,
+                                          size: 13),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }),
+                  BlocBuilder<GenericBloc<ServiceModel?>,
+                          GenericState<ServiceModel?>>(
+                      bloc: servicesData.serviceCubit,
+                      builder: (context, state) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MyText(
+                              title: tr(context, "totalAmount"),
+                              color: MyColors.black,
+                              size: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            MyText(
+                              title: " ${serviceModel.totalPrice} ر.س",
+                              color: MyColors.black,
+                              size: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ],
+                        );
+                      }),
                 ],
               )),
+    BlocBuilder<GenericBloc<ServiceModel?>,
+    GenericState<ServiceModel?>>(
+    bloc: servicesData.serviceCubit,
+    builder: (context, state) {return
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -103,13 +142,13 @@ class BuildBrideCostBody extends StatelessWidget {
                   size: 13,
                 ),
                 MyText(
-                  title: "100 ر.س",
+                  title: " ${serviceModel.totalRetainer} ر.س",
                   color: MyColors.black,
                   size: 13,
                 ),
               ],
             ),
-          ),
+          );}),
         ],
       ),
     );

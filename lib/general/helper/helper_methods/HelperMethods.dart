@@ -28,6 +28,7 @@ class HelperMethods{
   }
 
   static void launchWhatsApp(phone) async {
+
     String message = 'مرحبا بك';
     if (phone.startsWith("00966")) {
       phone = phone.substring(5);
@@ -61,7 +62,7 @@ class HelperMethods{
     }
   }
 
-  static void callPhone({phone}) async {
+  static void callPhone(phone) async {
     await launch("tel:$phone");
   }
 

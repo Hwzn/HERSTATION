@@ -19,18 +19,18 @@ class MakeUpArtistHttpMethods {
     return data;
   }
 
-  Future<List<ScheduleListModel>> getScheduleData() async {
-    // var data =
-    return await GenericHttp<ScheduleListModel>(context).callApi(
-            name: ApiNames.schedule,
-            returnType: ReturnType.list,
-            showLoader: false,
-            methodType: MethodType.get,
-            returnDataFun: (json) => json['data']['schedule'],
-            toJsonFunc: (json) => ScheduleListModel.fromJson(json))
-        as List<ScheduleListModel>;
-    //return data;
-  }
+  // Future<List<ScheduleListModel>> getScheduleData() async {
+  //   // var data =
+  //   return await GenericHttp<ScheduleListModel>(context).callApi(
+  //           name: ApiNames.schedule,
+  //           returnType: ReturnType.list,
+  //           showLoader: false,
+  //           methodType: MethodType.get,
+  //           returnDataFun: (json) => json['data']['schedule'],
+  //           toJsonFunc: (json) => ScheduleListModel.fromJson(json))
+  //       as List<ScheduleListModel>;
+  //   //return data;
+  // }
 
   Future<WalletDataModel> getWalletData() async {
     var data = await GenericHttp<WalletDataModel>(context).callApi(
@@ -42,5 +42,24 @@ class MakeUpArtistHttpMethods {
         toJsonFunc: (json) => WalletDataModel.fromJson(json));
 
     return data;
+  }
+
+  Future<bool> addAvailableTime(AddScheduleModel addScheduleModel) async {
+    
+    dynamic data = await GenericHttp<dynamic>(context).callApi(
+      name: ApiNames.schedule,
+      json: addScheduleModel.toJson(),
+      returnType: ReturnType.type,
+      returnDataFun: (data) => data,
+      showLoader: false,
+      methodType: MethodType.post,
+    );
+    if (data != null) {
+      CustomToast.showSimpleToast(msg: data['message']);
+      //AutoRouter.of(context).pop(true);
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -7,7 +7,7 @@ part of 'rates_model.dart';
 // **************************************************************************
 
 RatesModel _$RatesModelFromJson(Map<String, dynamic> json) => RatesModel(
-      rate: json['rate'] as String?,
+      rate: json['rate'] as int?,
       rateCount: json['rate_count'] as int?,
       commentCount: json['comment_count'] as int?,
       rates: (json['rates'] as List<dynamic>?)

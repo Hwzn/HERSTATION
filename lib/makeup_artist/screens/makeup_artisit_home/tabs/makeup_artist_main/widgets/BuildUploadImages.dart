@@ -111,7 +111,7 @@ class BuildUploadImages extends StatelessWidget {
     return providerModel?.isApproved == 0
         ? const BuildWaitActiveBody()
         : providerModel?.hasSubscription == false
-            ? const BuildSubscribtionWidget()
+            ? Container()
             : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

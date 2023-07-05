@@ -10,7 +10,7 @@ class BuildSliderMakeupArtistImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 270,
+      height: 250,
       margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
       child: Swiper(
         pagination: SwiperPagination(
@@ -43,12 +43,12 @@ class BuildSliderMakeupArtistImages extends StatelessWidget {
            url:list[index].image??"",
             width: width * .95,
             fit: BoxFit.fill,
-            height: 240,
+            height: 220,
             // borderRadius: BorderRadius.circular(15),
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 10,
         ),
       ],
     );

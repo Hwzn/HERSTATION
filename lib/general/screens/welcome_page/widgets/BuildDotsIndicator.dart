@@ -12,7 +12,7 @@ class BuildDotsIndicator extends StatelessWidget {
         builder: (context, state) {
           return DotsIndicator(
             dotsCount: welcomePageData.data.length,
-            position: state.data,
+            position: state.data.toInt(),
             decorator: DotsDecorator(
                 spacing: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                 activeColor: MyColors.primary,

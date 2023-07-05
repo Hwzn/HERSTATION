@@ -18,7 +18,7 @@ class BuildTotalRateBody extends StatelessWidget {
       child: Column(
         children: [
           RatingBar.builder(
-            initialRating: double.parse(ratesModel.rateCount.toString()),
+            initialRating: double.parse(ratesModel.rate.toString()),
 
             minRating: 1,
             direction: Axis.horizontal,

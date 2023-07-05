@@ -2,8 +2,14 @@ part of 'ServicesWidgetsImports.dart';
 
 class BuildBrideServicesBody extends StatelessWidget {
   final ServicesData servicesData;
+  final ServiceModel serviceModel;
+  final ServiceModel bridemadesModel;
 
-  const BuildBrideServicesBody({super.key, required this.servicesData});
+  const BuildBrideServicesBody(
+      {super.key,
+      required this.servicesData,
+      required this.serviceModel,
+      required this.bridemadesModel});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +24,13 @@ class BuildBrideServicesBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyText(
-                title: tr(context,"brideMakeup"),
+                title: serviceModel.name ?? "",
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,
               ),
               MyText(
-                title: "700 ر.س",
+                title: " ${serviceModel.price} ر.س",
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,
@@ -52,6 +58,17 @@ class BuildBrideServicesBody extends StatelessWidget {
                               onChanged: (bool? value) {
                                 servicesData.addAttachmentsCubit
                                     .onUpdateData(value!);
+
+                                if (value == false) {
+                                  ServiceModel serviceModel =
+                                      servicesData.serviceCubit.state.data!;
+                                  serviceModel.attachmentsNumber = 0;
+                                  servicesData.serviceCubit
+                                      .onUpdateData(serviceModel);
+                                  servicesData.customersNumber.text="";
+                                }
+                                servicesData.getTotalPrice();
+                                servicesData.getTotalRetainer();
                               },
                             ),
                             MyText(
@@ -61,8 +78,7 @@ class BuildBrideServicesBody extends StatelessWidget {
                                 alien: TextAlign.center,
                                 size: 14),
                           ],
-                        )
-                        ),
+                        )),
                   ),
                   Visibility(
                     visible: state.data,
@@ -86,10 +102,25 @@ class BuildBrideServicesBody extends StatelessWidget {
                                   vertical: 10, horizontal: 16),
                               controller: servicesData.customersNumber,
                               fieldTypes: FieldTypes.normal,
-                              type: TextInputType.number,
+                              type: TextInputType.phone,
                               action: TextInputAction.done,
                               fillColor: MyColors.white,
                               hint: tr(context, "attachmentsNumber"),
+                              onChange: (value) {
+                                ServiceModel serviceModel =
+                                    servicesData.serviceCubit.state.data!;
+                                if (value.isNotEmpty) {
+                                  serviceModel.attachmentsNumber =
+                                      int.parse(value);
+                                } else {
+                                  serviceModel.attachmentsNumber = 0;
+                                }
+                                servicesData.serviceCubit
+                                    .onUpdateData(serviceModel);
+                                servicesData.getTotalPrice();
+                                servicesData.getTotalRetainer();
+
+                              },
                               validate: (String? value) {},
                             ),
                           ),
@@ -100,7 +131,11 @@ class BuildBrideServicesBody extends StatelessWidget {
                 ],
               );
             }),
-        BuildBrideCostBody(servicesData: servicesData,),
+        BuildBrideCostBody(
+          servicesData: servicesData,
+          serviceModel: serviceModel,
+          bridemadesModel: bridemadesModel,
+        ),
       ],
     );
   }

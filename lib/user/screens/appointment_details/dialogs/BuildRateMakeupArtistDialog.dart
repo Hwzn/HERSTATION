@@ -1,18 +1,19 @@
-
 part of 'AppointmentDetailsDialogsImports.dart';
 
 class BuildRateMakeupArtistDialog extends StatelessWidget {
   final BuildContext buildContext;
   final AppointmentDetailsData appointmentDetailsData;
+  final int providerID;
 
   const BuildRateMakeupArtistDialog(
       {Key? key,
       required this.buildContext,
-      required this.appointmentDetailsData})
+      required this.appointmentDetailsData,required this.providerID})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double rate=0;
     double width = MediaQuery.of(context).size.width -
         (MediaQuery.of(context).size.width / 3);
     double widthCancel = MediaQuery.of(context).size.width - width - 40;
@@ -60,10 +61,8 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: RatingBar.builder(
-                    initialRating: 3,
-                    minRating: 1,
+                    initialRating: 0,
                     direction: Axis.horizontal,
-                    allowHalfRating: true,
                     itemSize: 40,
                     itemCount: 5,
                     itemBuilder: (context, _) => const Icon(
@@ -71,7 +70,8 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
                       color: Colors.amber,
                     ),
                     onRatingUpdate: (rating) {
-                      print(rating);
+                      rate = rating;
+                      print("Rate $rate");
                     },
                   ),
                 ),
@@ -89,7 +89,7 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
                   max: 3,
                   fillColor: MyColors.bgGrey2,
                   hint: tr(context, "msg"),
-                  controller: appointmentDetailsData.rate,
+                  controller: appointmentDetailsData.rateComment,
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   action: TextInputAction.done,
                   type: TextInputType.text,
@@ -107,7 +107,7 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "saveChange"),
-                  onTap: () => appointmentDetailsData.saveChanges(),
+                  onTap: () => appointmentDetailsData.saveChanges(context,providerID,rate),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: appointmentDetailsData.btnSaveChanges,

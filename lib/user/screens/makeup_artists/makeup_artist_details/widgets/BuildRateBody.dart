@@ -9,7 +9,7 @@ class BuildRateBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return  Visibility(visible: list.isNotEmpty,child: Column(
       children: [
         Container(
           margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
@@ -23,7 +23,7 @@ class BuildRateBody extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               Visibility(
-                visible: list.length < 3,
+                visible: list.length > 3,
                 child: GestureDetector(
                   child: MyText(
                     title: tr(context, "extra"),
@@ -54,7 +54,7 @@ class BuildRateBody extends StatelessWidget {
           ),
         )
       ],
-    );
+    ),);
   }
 
   Widget buildSliderItem(BuildContext context, int index) {

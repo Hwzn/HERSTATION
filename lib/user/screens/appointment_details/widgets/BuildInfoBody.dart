@@ -2,9 +2,11 @@ part of 'AppointmentDetailsWidgetsImports.dart';
 
 class BuildInfoBody extends StatelessWidget {
   final AppointmentDetailsData appointmentDetailsData;
+  final ProviderItemModel providerItemModel;
 
   const BuildInfoBody({
     super.key,
+    required this.providerItemModel,
     required this.appointmentDetailsData,
   });
 
@@ -31,10 +33,9 @@ class BuildInfoBody extends StatelessWidget {
           ),
           Row(
             children: [
-              const ClipOval(
+               ClipOval(
                 child: CachedImage(
-                  url:
-                      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                  url:providerItemModel.image??"",
                   width: 50,
                   height: 50,
                 ),
@@ -47,7 +48,7 @@ class BuildInfoBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyText(
-                    title: "مايان عمران",
+                    title: providerItemModel.name??"",
                     color: MyColors.black,
                     size: 14,
                     fontWeight: FontWeight.bold,
@@ -55,12 +56,11 @@ class BuildInfoBody extends StatelessWidget {
                   Row(
                     children: [
                       RatingBar.builder(
-                        initialRating: 5,
-                        minRating: 1,
+                        initialRating: providerItemModel.rate!.toDouble(),
                         direction: Axis.horizontal,
-                        allowHalfRating: true,
                         itemSize: 18,
                         itemCount: 5,
+
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.amber,
@@ -69,7 +69,7 @@ class BuildInfoBody extends StatelessWidget {
                           print(rating);
                         },
                       ),
-                      MyText(title: " (10) ", color: MyColors.grey, size: 14)
+                      MyText(title: " (${providerItemModel.rateCount}) ", color: MyColors.grey, size: 14)
                     ],
                   )
                 ],

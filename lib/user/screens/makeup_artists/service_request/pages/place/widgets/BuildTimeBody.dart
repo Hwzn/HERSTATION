@@ -2,8 +2,9 @@ part of 'PlaceWidgetsImports.dart';
 
 class BuildTimeBody extends StatelessWidget {
   PlaceData placeData;
+  WeekDayModel day;
 
-  BuildTimeBody({super.key, required this.placeData});
+  BuildTimeBody({super.key, required this.placeData, required this.day});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class BuildTimeBody extends StatelessWidget {
             child: SizedBox(
               height: 50,
               child: ListView.builder(
-                itemCount: 2,
+                itemCount: day.listTimes!.length,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
@@ -34,26 +35,40 @@ class BuildTimeBody extends StatelessWidget {
               ),
             ),
           ),
-
         ],
       ),
     );
   }
+
   Widget buildTimeItem(BuildContext context, int index) {
-    return Container(
-      decoration: BoxDecoration(
-          color: MyColors.bgPrimary, borderRadius: BorderRadius.circular(15)),
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-      width: 100,
-      height: 50,
-      alignment: Alignment.center,
-      child: MyText(
-        title:"ص 1",
-        color: MyColors.black,
-        size: 14,
-        fontWeight: FontWeight.bold,
+    return InkWell(
+      child: Container(
+        decoration: BoxDecoration(
+            color: day.listTimes![index].selected!
+                ? MyColors.primary
+                : MyColors.bgPrimary,
+            borderRadius: BorderRadius.circular(15)),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+        width: 100,
+        height: 50,
+        alignment: Alignment.center,
+        child: MyText(
+          title: day.listTimes![index].hour.toString(),
+          color:
+              day.listTimes![index].selected! ? MyColors.white : MyColors.black,
+          size: 14,
+          fontWeight: FontWeight.bold,
+        ),
       ),
+      onTap: () {
+        WeekDayModel weekDayModel = placeData.dayCubit.state.data;
+
+        day.listTimes!.map((item) => item.selected = false).toList();
+        day.listTimes![index].selected = true;
+        weekDayModel.listTimes=day.listTimes;
+        placeData.dayCubit.onUpdateData(weekDayModel);
+      },
     );
   }
 }

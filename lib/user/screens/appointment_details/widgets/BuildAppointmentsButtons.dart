@@ -2,12 +2,14 @@ part of 'AppointmentDetailsWidgetsImports.dart';
 
 class BuildAppointmentsButtons extends StatelessWidget {
   final AppointmentDetailsData appointmentDetailsData;
-  final int index;
+  final int typeOrder;
+  final OrderModel orderModel;
 
   const BuildAppointmentsButtons({
     super.key,
     required this.appointmentDetailsData,
-    required this.index,
+    required this.typeOrder,
+    required this.orderModel,
   });
 
   @override
@@ -16,51 +18,63 @@ class BuildAppointmentsButtons extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                color: MyColors.primary,
-                borderRadius: BorderRadius.circular(15)),
-            padding: const EdgeInsets.all(15),
-            margin: const EdgeInsets.fromLTRB(0, 20, 0, 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  Res.white_whats,
-                  width: 15,
-                  height: 15,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                MyText(
-                  title: tr(context, "contactMakeupArtist"),
-                  size: 13,
-                  fontWeight: FontWeight.bold,
-                  color: MyColors.white,
-                ),
-              ],
+          InkWell(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: MyColors.primary,
+                  borderRadius: BorderRadius.circular(15)),
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    Res.white_whats,
+                    width: 15,
+                    height: 15,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  MyText(
+                    title: tr(context, "contactMakeupArtist"),
+                    size: 13,
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.white,
+                  ),
+                ],
+              ),
             ),
-          ),
-          LoadingButton(
-            borderRadius: 15,
-            borderColor: MyColors.primary,
-            title: index == 1
-                ? tr(context, "rateMakeupArtist")
-                : tr(context, "cancelRequest"),
             onTap: () {
-              if (index == 1) {
-                appointmentDetailsData.showRateDialog(context);
-              } else {
-                appointmentDetailsData.showCancelRequestDialog(context);
+              if (orderModel.provider!.contactPhone != null) {
+                HelperMethods.launchWhatsApp(orderModel.provider!.contactPhone);
               }
             },
-            color: MyColors.primary,
-            textColor: MyColors.white,
-            btnKey: appointmentDetailsData.btnKey,
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-            fontSize: 13,
+          ),
+          Visibility(
+            visible: orderModel.statusCode!=6,
+            child: LoadingButton(
+              borderRadius: 15,
+              borderColor: MyColors.primary,
+              title: typeOrder == 1
+                  ? tr(context, "rateMakeupArtist")
+                  : tr(context, "cancelRequest"),
+              onTap: () {
+                if (typeOrder == 1) {
+                  appointmentDetailsData.showRateDialog(
+                      context, orderModel.provider!.id!);
+                } else {
+                  appointmentDetailsData.showCancelRequestDialog(
+                      context, orderModel.id!);
+                }
+              },
+              color: MyColors.primary,
+              textColor: MyColors.white,
+              btnKey: appointmentDetailsData.btnKey,
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+              fontSize: 13,
+            ),
           ),
         ],
       ),

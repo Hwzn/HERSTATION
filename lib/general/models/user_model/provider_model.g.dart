@@ -8,7 +8,7 @@ part of 'provider_model.dart';
 
 ProviderModel _$ProviderModelFromJson(Map<String, dynamic> json) =>
     ProviderModel(
-      id: json['id"'] as int?,
+      id: json['id'] as int?,
       image: json['image'] as String?,
       walletBalance: json['wallet_balance'] as String?,
       instructions: json['instructions'] as String?,
@@ -21,7 +21,7 @@ ProviderModel _$ProviderModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ProviderModelToJson(ProviderModel instance) =>
     <String, dynamic>{
-      'id"': instance.id,
+      'id': instance.id,
       'image': instance.image,
       'wallet_balance': instance.walletBalance,
       'instructions': instance.instructions,

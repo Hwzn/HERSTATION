@@ -1,9 +1,13 @@
 part of 'PaymentWidgetsImports.dart';
 
 class BuildChooseWayPayDialog extends StatelessWidget {
-  PaymentData paymentData;
+  final PaymentData paymentData;
+  final ServiceModel serviceModel;
+  final ServiceRequestData serviceRequestData;
 
-  BuildChooseWayPayDialog({super.key, required this.paymentData});
+
+  BuildChooseWayPayDialog(
+      {super.key, required this.paymentData, required this.serviceModel,required this.serviceRequestData});
 
   @override
   Widget build(BuildContext context) {
@@ -30,50 +34,73 @@ class BuildChooseWayPayDialog extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: MyColors.bgPrimary),
-            padding: const EdgeInsets.all(15),
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MyText(
-                  title: tr(context,"payDeposit"),
-                  color: MyColors.black,
-                  size: 13,
-                ),
-                MyText(
-                  title: "100 ر.س",
-                  color: MyColors.black,
-                  size: 13,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: MyColors.bgPrimary),
-            padding: const EdgeInsets.all(15),
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MyText(
-                  title: tr(context,"payTotalAmount"),
-                  color: MyColors.black,
-                  size: 13,
-                ),
-                MyText(
-                  title: "700 ر.س",
-                  color: MyColors.black,
-                  size: 13,
-                ),
-              ],
-            ),
-          ),
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+              bloc: paymentData.isDepositOnly,
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: state.data
+                                ? MyColors.primary
+                                : MyColors.bgPrimary),
+                        padding: const EdgeInsets.all(15),
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MyText(
+                              title: tr(context, "payDeposit"),
+                              color:
+                                  state.data ? MyColors.white : MyColors.black,
+                              size: 13,
+                            ),
+                            MyText(
+                              title: " ${serviceModel.retainer} ر.س",
+                              color:
+                                  state.data ? MyColors.white : MyColors.black,
+                              size: 13,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: () => paymentData.isDepositOnly.onUpdateData(true),
+                    ),
+                    InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: state.data
+                                ? MyColors.bgPrimary
+                                : MyColors.primary),
+                        padding: const EdgeInsets.all(15),
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MyText(
+                              title: tr(context, "payTotalAmount"),
+                              color:
+                                  state.data ? MyColors.black : MyColors.white,
+                              size: 13,
+                            ),
+                            MyText(
+                              title: " ${serviceModel.totalPrice} ر.س",
+                              color:
+                                  state.data ? MyColors.black : MyColors.white,
+                              size: 13,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: () =>
+                          paymentData.isDepositOnly.onUpdateData(false),
+                    ),
+                  ],
+                );
+              }),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -83,7 +110,7 @@ class BuildChooseWayPayDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "goPay"),
-                  onTap: () => paymentData.goPay(context),
+                  onTap: () => paymentData.goPay(context,serviceModel,serviceRequestData),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: paymentData.btnGoPay,

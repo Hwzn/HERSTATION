@@ -22,7 +22,7 @@ class BuildAppointmentHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: () => myAppointmentsData.setCurrentAppointment(),
+                  onTap: () => myAppointmentsData.setCurrentAppointment(context),
                   child: Container(
                     width: (width / 2) - 40,
                     alignment: AlignmentDirectional.center,
@@ -58,7 +58,7 @@ class BuildAppointmentHeader extends StatelessWidget {
                   child: const VerticalDivider(),
                 ),
                 InkWell(
-                  onTap: () => myAppointmentsData.setPreviousAppointment(),
+                  onTap: () => myAppointmentsData.setPreviousAppointment(context),
                   child: Container(
                     width: (width / 2) - 40,
                     alignment: AlignmentDirectional.center,

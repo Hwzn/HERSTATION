@@ -28,16 +28,16 @@ class BuildPlaceForm extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 70,
-                  child: DropdownTextField<DropdownModel?>(
+                  child: DropdownTextField<RegionModel?>(
                     dropKey: placeData.areaDropKey,
                     hint: tr(context, "area"),
-                    selectedItem: placeData.selectedCompany,
-                    margin: const EdgeInsets.only(
-                        top: 5, bottom: 15),
-                    validate: (value) => value.noValidate(),
-                    onChange: (DropdownModel? model) => placeData.setArea(model),
+                    // selectedItem: placeData.selectedRegion,
+                    margin: const EdgeInsets.only(top: 5, bottom: 15),
+                    validate: (value) {},
+                    onChange: (RegionModel? model) =>
+                        placeData.setRegion(model??RegionModel()),
                     // useName: true,
-                    data: placeData.areasList,
+                    finData: (value) => placeData.getRegions(context),
                     enableColor: MyColors.white,
                     fillColor: MyColors.white,
                   ),
@@ -45,22 +45,27 @@ class BuildPlaceForm extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 70,
-                  child: DropdownTextField<DropdownModel?>(
-                    dropKey: placeData.cityDropKey,
-                    hint: tr(context, "city"),
-                    selectedItem: placeData.selectedCompany,
-                    margin: const EdgeInsets.only(
-                        top: 5, bottom: 15),
-                    validate: (value) => value.noValidate(),
-                    onChange: (DropdownModel? model) => placeData.setArea(model),
-                    // useName: true,
-                    data: placeData.areasList,
-                    enableColor: MyColors.white,
-                    fillColor: MyColors.white,
-                  ),
-                ),
+                BlocBuilder<GenericBloc<List<CityModel>>,
+                        GenericState<List<CityModel>>>(
+                    bloc: placeData.cityCubit,
+                    builder: (context, state) {
+                      return SizedBox(
+                          height: 70,
+                          child: DropdownTextField<CityModel?>(
+                            dropKey: placeData.cityDropKey,
+                            hint: tr(context, "city"),
+                            // selectedItem: placeData.selectedCity,
+                            margin: const EdgeInsets.only(top: 5, bottom: 15),
+                            validate: (value) {},
+                            onChange: (CityModel? model) =>
+                                placeData.setCity(model ??CityModel()),
+                            // useName: true,
+                            // finData: (value) => placeData.getCities(context),
+                            data: state.data,
+                            enableColor: MyColors.white,
+                            fillColor: MyColors.white,
+                          ));
+                    }),
                 const SizedBox(
                   height: 10,
                 ),
@@ -73,7 +78,7 @@ class BuildPlaceForm extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   action: TextInputAction.done,
                   type: TextInputType.text,
-                  validate: (value) {},
+                  validate: (value) =>value?.validateEmpty(context),
                 ),
               ],
             ),

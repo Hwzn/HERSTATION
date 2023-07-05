@@ -21,7 +21,9 @@ class _EditProfile extends State<EditProfile> {
     return Scaffold(
         appBar: AppBar(
           leading: InkWell(
-            onTap: () => AutoRouter.of(context).push( MainHomeRoute(firstTime: false)),
+            onTap: () => AutoRouter.of(context).pushAndPopUntil(
+                MainHomeRoute(firstTime: false),
+                predicate: (o) => false),
             child: Icon(
               Icons.arrow_back_ios,
               color: MyColors.primary,
@@ -51,14 +53,17 @@ class _EditProfile extends State<EditProfile> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                BuildUploadImage(editProfileData: editProfileData, ),
+                BuildUploadImage(
+                  editProfileData: editProfileData,
+                ),
                 BuildEditProfileInputs(editProfileData: editProfileData),
                 // const Spacer(),
                 LoadingButton(
                   borderRadius: 10,
                   borderColor: MyColors.primary,
                   title: tr(context, "saveChanges"),
-                  onTap: () => editProfileData.confirmChange(context, context,0),
+                  onTap: () =>
+                      editProfileData.confirmChange(context, context, 0),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: editProfileData.btnKey,

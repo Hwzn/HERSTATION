@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart';
 
 import '../../../../../../../general/constants/MyColors.dart';
 import '../../../../../../../general/packages/generic_bloc/generic_cubit.dart';

@@ -4,7 +4,7 @@ part 'provider_model.g.dart';
 
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
 class ProviderModel {
-  @JsonKey(name: 'id"')
+  @JsonKey(name: 'id')
   int? id;
   @JsonKey(name: 'image')
   String? image;

@@ -56,6 +56,12 @@ import 'package:hwzn_herstation/makeup_artist/screens/wallet/my_wallet/MyWalletI
     as _i30;
 import 'package:hwzn_herstation/makeup_artist/screens/wallet/wallet_details/WalletDetailsImports.dart'
     as _i31;
+import 'package:hwzn_herstation/user/model/order_model/order_model.dart'
+    as _i34;
+import 'package:hwzn_herstation/user/model/providers_details_model/schedule_model.dart'
+    as _i36;
+import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart'
+    as _i35;
 import 'package:hwzn_herstation/user/screens/appointment_details/AppointmentDetailsImports.dart'
     as _i21;
 import 'package:hwzn_herstation/user/screens/categories/CategoriesImports.dart'
@@ -259,6 +265,8 @@ class AppRouter extends _i32.RootStackRouter {
         child: _i21.AppointmentDetails(
           key: args.key,
           index: args.index,
+          orderModel: args.orderModel,
+          typeOrder: args.typeOrder,
         ),
         opaque: true,
       );
@@ -292,6 +300,10 @@ class AppRouter extends _i32.RootStackRouter {
         child: _i24.ServiceRequest(
           key: args.key,
           type: args.type,
+          serviceModel: args.serviceModel,
+          bridemadesModel: args.bridemadesModel,
+          providerID: args.providerID,
+          schedules: args.schedules,
         ),
         opaque: true,
       );
@@ -314,6 +326,7 @@ class AppRouter extends _i32.RootStackRouter {
         child: _i26.MakeupArtistAppointmentDetails(
           key: args.key,
           index: args.index,
+          orderModel: args.orderModel,
         ),
         opaque: true,
       );
@@ -913,12 +926,16 @@ class AppointmentDetailsRoute
   AppointmentDetailsRoute({
     _i33.Key? key,
     required int index,
+    required _i34.OrderModel orderModel,
+    required int typeOrder,
   }) : super(
           AppointmentDetailsRoute.name,
           path: '/',
           args: AppointmentDetailsRouteArgs(
             key: key,
             index: index,
+            orderModel: orderModel,
+            typeOrder: typeOrder,
           ),
         );
 
@@ -929,15 +946,21 @@ class AppointmentDetailsRouteArgs {
   const AppointmentDetailsRouteArgs({
     this.key,
     required this.index,
+    required this.orderModel,
+    required this.typeOrder,
   });
 
   final _i33.Key? key;
 
   final int index;
 
+  final _i34.OrderModel orderModel;
+
+  final int typeOrder;
+
   @override
   String toString() {
-    return 'AppointmentDetailsRouteArgs{key: $key, index: $index}';
+    return 'AppointmentDetailsRouteArgs{key: $key, index: $index, orderModel: $orderModel, typeOrder: $typeOrder}';
   }
 }
 
@@ -1016,12 +1039,20 @@ class ServiceRequestRoute extends _i32.PageRouteInfo<ServiceRequestRouteArgs> {
   ServiceRequestRoute({
     _i33.Key? key,
     required int type,
+    required _i35.ServiceModel serviceModel,
+    required _i35.ServiceModel bridemadesModel,
+    required int providerID,
+    required List<_i36.ScheduleModel> schedules,
   }) : super(
           ServiceRequestRoute.name,
           path: '/',
           args: ServiceRequestRouteArgs(
             key: key,
             type: type,
+            serviceModel: serviceModel,
+            bridemadesModel: bridemadesModel,
+            providerID: providerID,
+            schedules: schedules,
           ),
         );
 
@@ -1032,15 +1063,27 @@ class ServiceRequestRouteArgs {
   const ServiceRequestRouteArgs({
     this.key,
     required this.type,
+    required this.serviceModel,
+    required this.bridemadesModel,
+    required this.providerID,
+    required this.schedules,
   });
 
   final _i33.Key? key;
 
   final int type;
 
+  final _i35.ServiceModel serviceModel;
+
+  final _i35.ServiceModel bridemadesModel;
+
+  final int providerID;
+
+  final List<_i36.ScheduleModel> schedules;
+
   @override
   String toString() {
-    return 'ServiceRequestRouteArgs{key: $key, type: $type}';
+    return 'ServiceRequestRouteArgs{key: $key, type: $type, serviceModel: $serviceModel, bridemadesModel: $bridemadesModel, providerID: $providerID, schedules: $schedules}';
   }
 }
 
@@ -1086,12 +1129,14 @@ class MakeupArtistAppointmentDetailsRoute
   MakeupArtistAppointmentDetailsRoute({
     _i33.Key? key,
     required int index,
+    required _i34.OrderModel orderModel,
   }) : super(
           MakeupArtistAppointmentDetailsRoute.name,
           path: '/makeup-artist-appointment-details',
           args: MakeupArtistAppointmentDetailsRouteArgs(
             key: key,
             index: index,
+            orderModel: orderModel,
           ),
         );
 
@@ -1102,15 +1147,18 @@ class MakeupArtistAppointmentDetailsRouteArgs {
   const MakeupArtistAppointmentDetailsRouteArgs({
     this.key,
     required this.index,
+    required this.orderModel,
   });
 
   final _i33.Key? key;
 
   final int index;
 
+  final _i34.OrderModel orderModel;
+
   @override
   String toString() {
-    return 'MakeupArtistAppointmentDetailsRouteArgs{key: $key, index: $index}';
+    return 'MakeupArtistAppointmentDetailsRouteArgs{key: $key, index: $index, orderModel: $orderModel}';
   }
 }
 
