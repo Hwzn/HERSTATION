@@ -12,6 +12,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 
 
+import '../../../../../../general/blocks/lang_cubit/lang_cubit.dart';
 import '../../../../../../general/utilities/utils_functions/LoadingDialog.dart';
 import '../../../../../model/order_model/order_model.dart';
 import '../../../../../model/order_model/item_model.dart';

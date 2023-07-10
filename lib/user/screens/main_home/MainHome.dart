@@ -2,8 +2,9 @@ part of 'MainHomeImports.dart';
 
 class MainHome extends StatefulWidget {
   final bool firstTime;
+  final int index;
 
-  const MainHome({Key? key, required this.firstTime}) : super(key: key);
+  const MainHome({Key? key, required this.firstTime,required this.index}) : super(key: key);
 
   @override
   State<MainHome> createState() => _MainHome();
@@ -14,7 +15,7 @@ class _MainHome extends State<MainHome> {
 
   @override
   void initState() {
-    mainHomeData.initData(context);
+    mainHomeData.initData(context,widget.index);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (widget.firstTime) {

@@ -32,7 +32,7 @@
   "welcome": "Welcome",
   "loginHint": "Log in to your account with us",
   "invitationCode": "Invitation Code",
-  "registerAsMakeupArtist": "Login as makeup artist",
+  "registerAsMakeupArtist": "Sign up as makeup artist",
   "registerNow": "Register now !",
   "next": "Next",
   "signIn": "Register now",
@@ -190,5 +190,7 @@
   "experience": "Experience",
   "email": "Email",
   "contactPhone": "Contact phone",
-  "all": "All"
+  "all": "All",
+  "loginFirst": "Please login first",
+  "mySubscriptions": "My subscriptions"
 }

@@ -1,4 +1,7 @@
 
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hwzn_herstation/general/constants/MyColors.dart';
@@ -11,7 +14,12 @@ import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/m
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/makeup_artist_main/widgets/MakeupArtistWidgetsImports.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../general/blocks/user_cubit/user_cubit.dart';
+import '../../../../../general/models/user_model/update_profile_data.dart';
+import '../../../../../general/models/user_model/user_model.dart';
 import '../../../../../general/packages/generic_bloc/generic_cubit.dart';
+import '../../../../../general/resources/GeneralRepoImports.dart';
+import '../../../../../general/utilities/utils_functions/UtilsImports.dart';
 
 part 'MakeupArtistMain.dart';
 part 'MakeupArtistMainData.dart';

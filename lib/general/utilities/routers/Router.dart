@@ -41,6 +41,7 @@ part of 'RouterImports.dart';
     AdaptiveRoute(page: MakeupArtistAppointmentDetails),
     AdaptiveRoute(page: AvailableTimes),
     AdaptiveRoute(page: Subscriptions),
+    AdaptiveRoute(page: MySubscriptions),
     AdaptiveRoute(page: MyServices),
     AdaptiveRoute(page: MyWallet),
     AdaptiveRoute(page: WalletDetails,initial: true),

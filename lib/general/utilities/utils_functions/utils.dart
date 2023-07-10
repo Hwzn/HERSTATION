@@ -78,8 +78,9 @@ class Utils {
       UserModel user = UserModel.fromJson(data["data"]["user"]);
       await Storage.saveUserData(user);
         await setCurrentUserData(user, context);
-        CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
-
+        CustomToast.showSimpleToast(msg: "تم تحديث البيانات بنجاح");
+      AutoRouter.of(context)
+          .push(MakeupArtistHomeRoute(firstTime: false));
       return data;
     } else {
       CustomToast.showSimpleToast(msg: data["message"]);

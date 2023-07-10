@@ -9,12 +9,22 @@ class SubscriptionsData {
 
   // blocs
   final GenericBloc<bool> isSubscribeCubit = GenericBloc(false);
+  final GenericBloc<List<SubscriptionModel>> subscriptionsCubit =
+      GenericBloc([]);
 
-  // Methods
+  void renewSubscribe() {}
 
-  void subscribe(){
-    isSubscribeCubit.onUpdateData(true);
+  Future<void> getSubscriptions(BuildContext context) async {
+    List<SubscriptionModel> subscriptions =
+        await MakeUpArtistHttpMethods(context).getSubscriptions();
+    subscriptionsCubit.onUpdateData(subscriptions);
   }
-  void renewSubscribe(){}
 
+  Future<void> subscribe(BuildContext context, int id) async {
+    await LoadingDialog.showLoadingDialog();
+    if (context.mounted) {
+      await MakeUpArtistRepository(context).subscribe(id);
+    }
+    EasyLoading.dismiss();
+  }
 }

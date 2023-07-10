@@ -39,7 +39,7 @@ class BuildPageView extends StatelessWidget {
               child: MyText(
                 title: model.desc ?? "",
                 size: 15,
-                color: MyColors.primary,
+                color: MyColors.black,
                 alien: TextAlign.center,
               ),
             ),

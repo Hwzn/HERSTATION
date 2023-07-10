@@ -5,6 +5,7 @@ class MyAppointmentsData {
   final GenericBloc<bool> showServicesCubit = GenericBloc(false);
   final GenericBloc<bool> isMakeupArtistCubit = GenericBloc(false);
   final GenericBloc<bool> showData = GenericBloc(false);
+  final GenericBloc<bool> showLayout = GenericBloc(false);
 
   final PagingController<int, OrderModel> pagingController =
       PagingController(firstPageKey: 1);
@@ -55,20 +56,26 @@ class MyAppointmentsData {
   }
 
   Future<void> getOrders(BuildContext context, String type, int page) async {
-    List<OrderModel> orders =
-        await UserRepository(context).getOrders(page, type);
-    showData.onUpdateData(true);
-    final isLastPage = orders.length < pageSize;
-    if (page == 1) {
-      pagingController.itemList = [];
-    }
-    if (isLastPage) {
-      pagingController.appendLastPage(orders);
+    var isAuth = context.read<AuthCubit>().state.authorized;
+    if (isAuth) {
+      List<OrderModel> orders =
+          await UserRepository(context).getOrders(page, type);
+      showLayout.onUpdateData(true);
+      showData.onUpdateData(true);
+      final isLastPage = orders.length < pageSize;
+      if (page == 1) {
+        pagingController.itemList = [];
+      }
+      if (isLastPage) {
+        pagingController.appendLastPage(orders);
+      } else {
+        final nextPageKey = page + 1;
+        pagingController.appendPage(orders, nextPageKey);
+      }
     } else {
-      final nextPageKey = page + 1;
-      pagingController.appendPage(orders, nextPageKey);
+      CustomToast.showSimpleToast(msg: tr(context, "loginFirst"));
+      showLayout.onUpdateData(false);
     }
-
     // providersCubit.onUpdateData(providers);
   }
 }

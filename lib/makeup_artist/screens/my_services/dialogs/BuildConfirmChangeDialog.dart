@@ -10,9 +10,18 @@ class BuildConfirmChangeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width -
-        (MediaQuery.of(context).size.width / 3);
-    double widthCancel = MediaQuery.of(context).size.width - width - 40;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width -
+        (MediaQuery
+            .of(context)
+            .size
+            .width / 3);
+    double widthCancel = MediaQuery
+        .of(context)
+        .size
+        .width - width - 40;
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -45,22 +54,25 @@ class BuildConfirmChangeDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "yes"),
-                  onTap: () => myServicesData.saveChanges(context),
+                  onTap: () => myServicesData.saveChanges(context,buildContext),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: myServicesData.btnConfirmChange,
                   fontSize: 13,
                 ),
               ),
-              Container(
-                width: widthCancel,
-                alignment: AlignmentDirectional.center,
-                child: MyText(
-                  title: tr(context, "cancel"),
-                  color: MyColors.grey,
-                  size: 14,
-                  fontWeight: FontWeight.bold,
+              InkWell(
+                child: Container(
+                  width: widthCancel,
+                  alignment: AlignmentDirectional.center,
+                  child: MyText(
+                    title: tr(context, "cancel"),
+                    color: MyColors.grey,
+                    size: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                onTap: () => Navigator.pop(context),
               ),
             ],
           ),

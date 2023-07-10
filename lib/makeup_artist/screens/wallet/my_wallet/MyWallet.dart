@@ -11,6 +11,12 @@ class _MyWallet extends State<MyWallet> {
   MyWalletData walletData = MyWalletData();
 
   @override
+  void initState() {
+    walletData.fetchData(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
@@ -21,6 +27,7 @@ class _MyWallet extends State<MyWallet> {
           GenericState<WalletDataModel?>>(
         bloc: walletData.walletBloc,
         builder: (context, state) {
+          if(state is GenericUpdateState){
           return SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
             child: Column(
@@ -35,7 +42,12 @@ class _MyWallet extends State<MyWallet> {
                 ),
               ],
             ),
-          );
+          );}else{
+            return Container(
+              margin: const EdgeInsets.only(top: 80),
+              child: LoadingDialog.showLoadingView(),
+            );
+          }
         },
       ),
     );

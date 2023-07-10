@@ -148,7 +148,7 @@ class AppointmentDetailsData {
       EasyLoading.dismiss();
 
       if (result == true && context.mounted) {
-        AutoRouter.of(context).pushAndPopUntil(MainHomeRoute(firstTime: false),
+        AutoRouter.of(context).pushAndPopUntil(MainHomeRoute(firstTime: false,index: 2),
             predicate: (o) => false);
       }
     } else {

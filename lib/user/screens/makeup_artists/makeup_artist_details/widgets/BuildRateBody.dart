@@ -79,12 +79,13 @@ class BuildRateBody extends StatelessWidget {
               height: 5,
             ),
             RatingBar.builder(
-              initialRating: 3,
+              ignoreGestures: true,
+              initialRating: list[index].rate!.toDouble(),
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemSize: 18,
-              itemCount: list[index].rate ?? 0,
+              itemCount: 5,
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,

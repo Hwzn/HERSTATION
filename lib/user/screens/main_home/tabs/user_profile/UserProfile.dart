@@ -13,30 +13,39 @@ class _UserProfile extends State<UserProfile> {
   @override
   void initState() {
     userProfileData.initListData();
-    userProfileData.checkUser();
+    userProfileData.checkUser(context);
     userProfileData.getLang();
     super.initState();
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return
-     Padding(padding:const EdgeInsets.only(top: 20,bottom: 20),child: SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Column(
-        children: [
-          BuildAccountInfoBody(userProfileData: userProfileData),
-          BuildExtraInfoBody(userProfileData: userProfileData),
-          BuildBottomBody(
-            userProfileData: userProfileData,
+    return Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            children: [
+              BuildAccountInfoBody(userProfileData: userProfileData),
+              BuildExtraInfoBody(userProfileData: userProfileData),
+              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                  bloc: userProfileData.showLayout,
+                  builder: (context, state) {
+                    if (state.data) {
+                      return BuildBottomBody(
+                        userProfileData: userProfileData,
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }),
+            ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }

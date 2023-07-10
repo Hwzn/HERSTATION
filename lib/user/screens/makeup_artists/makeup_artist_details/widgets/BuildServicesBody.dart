@@ -14,7 +14,7 @@ class BuildServicesBody extends StatelessWidget {
     return Visibility(
       visible: listServices.isNotEmpty,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,75 +82,6 @@ class BuildServicesBody extends StatelessWidget {
                 ),
               ),
             ),
-            // BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-            //     bloc: makeupArtistDetailsData.isBrideMakeup,
-            //     builder: (context, state) {
-            //       return Column(
-            //         children: [
-            //           GestureDetector(
-            //             child: Container(
-            //               decoration: BoxDecoration(
-            //                   borderRadius: BorderRadius.circular(15),
-            //                   color: state.data
-            //                       ? MyColors.primary
-            //                       : MyColors.bgChoose),
-            //               padding: const EdgeInsets.all(15),
-            //               margin: const EdgeInsets.symmetric(vertical: 10),
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                 children: [
-            //                   MyText(
-            //                     title:tr(context,"brideMakeup"),
-            //                     color: MyColors.white,
-            //                     size: 14,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                   MyText(
-            //                     title: "700 ر.س",
-            //                     color: MyColors.white,
-            //                     size: 14,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //             onTap: () => makeupArtistDetailsData.isBrideMakeup
-            //                 .onUpdateData(true),
-            //           ),
-            //           GestureDetector(
-            //             child: Container(
-            //               decoration: BoxDecoration(
-            //                   borderRadius: BorderRadius.circular(15),
-            //                   color: state.data
-            //                       ? MyColors.bgChoose
-            //                       : MyColors.primary),
-            //               padding: const EdgeInsets.all(15),
-            //               margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-            //
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                 children: [
-            //                   MyText(
-            //                     title: tr(context,"sahraMakeup"),
-            //                     color: MyColors.white,
-            //                     size: 14,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                   MyText(
-            //                     title: "200 ر.س",
-            //                     color: MyColors.white,
-            //                     size: 14,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //             onTap: () => makeupArtistDetailsData.isBrideMakeup
-            //                 .onUpdateData(false),
-            //           ),
-            //         ],
-            //       );
-            //     }),
           ],
         ),
       ),

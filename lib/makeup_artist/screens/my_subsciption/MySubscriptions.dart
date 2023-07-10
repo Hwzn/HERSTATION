@@ -1,14 +1,14 @@
-part of 'SubscriptionsImports.dart';
+part of 'MySubscriptionsImports.dart';
 
-class Subscriptions extends StatefulWidget {
-  const Subscriptions({Key? key}) : super(key: key);
+class MySubscriptions extends StatefulWidget {
+  const MySubscriptions({Key? key}) : super(key: key);
 
   @override
-  State<Subscriptions> createState() => _Subscriptions();
+  State<MySubscriptions> createState() => _MySubscriptions();
 }
 
-class _Subscriptions extends State<Subscriptions> {
-  SubscriptionsData subscriptionsData = SubscriptionsData();
+class _MySubscriptions extends State<MySubscriptions> {
+  MySubscriptionsData subscriptionsData = MySubscriptionsData();
 
   @override
   void initState() {
@@ -20,35 +20,32 @@ class _Subscriptions extends State<Subscriptions> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
-        title: tr(context, "subscriptions"),
+        title: tr(context, "mySubscriptions"),
         haveLeading: true,
       ),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
-        child: BlocBuilder<GenericBloc<List<SubscriptionModel>>, GenericState<List<SubscriptionModel>>>(
+        child: BlocBuilder<GenericBloc<List<MySubscriptionModel>>,
+                GenericState<List<MySubscriptionModel>>>(
             bloc: subscriptionsData.subscriptionsCubit,
             builder: (context, state) {
-              if(state is GenericUpdateState){
+              if (state is GenericUpdateState) {
                 return ListView.builder(
                   itemCount: state.data.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return BuildSubscribeBody(
-                     subscriptionsData: subscriptionsData,
-                      subscriptionModel: state.data[index],
+                    return BuildRenewMySubscribeBody(
+                      subscriptionsData: subscriptionsData,
+                      mySubscriptionModel: state.data[index],
                     );
                   },
                 );
-              }else{
+              } else {
                 return Container(
                   margin: const EdgeInsets.only(top: 80),
                   child: LoadingDialog.showLoadingView(),
                 );
               }
-              // return state.data
-              //     ? BuildRenewSubscribeBody(
-              //         subscriptionsData: subscriptionsData)
-              //     : BuildSubscribeBody(subscriptionsData: subscriptionsData);
             }),
       ),
     );

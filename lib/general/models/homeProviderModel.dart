@@ -1,3 +1,5 @@
+import '../../user/model/providers_details_model/rate_model.dart';
+
 class HomeProviderModel {
   HomeProviderModel({
     this.homeProviderDataModel,
@@ -63,7 +65,7 @@ class ProviderModel {
   String? walletBalance;
   String? instructions;
   List<dynamic>? schedules;
-  List<dynamic>? rates;
+  List<RateModel>? rates;
   Null rate;
   int? rateCount;
   int? ratesAvg;
@@ -79,7 +81,8 @@ class ProviderModel {
     walletBalance = json['wallet_balance'];
     instructions = json['instructions'];
     schedules = List.castFrom<dynamic, dynamic>(json['schedules']);
-    rates = List.castFrom<dynamic, dynamic>(json['rates']);
+    rates =
+        List.from(json['rates']).map((e) => RateModel.fromJson(e)).toList();
     rate = null;
     rateCount = json['rate_count'];
     ratesAvg = json['rates_avg'];

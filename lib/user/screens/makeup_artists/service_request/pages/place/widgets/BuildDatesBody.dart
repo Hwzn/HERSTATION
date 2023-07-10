@@ -87,12 +87,12 @@ class BuildDatesBody extends StatelessWidget {
         ScheduleModel itemDay = placeData.daysCubit.state.data;
         itemDay.weekDays!.map((item) => item.selected = false).toList();
         itemDay.weekDays![index].selected = true;
-        itemDay.weekDays![index].listTimes!.map((item) => item.selected = false).toList();
+        itemDay.weekDays![index].listTimes!
+            .map((item) => item.selected = false)
+            .toList();
         itemDay.weekDays![index].listTimes![0].selected = true;
         placeData.daysCubit.onUpdateData(itemDay);
         placeData.dayCubit.onUpdateData(itemDay.weekDays![index]);
-
-
       },
     );
   }

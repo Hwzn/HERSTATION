@@ -62,62 +62,72 @@ class MyServicesData {
     return;
   }
 
-  void saveChanges(BuildContext context) {
-    // Navigator.pop(context);
-    addService(context);
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(25.0),
-          ),
-        ),
-        builder: (context) {
-          return BuildSaveChangesDialog(
-            buildContext: context,
-            myServicesData: this,
-          );
-        });
-    return;
+  void saveChanges(BuildContext context ,BuildContext globalContext) {
+    Navigator.pop(context);
+    addService(context,globalContext);
   }
 
-  void addService(BuildContext context) async {
+  void addService(BuildContext context,BuildContext globalContext) async {
     List<Map<String, dynamic>> services = [];
-    services.add({
-      "name": 'ميكب عروس',
-      "price": brideMakeUpCostController.text,
-      'retainer': brideMakeUpDepositController.text,
-      'category_id': 1,
-    });
-    services.add({
-      "name": 'ميكب مرافقات',
-      "price": brideMatesCostController.text,
-      'retainer': brideMatesDepositController.text,
-      'category_id': 1,
-    });
-    services.add({
-      "name": 'ميكب سهرة',
-      "price": sahraMakeUpCostController.text,
-      'retainer': sahraMakeUpDepositController.text,
-      'category_id': 2,
-    });
-    for (int i = 0; i < listSizeCubit.state.data; i++) {
-      otherControllerName[i].text;
+    if (brideMakeupCubit.state.data) {
       services.add({
-        "name": otherControllerName[i].text,
-        "price": otherControllerPrice[i].text,
-        'retainer': otherControllerRetainer[i].text,
-        'category_id': 3,
+        "name": 'ميكب عروس',
+        "price": brideMakeUpCostController.text,
+        'retainer': brideMakeUpDepositController.text,
+        'category_id': 1,
       });
     }
+    if (bridemadesCubit.state.data) {
+      services.add({
+        "name": 'ميكب مرافقات',
+        "price": brideMatesCostController.text,
+        'retainer': brideMatesDepositController.text,
+        'category_id': 1,
+      });
+    }
+    if (sahraMakeupCubit.state.data) {
+      services.add({
+        "name": 'ميكب سهرة',
+        "price": sahraMakeUpCostController.text,
+        'retainer': sahraMakeUpDepositController.text,
+        'category_id': 2,
+      });
+    }
+    if (otherCubit.state.data) {
+      for (int i = 0; i < listSizeCubit.state.data; i++) {
+        otherControllerName[i].text;
+        services.add({
+          "name": otherControllerName[i].text,
+          "price": otherControllerPrice[i].text,
+          'retainer': otherControllerRetainer[i].text,
+          'category_id': 3,
+        });
+      }
+    }
     await LoadingDialog.showLoadingDialog();
-    //Navigator.pop(context);
-    // add values to the model
     AddServicesModel model = AddServicesModel(
       services: services,
     );
+    if (context.mounted) {
+      bool data = await GeneralRepository(context).addNewService(model);
+      EasyLoading.dismiss();
 
-    await GeneralRepository(context).addNewService(model);
-    EasyLoading.dismiss();
+      if (data == true && globalContext.mounted) {
+        showModalBottomSheet(
+            context: globalContext,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(25.0),
+              ),
+            ),
+            builder: (context) {
+              return BuildSaveChangesDialog(
+                buildContext: context,
+                myServicesData: this,
+              );
+            });
+        return;
+      }
+    }
   }
 }

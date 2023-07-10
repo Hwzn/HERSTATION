@@ -2,45 +2,50 @@ part of 'MakeupArtistDetailsImports.dart';
 
 class MakeupArtistDetailsData {
   final GlobalKey<CustomButtonState> btnConfirmRequest =
-  GlobalKey<CustomButtonState>();
+      GlobalKey<CustomButtonState>();
 
   final GenericBloc<bool> isBrideMakeup = GenericBloc(true);
   final GenericBloc<ProviderDetailsModel?> providerCubit = GenericBloc(null);
 
   void confirmRequest(BuildContext context) {
-    int? type;
-    ServiceModel? serviceModel;
-    ServiceModel? serviceBridemadesModel;
+    var isAuth = context.read<AuthCubit>().state.authorized;
+    if (isAuth) {
+      int? type;
+      ServiceModel? serviceModel;
+      ServiceModel? serviceBridemadesModel;
 
-    ProviderDetailsModel provider = providerCubit.state.data!;
-    for (int i = 0; i < provider.services!.length; i++) {
-      if (provider.services![i].selected!) {
-        serviceModel = provider.services![i];
+      ProviderDetailsModel provider = providerCubit.state.data!;
+      for (int i = 0; i < provider.services!.length; i++) {
+        if (provider.services![i].selected!) {
+          serviceModel = provider.services![i];
 
-        if (serviceModel.name == "ميكب عروس") {
-          type = 0;
-          serviceModel.isBride = true;
-        } else {
-          type = 1;
-          serviceModel.isBride = false;
+          if (serviceModel.name == "ميكب عروس") {
+            type = 0;
+            serviceModel.isBride = true;
+          } else {
+            type = 1;
+            serviceModel.isBride = false;
+          }
+        }
+        if (provider.services![i].name == "ميكب مرافقات") {
+          serviceBridemadesModel = provider.services![i];
         }
       }
-      if (provider.services![i].name == "ميكب مرافقات") {
-        serviceBridemadesModel = provider.services![i];
-      }
-    }
 
-    AutoRouter.of(context).push(ServiceRequestRoute(
-        type: type!,
-        serviceModel: serviceModel!,
-        bridemadesModel: serviceBridemadesModel!,
-        providerID: provider.id!,
-        schedules:provider.schedules!));
+      AutoRouter.of(context).push(ServiceRequestRoute(
+          type: type!,
+          serviceModel: serviceModel!,
+          bridemadesModel: serviceBridemadesModel!,
+          providerID: provider.id!,
+          schedules: provider.schedules!));
+    } else {
+      CustomToast.showSimpleToast(msg: tr(context, "loginFirst"));
+    }
   }
 
   Future<void> getProviderData(BuildContext context, int id) async {
     ProviderDetailsModel? providerData =
-    await UserRepository(context).getProviderDetails(id);
+        await UserRepository(context).getProviderDetails(id);
 
     if (providerData.services!.isNotEmpty) {
       providerData.services![0].selected = true;

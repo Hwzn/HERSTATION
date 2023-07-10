@@ -7,7 +7,7 @@ import 'package:hwzn_herstation/general/utilities/utils_functions/AdaptivePicker
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/AvailableTimesImports.dart';
 import 'package:intl/intl.dart';
-import 'package:time_pickerr/time_pickerr.dart';
+// import 'package:time_pickerr/time_pickerr.dart';
 import 'package:hwzn_herstation/general/packages/localization/Localizations.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/AvailableTimesImports.dart';

@@ -45,10 +45,63 @@ class MakeUpArtistHttpMethods {
   }
 
   Future<bool> addAvailableTime(AddScheduleModel addScheduleModel) async {
-    
     dynamic data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.schedule,
       json: addScheduleModel.toJson(),
+      returnType: ReturnType.type,
+      returnDataFun: (data) => data,
+      showLoader: false,
+      methodType: MethodType.post,
+    );
+    if (data != null) {
+      CustomToast.showSimpleToast(msg: data['message']);
+      //AutoRouter.of(context).pop(true);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<List<SubscriptionModel>> getSubscriptions() async {
+    var data = await GenericHttp<SubscriptionModel>(context).callApi(
+      name: ApiNames.subscription,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["subscriptions"],
+      toJsonFunc: (json) => SubscriptionModel.fromJson(json),
+    );
+    return data as List<SubscriptionModel>;
+  }
+
+  Future<List<MySubscriptionModel>> getMySubscriptions() async {
+    var data = await GenericHttp<MySubscriptionModel>(context).callApi(
+      name: ApiNames.mySubscription,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["provider_subscriptions"],
+      toJsonFunc: (json) => MySubscriptionModel.fromJson(json),
+    );
+    return data as List<MySubscriptionModel>;
+  }
+
+  Future<List<MySubscriptionModel>> getProviderServices() async {
+    var data = await GenericHttp<MySubscriptionModel>(context).callApi(
+      name: ApiNames.addServices,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["provider_subscriptions"],
+      toJsonFunc: (json) => MySubscriptionModel.fromJson(json),
+    );
+    return data as List<MySubscriptionModel>;
+  }
+
+  Future<bool> subscribe(int id) async {
+    dynamic data = await GenericHttp<dynamic>(context).callApi(
+      name: ApiNames.subscribe,
+      json: {"subscription_id": id},
       returnType: ReturnType.type,
       returnDataFun: (data) => data,
       showLoader: false,

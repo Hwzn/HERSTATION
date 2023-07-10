@@ -44,7 +44,7 @@ class CompleteRegisterData {
           if (context.mounted) {
             if (type == 2) {
               AutoRouter.of(context).pushAndPopUntil(
-                  MainHomeRoute(firstTime: true),
+                  MainHomeRoute(firstTime: true,index: 0),
                   predicate: (o) => false);
             } else {
               AutoRouter.of(context)

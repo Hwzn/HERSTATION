@@ -4,7 +4,8 @@ class BuildMakeupCost extends StatelessWidget {
   MyServicesData servicesData;
 
   BuildMakeupCost({super.key, required this.servicesData});
-  MyServicesData? myServicesData;
+
+
   @override
   Widget build(BuildContext context) {
     double width = (MediaQuery.of(context).size.width / 2) - 30;
@@ -66,7 +67,7 @@ class BuildMakeupCost extends StatelessWidget {
                               width: 80,
                               child: TextField(
                                 controller:
-                                    myServicesData?.brideMakeUpCostController,
+                                servicesData.brideMakeUpCostController,
                                 decoration: InputDecoration(
                                     hintText: tr(context, "enterCost"),
                                     border: InputBorder.none,
@@ -75,9 +76,6 @@ class BuildMakeupCost extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         color: MyColors.grey)),
                                 keyboardType: TextInputType.number,
-                                onChanged: (value) {
-                                  // filterSearchResults(value);
-                                },
                               ),
                             ),
                             MyText(
@@ -98,8 +96,8 @@ class BuildMakeupCost extends StatelessWidget {
                             SizedBox(
                               width: 80,
                               child: TextField(
-                                controller: myServicesData
-                                    ?.brideMakeUpDepositController,
+                                controller: servicesData
+                                    .brideMakeUpDepositController,
                                 decoration: InputDecoration(
                                     hintText: tr(context, "enterDeposit"),
                                     border: InputBorder.none,
@@ -179,7 +177,7 @@ class BuildMakeupCost extends StatelessWidget {
                               width: 80,
                               child: TextField(
                                 controller:
-                                    myServicesData?.sahraMakeUpCostController,
+                                servicesData.sahraMakeUpCostController,
                                 decoration: InputDecoration(
                                     hintText: tr(context, "enterCost"),
                                     border: InputBorder.none,
@@ -211,8 +209,7 @@ class BuildMakeupCost extends StatelessWidget {
                             SizedBox(
                               width: 80,
                               child: TextField(
-                                controller: myServicesData
-                                    ?.sahraMakeUpDepositController,
+                                controller: servicesData.sahraMakeUpDepositController,
                                 decoration: InputDecoration(
                                     hintText: tr(context, "enterDeposit"),
                                     border: InputBorder.none,
@@ -292,7 +289,7 @@ class BuildMakeupCost extends StatelessWidget {
                               width: 80,
                               child: TextField(
                                 controller:
-                                    myServicesData?.brideMatesCostController,
+                                servicesData.brideMatesCostController,
                                 decoration: InputDecoration(
                                     hintText: tr(context, "enterCost"),
                                     border: InputBorder.none,
@@ -324,9 +321,9 @@ class BuildMakeupCost extends StatelessWidget {
                             SizedBox(
                               width: 80,
                               child: TextField(
-                                
+
                                 controller:
-                                    myServicesData?.brideMatesDepositController,
+                                servicesData.brideMatesDepositController,
                                 decoration: InputDecoration(
                                     hintText: tr(context, "enterDeposit"),
                                     border: InputBorder.none,
@@ -338,6 +335,7 @@ class BuildMakeupCost extends StatelessWidget {
                                 onChanged: (value) {
                                   // filterSearchResults(value);
                                 },
+
                               ),
                             ),
                             MyText(

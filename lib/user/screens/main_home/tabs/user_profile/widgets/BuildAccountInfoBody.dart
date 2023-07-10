@@ -49,7 +49,7 @@ class BuildAccountInfoBody extends StatelessWidget {
               ),
             ),
             onTap: () {
-              AutoRouter.of(context).push(EditProfileRoute());
+              userProfileData.moveToInfo(context);
             },
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(

@@ -6,7 +6,7 @@ abstract class LangState extends Equatable {
 }
 
 class LangInitial extends LangState {
-  LangInitial() : super(Locale("ar"));
+  LangInitial() : super(const Locale("ar"));
 
   @override
   List<Object> get props => [locale];

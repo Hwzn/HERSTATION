@@ -10,56 +10,50 @@ class BuildMyRatesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('isApproved in rates: ${providerModel?.isApproved}');
-    print('hasSubscription in rates: ${providerModel?.hasSubscription}');
-    return providerModel?.isApproved == 0
-        ? const BuildWaitActiveBody()
-        : providerModel?.hasSubscription == false
-            ? Container()
-            : Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(5, 25, 5, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MyText(
-                          title: tr(context, "myRates"),
-                          color: MyColors.primary,
-                          size: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        GestureDetector(
-                          child: MyText(
-                            title: tr(context, "extra"),
-                            color: MyColors.primary,
-                            size: 13,
-                          ),
-                          onTap: () => AutoRouter.of(context)
-                              .push(RatesRoute(providerID: 1)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 190,
-                    child: Swiper(
-                      pagination: SwiperPagination(
-                        alignment: Alignment.bottomCenter,
-                        builder: DotSwiperPaginationBuilder(
-                          color: MyColors.secondary,
-                          activeColor: MyColors.primary,
-                        ),
-                      ),
-                      itemCount: 3,
-                      layout: SwiperLayout.DEFAULT,
-                      itemBuilder: (BuildContext context, int index) {
-                        return buildSliderItem(context, index);
-                      },
-                    ),
-                  )
-                ],
-              );
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.fromLTRB(5, 25, 5, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MyText(
+                title: tr(context, "myRates"),
+                color: MyColors.primary,
+                size: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              GestureDetector(
+                child: MyText(
+                  title: tr(context, "extra"),
+                  color: MyColors.primary,
+                  size: 13,
+                ),
+                onTap: () =>
+                    AutoRouter.of(context).push(RatesRoute(providerID: providerModel!.id!)),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 190,
+          child: Swiper(
+            pagination: SwiperPagination(
+              alignment: Alignment.bottomCenter,
+              builder: DotSwiperPaginationBuilder(
+                color: MyColors.secondary,
+                activeColor: MyColors.primary,
+              ),
+            ),
+            itemCount: providerModel!.rates!.length,
+            layout: SwiperLayout.DEFAULT,
+            itemBuilder: (BuildContext context, int index) {
+              return buildSliderItem(context, index);
+            },
+          ),
+        )
+      ],
+    );
   }
 
   Widget buildSliderItem(BuildContext context, int index) {
@@ -73,10 +67,9 @@ class BuildMyRatesBody extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            const ClipOval(
+             ClipOval(
               child: CachedImage(
-                url:
-                    "https://www.harrods.com/BWStaticContent/50000/4b524fce-27bd-44ef-8624-f0cbbc0916ba_t-services-hair-beauty-salon-2021-salon-experience-portrait.jpg",
+                url:providerModel!.rates![index].authorImage??"",
                 width: 40,
                 height: 40,
               ),
@@ -85,25 +78,24 @@ class BuildMyRatesBody extends StatelessWidget {
               height: 5,
             ),
             RatingBar.builder(
-              initialRating: 3,
-              minRating: 1,
+              initialRating: providerModel!.rates![index].rate!.toDouble(),
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemSize: 18,
+              ignoreGestures: true,
               itemCount: 5,
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
               onRatingUpdate: (rating) {
-                print(rating);
               },
             ),
             const SizedBox(
               height: 5,
             ),
             MyText(
-              title: "حصة العنزي",
+              title: providerModel!.rates![index].author??"",
               color: MyColors.black,
               size: 14,
             ),
@@ -111,7 +103,7 @@ class BuildMyRatesBody extends StatelessWidget {
               height: 5,
             ),
             MyText(
-              title: "فنانة احلي ميكب",
+              title:providerModel!.rates![index].comment??"",
               color: MyColors.grey,
               size: 13,
             ),

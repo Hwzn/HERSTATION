@@ -2,6 +2,7 @@
 
 
 import 'dart:io';
+import 'package:auto_route/auto_route.dart';
 import 'package:file_picker/file_picker.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -20,6 +21,7 @@ import 'package:hwzn_herstation/general/helper/storage/Storage.dart';
 import '../../models/user_model/user_model.dart';
 import '../../screens/edit_profile/EditProfileImports.dart';
 import '../../screens/edit_profile/dialogs/EditProfileDialogsImports.dart';
+import '../routers/RouterImports.gr.dart';
 
 part 'utils.dart';
 

@@ -7,12 +7,13 @@ class MakeupArtistMainData {
   final TextEditingController guide = TextEditingController();
 
   final ImagePicker imgPicker = ImagePicker();
-  List<XFile>? imageFiles;
+  List<File>? imageFiles;
 
   ////////////// cubits ///////////////
 
   final GenericBloc<bool> waitActiveCubit = GenericBloc(true);
   final GenericBloc<bool> showImagesGalleryCubit = GenericBloc(false);
+  final GenericBloc<ProviderModel?> homeProviderBloc = GenericBloc(null);
 
   ////////////// methods ///////////////
 
@@ -66,7 +67,10 @@ class MakeupArtistMainData {
     try {
       var pickedfiles = await imgPicker.pickMultiImage();
       if (pickedfiles != null) {
-        imageFiles = pickedfiles;
+        for (int i = 0; i < pickedfiles.length; i++) {
+          imageFiles!.add(File(pickedfiles[i].path));
+        }
+        // imageFiles = Image.file(File(pickedfiles!.path));
         showImagesGalleryCubit.onUpdateData(true);
         closeDialog(context);
       } else {
@@ -82,7 +86,7 @@ class MakeupArtistMainData {
       XFile? photo = await imgPicker.pickImage(source: ImageSource.camera);
       if (photo != null) {
         imageFiles = [];
-        imageFiles!.add(photo);
+        imageFiles!.add(File(photo.path));
         showImagesGalleryCubit.onUpdateData(true);
         closeDialog(context);
       } else {
@@ -93,13 +97,28 @@ class MakeupArtistMainData {
     }
   }
 
-  // blocs
-  final GenericBloc<ProviderModel?> homeProviderBloc = GenericBloc(null);
   // methods
   fetchData(BuildContext context) async {
     var data = await MakeUpArtistRepository(context).getHomeProviderData();
     homeProviderBloc.onUpdateData(data);
-    // print('dataHomeProvider $data');
-    //  return data;
+  }
+
+  void updateProfile(
+      BuildContext context, String guides, List<File> list) async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    String? firebaseToken = await messaging.getToken();
+
+    UpdateProfileData updateProfileData = UpdateProfileData(
+        deviceType: Platform.isIOS ? "ios" : "android",
+        deviceId: firebaseToken,
+        instructions: guides,
+        gallery: list);
+    if (context.mounted) {
+      var result =
+          await GeneralRepository(context).updateProfile(updateProfileData);
+      if (result != null && context.mounted) {
+        await Utils.manipulateChangeData(context, result);
+      }
+    }
   }
 }

@@ -56,7 +56,7 @@ class PlaceData {
     List<String> days = [];
     for (int i = 1; i < totalDays + 1; i++) {
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
-      String formatted = formatter.format(DateTime(currentYear, month, i + 1));
+      String formatted = formatter.format(DateTime(currentYear, month, i ));
       print(formatted);
       days.add(DateFormat(DateFormat.WEEKDAY)
           .format(DateTime(currentYear, month, i)));
@@ -155,6 +155,7 @@ class PlaceData {
 
   void getCurrentDate() {
     List<ScheduleModel> listData = scheduleCubit.state.data;
+
     for (int i = 0; i < listData.length; i++) {
       if (listData[i].selected!) {
         ScheduleModel scheduleModel = listData[i];

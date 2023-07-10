@@ -234,9 +234,9 @@ class GeneralHttpMethods {
   Future<bool> sendMessage(
       String? phone, String? title, String? message) async {
     Map<String, dynamic> body = {
-      "name": "$phone",
-      "phone": "$title",
-      "comment": "$message",
+      "title": "$title",
+      "phone": "$phone",
+      "message": "$message",
     };
     dynamic data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.contactUs,
@@ -245,7 +245,10 @@ class GeneralHttpMethods {
       showLoader: true,
       methodType: MethodType.post,
     );
-    return (data != null);
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
   }
 
   Future<dynamic> completeAcc(CompleteAccountData completeAccountData) async {
@@ -301,21 +304,19 @@ class GeneralHttpMethods {
   }
 
    Future<bool> addNewServices(AddServicesModel addServicesModel) async {
-    dynamic data = await GenericHttp<dynamic>(context).callApi(
+    var data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.addServices,
       json: addServicesModel.toJson(),
       returnType: ReturnType.type,
+      // toJsonFunc: (json) => json["status"],
       returnDataFun: (data) => data,
-      showLoader: false,
+      showLoader: true,
       methodType: MethodType.post,
     );
-    if (data != null) {
-      CustomToast.showSimpleToast(msg: data['message']);
-      AutoRouter.of(context).pop(true);
-      return true;
-    } else {
-      return false;
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
     }
+    return data["status"];
   }
 
   ///

@@ -12,7 +12,10 @@ class _Favourite extends State<Favourite> {
 
   @override
   void initState() {
-    favouriteData.initData(context);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      favouriteData.initData(context);
+
+    });
     super.initState();
   }
 

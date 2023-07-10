@@ -307,7 +307,7 @@
   "guide": "الإرشادات",
   "notNow": "لا , ليس الان",
   "waitActive": "جاري تفعيل حسابك برجاء الانتظار",
-  "pleaseSubscribe":"برجاء الاشتراك لتتمكن من استقبال الطلبات",
+  "pleaseSubscribe": "برجاء الاشتراك لتتمكن من استقبال الطلبات",
   "takePhoto": "Take photo",
   "chooseGalley": "Choose from galley",
   "clientInfo": "معلومات العميل",
@@ -327,7 +327,7 @@
   "allDetails": "جميع التفاصيل",
   "chooseServices": "اختر الخدمات التي توفرها",
   "enterCost": "ادخل التكلفة",
-  "enterDeposit":"ادخل عربون",
+  "enterDeposit": "ادخل عربون",
   "addExtra": "إضافة المزيد",
   "service": "الخدمة",
   "enterService": "ادخل الخدمة",
@@ -352,16 +352,16 @@
   "payDeposit": "دفع العربون فقط",
   "payTotalAmount": "دفع كامل المبلغ",
   "cancelled": "تم إلغاء",
-  "otherServices": "خدمات اخري",
+  "otherServices": "خدمات أخري",
   "herStationTitle": "هيرستشن محطتك للجمال",
   "herStationDesc": "يوضع هنا وصف الميزة والذي تكون عاده من عدة اسطر كهذا المثال",
   "placeUser": "المكان",
   "experience": "الخبرة",
   "email": "البريد الالكتروني",
-  "contactPhone": "رقم االتواصل",  "all": "الكل"
-
-
-
+  "contactPhone": "رقم االتواصل",
+  "all": "الكل",
+  "loginFirst": "يرجي تسجيل الدخول أولآ",
+  "mySubscriptions": "اشتراكاتي"
 
 }
 

@@ -20,4 +20,12 @@ class MakeUpArtistRepository {
 
   Future<bool> addAvailableTime(AddScheduleModel model) =>
       makeUpArtistHttpMethods.addAvailableTime(model);
+
+  Future<List<SubscriptionModel>> getAllSubscription() =>
+      makeUpArtistHttpMethods.getSubscriptions();
+
+  Future<List<MySubscriptionModel>> getMySubscription() =>
+      makeUpArtistHttpMethods.getMySubscriptions();
+
+  Future<bool> subscribe(int id) => makeUpArtistHttpMethods.subscribe(id);
 }

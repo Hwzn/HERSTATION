@@ -1,13 +1,9 @@
-part of 'SubscriptionWidgetsImports.dart';
+part of 'MySubscriptionWidgetsImports.dart';
 
-class BuildSubscribeBody extends StatelessWidget {
-  SubscriptionsData subscriptionsData;
-  SubscriptionModel subscriptionModel;
-
-  BuildSubscribeBody(
-      {super.key,
-      required this.subscriptionsData,
-      required this.subscriptionModel});
+class BuildRenewMySubscribeBody extends StatelessWidget {
+  MySubscriptionsData subscriptionsData;
+  MySubscriptionModel mySubscriptionModel;
+  BuildRenewMySubscribeBody({super.key, required this.subscriptionsData,required this.mySubscriptionModel});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +19,7 @@ class BuildSubscribeBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyText(
-              title: subscriptionModel.name ?? "",
+              title:mySubscriptionModel.subscription!.name??"",
               color: MyColors.black,
               fontWeight: FontWeight.bold,
               size: 16),
@@ -31,7 +27,7 @@ class BuildSubscribeBody extends StatelessWidget {
             height: 15,
           ),
           MyText(
-              title: subscriptionModel.desc ?? "",
+              title: mySubscriptionModel.subscription!.desc??"",
               color: MyColors.secondary,
               size: 14),
           const SizedBox(
@@ -43,13 +39,13 @@ class BuildSubscribeBody extends StatelessWidget {
               SizedBox(
                 width: 120,
                 child: LoadingButton(
-                  borderRadius: 20,
+                  borderRadius: 15,
                   borderColor: MyColors.secondary,
-                  title: tr(context, "subscribe"),
-                  onTap: () => subscriptionsData.subscribe(context,subscriptionModel.id!),
+                  title: tr(context, "renewSubscribe"),
+                  onTap: () => subscriptionsData.renewSubscribe(context,mySubscriptionModel.subscription!.id!),
                   color: MyColors.secondary,
                   textColor: MyColors.primary,
-                  btnKey: subscriptionsData.btnSubscribe,
+                  btnKey: subscriptionsData.btnRenewSubscribe,
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   fontSize: 13,
                 ),

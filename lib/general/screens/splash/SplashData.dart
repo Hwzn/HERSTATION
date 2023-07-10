@@ -27,7 +27,7 @@ class SplashController {
       var userType = context.read<UserCubit>().state.model.userType?.id;
       if (context.mounted) {
         if (userType == 2) {
-          AutoRouter.of(context).push(MainHomeRoute(firstTime: false));
+          AutoRouter.of(context).push(MainHomeRoute(firstTime: false,index: 0));
         } else {
           AutoRouter.of(context).push(MakeupArtistHomeRoute(firstTime: false));
         }

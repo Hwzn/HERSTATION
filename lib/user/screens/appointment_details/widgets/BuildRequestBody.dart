@@ -172,7 +172,7 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: " ${orderModel.retainer!} ر.س ",
+                                title: " ${orderModel.reserved!} ر.س ",
                                 color: MyColors.black,
                                 size: 14,
                               ),

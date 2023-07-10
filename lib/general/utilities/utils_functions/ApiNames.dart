@@ -44,6 +44,11 @@ class ApiNames {
 
   //Wallet
   static const String wallet = 'wallet';
+
+  //Subscription
+  static const String subscription = 'subscriptions';
+  static const String mySubscription = 'provider-subscriptions';
+  static const String subscribe = 'subscribe';
 }
 
   

@@ -14,7 +14,8 @@ class MainHomeData {
     tabsCubit.onUpdateData(index);
   }
 
-  void initData(BuildContext context) {
+  void initData(BuildContext context,int index) {
+    tabsCubit.onUpdateData(index);
     listHome.add(HomeModel(
         title: "main", activeImg: Res.active_home, unactiveImg: Res.home));
     listHome.add(HomeModel(
@@ -115,7 +116,7 @@ class MainHomeData {
       context.read<AuthCubit>().onUpdateAuth(true);
       CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
 
-      AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false), predicate: (o) => false);
+      AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
     }
   }
 }

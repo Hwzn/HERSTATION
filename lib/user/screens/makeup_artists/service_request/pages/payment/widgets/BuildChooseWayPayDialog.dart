@@ -58,7 +58,7 @@ class BuildChooseWayPayDialog extends StatelessWidget {
                               size: 13,
                             ),
                             MyText(
-                              title: " ${serviceModel.retainer} ر.س",
+                              title: " ${serviceModel.totalRetainer} ر.س",
                               color:
                                   state.data ? MyColors.white : MyColors.black,
                               size: 13,

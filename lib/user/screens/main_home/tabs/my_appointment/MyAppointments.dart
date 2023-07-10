@@ -12,12 +12,14 @@ class _MyAppointments extends State<MyAppointments> {
 
   @override
   void initState() {
-    myAppointmentsData.checkingTyp();
-    myAppointmentsData.getOrders(context, "current", 1);
-    myAppointmentsData.pagingController.addPageRequestListener((pageKey) {
-      myAppointmentsData.getOrders(context, "current", pageKey);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      myAppointmentsData.checkingTyp();
+      myAppointmentsData.getOrders(context, "current", 1);
+      myAppointmentsData.pagingController.addPageRequestListener((pageKey) {
+        myAppointmentsData.getOrders(context, "current", pageKey);
+      });
+      super.initState();
     });
-    super.initState();
   }
 
   @override
@@ -25,17 +27,26 @@ class _MyAppointments extends State<MyAppointments> {
     return Container(
       alignment: Alignment.topCenter,
       margin: const EdgeInsets.fromLTRB(15, 5, 15, 10),
-     child:   Column(
-          children: [
-            BuildAppointmentHeader(
-              myAppointmentsData: myAppointmentsData,
-            ),
-           Expanded(child: BuildAppointmentBody(
-              myAppointmentsData: myAppointmentsData,
-            ),),
-          ],
-        ),
-
+      child: Column(
+        children: [
+          BuildAppointmentHeader(
+            myAppointmentsData: myAppointmentsData,
+          ),
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+              bloc: myAppointmentsData.showLayout,
+              builder: (context, state) {
+                if (state.data) {
+                  return Expanded(
+                    child: BuildAppointmentBody(
+                      myAppointmentsData: myAppointmentsData,
+                    ),
+                  );
+                } else {
+                  return Container();
+                }
+              }),
+        ],
+      ),
     );
   }
 }

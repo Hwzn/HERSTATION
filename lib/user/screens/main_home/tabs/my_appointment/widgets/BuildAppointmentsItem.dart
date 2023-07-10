@@ -15,11 +15,13 @@ class BuildAppointmentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String lang = context.read<LangCubit>().state.locale.languageCode;
+
     int indexSpace = orderModel.date!.indexOf(" ");
     String? date = orderModel.date!.substring(0, indexSpace);
     String? time = orderModel.date!.substring(indexSpace);
     String dayName =
-        DateFormat(DateFormat.WEEKDAY).format(DateTime.parse(date));
+        DateFormat(DateFormat.WEEKDAY,lang).format(DateTime.parse(date));
     return InkWell(
       child: Container(
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
@@ -89,7 +91,7 @@ class BuildAppointmentItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     MyText(
-                      title: date,
+                      title: dayName,
                       color: MyColors.black,
                       size: 16,
                     ),
@@ -97,7 +99,7 @@ class BuildAppointmentItem extends StatelessWidget {
                       width: 5,
                     ),
                     MyText(
-                      title: dayName,
+                      title: date,
                       color: MyColors.black,
                       size: 16,
                     ),

@@ -18,12 +18,36 @@ class _EditProfile extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    int userType = context.read<UserCubit>().state.model.userType!.id!;
+
+    return WillPopScope(
+      onWillPop: () async {
+        if (userType == 2) {
+          AutoRouter.of(context).pushAndPopUntil(
+              MainHomeRoute(firstTime: false, index: 3),
+              predicate: (o) => false);
+        }else{
+          AutoRouter.of(context).pushAndPopUntil(
+              MakeupArtistHomeRoute(firstTime: false),
+              predicate: (o) => false);
+        }
+        return false;
+      },
+      child: Scaffold(
         appBar: AppBar(
           leading: InkWell(
-            onTap: () => AutoRouter.of(context).pushAndPopUntil(
-                MainHomeRoute(firstTime: false),
-                predicate: (o) => false),
+            onTap: () {
+
+              if (userType == 2) {
+                AutoRouter.of(context).pushAndPopUntil(
+                    MainHomeRoute(firstTime: false, index: 3),
+                    predicate: (o) => false);
+              }else{
+                AutoRouter.of(context).pushAndPopUntil(
+                    MakeupArtistHomeRoute(firstTime: false),              predicate: (o) => false);
+
+              }
+            },
             child: Icon(
               Icons.arrow_back_ios,
               color: MyColors.primary,
@@ -73,6 +97,8 @@ class _EditProfile extends State<EditProfile> {
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

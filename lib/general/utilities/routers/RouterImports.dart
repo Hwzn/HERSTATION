@@ -17,7 +17,6 @@ import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/AvailableTim
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/MakeupArtistHomeImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artist_appointment_details/MakeupArtistAppointmentImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/my_services/MyServicesImports.dart';
-import 'package:hwzn_herstation/makeup_artist/screens/subscriptions/SubscriptionsImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/wallet/my_wallet/MyWalletImports.dart';
 import 'package:hwzn_herstation/user/screens/appointment_details/AppointmentDetailsImports.dart';
 import 'package:hwzn_herstation/user/screens/categories/CategoriesImports.dart';
@@ -27,6 +26,8 @@ import 'package:hwzn_herstation/user/screens/search/SearchImport.dart';
 
 import 'package:hwzn_herstation/user/screens/main_home/MainHomeImports.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/makeup_artist_details/MakeupArtistDetailsImports.dart';
+import '../../../makeup_artist/screens/my_subsciption/MySubscriptionsImports.dart';
+import '../../../makeup_artist/screens/subscriptions/SubscriptionsImports.dart';
 import '../../../makeup_artist/screens/wallet/wallet_details/WalletDetailsImports.dart';
 import '../../../user/screens/makeup_artists/service_request/ServiceRequestImports.dart';
 import '../../screens/edit_profile/EditProfileImports.dart';

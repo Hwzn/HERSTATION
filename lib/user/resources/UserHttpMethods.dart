@@ -50,8 +50,14 @@ class UserHttpMethods {
   }
 
   Future<RatesModel> getRates(int id, int page) async {
+    String url = "";
+    if (id == -1) {
+      url = "${ApiNames.rate}?page=$page";
+    } else {
+      url = "${ApiNames.rate}?page=$page&provider_id=$id";
+    }
     var data = await GenericHttp<RatesModel>(context).callApi(
-        name: "${ApiNames.rate}?page=$page&provider_id=$id",
+        name: url,
         returnType: ReturnType.model,
         showLoader: false,
         methodType: MethodType.get,
@@ -145,7 +151,9 @@ class UserHttpMethods {
       CustomToast.showSimpleToast(msg: data["message"]);
     }
     return data["status"];
-  }Future<bool> updateOrderMethod(int id, String method) async {
+  }
+
+  Future<bool> updateOrderMethod(int id, String method) async {
     var data = await GenericHttp<String>(context).callApi(
       name: "${ApiNames.order}/$id",
       returnType: ReturnType.type,

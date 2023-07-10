@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
+
 class UpdateProfileData {
   String? name;
   String? email;
@@ -10,6 +12,7 @@ class UpdateProfileData {
   String? contactPhone;
   String? instructions;
   File? image;
+  List<File>? gallery;
 
   UpdateProfileData({
     this.email,
@@ -21,6 +24,7 @@ class UpdateProfileData {
     this.instructions,
     this.contactPhone,
     this.image,
+    this.gallery,
   });
 
   Map<String, dynamic> toJson() {
@@ -34,6 +38,7 @@ class UpdateProfileData {
       "image": image,
       "instructions": instructions,
       "contact_phone": contactPhone,
+      "gallery[]":gallery
     };
     map.removeWhere((key, value) => value == null);
     return map;

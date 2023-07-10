@@ -45,7 +45,7 @@ class BuildDontHaveAccount extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   child: InkWell(
-                    onTap: () => loginData.setMakeupArtistType(),
+                    onTap: () => loginData.setMakeupArtistType(context),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: MyText(

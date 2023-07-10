@@ -11,6 +11,8 @@ import 'package:hwzn_herstation/user/model/providers_details_model/service_model
 import 'package:hwzn_herstation/user/screens/makeup_artists/makeup_artist_details/widgets/MakeupArtistDetailsWidgetsImports.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/service_request/ServiceRequestImports.dart';
 
+import '../../../../general/blocks/auth_cubit/auth_cubit.dart';
+import '../../../../general/constants/modals/LoadingDialog.dart';
 import '../../../../general/helper/configration/CustomButtonAnimation.dart';
 import '../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../general/utilities/utils_functions/LoadingDialog.dart';

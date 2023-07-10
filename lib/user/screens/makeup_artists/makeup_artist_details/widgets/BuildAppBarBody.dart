@@ -59,7 +59,7 @@ class BuildAppBarBody extends StatelessWidget {
           ),
         ),
         Container(
-          height: 290,
+          height: 350,
           margin: const EdgeInsets.fromLTRB(0, 90, 0, 0),
           child: BuildSliderMakeupArtistImages(
             makeupArtistDetailsData: makeupArtistDetailsData,

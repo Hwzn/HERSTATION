@@ -7,5 +7,7 @@ import 'package:hwzn_herstation/general/widgets/DefaultAppBar.dart';
 import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/wallet/my_wallet/widgets/MyWalletWidgetsImports.dart';
 
+import '../../../../general/utilities/utils_functions/LoadingDialog.dart';
+
 part 'MyWallet.dart';
 part 'MyWalletData.dart';

@@ -8,6 +8,7 @@ class UserProfileData {
   final GlobalKey<CustomButtonState> btnLogout = GlobalKey<CustomButtonState>();
   final GlobalKey<CustomButtonState> btnChangeLanguage =
       GlobalKey<CustomButtonState>();
+  final GenericBloc<bool> showLayout = GenericBloc(false);
 
   ///////////// cubits /////////////
 
@@ -17,10 +18,16 @@ class UserProfileData {
   List<GeneralModel> list = [];
   List<GeneralModel> infoList = [];
 
-  void checkUser() async {
+  void checkUser(BuildContext context) async {
     int type = await Storage.getUserType() ?? 2;
     if (type == 3) {
       isMakeupArtistCubit.onUpdateData(true);
+    }
+    var isAuth = context.read<AuthCubit>().state.authorized;
+    if (isAuth) {
+      showLayout.onUpdateData(true);
+    } else {
+      showLayout.onUpdateData(false);
     }
   }
 
@@ -38,6 +45,7 @@ class UserProfileData {
     infoList.add(GeneralModel(title: "myServices", img: Res.my_services));
     infoList.add(GeneralModel(title: "availableTime", img: Res.time));
     infoList.add(GeneralModel(title: "subscriptions", img: Res.subscriptions));
+    infoList.add(GeneralModel(title: "mySubscriptions", img: Res.subscriptions));
   }
 
   void moveToPage(String title, BuildContext context) {
@@ -59,6 +67,8 @@ class UserProfileData {
       AutoRouter.of(context).push(const MyServicesRoute());
     } else if (title == tr(context, "myWallet")) {
       AutoRouter.of(context).push(const MyWalletRoute());
+    }else if (title == tr(context, "mySubscriptions")) {
+      AutoRouter.of(context).push(const MySubscriptionsRoute());
     }
   }
 
@@ -106,7 +116,7 @@ class UserProfileData {
 
   void logout(BuildContext context) async {
     var data = await GeneralRepository(context).logOut();
-    if (data == true &&context.mounted) {
+    if (data == true && context.mounted) {
       EasyLoading.dismiss();
       GlobalState.instance.set("token", "");
       Storage.clearSavedData();
@@ -115,6 +125,15 @@ class UserProfileData {
       CustomToast.showSimpleToast(msg: "تم تسجيل الخروج بنجاح");
       // Phoenix.rebirth(context);
       AutoRouter.of(context).push(const LoginRoute());
+    }
+  }
+
+  moveToInfo(BuildContext context) {
+    var isAuth = context.read<AuthCubit>().state.authorized;
+    if (isAuth) {
+      AutoRouter.of(context).push(const EditProfileRoute());
+    } else {
+      CustomToast.showSimpleToast(msg: tr(context, "loginFirst"));
     }
   }
 
