@@ -17,8 +17,8 @@ ProvidersModel _$ProvidersModelFromJson(Map<String, dynamic> json) =>
       isNotify: json['is_notify'] as int?,
       verfiyToken: json['verfiy_token'] as String?,
       token: json['token'] as String?,
-      lat: (json['lat'] as num?)?.toDouble(),
-      lng: (json['lng'] as num?)?.toDouble(),
+      lat: json['lat'] as String?,
+      lng: json['lng'] as String?,
       address: json['address'] as String?,
       userType: json['user_type'] == null
           ? null

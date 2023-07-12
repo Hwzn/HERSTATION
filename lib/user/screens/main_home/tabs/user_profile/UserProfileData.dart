@@ -19,7 +19,7 @@ class UserProfileData {
   List<GeneralModel> infoList = [];
 
   void checkUser(BuildContext context) async {
-    int type = await Storage.getUserType() ?? 2;
+    int type = context.read<UserCubit>().state.model.userType!.id!;
     if (type == 3) {
       isMakeupArtistCubit.onUpdateData(true);
     }

@@ -50,7 +50,7 @@ class ProviderModel {
     this.gallery,
     this.walletBalance,
     this.instructions,
-    this.schedules,
+    // this.schedules,
     this.rates,
     this.rate,
     this.rateCount,
@@ -64,9 +64,9 @@ class ProviderModel {
   List<Gallery>? gallery;
   String? walletBalance;
   String? instructions;
-  List<dynamic>? schedules;
+  // List<dynamic>? schedules;
   List<RateModel>? rates;
-  Null rate;
+  int? rate;
   int? rateCount;
   int? ratesAvg;
   int? isApproved;
@@ -80,7 +80,7 @@ class ProviderModel {
         List.from(json['gallery']).map((e) => Gallery.fromJson(e)).toList();
     walletBalance = json['wallet_balance'];
     instructions = json['instructions'];
-    schedules = List.castFrom<dynamic, dynamic>(json['schedules']);
+    // schedules = List.castFrom<dynamic, dynamic>(json['schedules']);
     rates =
         List.from(json['rates']).map((e) => RateModel.fromJson(e)).toList();
     rate = null;
@@ -98,7 +98,7 @@ class ProviderModel {
     _data['gallery'] = gallery?.map((e) => e.toJson()).toList();
     _data['wallet_balance'] = walletBalance;
     _data['instructions'] = instructions;
-    _data['schedules'] = schedules;
+    // _data['schedules'] = schedules;
     _data['rates'] = rates;
     _data['rate'] = rate;
     _data['rate_count'] = rateCount;

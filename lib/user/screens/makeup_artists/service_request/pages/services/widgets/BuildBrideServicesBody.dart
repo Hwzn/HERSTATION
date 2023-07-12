@@ -38,6 +38,8 @@ class BuildBrideServicesBody extends StatelessWidget {
             ],
           ),
         ),
+
+   bridemadesModel.id !=null?
         BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: servicesData.addAttachmentsCubit,
             builder: (context, state) {
@@ -130,7 +132,7 @@ class BuildBrideServicesBody extends StatelessWidget {
                   ),
                 ],
               );
-            }),
+            }):Container(),
         BuildBrideCostBody(
           servicesData: servicesData,
           serviceModel: serviceModel,

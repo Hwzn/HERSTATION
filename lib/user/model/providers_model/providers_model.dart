@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../../general/models/user_model/user_type.dart';
 
-part 'providers_model.g.dart'; 
+part 'providers_model.g.dart';
 
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
 class ProvidersModel {
@@ -26,9 +26,9 @@ class ProvidersModel {
   @JsonKey(name: 'token')
   String? token;
   @JsonKey(name: 'lat')
-  double? lat;
+  String? lat;
   @JsonKey(name: 'lng')
-  double? lng;
+  String? lng;
   @JsonKey(name: 'address')
   String? address;
   @JsonKey(name: 'user_type')
@@ -36,10 +36,24 @@ class ProvidersModel {
   @JsonKey(name: 'provider')
   ProviderModel? provider;
 
-  ProvidersModel({this.id, this.name, this.email, this.phone, this.image, this.lang, this.isNotify, this.verfiyToken, this.token, this.lat, this.lng, this.address, this.userType, this.provider});
+  ProvidersModel(
+      {this.id,
+      this.name,
+      this.email,
+      this.phone,
+      this.image,
+      this.lang,
+      this.isNotify,
+      this.verfiyToken,
+      this.token,
+      this.lat,
+      this.lng,
+      this.address,
+      this.userType,
+      this.provider});
 
-   factory ProvidersModel.fromJson(Map<String, dynamic> json) => _$ProvidersModelFromJson(json);
+  factory ProvidersModel.fromJson(Map<String, dynamic> json) =>
+      _$ProvidersModelFromJson(json);
 
-   Map<String, dynamic> toJson() => _$ProvidersModelToJson(this);
+  Map<String, dynamic> toJson() => _$ProvidersModelToJson(this);
 }
-

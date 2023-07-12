@@ -98,7 +98,7 @@ class MakeUpArtistHttpMethods {
     return data as List<MySubscriptionModel>;
   }
 
-  Future<bool> subscribe(int id) async {
+  Future<int> subscribe(int id) async {
     dynamic data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.subscribe,
       json: {"subscription_id": id},
@@ -109,9 +109,9 @@ class MakeUpArtistHttpMethods {
     if (data != null) {
       CustomToast.showSimpleToast(msg: data['message']);
       //AutoRouter.of(context).pop(true);
-      return true;
+      return data['data']['provider_subscription']['id'];
     } else {
-      return false;
+      return -1;
     }
   }
   Future<bool> paymentSubscribe(PaymentModel paymentModel) async {

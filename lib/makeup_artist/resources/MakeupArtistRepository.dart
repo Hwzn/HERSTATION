@@ -27,6 +27,6 @@ class MakeUpArtistRepository {
   Future<List<MySubscriptionModel>> getMySubscription() =>
       makeUpArtistHttpMethods.getMySubscriptions();
 
-  Future<bool> subscribe(int id) => makeUpArtistHttpMethods.subscribe(id);
+  Future<int> subscribe(int id) => makeUpArtistHttpMethods.subscribe(id);
   Future<bool> paymentSubscribe(PaymentModel paymentModel) => makeUpArtistHttpMethods.paymentSubscribe(paymentModel);
 }

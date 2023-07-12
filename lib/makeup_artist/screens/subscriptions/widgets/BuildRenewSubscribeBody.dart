@@ -33,25 +33,25 @@ class BuildRenewSubscribeBody extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          Row(
-            children: [
-              const Spacer(),
-              SizedBox(
-                width: 120,
-                child: LoadingButton(
-                  borderRadius: 15,
-                  borderColor: MyColors.secondary,
-                  title: tr(context, "renewSubscribe"),
-                  onTap: () => subscriptionsData.renewSubscribe(),
-                  color: MyColors.secondary,
-                  textColor: MyColors.primary,
-                  btnKey: subscriptionsData.btnRenewSubscribe,
-                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  fontSize: 13,
-                ),
-              )
-            ],
-          )
+          // Row(
+          //   children: [
+          //     const Spacer(),
+          //     SizedBox(
+          //       width: 120,
+          //       child: LoadingButton(
+          //         borderRadius: 15,
+          //         borderColor: MyColors.secondary,
+          //         title: tr(context, "renewSubscribe"),
+          //         onTap: () => subscriptionsData.renewSubscribe(),
+          //         color: MyColors.secondary,
+          //         textColor: MyColors.primary,
+          //         btnKey: subscriptionsData.btnRenewSubscribe,
+          //         margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          //         fontSize: 13,
+          //       ),
+          //     )
+          //   ],
+          // )
         ],
       ),
     );

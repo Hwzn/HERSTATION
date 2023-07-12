@@ -130,6 +130,7 @@ class AvailableTimesData {
 
   // methods
   addAvailableTime(BuildContext context) async {
+    Navigator.of(context).pop();
     int monthId = 0;
 
     List<ScheduleDays> scheduleList = scheduleDays.state.data;
@@ -143,6 +144,7 @@ class AvailableTimesData {
             "weekday": schedulelist[i].monthDays![j].number,
             "from": selectedFrom,
             "to": selectedTo,
+            "is_active":true,
           });
         }
       }
@@ -152,8 +154,9 @@ class AvailableTimesData {
       schedule: scheduleMonthDays,
     );
     bool data = await MakeUpArtistRepository(context).addAvailableTime(model);
+    EasyLoading.dismiss();
+
     if (data == true) {
-      EasyLoading.dismiss();
       saveChanges(context);
     }
   }

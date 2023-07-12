@@ -18,8 +18,8 @@ class _MyAppointments extends State<MyAppointments> {
       myAppointmentsData.pagingController.addPageRequestListener((pageKey) {
         myAppointmentsData.getOrders(context, "current", pageKey);
       });
-      super.initState();
     });
+    super.initState();
   }
 
   @override

@@ -28,13 +28,14 @@ class _Services extends State<Services> {
 
   @override
   void initState() {
-    widget.serviceModel.bridemadesID = widget.bridemadesModel.id;
-    widget.serviceModel.bridemadesPrice = widget.bridemadesModel.price;
-    widget.serviceModel.bridemadesRetainer = widget.bridemadesModel.retainer;
+    if (widget.bridemadesModel.id != null) {
+      widget.serviceModel.bridemadesID = widget.bridemadesModel.id;
+      widget.serviceModel.bridemadesPrice = widget.bridemadesModel.price;
+      widget.serviceModel.bridemadesRetainer = widget.bridemadesModel.retainer;
+    }
     servicesData.serviceCubit.onUpdateData(widget.serviceModel);
     servicesData.getTotalPrice();
     servicesData.getTotalRetainer();
-
 
     super.initState();
   }

@@ -27,7 +27,7 @@ class _MakeupArtistMain extends State<MakeupArtistMain> {
         if (state is GenericUpdateState) {
           return state.data?.isApproved == 0
               ? const BuildWaitActiveBody()
-              : state.data?.hasSubscription == true
+              : state.data?.hasSubscription == false
                   ? const BuildSubscribtionWidget()
                   : Container(
                       alignment: Alignment.topCenter,

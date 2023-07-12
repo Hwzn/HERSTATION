@@ -4,8 +4,7 @@ class SubscriptionsData {
   // keys
   final GlobalKey<CustomButtonState> btnSubscribe =
       GlobalKey<CustomButtonState>();
-  final GlobalKey<CustomButtonState> btnRenewSubscribe =
-      GlobalKey<CustomButtonState>();
+
 
   // blocs
   final GenericBloc<bool> isSubscribeCubit = GenericBloc(false);
@@ -20,29 +19,32 @@ class SubscriptionsData {
     subscriptionsCubit.onUpdateData(subscriptions);
   }
 
-  Future<void> subscribe(BuildContext context, int id,double amount) async {
+  Future<void> subscribe(BuildContext context, int id, double amount) async {
     await LoadingDialog.showLoadingDialog();
     if (context.mounted) {
-      bool data = await MakeUpArtistRepository(context).subscribe(id);
-      if (data == true) {
-        addTransaction(context, amount);
+      int data = await MakeUpArtistRepository(context).subscribe(id);
+      if (data != -1) {
+        addTransaction(context, amount,data);
       }
     }
   }
 }
 
-Future<void> addTransaction(BuildContext context, double amount) async {
+Future<void> addTransaction(BuildContext context, double amount, int id) async {
+print("Id : "+id.toString());
   PaymentModel paymentModel = PaymentModel(
       status: "success",
       type: "payment",
       gateway: "visa",
       onlinePaymentId: "646465434656",
-      transactionableId: 1,
+      transactionableId: id,
       transactionableType: "SubscriptionUser",
       amount: amount);
   if (context.mounted) {
     await MakeUpArtistRepository(context).paymentSubscribe(paymentModel);
     EasyLoading.dismiss();
-
+    AutoRouter.of(context).pushAndPopUntil(
+        MakeupArtistHomeRoute(firstTime: false, index: 0),
+        predicate: (o) => false);
   }
 }

@@ -23,8 +23,12 @@ class ServicesData {
       attachmentsNumber = serviceModel.attachmentsNumber!;
     }
     if (serviceModel.isBride!) {
-      total = serviceModel.price! +
-          (serviceModel.bridemadesPrice! * attachmentsNumber);
+      if (serviceModel.bridemadesPrice != null) {
+        total = serviceModel.price! +
+            (serviceModel.bridemadesPrice! * attachmentsNumber);
+      } else {
+        total = serviceModel.price!;
+      }
     } else {
       total = (serviceModel.price! * attachmentsNumber);
     }
@@ -43,8 +47,12 @@ class ServicesData {
       attachmentsNumber = serviceModel.attachmentsNumber!;
     }
     if (serviceModel.isBride!) {
-      retainer = serviceModel.retainer! +
-          (serviceModel.bridemadesRetainer! * attachmentsNumber);
+      if (serviceModel.bridemadesRetainer != null) {
+        retainer = serviceModel.retainer! +
+            (serviceModel.bridemadesRetainer! * attachmentsNumber);
+      } else {
+        retainer = serviceModel.retainer!;
+      }
     } else {
       retainer = (serviceModel.retainer! * attachmentsNumber);
     }

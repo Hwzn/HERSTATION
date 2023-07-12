@@ -1,16 +1,13 @@
 part of 'MySubscriptionsImports.dart';
 
 class MySubscriptionsData {
-  // keys
-  final GlobalKey<CustomButtonState> btnSubscribe =
-  GlobalKey<CustomButtonState>();
-  final GlobalKey<CustomButtonState> btnRenewSubscribe =
-  GlobalKey<CustomButtonState>();
+  final GlobalKey<CustomButtonState> btnRenew =
+      GlobalKey<CustomButtonState>();
 
   // blocs
   final GenericBloc<bool> isSubscribeCubit = GenericBloc(false);
   final GenericBloc<List<MySubscriptionModel>> subscriptionsCubit =
-  GenericBloc([]);
+      GenericBloc([]);
 
   void renewSubscribe(BuildContext context, int id) async {
     await LoadingDialog.showLoadingDialog();
@@ -22,9 +19,7 @@ class MySubscriptionsData {
 
   Future<void> getSubscriptions(BuildContext context) async {
     List<MySubscriptionModel> subscriptions =
-    await MakeUpArtistHttpMethods(context).getMySubscriptions();
+        await MakeUpArtistHttpMethods(context).getMySubscriptions();
     subscriptionsCubit.onUpdateData(subscriptions);
   }
-
-
 }
