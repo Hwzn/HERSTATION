@@ -1,10 +1,12 @@
 import 'package:hwzn_herstation/user/model/providers_details_model/week_day_model.dart';
 
+import '../../makeup_artist/model/days_model.dart';
+
 class ScheduleDays {
   String? monthName;
   int? monthNumber;
   bool? selected;
-  List<WeekDayModel>? monthDays;
+  List<DaysModel>? monthDays;
   String? from;
   String? to;
   ScheduleDays(

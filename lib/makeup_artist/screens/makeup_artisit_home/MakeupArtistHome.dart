@@ -2,9 +2,11 @@ part of 'MakeupArtistHomeImports.dart';
 
 class MakeupArtistHome extends StatefulWidget {
   bool firstTime;
+  int index;
   MakeupArtistHome({
     Key? key,
     required this.firstTime,
+    required this.index,
   }) : super(key: key);
 
   @override

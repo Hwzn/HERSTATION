@@ -122,31 +122,38 @@ class BuildUploadImages extends StatelessWidget {
                 size: 16,
                 fontWeight: FontWeight.bold,
               ),
-              GestureDetector(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      Res.edit,
-                      height: 15,
-                      width: 15,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    MyText(
-                      title: tr(context, "update"),
-                      color: MyColors.primary,
-                      size: 13,
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  makeupArtistMainData.updateProfile(
-                      context, "", makeupArtistMainData.imageFiles ?? []);
-                },
-              ),
+              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                  bloc: makeupArtistMainData.showUpdateImage,
+                  builder: (context, state) {
+                    return Visibility(
+                      visible: state.data,
+                      child: GestureDetector(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              Res.edit,
+                              height: 15,
+                              width: 15,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            MyText(
+                              title: tr(context, "update"),
+                              color: MyColors.primary,
+                              size: 13,
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          makeupArtistMainData.updateImages(context,
+                              makeupArtistMainData.imageFiles ?? []);
+                        },
+                      ),
+                    );
+                  }),
             ],
           ),
         ),
@@ -157,35 +164,50 @@ class BuildUploadImages extends StatelessWidget {
                 children: [
                   state.data
                       ? Container(
-                    alignment: AlignmentDirectional.topStart,
-                    child: Wrap(
-                      children:
-                      makeupArtistMainData.imageFiles!.map((image)
-                      //providerModel?.gallery[index]
-                      {
-                        return Container(
-                          margin: const EdgeInsets.only(
-                              top: 10, left: 5, right: 5),
-                          height: 80,
-                          width: 80,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.file(
-                              File(image.path),
-                              fit: BoxFit.fill,
-                            ),
+                          alignment: AlignmentDirectional.topStart,
+                          child: Wrap(
+                            children:
+                                makeupArtistMainData.imageXFiles!.map((image) {
+                              return Container(
+                                margin: const EdgeInsets.only(
+                                    top: 10, left: 5, right: 5),
+                                height: 80,
+                                width: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Image.file(
+                                    File(image.path),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
                           ),
-                        );
-                      }).toList(),
-                    ),
-                  )
-                      : Container(),
+                        )
+                      : providerModel!.gallery!.isNotEmpty
+                          ?Container(
+                      alignment: AlignmentDirectional.topStart,
+                      child: Wrap(
+                              children: providerModel!.gallery!.map((image) {
+                                return Container(
+                                  margin: const EdgeInsets.only(
+                                      top: 10, left: 5, right: 5),
+                                  height: 80,
+                                  width: 80,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    child: CachedImage(
+                                      url: image.image ?? "",
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),)
+                          : Container(),
                   InkWell(
                     child: Container(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: MyColors.bgPrimary),

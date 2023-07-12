@@ -114,6 +114,7 @@ dependencies:
   map: ^1.0.0
   flutter_geocoder: ^0.2.2-nullsafety
   quiver: ^3.2.1
+  time_picker_widget: ^1.0.0+10
 
 
 

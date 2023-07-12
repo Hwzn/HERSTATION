@@ -6,6 +6,7 @@ class SplashController {
 
   void manipulateSaveData(BuildContext context) async {
     await _determinePosition(context);
+    await GlobalNotification.instance.setupNotification(context);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
@@ -29,7 +30,7 @@ class SplashController {
         if (userType == 2) {
           AutoRouter.of(context).push(MainHomeRoute(firstTime: false,index: 0));
         } else {
-          AutoRouter.of(context).push(MakeupArtistHomeRoute(firstTime: false));
+          AutoRouter.of(context).push(MakeupArtistHomeRoute(firstTime: false,index: 0));
         }
       }
     } else {

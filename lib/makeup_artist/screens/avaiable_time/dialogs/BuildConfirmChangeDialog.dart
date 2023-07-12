@@ -45,7 +45,7 @@ class BuildConfirmChangeDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "yes"),
-                  onTap: () => availableTimesData.saveChanges(context),
+                  onTap: () => availableTimesData.addAvailableTime(context),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: availableTimesData.btnConfirmChange,

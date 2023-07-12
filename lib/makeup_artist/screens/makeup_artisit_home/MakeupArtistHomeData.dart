@@ -112,7 +112,7 @@ class MakeupArtistHomeData {
       CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
 
       AutoRouter.of(context).pushAndPopUntil(
-          MakeupArtistHomeRoute(firstTime: false),
+          MakeupArtistHomeRoute(firstTime: false,index: 0),
           predicate: (o) => false);
     }
   }

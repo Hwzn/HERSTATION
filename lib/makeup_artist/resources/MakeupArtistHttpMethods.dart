@@ -104,7 +104,6 @@ class MakeUpArtistHttpMethods {
       json: {"subscription_id": id},
       returnType: ReturnType.type,
       returnDataFun: (data) => data,
-      showLoader: false,
       methodType: MethodType.post,
     );
     if (data != null) {
@@ -115,4 +114,19 @@ class MakeUpArtistHttpMethods {
       return false;
     }
   }
+  Future<bool> paymentSubscribe(PaymentModel paymentModel) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: ApiNames.transaction,
+      returnType: ReturnType.type,
+      json: paymentModel.toJson(),
+      methodType: MethodType.post,
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
+    );
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
+  }
+
 }

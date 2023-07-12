@@ -27,12 +27,12 @@ class LoginData {
             await GeneralRepository(context).setUserLogin(phone.text, passEn);
         if (data != null && context.mounted) {
           await Utils.manipulateLoginData(context, data);
-          int type = await Storage.getUserType() ?? 2;
+          int type = context.read<UserCubit>().state.model.userType!.id!;
           if (context.mounted) {
             if (type == 2) {
               AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
             } else {
-              AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false), predicate: (o) => false);
+              AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
             }
           }
         }

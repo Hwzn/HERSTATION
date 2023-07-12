@@ -80,7 +80,7 @@ class Utils {
         await setCurrentUserData(user, context);
         CustomToast.showSimpleToast(msg: "تم تحديث البيانات بنجاح");
       AutoRouter.of(context)
-          .push(MakeupArtistHomeRoute(firstTime: false));
+          .push(MakeupArtistHomeRoute(firstTime: false,index: 0));
       return data;
     } else {
       CustomToast.showSimpleToast(msg: data["message"]);

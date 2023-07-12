@@ -8,11 +8,13 @@ class MakeupArtistMainData {
 
   final ImagePicker imgPicker = ImagePicker();
   List<File>? imageFiles;
+  List<XFile>? imageXFiles;
 
   ////////////// cubits ///////////////
 
   final GenericBloc<bool> waitActiveCubit = GenericBloc(true);
   final GenericBloc<bool> showImagesGalleryCubit = GenericBloc(false);
+  final GenericBloc<bool> showUpdateImage = GenericBloc(false);
   final GenericBloc<ProviderModel?> homeProviderBloc = GenericBloc(null);
 
   ////////////// methods ///////////////
@@ -67,11 +69,13 @@ class MakeupArtistMainData {
     try {
       var pickedfiles = await imgPicker.pickMultiImage();
       if (pickedfiles != null) {
+        imageXFiles = pickedfiles;
+        imageFiles = [];
         for (int i = 0; i < pickedfiles.length; i++) {
           imageFiles!.add(File(pickedfiles[i].path));
         }
-        // imageFiles = Image.file(File(pickedfiles!.path));
         showImagesGalleryCubit.onUpdateData(true);
+        showUpdateImage.onUpdateData(true);
         closeDialog(context);
       } else {
         print("No image is selected.");
@@ -85,9 +89,12 @@ class MakeupArtistMainData {
     try {
       XFile? photo = await imgPicker.pickImage(source: ImageSource.camera);
       if (photo != null) {
+        imageXFiles=[];
+        imageXFiles!.add(photo);
         imageFiles = [];
         imageFiles!.add(File(photo.path));
         showImagesGalleryCubit.onUpdateData(true);
+        showUpdateImage.onUpdateData(true);
         closeDialog(context);
       } else {
         print("No image is selected.");
@@ -103,8 +110,26 @@ class MakeupArtistMainData {
     homeProviderBloc.onUpdateData(data);
   }
 
-  void updateProfile(
-      BuildContext context, String guides, List<File> list) async {
+  void updateImages(
+      BuildContext context,  List<File> list) async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    String? firebaseToken = await messaging.getToken();
+
+    UpdateProfileData updateProfileData = UpdateProfileData(
+        deviceType: Platform.isIOS ? "ios" : "android",
+        deviceId: firebaseToken,
+        gallery: list);
+    if (context.mounted) {
+      var result =
+          await GeneralRepository(context).updateProfile(updateProfileData);
+      if (result != null && context.mounted) {
+        await Utils.manipulateChangeData(context, result);
+      }
+    }
+  }
+
+  void updateGuides(
+      BuildContext context, String guides) async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? firebaseToken = await messaging.getToken();
 
@@ -112,7 +137,7 @@ class MakeupArtistMainData {
         deviceType: Platform.isIOS ? "ios" : "android",
         deviceId: firebaseToken,
         instructions: guides,
-        gallery: list);
+  );
     if (context.mounted) {
       var result =
           await GeneralRepository(context).updateProfile(updateProfileData);

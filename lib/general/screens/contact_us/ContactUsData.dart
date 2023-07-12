@@ -25,7 +25,7 @@ class ContactUsData {
                 predicate: (o) => false);
           } else {
             AutoRouter.of(context)
-                .push(MakeupArtistHomeRoute(firstTime: true));
+                .push(MakeupArtistHomeRoute(firstTime: true,index: 2));
           }
         }
       }

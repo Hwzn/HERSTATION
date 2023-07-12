@@ -66,7 +66,7 @@ class BuildUpdateGuidesDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "saveChange"),
-                  onTap: () => makeupArtistMainData.updateProfile(context,makeupArtistMainData.guide.text,[]),
+                  onTap: () => makeupArtistMainData.updateGuides(context,makeupArtistMainData.guide.text),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: makeupArtistMainData.btnSaveChanges,

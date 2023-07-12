@@ -47,7 +47,7 @@ class MakeupArtistAppointmentDetailsData {
     EasyLoading.dismiss();
 
     if (result == true && context.mounted) {
-      AutoRouter.of(context).push(MakeupArtistHomeRoute(firstTime: false));
+      AutoRouter.of(context).push(MakeupArtistHomeRoute(firstTime: false,index: 1));
     }
   }
 

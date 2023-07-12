@@ -11,6 +11,8 @@ import 'package:hwzn_herstation/general/utilities/utils_functions/LoadingDialog.
 import 'package:hwzn_herstation/general/widgets/DefaultAppBar.dart';
 import 'package:hwzn_herstation/general/widgets/LoadingButton.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
+import 'package:hwzn_herstation/makeup_artist/model/days_model.dart';
+import 'package:hwzn_herstation/makeup_artist/model/time_model.dart';
 import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryImports.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/widgets/AvailableTimesWidgetsImports.dart';
 

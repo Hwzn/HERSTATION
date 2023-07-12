@@ -20,11 +20,29 @@ class SubscriptionsData {
     subscriptionsCubit.onUpdateData(subscriptions);
   }
 
-  Future<void> subscribe(BuildContext context, int id) async {
+  Future<void> subscribe(BuildContext context, int id,double amount) async {
     await LoadingDialog.showLoadingDialog();
     if (context.mounted) {
-      await MakeUpArtistRepository(context).subscribe(id);
+      bool data = await MakeUpArtistRepository(context).subscribe(id);
+      if (data == true) {
+        addTransaction(context, amount);
+      }
     }
+  }
+}
+
+Future<void> addTransaction(BuildContext context, double amount) async {
+  PaymentModel paymentModel = PaymentModel(
+      status: "success",
+      type: "payment",
+      gateway: "visa",
+      onlinePaymentId: "646465434656",
+      transactionableId: 1,
+      transactionableType: "SubscriptionUser",
+      amount: amount);
+  if (context.mounted) {
+    await MakeUpArtistRepository(context).paymentSubscribe(paymentModel);
     EasyLoading.dismiss();
+
   }
 }

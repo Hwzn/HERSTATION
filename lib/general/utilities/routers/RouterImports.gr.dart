@@ -318,6 +318,7 @@ class AppRouter extends _i33.RootStackRouter {
         child: _i25.MakeupArtistHome(
           key: args.key,
           firstTime: args.firstTime,
+          index: args.index,
         ),
         opaque: true,
       );
@@ -1113,12 +1114,14 @@ class MakeupArtistHomeRoute
   MakeupArtistHomeRoute({
     _i34.Key? key,
     required bool firstTime,
+    required int index,
   }) : super(
           MakeupArtistHomeRoute.name,
           path: '/makeup-artist-home',
           args: MakeupArtistHomeRouteArgs(
             key: key,
             firstTime: firstTime,
+            index: index,
           ),
         );
 
@@ -1129,15 +1132,18 @@ class MakeupArtistHomeRouteArgs {
   const MakeupArtistHomeRouteArgs({
     this.key,
     required this.firstTime,
+    required this.index,
   });
 
   final _i34.Key? key;
 
   final bool firstTime;
 
+  final int index;
+
   @override
   String toString() {
-    return 'MakeupArtistHomeRouteArgs{key: $key, firstTime: $firstTime}';
+    return 'MakeupArtistHomeRouteArgs{key: $key, firstTime: $firstTime, index: $index}';
   }
 }
 

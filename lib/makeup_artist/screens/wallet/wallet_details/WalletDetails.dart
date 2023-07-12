@@ -27,9 +27,9 @@ class _WalletDetails extends State<WalletDetails> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MyText(title: title, color: MyColors.primary, size: 14,fontWeight: FontWeight.bold,),
-            const SizedBox(height: 15,),
-            BuildUsersBody(walletDetailsData: walletDetailsData,),
+            // MyText(title: title, color: MyColors.primary, size: 14,fontWeight: FontWeight.bold,),
+            // const SizedBox(height: 15,),
+            // BuildUsersBody(walletDetailsData: walletDetailsData,),
           ],
         ),
       ),),

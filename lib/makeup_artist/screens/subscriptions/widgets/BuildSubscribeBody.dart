@@ -46,7 +46,10 @@ class BuildSubscribeBody extends StatelessWidget {
                   borderRadius: 20,
                   borderColor: MyColors.secondary,
                   title: tr(context, "subscribe"),
-                  onTap: () => subscriptionsData.subscribe(context,subscriptionModel.id!),
+                  onTap: () => subscriptionsData.subscribe(
+                      context,
+                      subscriptionModel.id!,
+                      subscriptionModel.price!.toDouble()),
                   color: MyColors.secondary,
                   textColor: MyColors.primary,
                   btnKey: subscriptionsData.btnSubscribe,

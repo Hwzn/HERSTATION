@@ -1794,6 +1794,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  time_picker_widget:
+    dependency: "direct main"
+    description:
+      name: time_picker_widget
+      sha256: "2cae415159ff9ac4cb58bf118864c3131ae0155272e30ccd884a6bda1bac5032"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+10"
   timezone:
     dependency: transitive
     description:

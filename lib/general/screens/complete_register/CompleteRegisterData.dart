@@ -18,6 +18,8 @@ class CompleteRegisterData {
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
 
   void completeAccount(BuildContext context) async {
+    await GlobalNotification.instance.setupNotification(context);
+
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? firebaseToken = await messaging.getToken();
     int type = await Storage.getUserType() ?? 2;
@@ -48,7 +50,7 @@ class CompleteRegisterData {
                   predicate: (o) => false);
             } else {
               AutoRouter.of(context)
-                  .push(MakeupArtistHomeRoute(firstTime: true));
+                  .push(MakeupArtistHomeRoute(firstTime: true,index: 0));
             }
           }
         }

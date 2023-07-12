@@ -28,7 +28,7 @@ class _AvailableTimes extends State<AvailableTimes> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height - 120,
           margin: const EdgeInsets.all(15),
           child: BlocBuilder<GenericBloc<List<ScheduleDays>>,
                   GenericState<List<ScheduleDays>>>(
@@ -39,7 +39,17 @@ class _AvailableTimes extends State<AvailableTimes> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 5),
+                      padding: const EdgeInsets.only(top: 15, bottom: 5),
+                      child: MyText(
+                        title: tr(context, "chooseTime"),
+                        color: MyColors.primary,
+                        size: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    BuildTimeBody(availableTimesData: availableTimesData),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 5),
                       child: MyText(
                         title: tr(context, "chooseTimes"),
                         color: MyColors.primary,
@@ -47,13 +57,12 @@ class _AvailableTimes extends State<AvailableTimes> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    BuildTimeBody(availableTimesData: availableTimesData),
                     BuildMonthsBody(
                       listMonths: state.data,
                       availableTimesData: availableTimesData,
                     ),
-                    BlocBuilder<GenericBloc<List<WeekDayModel>>,
-                            GenericState<List<WeekDayModel>>>(
+                    BlocBuilder<GenericBloc<List<DaysModel>>,
+                            GenericState<List<DaysModel>>>(
                         bloc: availableTimesData.daysCbit,
                         builder: (context, state2) {
                           return BuildDatesBody(

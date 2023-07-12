@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hwzn_herstation/general/blocks/notify_cubit/notify_cubit.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../../blocks/user_cubit/user_cubit.dart';
 
 
 class GlobalNotification {
@@ -43,9 +46,20 @@ class GlobalNotification {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         print("_____________________Message data:${message.data}");
         _showLocalNotification(message);
+
         _onMessageStreamController.add(message.data);
         var count =context.read<NotifyCubit>().state.count;
         context.read<NotifyCubit>().onUpdateNotifyData(count+1);
+        //
+        // String type = "${message.data["type"]}";
+        // log("===================> ${message.data["type"]}");
+        //  if (type == 'approve') {
+        //
+        //   log("Approved Enter");
+        //   var user = context.read<UserCubit>().state.model;
+        //   user.provider?.isApproved = 1;
+        //   context.read<UserCubit>().onUpdateUserData(user);
+        //   log("Approved");}
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         print('A new onMessageOpenedApp event was published!');

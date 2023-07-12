@@ -9,6 +9,7 @@ import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryIm
 
 import '../../../general/utilities/utils_functions/LoadingDialog.dart';
 import '../../../general/widgets/DefaultAppBar.dart';
+import '../../model/payment_model/payment_model.dart';
 import '../../model/subscription_model/subscription_model.dart';
 
 part 'Subscriptions.dart';

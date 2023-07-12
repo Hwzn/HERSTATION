@@ -35,7 +35,7 @@ class MakeupArtistDetailsData {
       AutoRouter.of(context).push(ServiceRequestRoute(
           type: type!,
           serviceModel: serviceModel!,
-          bridemadesModel: serviceBridemadesModel!,
+          bridemadesModel: serviceBridemadesModel ??ServiceModel(),
           providerID: provider.id!,
           schedules: provider.schedules!));
     } else {

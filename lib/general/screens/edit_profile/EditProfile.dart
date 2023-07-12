@@ -26,9 +26,9 @@ class _EditProfile extends State<EditProfile> {
           AutoRouter.of(context).pushAndPopUntil(
               MainHomeRoute(firstTime: false, index: 3),
               predicate: (o) => false);
-        }else{
+        } else {
           AutoRouter.of(context).pushAndPopUntil(
-              MakeupArtistHomeRoute(firstTime: false),
+              MakeupArtistHomeRoute(firstTime: false, index: 2),
               predicate: (o) => false);
         }
         return false;
@@ -37,15 +37,14 @@ class _EditProfile extends State<EditProfile> {
         appBar: AppBar(
           leading: InkWell(
             onTap: () {
-
               if (userType == 2) {
                 AutoRouter.of(context).pushAndPopUntil(
                     MainHomeRoute(firstTime: false, index: 3),
                     predicate: (o) => false);
-              }else{
+              } else {
                 AutoRouter.of(context).pushAndPopUntil(
-                    MakeupArtistHomeRoute(firstTime: false),              predicate: (o) => false);
-
+                    MakeupArtistHomeRoute(firstTime: false, index: 2),
+                    predicate: (o) => false);
               }
             },
             child: Icon(

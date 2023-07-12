@@ -23,16 +23,18 @@ class BuildNotificationsItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(
               flex: 1,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyText(
                     title:
-                       notificationModel.title??"",
+                       notificationModel.body??"",
                     size: 13,
                     fontWeight: FontWeight.bold,
                     color: MyColors.black,
@@ -44,6 +46,7 @@ class BuildNotificationsItem extends StatelessWidget {
                     children: [
                       Image.asset(Res.clock, height: 15, width: 15),
                       const SizedBox(
+                        width: 5,
                       ),
                       MyText(
                         title: notificationModel.time ?? "",

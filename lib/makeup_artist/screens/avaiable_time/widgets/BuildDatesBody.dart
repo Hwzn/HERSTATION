@@ -2,7 +2,7 @@ part of 'AvailableTimesWidgetsImports.dart';
 
 class BuildDatesBody extends StatelessWidget {
   AvailableTimesData availableTimesData;
-  List<WeekDayModel> listDays;
+  List<DaysModel> listDays;
 
   BuildDatesBody(
       {super.key, required this.availableTimesData, required this.listDays});
@@ -42,10 +42,10 @@ class BuildDatesBody extends StatelessWidget {
   }
 
   Widget buildDateItem(
-      BuildContext context, int index, WeekDayModel weekDayModel) {
+      BuildContext context, int index, DaysModel weekDayModel) {
     return InkWell(
       onTap: () {
-        List<WeekDayModel> list = availableTimesData.daysCbit.state.data;
+        List<DaysModel> list = availableTimesData.daysCbit.state.data;
         list[index].selected = !list[index].selected!;
         availableTimesData.daysCbit.onUpdateData(list);
       },
@@ -66,17 +66,6 @@ class BuildDatesBody extends StatelessWidget {
             children: [
               MyText(
                 title: weekDayModel.day!,
-                color: weekDayModel.selected!
-                    ? MyColors.bgPrimary
-                    : MyColors.primary,
-                size: 12,
-                fontWeight: FontWeight.bold,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              MyText(
-                title: weekDayModel.dayName!,
                 color: weekDayModel.selected!
                     ? MyColors.bgPrimary
                     : MyColors.primary,
