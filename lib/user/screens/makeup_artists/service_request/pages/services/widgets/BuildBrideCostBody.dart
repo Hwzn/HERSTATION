@@ -47,7 +47,7 @@ class BuildBrideCostBody extends StatelessWidget {
                           MyText(
                               title: "  1x  ", color: MyColors.black, size: 13),
                           MyText(
-                              title: " ${serviceModel.price} ر.س",
+                              title: " ${serviceModel.price} ${tr(context,"sr")}",
                               color: MyColors.black,
                               size: 13),
                         ],
@@ -83,7 +83,7 @@ class BuildBrideCostBody extends StatelessWidget {
                                           size: 13),
                                       MyText(
                                           title:
-                                              " ${serviceModel.bridemadesPrice} ر.س",
+                                              " ${serviceModel.bridemadesPrice} ${tr(context,"sr")}",
                                           color: MyColors.black,
                                           size: 13),
                                     ],
@@ -113,7 +113,7 @@ class BuildBrideCostBody extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                             MyText(
-                              title: " ${serviceModel.totalPrice} ر.س",
+                              title: " ${serviceModel.totalPrice} ${tr(context,"sr")}",
                               color: MyColors.black,
                               size: 13,
                               fontWeight: FontWeight.bold,
@@ -142,7 +142,7 @@ class BuildBrideCostBody extends StatelessWidget {
                   size: 13,
                 ),
                 MyText(
-                  title: " ${serviceModel.totalRetainer} ر.س",
+                  title: " ${serviceModel.totalRetainer} ${tr(context,"sr")}",
                   color: MyColors.black,
                   size: 13,
                 ),

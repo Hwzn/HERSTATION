@@ -11,6 +11,7 @@ import '../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../general/widgets/CachedImage.dart';
 import '../../../../../general/widgets/LoadingButton.dart';
 import '../../../../../general/widgets/MyText.dart';
+import '../../../../general/blocks/lang_cubit/lang_cubit.dart';
 import '../../../../general/helper/helper_methods/HelperMethods.dart';
 import '../../../model/order_model/item_model.dart';
 import '../../../model/order_model/order_model.dart';

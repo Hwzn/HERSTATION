@@ -31,7 +31,7 @@ class BuildChangePasswordInputs extends StatelessWidget {
                     onPressed: () =>
                         editProfileData.passwordCubit.onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility : Icons.visibility_off,
+                      !state.data ? Icons.visibility_off : Icons.visibility,
                       size: 20,
                       color: MyColors.grey,
                     ),
@@ -58,7 +58,7 @@ class BuildChangePasswordInputs extends StatelessWidget {
                     onPressed: () =>
                         editProfileData.passwordCubit.onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility : Icons.visibility_off,
+                      !state.data ? Icons.visibility_off : Icons.visibility,
                       size: 20,
                       color: MyColors.grey,
                     ),
@@ -85,7 +85,7 @@ class BuildChangePasswordInputs extends StatelessWidget {
                     onPressed: () =>
                         editProfileData.passwordCubit.onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility : Icons.visibility_off,
+                      !state.data ? Icons.visibility_off : Icons.visibility,
                       size: 20,
                       color: MyColors.grey,
                     ),

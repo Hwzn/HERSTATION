@@ -31,7 +31,7 @@ class UserRepository {
   Future<bool> addRemoveFavourites(int id) =>
       userHttpMethods.addRemoveFavourite(id);
 
-  Future<bool> createOrder(RequestOrderData createOrderData) =>
+  Future<int> createOrder(RequestOrderData createOrderData) =>
       userHttpMethods.createOrder(createOrderData);
 
   Future<bool> updateOrderStatus(int id, String status) =>

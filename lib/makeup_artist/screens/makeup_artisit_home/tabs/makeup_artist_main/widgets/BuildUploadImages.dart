@@ -122,38 +122,38 @@ class BuildUploadImages extends StatelessWidget {
                 size: 16,
                 fontWeight: FontWeight.bold,
               ),
-              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-                  bloc: makeupArtistMainData.showUpdateImage,
-                  builder: (context, state) {
-                    return Visibility(
-                      visible: state.data,
-                      child: GestureDetector(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              Res.edit,
-                              height: 15,
-                              width: 15,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            MyText(
-                              title: tr(context, "update"),
-                              color: MyColors.primary,
-                              size: 13,
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          makeupArtistMainData.updateImages(context,
-                              makeupArtistMainData.imageFiles ?? []);
-                        },
-                      ),
-                    );
-                  }),
+              // BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+              //     bloc: makeupArtistMainData.showUpdateImage,
+              //     builder: (context, state) {
+              //       return Visibility(
+              //         visible: state.data,
+              //         child: GestureDetector(
+              //           child: Row(
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             children: [
+              //               Image.asset(
+              //                 Res.edit,
+              //                 height: 15,
+              //                 width: 15,
+              //               ),
+              //               const SizedBox(
+              //                 width: 5,
+              //               ),
+              //               MyText(
+              //                 title: tr(context, "update"),
+              //                 color: MyColors.primary,
+              //                 size: 13,
+              //               ),
+              //             ],
+              //           ),
+              //           onTap: () {
+              //             makeupArtistMainData.updateImages(context,
+              //                 makeupArtistMainData.imageFiles ?? []);
+              //           },
+              //         ),
+              //       );
+              //     }),
             ],
           ),
         ),

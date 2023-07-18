@@ -5,9 +5,11 @@ class BuildChooseWayPayDialog extends StatelessWidget {
   final ServiceModel serviceModel;
   final ServiceRequestData serviceRequestData;
 
-
   BuildChooseWayPayDialog(
-      {super.key, required this.paymentData, required this.serviceModel,required this.serviceRequestData});
+      {super.key,
+      required this.paymentData,
+      required this.serviceModel,
+      required this.serviceRequestData});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,8 @@ class BuildChooseWayPayDialog extends StatelessWidget {
                               size: 13,
                             ),
                             MyText(
-                              title: " ${serviceModel.totalRetainer} ر.س",
+                              title:
+                                  " ${serviceModel.totalRetainer} ${tr(context, "sr")}",
                               color:
                                   state.data ? MyColors.white : MyColors.black,
                               size: 13,
@@ -87,7 +90,8 @@ class BuildChooseWayPayDialog extends StatelessWidget {
                               size: 13,
                             ),
                             MyText(
-                              title: " ${serviceModel.totalPrice} ر.س",
+                              title:
+                                  " ${serviceModel.totalPrice} ${tr(context, "sr")}",
                               color:
                                   state.data ? MyColors.black : MyColors.white,
                               size: 13,
@@ -110,7 +114,16 @@ class BuildChooseWayPayDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "goPay"),
-                  onTap: () => paymentData.goPay(context,serviceModel,serviceRequestData),
+                  onTap: () {
+                    double amount;
+                    if (paymentData.isDepositOnly.state.data) {
+                      amount = serviceModel.totalRetainer ?? 0;
+                    } else {
+                      amount = serviceModel.totalPrice ?? 0;
+                    }
+                    paymentData.goPay(
+                        context, serviceModel, serviceRequestData,amount);
+                  },
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: paymentData.btnGoPay,

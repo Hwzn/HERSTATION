@@ -18,13 +18,17 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
         (MediaQuery.of(context).size.width / 3);
     double widthCancel = MediaQuery.of(context).size.width - width - 40;
     return Container(
-      padding: const EdgeInsets.all(15),
-      child: Column(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+
+      ),
+      child:SingleChildScrollView(child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            padding: const EdgeInsets.all(15),
             margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -65,13 +69,13 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
                     direction: Axis.horizontal,
                     itemSize: 40,
                     itemCount: 5,
+
                     itemBuilder: (context, _) => const Icon(
                       Icons.star,
                       color: Colors.amber,
                     ),
                     onRatingUpdate: (rating) {
                       rate = rating;
-                      print("Rate $rate");
                     },
                   ),
                 ),
@@ -132,7 +136,7 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
             ],
           ),
         ],
-      ),
+      ),),
     );
   }
 }

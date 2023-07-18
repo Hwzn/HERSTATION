@@ -13,11 +13,12 @@ class BuildRequestBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String lang = context.read<LangCubit>().state.locale.languageCode;
     int indexSpace = orderModel.date!.indexOf(" ");
     String? date = orderModel.date!.substring(0, indexSpace);
     String? time = orderModel.date!.substring(indexSpace);
     String dayName =
-        DateFormat(DateFormat.WEEKDAY).format(DateTime.parse(date));
+    DateFormat(DateFormat.WEEKDAY,lang).format(DateTime.parse(date));
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 15),
       decoration: BoxDecoration(
@@ -38,7 +39,7 @@ class BuildRequestBody extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: orderModel.statusCode == 5
+                      color: orderModel.statusCode == 5 ||orderModel.statusCode==3||orderModel.statusCode==4
                           ? MyColors.bgGreen
                           : orderModel.statusCode == 6
                               ? MyColors.bgRed
@@ -48,7 +49,7 @@ class BuildRequestBody extends StatelessWidget {
                     child: MyText(
                       alien: TextAlign.center,
                       title: orderModel.status ?? "",
-                      color: orderModel.statusCode == 5
+                      color: orderModel.statusCode == 5 ||orderModel.statusCode==3||orderModel.statusCode==4
                           ? MyColors.green
                           : orderModel.statusCode == 6
                               ? MyColors.red
@@ -84,8 +85,9 @@ class BuildRequestBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+
                   MyText(
-                    title: date,
+                    title: dayName,
                     color: MyColors.black,
                     size: 16,
                   ),
@@ -93,7 +95,7 @@ class BuildRequestBody extends StatelessWidget {
                     width: 5,
                   ),
                   MyText(
-                    title: dayName,
+                    title: date,
                     color: MyColors.black,
                     size: 16,
                   ),
@@ -153,7 +155,7 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: " ${orderModel.paidAmount!} ر.س ",
+                                title: " ${orderModel.paidAmount!} ${tr(context,"sr")} ",
                                 color: MyColors.black,
                                 size: 14,
                               ),
@@ -172,7 +174,7 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: " ${orderModel.reserved!} ر.س ",
+                                title: " ${orderModel.reserved!} ${tr(context,"sr")} ",
                                 color: MyColors.black,
                                 size: 14,
                               ),

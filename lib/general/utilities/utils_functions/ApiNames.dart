@@ -37,7 +37,7 @@ class ApiNames {
   static const String regions = "regions";
 
   //Services
-  static const String addServices = "${baseUrl}provider-services";
+  static const String addServices = "provider-services";
 
   //Schedules
   static const String schedule = "schedule";

@@ -5,7 +5,6 @@ class SubscriptionsData {
   final GlobalKey<CustomButtonState> btnSubscribe =
       GlobalKey<CustomButtonState>();
 
-
   // blocs
   final GenericBloc<bool> isSubscribeCubit = GenericBloc(false);
   final GenericBloc<List<SubscriptionModel>> subscriptionsCubit =
@@ -24,14 +23,13 @@ class SubscriptionsData {
     if (context.mounted) {
       int data = await MakeUpArtistRepository(context).subscribe(id);
       if (data != -1) {
-        addTransaction(context, amount,data);
+        addTransaction(context, amount, data);
       }
     }
   }
 }
 
 Future<void> addTransaction(BuildContext context, double amount, int id) async {
-print("Id : "+id.toString());
   PaymentModel paymentModel = PaymentModel(
       status: "success",
       type: "payment",

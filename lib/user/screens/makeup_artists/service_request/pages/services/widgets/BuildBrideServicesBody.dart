@@ -30,7 +30,7 @@ class BuildBrideServicesBody extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               MyText(
-                title: " ${serviceModel.price} ر.س",
+                title: " ${serviceModel.price} ${tr(context,"sr")}",
                 color: MyColors.white,
                 size: 14,
                 fontWeight: FontWeight.bold,

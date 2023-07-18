@@ -108,8 +108,8 @@ class UserHttpMethods {
 
   ////////// orders ///////////
 
-  Future<bool> createOrder(RequestOrderData createOrderData) async {
-    var data = await GenericHttp<String>(context).callApi(
+  Future<int> createOrder(RequestOrderData createOrderData) async {
+    var data = await GenericHttp<int>(context).callApi(
       name: ApiNames.order,
       returnType: ReturnType.type,
       showLoader: true,
@@ -120,8 +120,9 @@ class UserHttpMethods {
     );
     if (data["status"] == true) {
       CustomToast.showSimpleToast(msg: data["message"]);
+      return data['data']['order']['id'];
     }
-    return data["status"];
+    return -1;
   }
 
   Future<List<OrderModel>> getOrders(int page, String type) async {

@@ -19,6 +19,7 @@ import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/widgets/Avai
 import 'package:hwzn_herstation/user/model/providers_details_model/week_day_model.dart';
 import 'package:intl/intl.dart';
 
+import '../../../user/model/providers_details_model/schedule_model.dart';
 import '../../../user/model/schedule_days.dart';
 import 'dialogs/AvailableTimesDialogsImports.dart';
 

@@ -31,7 +31,7 @@ class _Payment extends State<Payment> {
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "goPay"),
-            onTap: () => paymentData.completePay(context, widget.serviceModel,widget.serviceRequestData),
+            onTap: () => paymentData.choosePaymentWay(context, widget.serviceModel,widget.serviceRequestData),
             color: MyColors.primary,
             textColor: MyColors.white,
             btnKey: paymentData.btnCompletePay,

@@ -3,7 +3,9 @@ part of 'PaymentImports.dart';
 class PaymentData {
   GlobalKey<CustomButtonState> btnCompletePay = GlobalKey();
   GlobalKey<CustomButtonState> btnGoPay = GlobalKey();
+  GlobalKey<CustomButtonState> btnChoosePay = GlobalKey();
   final GenericBloc<bool> isDepositOnly = GenericBloc(true);
+  final GenericBloc<bool> isVisa = GenericBloc(true);
 
   void closeDialog(BuildContext context) {
     Navigator.of(context).pop();
@@ -28,8 +30,28 @@ class PaymentData {
     return;
   }
 
+  void choosePaymentWay(BuildContext context, ServiceModel serviceModel,
+      ServiceRequestData serviceRequestData) {
+    showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(25.0),
+          ),
+        ),
+        builder: (context) {
+          return BuildPaymentWayDialog(
+            serviceModel: serviceModel,
+            serviceRequestData: serviceRequestData,
+            buildContext: context,
+            paymentData: this,
+          );
+        });
+    return;
+  }
+
   void goPay(BuildContext context, ServiceModel serviceModel,
-      ServiceRequestData serviceRequestData) async {
+      ServiceRequestData serviceRequestData, double amount) async {
     RequestOrderData createOrderData =
         serviceRequestData.requestOrderCubit.state.data;
     createOrderData.categoryId = serviceModel.categoryId!;
@@ -37,11 +59,30 @@ class PaymentData {
     createOrderData.services = getServicesList(serviceModel);
 
     LoadingDialog.showLoadingDialog();
-    bool result = await UserRepository(context).createOrder(createOrderData);
+    int result = await UserRepository(context).createOrder(createOrderData);
     EasyLoading.dismiss();
 
-    if (result == true && context.mounted) {
-      AutoRouter.of(context).pushAndPopUntil(MainHomeRoute(firstTime: false,index: 2),
+    if (result != -1 && context.mounted) {
+      addTransaction(context, amount, result);
+    }
+  }
+
+  Future<void> addTransaction(
+      BuildContext context, double amount, int id) async {
+    PaymentModel paymentModel = PaymentModel(
+        status: "success",
+        type: "payment",
+        gateway: isVisa.state.data ? "visa" : "pay_apple",
+        onlinePaymentId: "646465434656",
+        transactionableId: id,
+        transactionableType: "Order",
+        amount: amount);
+    if (context.mounted) {
+      LoadingDialog.showLoadingDialog();
+      await MakeUpArtistRepository(context).paymentSubscribe(paymentModel);
+      EasyLoading.dismiss();
+      AutoRouter.of(context).pushAndPopUntil(
+          MainHomeRoute(firstTime: false, index: 2),
           predicate: (o) => false);
     }
   }
@@ -81,11 +122,10 @@ class PaymentData {
       //   CustomToast.showSimpleToast(msg: "يرجي ادخال عدد الزبائن");
       // } else {
 
-
-        services.add({
-          "service_id": serviceModel.id!,
-          "quantity": serviceModel.attachmentsNumber!
-        });
+      services.add({
+        "service_id": serviceModel.id!,
+        "quantity": serviceModel.attachmentsNumber!
+      });
       // }
     }
 

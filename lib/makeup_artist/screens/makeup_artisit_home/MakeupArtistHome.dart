@@ -16,9 +16,11 @@ class MakeupArtistHome extends StatefulWidget {
 class _MakeupArtistHome extends State<MakeupArtistHome> {
   MakeupArtistHomeData makeupArtistHomeData = MakeupArtistHomeData();
 
+
   @override
   void initState() {
     makeupArtistHomeData.initData(context);
+    makeupArtistHomeData.tabsCubit.onUpdateData(widget.index);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (widget.firstTime) {
         makeupArtistHomeData.showDialogEnable(context);

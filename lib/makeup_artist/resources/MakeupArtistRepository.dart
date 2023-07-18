@@ -23,10 +23,15 @@ class MakeUpArtistRepository {
 
   Future<List<SubscriptionModel>> getAllSubscription() =>
       makeUpArtistHttpMethods.getSubscriptions();
+  Future<List<ServiceModel>> getProviderServices() =>
+      makeUpArtistHttpMethods.getProviderServices();
 
   Future<List<MySubscriptionModel>> getMySubscription() =>
       makeUpArtistHttpMethods.getMySubscriptions();
 
   Future<int> subscribe(int id) => makeUpArtistHttpMethods.subscribe(id);
   Future<bool> paymentSubscribe(PaymentModel paymentModel) => makeUpArtistHttpMethods.paymentSubscribe(paymentModel);
+
+  Future<List<ScheduleModel>> getSchedules() =>
+      makeUpArtistHttpMethods.getSchedules();
 }

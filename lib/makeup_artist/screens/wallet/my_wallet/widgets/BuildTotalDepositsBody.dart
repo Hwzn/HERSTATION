@@ -47,7 +47,7 @@ class BuildTotalDepositsBody extends StatelessWidget {
               color: MyColors.primary,
               size: 16,
               fontWeight: FontWeight.bold,
-              title: '${walletDataModel?.retainers ?? 0}', //"1300 ر.س",
+              title: '${walletDataModel?.retainers ?? 0}', //"1300 tr(context,"sr")",
             ),
           ),
         ],

@@ -31,6 +31,8 @@ class MakeupArtistMainData {
   void showUpdateDialog(BuildContext context) {
     showModalBottomSheet(
         context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(25.0),
@@ -77,6 +79,7 @@ class MakeupArtistMainData {
         showImagesGalleryCubit.onUpdateData(true);
         showUpdateImage.onUpdateData(true);
         closeDialog(context);
+        updateImages(context, imageFiles ?? []);
       } else {
         print("No image is selected.");
       }
@@ -89,13 +92,14 @@ class MakeupArtistMainData {
     try {
       XFile? photo = await imgPicker.pickImage(source: ImageSource.camera);
       if (photo != null) {
-        imageXFiles=[];
+        imageXFiles = [];
         imageXFiles!.add(photo);
         imageFiles = [];
         imageFiles!.add(File(photo.path));
         showImagesGalleryCubit.onUpdateData(true);
         showUpdateImage.onUpdateData(true);
         closeDialog(context);
+        updateImages(context, imageFiles ?? []);
       } else {
         print("No image is selected.");
       }
@@ -110,8 +114,7 @@ class MakeupArtistMainData {
     homeProviderBloc.onUpdateData(data);
   }
 
-  void updateImages(
-      BuildContext context,  List<File> list) async {
+  void updateImages(BuildContext context, List<File> list) async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? firebaseToken = await messaging.getToken();
 
@@ -128,16 +131,15 @@ class MakeupArtistMainData {
     }
   }
 
-  void updateGuides(
-      BuildContext context, String guides) async {
+  void updateGuides(BuildContext context, String guides) async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? firebaseToken = await messaging.getToken();
 
     UpdateProfileData updateProfileData = UpdateProfileData(
-        deviceType: Platform.isIOS ? "ios" : "android",
-        deviceId: firebaseToken,
-        instructions: guides,
-  );
+      deviceType: Platform.isIOS ? "ios" : "android",
+      deviceId: firebaseToken,
+      instructions: guides,
+    );
     if (context.mounted) {
       var result =
           await GeneralRepository(context).updateProfile(updateProfileData);

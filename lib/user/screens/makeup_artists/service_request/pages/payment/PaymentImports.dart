@@ -2,6 +2,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:hwzn_herstation/makeup_artist/model/payment_model/payment_model.dart';
+import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryImports.dart';
 import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart';
 import 'package:hwzn_herstation/user/model/request_order_data/service_item_model.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/service_request/pages/payment/widgets/PaymentWidgetsImports.dart';

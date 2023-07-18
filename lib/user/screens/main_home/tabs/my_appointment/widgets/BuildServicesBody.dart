@@ -103,7 +103,7 @@ class BuildServicesBody extends StatelessWidget {
                     color: MyColors.black,
                     size: 13),
                 MyText(
-                    title: " ${items[index].service!.price!} ر.س ",
+                    title: " ${items[index].service!.price!} ${tr(context,"sr")} ",
                     color: MyColors.black,
                     size: 13),
               ],

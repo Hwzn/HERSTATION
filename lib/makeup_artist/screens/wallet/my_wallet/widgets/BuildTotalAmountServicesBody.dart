@@ -49,7 +49,7 @@ class BuildTotalAmountServicesBody extends StatelessWidget {
                 color: MyColors.primary,
                 size: 16,
                 fontWeight: FontWeight.bold,
-                title: '${walletDataModel?.totals ?? 0}' //"3000 ر.س",
+                title: '${walletDataModel?.totals ?? 0}' //"3000 tr(context,"sr")",
                 ),
           ),
         ],

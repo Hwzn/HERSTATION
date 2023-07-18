@@ -215,5 +215,7 @@
   "tuesday": "tuesday",
   "wednesday": "wednesday",
   "thursday": "thursday",
-  "friday": "friday"
+  "friday": "friday",
+  "chooseService": "Please select a service",
+  "sr": "SR"
 }

@@ -24,6 +24,7 @@ class BuildTotalRateBody extends StatelessWidget {
             direction: Axis.horizontal,
             allowHalfRating: true,
             itemSize: 40,
+            ignoreGestures: true,
             itemCount:5,
             itemBuilder: (context, _) => const Icon(
               Icons.star,

@@ -60,7 +60,7 @@ class MakeupArtistHomeData {
   Future<void> determinePosition(
       BuildContext dialogContext, BuildContext context) async {
     bool serviceEnabled;
-    LocationPermission permission;
+    LocationPermission  permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {

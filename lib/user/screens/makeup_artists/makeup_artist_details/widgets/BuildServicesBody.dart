@@ -56,7 +56,7 @@ class BuildServicesBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: " ر.س${listServices[index].price}",
+                                title: "${listServices[index].price} ${tr(context,"sr")}",
                                 color: MyColors.white,
                                 size: 14,
                                 fontWeight: FontWeight.bold,

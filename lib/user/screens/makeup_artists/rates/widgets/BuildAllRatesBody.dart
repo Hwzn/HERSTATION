@@ -54,6 +54,7 @@ class BuildAllRatesBody extends StatelessWidget {
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,
+            ignoreGestures: true,
             itemSize: 18,
             itemCount: 5,
             itemBuilder: (context, _) => const Icon(

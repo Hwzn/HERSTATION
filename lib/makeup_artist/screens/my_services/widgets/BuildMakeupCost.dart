@@ -79,7 +79,7 @@ class BuildMakeupCost extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                                title: "ر.س", color: MyColors.black, size: 13)
+                                title: tr(context,"sr"), color: MyColors.black, size: 13)
                           ],
                         ),
                       ),
@@ -112,7 +112,7 @@ class BuildMakeupCost extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                                title: "ر.س", color: MyColors.black, size: 13)
+                                title: tr(context,"sr"), color: MyColors.black, size: 13)
                           ],
                         ),
                       )
@@ -192,7 +192,7 @@ class BuildMakeupCost extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                                title: "ر.س", color: MyColors.black, size: 13)
+                                title: tr(context,"sr"), color: MyColors.black, size: 13)
                           ],
                         ),
                       ),
@@ -224,7 +224,7 @@ class BuildMakeupCost extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                                title: "ر.س", color: MyColors.black, size: 13)
+                                title: tr(context,"sr"), color: MyColors.black, size: 13)
                           ],
                         ),
                       )
@@ -304,7 +304,7 @@ class BuildMakeupCost extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                                title: "ر.س", color: MyColors.black, size: 13)
+                                title: tr(context,"sr"), color: MyColors.black, size: 13)
                           ],
                         ),
                       ),
@@ -339,7 +339,7 @@ class BuildMakeupCost extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                                title: "ر.س", color: MyColors.black, size: 13)
+                                title: tr(context,"sr"), color: MyColors.black, size: 13)
                           ],
                         ),
                       )

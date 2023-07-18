@@ -41,7 +41,7 @@ class BuildServicesBody extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 MyText(
-                  title: " ${orderModel.total} ر.س ",
+                  title: " ${orderModel.total} ${tr(context,"sr")} ",
                   color: MyColors.black,
                   size: 14,
                   fontWeight: FontWeight.bold,
@@ -65,11 +65,23 @@ class BuildServicesBody extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                MyText(
-                  title: "${orderModel.region!.name} - ${orderModel.city!.name}",
-                  color: MyColors.black,
-                  size: 13,
-                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyText(
+                      title:
+                          "${orderModel.region!.name} - ${orderModel.city!.name}",
+                      color: MyColors.black,
+                      size: 13,
+                    ),
+                    MyText(
+                      title: orderModel.address ?? "",
+                      color: MyColors.black,
+                      size: 13,
+                    ),
+                  ],
+                )
               ],
             )
           ],
@@ -112,7 +124,7 @@ class BuildServicesBody extends StatelessWidget {
                     color: MyColors.black,
                     size: 13),
                 MyText(
-                    title: " ${orderModel.items![index].service!.price!} ر.س ",
+                    title: " ${orderModel.items![index].service!.price!} ${tr(context,"sr")} ",
                     color: MyColors.black,
                     size: 13),
               ],

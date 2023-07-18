@@ -25,6 +25,8 @@ class OrderModel {
   String? paymentStatus;
   @JsonKey(name: 'status')
   String? status;
+  @JsonKey(name: 'address')
+  String? address;
   @JsonKey(name: 'status_code')
   int? statusCode;
   @JsonKey(name: 'retainer')
@@ -60,6 +62,7 @@ class OrderModel {
       this.city,
       this.statusCode,
       this.total,
+      this.address,
       this.selected});
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

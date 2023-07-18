@@ -86,16 +86,18 @@ class MakeUpArtistHttpMethods {
     return data as List<MySubscriptionModel>;
   }
 
-  Future<List<MySubscriptionModel>> getProviderServices() async {
-    var data = await GenericHttp<MySubscriptionModel>(context).callApi(
-      name: ApiNames.addServices,
+  Future<List<ServiceModel>> getProviderServices() async {
+      var user = context.read<UserCubit>().state.model.id;
+
+    var data = await GenericHttp<ServiceModel>(context).callApi(
+      name: "${ApiNames.addServices}/$user",
       returnType: ReturnType.list,
       showLoader: false,
       methodType: MethodType.get,
-      returnDataFun: (data) => data["data"]["provider_subscriptions"],
-      toJsonFunc: (json) => MySubscriptionModel.fromJson(json),
+      returnDataFun: (data) => data["data"]["provider_services"],
+      toJsonFunc: (json) => ServiceModel.fromJson(json),
     );
-    return data as List<MySubscriptionModel>;
+    return data as List<ServiceModel>;
   }
 
   Future<int> subscribe(int id) async {
@@ -127,6 +129,20 @@ class MakeUpArtistHttpMethods {
       CustomToast.showSimpleToast(msg: data["message"]);
     }
     return data["status"];
+  }
+
+  Future<List<ScheduleModel>> getSchedules() async {
+    var user = context.read<UserCubit>().state.model.id;
+
+    var data = await GenericHttp<ScheduleModel>(context).callApi(
+      name: "${ApiNames.schedule}/$user",
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["schedule"],
+      toJsonFunc: (json) => ScheduleModel.fromJson(json),
+    );
+    return data as List<ScheduleModel>;
   }
 
 }

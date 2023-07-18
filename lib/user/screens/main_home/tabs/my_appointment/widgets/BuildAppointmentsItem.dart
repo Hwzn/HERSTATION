@@ -44,7 +44,7 @@ class BuildAppointmentItem extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         // color: MyColors.bgGrey2,
-                        color: orderModel.statusCode == 5
+                        color: orderModel.statusCode == 5||orderModel.statusCode==3||orderModel.statusCode==4
                             ? MyColors.bgGreen
                             : orderModel.statusCode == 6
                                 ? MyColors.bgRed
@@ -54,7 +54,7 @@ class BuildAppointmentItem extends StatelessWidget {
                       child: MyText(
                         alien: TextAlign.center,
                         title: orderModel.status ?? "",
-                        color: orderModel.statusCode == 5
+                        color: orderModel.statusCode == 5 ||orderModel.statusCode==3||orderModel.statusCode==4
                             ? MyColors.green
                             : orderModel.statusCode == 6
                                 ? MyColors.red

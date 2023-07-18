@@ -21,6 +21,30 @@ class PlaceData {
 
   // methods
 
+  void getCorrectData(List<ScheduleModel> schedules) {
+    List<ScheduleModel> newSchedules = [];
+    var now = DateTime.now();
+    var formatterMonth = DateFormat('MM');
+    var formatterDay = DateFormat('dd');
+    int currentMonth = int.parse(formatterMonth.format(now));
+    int currentDay = int.parse(formatterDay.format(now));
+    print("Current : $currentDay");
+    for (int i = 0; i < schedules.length; i++) {
+      if (schedules[i].monthNum! >= currentMonth) {
+        newSchedules.add(schedules[i]);
+        // List<Day>? newDays = [];
+        // for (int j = 0; j < schedules[i].days!.length; j++) {
+        //   if (schedules[i].days![j].num! >= currentDay) {
+        //     newDays.add(schedules[i].days![j]);
+        //     print("Day : ${schedules[i].days![j].num}");
+        //   }
+        // }
+        // schedules[i].days=newDays;
+      }
+    }
+    scheduleCubit.onUpdateData(newSchedules);
+  }
+
   void nextPlace() {
     ServiceRequestData servicesData = ServiceRequestData();
     servicesData.changePage(2);
@@ -56,7 +80,7 @@ class PlaceData {
     List<String> days = [];
     for (int i = 1; i < totalDays + 1; i++) {
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
-      String formatted = formatter.format(DateTime(currentYear, month, i ));
+      String formatted = formatter.format(DateTime(currentYear, month, i));
       print(formatted);
       days.add(DateFormat(DateFormat.WEEKDAY)
           .format(DateTime(currentYear, month, i)));
@@ -72,7 +96,15 @@ class PlaceData {
 
       listWeekDays.add(weekDayModel);
     }
-    checkData(listWeekDays, scheduleModel, index);
+    var formatterMonth = DateFormat('MM');
+    var now2 = DateTime.now();
+
+    int currentMonth = int.parse(formatterMonth.format(now2));
+    bool thisMonth = false;
+    if (currentMonth == month) {
+      thisMonth = true;
+    }
+    checkData(listWeekDays, scheduleModel, index, thisMonth);
   }
 
   String getTextAr(String name) {
@@ -95,23 +127,31 @@ class PlaceData {
     }
   }
 
-  void checkData(
-      List<WeekDayModel> listWeekDay, ScheduleModel schedule, int index) {
+  void checkData(List<WeekDayModel> listWeekDay, ScheduleModel schedule,
+      int index, bool thisMonth) {
     List<WeekDayModel> newListWeekDayModel = [];
     ScheduleModel scheduleModel = schedule;
     List<Day> days = scheduleModel.days!;
+    var now = DateTime.now();
+    var formatterDay = DateFormat('dd');
+
+    int currentDay = int.parse(formatterDay.format(now));
+
     for (int i = 0; i < listWeekDay.length; i++) {
       for (int j = 0; j < days.length; j++) {
-        if (listWeekDay[i].dayNameAr == days[j].name ||
-            listWeekDay[i].dayNameEn == days[j].name) {
-          newListWeekDayModel.add(WeekDayModel(
-              dayName: days[j].name!,
-              date: listWeekDay[i].date!,
-              day: listWeekDay[i].day,
-              to: days[j].to.toString(),
-              from: days[j].from.toString(),
-              listTimes: getHoursBetween(days[j].from!, days[j].to!),
-              selected: days[j].selected ?? false));
+        if ((listWeekDay[i].dayNameAr == days[j].name ||
+                listWeekDay[i].dayNameEn == days[j].name) ) {
+          if (thisMonth && int.parse(listWeekDay[i].day!) < currentDay){
+          } else {
+            newListWeekDayModel.add(WeekDayModel(
+                dayName: days[j].name!,
+                date: listWeekDay[i].date!,
+                day: listWeekDay[i].day,
+                to: days[j].to.toString(),
+                from: days[j].from.toString(),
+                listTimes: getHoursBetween(days[j].from!, days[j].to!),
+                selected: days[j].selected ?? false));
+          }
         }
       }
     }
@@ -167,8 +207,8 @@ class PlaceData {
             for (int x = 0; x < timeModel.length; x++) {
               if (timeModel[x].selected!) {
                 time = timeModel[x].hour.toString();
-                if(time.length ==1){
-                  time="0$time";
+                if (time.length == 1) {
+                  time = "0$time";
                 }
                 break;
               }
@@ -212,8 +252,6 @@ class PlaceData {
       print(formatted);
       days.add(DateFormat(DateFormat.WEEKDAY)
           .format(DateTime(currentYear, month, i)));
-
     }
   }
-
 }

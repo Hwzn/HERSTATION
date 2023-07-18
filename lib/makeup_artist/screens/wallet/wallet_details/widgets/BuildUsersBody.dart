@@ -55,7 +55,7 @@ class BuildUsersBody extends StatelessWidget {
             color: MyColors.black,
             size: 14,
             fontWeight: FontWeight.bold,
-            title: "1300 ر.س",
+            title: "1300${tr(context,"sr")}",
           ),
         ],
       ),

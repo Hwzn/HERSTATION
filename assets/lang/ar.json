@@ -301,7 +301,7 @@
   "addAddress": "ادخلي عنوان مكان التجهيز",
   "area": "المنطقة",
   "skip2": "تخطي",
-  "myRates": "تقيماتي",
+  "myRates": "تقييماتي",
   "galleryImages": "صور الجاليري",
   "addGuides": "أضف إرشادات الحجز التي ترغب باعلامها للعميل",
   "guide": "الإرشادات",
@@ -352,7 +352,7 @@
   "payDeposit": "دفع العربون فقط",
   "payTotalAmount": "دفع كامل المبلغ",
   "cancelled": "تم إلغاء",
-  "otherServices": "خدمات أخري",
+  "otherServices": "خدمات أخرى",
   "herStationTitle": "هيرستشن محطتك للجمال",
   "herStationDesc": "يوضع هنا وصف الميزة والذي تكون عاده من عدة اسطر كهذا المثال",
   "placeUser": "المكان",
@@ -385,7 +385,10 @@
   "tuesday": "الثلاثاء",
   "wednesday": "الاربعاء",
   "thursday": "الخميس",
-  "friday": "الجمعة"
+  "friday": "الجمعة",
+  "chooseService": "يرجي تحديد الخدمة",
+  "sr": "ر.س"
+
 
 }
 

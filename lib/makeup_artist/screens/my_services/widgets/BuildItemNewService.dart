@@ -68,7 +68,7 @@ class BuildItemNewService extends StatelessWidget {
                         },
                       ),
                     ),
-                    MyText(title: "ر.س", color: MyColors.black, size: 13)
+                    MyText(title: tr(context,"sr"), color: MyColors.black, size: 13)
                   ],
                 ),
               ),
@@ -99,7 +99,7 @@ class BuildItemNewService extends StatelessWidget {
                         },
                       ),
                     ),
-                    MyText(title: "ر.س", color: MyColors.black, size: 13)
+                    MyText(title: tr(context,"sr"), color: MyColors.black, size: 13)
                   ],
                 ),
               )

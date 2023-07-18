@@ -33,9 +33,9 @@ class BuildInfoBody extends StatelessWidget {
           ),
           Row(
             children: [
-               ClipOval(
+              ClipOval(
                 child: CachedImage(
-                  url:providerItemModel.image??"",
+                  url: providerItemModel.image ?? "",
                   width: 50,
                   height: 50,
                 ),
@@ -48,7 +48,7 @@ class BuildInfoBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyText(
-                    title: providerItemModel.name??"",
+                    title: providerItemModel.name ?? "",
                     color: MyColors.black,
                     size: 14,
                     fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class BuildInfoBody extends StatelessWidget {
                         direction: Axis.horizontal,
                         itemSize: 18,
                         itemCount: 5,
-
+                        ignoreGestures: true,
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.amber,
@@ -69,7 +69,10 @@ class BuildInfoBody extends StatelessWidget {
                           print(rating);
                         },
                       ),
-                      MyText(title: " (${providerItemModel.rateCount}) ", color: MyColors.grey, size: 14)
+                      MyText(
+                          title: " (${providerItemModel.rateCount}) ",
+                          color: MyColors.grey,
+                          size: 14)
                     ],
                   )
                 ],

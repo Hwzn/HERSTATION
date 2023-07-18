@@ -119,7 +119,7 @@ class BuildCompleteRegisterInputs extends StatelessWidget {
                     onPressed: () => completeRegisterData.passwordCubit
                         .onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility : Icons.visibility_off,
+                      !state.data ? Icons.visibility_off : Icons.visibility,
                       size: 20,
                       color: MyColors.grey,
                     ),
@@ -147,7 +147,7 @@ class BuildCompleteRegisterInputs extends StatelessWidget {
                     onPressed: () => completeRegisterData.passwordCubit
                         .onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility : Icons.visibility_off,
+                      !state.data ? Icons.visibility_off : Icons.visibility,
                       size: 20,
                       color: MyColors.grey,
                     ),

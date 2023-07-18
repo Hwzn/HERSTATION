@@ -14,6 +14,7 @@ class AvailableTimesData {
 
   List<Map<String, dynamic>> scheduleMonthDays = [];
 
+  final GenericBloc<List<ScheduleModel>> scheduleCubit = GenericBloc([]);
   final GenericBloc<List<ScheduleDays>> scheduleDays = GenericBloc([]);
   final GenericBloc<List<DaysModel>> daysCbit = GenericBloc([]);
   final GenericBloc<String> fromCubit = GenericBloc("");
@@ -31,7 +32,7 @@ class AvailableTimesData {
     schedulelist.add(ScheduleDays(
         monthNumber: 1,
         monthName: tr(context, "jan"),
-        selected: true,
+        selected: false,
         monthDays: days(context, 1)));
     schedulelist.add(ScheduleDays(
         monthNumber: 2,
@@ -81,6 +82,69 @@ class AvailableTimesData {
     daysCbit.onUpdateData(schedulelist[0].monthDays!);
   }
 
+  getSchedules(BuildContext context) async {
+    List<ScheduleModel> schudels =
+        await MakeUpArtistHttpMethods(context).getSchedules();
+    scheduleCubit.onUpdateData(schudels);
+
+    if (schudels.isNotEmpty) {
+      fromCubit.onUpdateData("${schudels[0].days![0].from}:00");
+      toCubit.onUpdateData("${schudels[0].days![0].to}:00");
+      selectedFrom = schudels[0].days![0].from;
+      selectedTo = schudels[0].days![0].to;
+    }
+    List<int> listSelectedMonths = [];
+    List<ScheduleDays> scheduleMonth = scheduleDays.state.data;
+    for (int i = 0; i < scheduleMonth.length; i++) {
+      // print("Number : " + scheduleMonth[i].monthNumber.toString());
+      for (int j = 0; j < schudels.length; j++) {
+        if (scheduleMonth[i].monthNumber == schudels[j].monthNum) {
+          listSelectedMonths.add(scheduleMonth[i].monthNumber!);
+          if (scheduleMonth[i].monthNumber == 1) {
+            scheduleMonth[i].selected = true;
+          }
+        }
+      }
+    }
+
+    for (int i = 0; i < listSelectedMonths.length; i++) {
+      List<DaysModel>? totalList =
+          scheduleMonth[listSelectedMonths[i] - 1].monthDays;
+      List<Day>? selectedList = schudels[i].days;
+      for (int x = 0; x < totalList!.length; x++) {
+        for (int j = 0; j < selectedList!.length; j++) {
+          if (totalList[x].number == selectedList[j].num) {
+            totalList[x].selected = true;
+          }
+        }
+        scheduleDays.onUpdateData(scheduleMonth);
+        // for (int i = 0; i < schudels.length; i++) {
+        //   for (int j = 0; j < scheduleMonth.length; j++) {
+        //     if (schudels[i].monthNum! == scheduleMonth[j].monthNumber!) {
+        //       print("Number : " + schudels[i].monthNum!.toString());
+        //       print("Number : " + scheduleMonth[j].monthNumber.toString());
+        //       print("Number : " + scheduleMonth[j].monthDays!.length.toString());
+        //       List<DaysModel>? listTotal = scheduleMonth[j].monthDays;
+        //       // for (int x = 0; x < listTotal!.length; x++) {
+        //       //   for (int y = 0; y < schudels[i].days!.length; j++) {
+        //       //     print("Number : "+listTotal[x].number.toString());
+        //       //     print("Number : "+schudels[i].days![y].num.toString());
+        //       //
+        //       //     if (schudels[i].days![y].num == listTotal[x].number) {
+        //       //      print("Number : "+listTotal[x].number.toString());
+        //       //
+        //       //   }
+        //       // }
+        //       // }
+        //     }
+        //   }
+        // }
+
+        // scheduleDays.onUpdateData(scheduleMonth);
+      }
+    }
+  }
+
   void initTimes() {
     times = [];
     times!.add(TimeModel(time: "01:00", hour: 1));
@@ -128,7 +192,7 @@ class AvailableTimesData {
     return listDays;
   }
 
-  // methods
+// methods
   addAvailableTime(BuildContext context) async {
     Navigator.of(context).pop();
     int monthId = 0;
@@ -144,7 +208,7 @@ class AvailableTimesData {
             "weekday": schedulelist[i].monthDays![j].number,
             "from": selectedFrom,
             "to": selectedTo,
-            "is_active":true,
+            "is_active": true,
           });
         }
       }
