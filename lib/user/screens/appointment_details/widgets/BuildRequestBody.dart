@@ -184,7 +184,7 @@ class BuildRequestBody extends StatelessWidget {
                             height: 15,
                           ),
                           Visibility(
-                            visible: orderModel.retainer !=0 &&orderModel.statusCode !=6,
+                            visible: orderModel.reserved !=0 &&orderModel.statusCode !=6,
                             child: Column(
                               children: [
                                 InkWell(

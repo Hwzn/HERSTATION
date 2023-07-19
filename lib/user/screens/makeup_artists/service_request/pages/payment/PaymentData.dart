@@ -72,7 +72,7 @@ class PaymentData {
     PaymentModel paymentModel = PaymentModel(
         status: "success",
         type: "payment",
-        gateway: isVisa.state.data ? "visa" : "pay_apple",
+        gateway: isVisa.state.data ? "visa" : "apple_pay",
         onlinePaymentId: "646465434656",
         transactionableId: id,
         transactionableType: "Order",
