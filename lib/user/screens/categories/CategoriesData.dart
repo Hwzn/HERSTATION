@@ -2,7 +2,7 @@ part of 'CategoriesImports.dart';
 
 class CategoriesData {
   final PagingController<int, ProvidersModel> pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
 
   final int pageSize = 10;
 
