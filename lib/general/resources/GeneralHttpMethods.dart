@@ -14,7 +14,6 @@ class GeneralHttpMethods {
         returnType: ReturnType.model,
         showLoader: false,
         methodType: MethodType.get,
-        refresh: false,
         returnDataFun: (data) => data["data"],
         toJsonFunc: (json) => SettingModel.fromJson(json));
     if (context.mounted) {
@@ -303,7 +302,7 @@ class GeneralHttpMethods {
     return data["status"];
   }
 
-   Future<bool> addNewServices(AddServicesModel addServicesModel) async {
+  Future<bool> addNewServices(AddServicesModel addServicesModel) async {
     var data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.addServices,
       json: addServicesModel.toJson(),
@@ -319,5 +318,34 @@ class GeneralHttpMethods {
     return data["status"];
   }
 
-  ///
+  Future<bool> changeLanguage(String lang) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: ApiNames.changeLang,
+      returnType: ReturnType.type,
+      showLoader: true,
+      methodType: MethodType.post,
+      json: {"lang": lang},
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
+    );
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
+  }
+
+  Future<bool> removeImage(int id) async {
+    var data = await GenericHttp<bool>(context).callApi(
+      name: "${ApiNames.media}/$id",
+      returnType: ReturnType.type,
+      showLoader: true,
+      returnDataFun: (data) => data,
+      methodType: MethodType.delete,
+    );
+    if (data != null) {
+      return data["status"];
+    } else {
+      return false;
+    }
+  }
 }

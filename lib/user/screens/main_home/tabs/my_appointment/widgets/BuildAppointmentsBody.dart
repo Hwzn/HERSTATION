@@ -25,7 +25,7 @@ class BuildAppointmentBody extends StatelessWidget {
                     noItemsFoundIndicatorBuilder: (context) => Container(
                           margin: const EdgeInsets.only(top: 50),
                           child: MyText(
-                            title: "لا يوجد حجوازات",
+                            title:tr(context, "noReservation"),
                             color: MyColors.black,
                             size: 16,
                             alien: TextAlign.center,

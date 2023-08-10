@@ -48,7 +48,8 @@ class BuildAppointmentsButtons extends StatelessWidget {
             ),
             onTap: () {
               if (orderModel.provider!.contactPhone != null) {
-                HelperMethods.launchWhatsApp(orderModel.provider!.contactPhone);
+                HelperMethods.callPhone(orderModel.provider!.contactPhone ?? "");
+                // HelperMethods.launchWhatsApp(orderModel.provider!.contactPhone);
               }
             },
           ),

@@ -78,16 +78,28 @@ class BuildInfoBody extends StatelessWidget {
                       size: 14,
                       fontWeight: FontWeight.bold,
                     ),
-                    MyText(
-                      title: orderModel.paymentMethod ?? "",
-                      color: MyColors.black,
-                      size: 14,
-                      fontWeight: FontWeight.bold,
+                    SizedBox(
+                      width: 40,
+                      child: orderModel.paymentMethod == "Visa"
+                          ? SvgPicture.asset(
+                              Res.visa,
+                              width: 15,
+                              height: 15,
+                              fit: BoxFit.fill,
+                              color: MyColors.black,
+                            )
+                          : SvgPicture.asset(Res.pay_apple,
+                              color: MyColors.black,
+                              width: 15,
+                              height: 15,
+                              fit: BoxFit.fill),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

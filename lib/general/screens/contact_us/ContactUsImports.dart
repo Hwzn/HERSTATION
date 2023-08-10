@@ -2,6 +2,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hwzn_herstation/general/blocks/setting_cubit/setting_cubit.dart';
 import 'package:hwzn_herstation/general/constants/MyColors.dart';
 import 'package:hwzn_herstation/general/helper/configration/CustomButtonAnimation.dart';
 import 'package:hwzn_herstation/general/packages/localization/Localizations.dart';
@@ -11,6 +13,7 @@ import 'package:hwzn_herstation/general/widgets/AuthScaffold.dart';
 
 import '../../constants/modals/LoadingDialog.dart';
 import '../../helper/storage/Storage.dart';
+import '../../models/setting_model/social_model.dart';
 import '../../resources/GeneralRepoImports.dart';
 import '../../utilities/routers/RouterImports.gr.dart';
 import '../../widgets/DefaultAppBar.dart';

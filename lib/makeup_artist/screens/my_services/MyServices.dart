@@ -26,7 +26,7 @@ class _MyServices extends State<MyServices> {
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.only(top: 25, right: 20, left: 20),
+          padding: const EdgeInsets.only(top: 25, right: 15, left: 15),
           child: BlocBuilder<GenericBloc<List<ServiceModel>>,
                   GenericState<List<ServiceModel>>>(
               bloc: myServicesData.servicesCubit,

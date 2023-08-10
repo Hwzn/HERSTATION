@@ -72,7 +72,7 @@ class BuildHeaderMainHome extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MyText(
-                              title: "أهلا ${mainHomeData.userName}",
+                              title: "${tr(context,"welcome")} ${mainHomeData.userName}",
                               color: MyColors.primary,
                               size: 16,
                               fontWeight: FontWeight.bold,

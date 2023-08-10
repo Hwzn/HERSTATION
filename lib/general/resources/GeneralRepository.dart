@@ -62,4 +62,10 @@ class GeneralRepository {
 
   Future<bool> addNewService(AddServicesModel model) =>
       _generalHttpMethods.addNewServices(model);
+
+  Future<bool> changeLanguage(String language) =>
+      _generalHttpMethods.changeLanguage(language);
+
+  Future<bool> removeImage(int id) =>
+      _generalHttpMethods.removeImage(id);
 }

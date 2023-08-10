@@ -5,6 +5,7 @@ class AppointmentDetailsData {
   final GenericBloc<bool> payReceiptCubit = GenericBloc(true);
   final GenericBloc<bool> payVisaCubit = GenericBloc(false);
   final GenericBloc<bool> payAppleCubit = GenericBloc(false);
+  final GenericBloc<double> rateCubit = GenericBloc(0);
 
   GlobalKey<CustomButtonState> btnKey = GlobalKey();
   GlobalKey<CustomButtonState> btnCancelKey = GlobalKey();
@@ -92,7 +93,7 @@ class AppointmentDetailsData {
 
   void saveChanges(BuildContext context, int providerID, double rate) async {
     RateData rateData = RateData(
-        providerId: providerID, comment: rateComment.text, rate: rate.toInt());
+        providerId: providerID, comment: rateComment.text, rate: rateCubit.state.data.toInt());
     LoadingDialog.showLoadingDialog();
     bool result = await UserRepository(context).rateOrder(rateData);
     EasyLoading.dismiss();

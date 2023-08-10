@@ -17,7 +17,7 @@ class BuildRateBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyText(
-                title: tr(context, "rateMakeupArtist"),
+                title: tr(context, "rateMakeup"),
                 color: MyColors.primary,
                 size: 16,
                 fontWeight: FontWeight.bold,

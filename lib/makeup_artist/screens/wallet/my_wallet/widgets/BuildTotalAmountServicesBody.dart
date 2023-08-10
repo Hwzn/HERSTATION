@@ -20,7 +20,7 @@ class BuildTotalAmountServicesBody extends StatelessWidget {
               MyText(
                 title: tr(context, "totalServices"),
                 color: MyColors.primary,
-                size: 12,
+                size: 11,
                 fontWeight: FontWeight.bold,
               ),
               InkWell(
@@ -29,7 +29,7 @@ class BuildTotalAmountServicesBody extends StatelessWidget {
                     child: MyText(
                       title: tr(context, "allDetails"),
                       color: MyColors.primary,
-                      size: 12,
+                      size: 11,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

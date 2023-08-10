@@ -78,7 +78,7 @@ class MakeupArtistMainData {
         }
         showImagesGalleryCubit.onUpdateData(true);
         showUpdateImage.onUpdateData(true);
-        closeDialog(context);
+        // closeDialog(context);
         updateImages(context, imageFiles ?? []);
       } else {
         print("No image is selected.");
@@ -98,7 +98,7 @@ class MakeupArtistMainData {
         imageFiles!.add(File(photo.path));
         showImagesGalleryCubit.onUpdateData(true);
         showUpdateImage.onUpdateData(true);
-        closeDialog(context);
+        // closeDialog(context);
         updateImages(context, imageFiles ?? []);
       } else {
         print("No image is selected.");
@@ -128,6 +128,14 @@ class MakeupArtistMainData {
       if (result != null && context.mounted) {
         await Utils.manipulateChangeData(context, result);
       }
+    }
+  }
+
+  void removeImage(BuildContext context, int id) async {
+    var change = await GeneralRepository(context).removeImage(id);
+    if (change == true && context.mounted) {
+      AutoRouter.of(context)
+          .push(MakeupArtistHomeRoute(firstTime: false, index: 0));
     }
   }
 

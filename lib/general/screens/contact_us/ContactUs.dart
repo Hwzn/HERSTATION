@@ -11,6 +11,12 @@ class _ContactUsState extends State<ContactUs> {
   final ContactUsData contactUsData = ContactUsData();
 
   @override
+  void initState() {
+    contactUsData.getSocials(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(

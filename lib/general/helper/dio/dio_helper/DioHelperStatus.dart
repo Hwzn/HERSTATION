@@ -281,6 +281,7 @@ class DioHelper {
   _getHeader() async {
     String? token = GlobalState.instance.get("token");
     String lang = context.read<LangCubit>().state.locale.languageCode;
+    print("Langx : ${lang}");
     return {
       'Accept': 'application/json',
       'Accept-Language': lang,

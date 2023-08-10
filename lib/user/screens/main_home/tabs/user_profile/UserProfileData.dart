@@ -45,7 +45,8 @@ class UserProfileData {
     infoList.add(GeneralModel(title: "myServices", img: Res.my_services));
     infoList.add(GeneralModel(title: "availableTime", img: Res.time));
     infoList.add(GeneralModel(title: "subscriptions", img: Res.subscriptions));
-    infoList.add(GeneralModel(title: "mySubscriptions", img: Res.subscriptions));
+    infoList
+        .add(GeneralModel(title: "mySubscriptions", img: Res.subscriptions));
   }
 
   void moveToPage(String title, BuildContext context) {
@@ -67,7 +68,7 @@ class UserProfileData {
       AutoRouter.of(context).push(const MyServicesRoute());
     } else if (title == tr(context, "myWallet")) {
       AutoRouter.of(context).push(const MyWalletRoute());
-    }else if (title == tr(context, "mySubscriptions")) {
+    } else if (title == tr(context, "mySubscriptions")) {
       AutoRouter.of(context).push(const MySubscriptionsRoute());
     }
   }
@@ -156,14 +157,27 @@ class UserProfileData {
     return;
   }
 
-  void changeLanguage(BuildContext context, String lang) {
-    Utils.changeLanguage(lang, context);
-    if (lang == "ar") {
-      isArabicLangCubit.onUpdateData(true);
-    } else {
-      isArabicLangCubit.onUpdateData(false);
+  void changeLanguage(BuildContext context, String lang) async {
+    var change = await GeneralRepository(context).changeLanguage(lang);
+    if (change == true && context.mounted) {
+      Utils.changeLanguage(lang, context);
+      if (lang == "ar") {
+        isArabicLangCubit.onUpdateData(true);
+      } else {
+        isArabicLangCubit.onUpdateData(false);
+      }
+      LoadingDialog.showLoadingDialog();
+      var result = await GeneralRepository(context).getAppSetting();
+      EasyLoading.dismiss();
+      if (context.mounted) {
+        print("Enter");
+        context.read<SettingCubit>().onUpdateSettingData(result);
+        print("Enter");
+        await Storage.saveSettings(result);
+        print("Enter");
+      }
+      Navigator.of(context).pop();
     }
-    Navigator.of(context).pop();
   }
 
   void getLang() async {

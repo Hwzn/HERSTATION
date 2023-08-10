@@ -76,6 +76,8 @@ class BuildRateMakeupArtistDialog extends StatelessWidget {
                     ),
                     onRatingUpdate: (rating) {
                       rate = rating;
+
+                      appointmentDetailsData.rateCubit.onUpdateData(rating);
                     },
                   ),
                 ),

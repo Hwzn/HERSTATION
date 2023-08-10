@@ -387,7 +387,11 @@
   "thursday": "الخميس",
   "friday": "الجمعة",
   "chooseService": "يرجي تحديد الخدمة",
-  "sr": "ر.س"
+  "sr": "ر.س",
+  "welcome": "أهلا",
+  "noReservation": "لا يوجد حجوزات",
+  "rateMakeup": " تقييم خبيرة التجميل "
+
 
 
 }

@@ -163,47 +163,68 @@ class BuildUploadImages extends StatelessWidget {
               return Column(
                 children: [
                   state.data
-                      ? Container(
-                          alignment: AlignmentDirectional.topStart,
-                          child: Wrap(
-                            children:
-                                makeupArtistMainData.imageXFiles!.map((image) {
-                              return Container(
-                                margin: const EdgeInsets.only(
-                                    top: 10, left: 5, right: 5),
-                                height: 80,
-                                width: 80,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Image.file(
-                                    File(image.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        )
+                      ?
+                      // ? Container(
+                      //     alignment: AlignmentDirectional.topStart,
+                      //     child: Wrap(
+                      //       children:
+                      //           makeupArtistMainData.imageXFiles!.map((image) {
+                      //         return Container(
+                      //           margin: const EdgeInsets.only(
+                      //               top: 10, left: 5, right: 5),
+                      //           height: 80,
+                      //           width: 80,
+                      //           child: ClipRRect(
+                      //             borderRadius: BorderRadius.circular(15.0),
+                      //             child: Image.file(
+                      //               File(image.path),
+                      //               fit: BoxFit.fill,
+                      //             ),
+                      //           ),
+                      //         );
+                      //       }).toList(),
+                      //     ),
+                      //   )
+
+                      Container()
                       : providerModel!.gallery!.isNotEmpty
-                          ?Container(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Wrap(
-                              children: providerModel!.gallery!.map((image) {
-                                return Container(
-                                  margin: const EdgeInsets.only(
-                                      top: 10, left: 5, right: 5),
-                                  height: 80,
-                                  width: 80,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    child: CachedImage(
-                                      url: image.image ?? "",
-                                      fit: BoxFit.fill,
+                          ? Container(
+                              alignment: AlignmentDirectional.topStart,
+                              child: Wrap(
+                                children: providerModel!.gallery!.map((image) {
+                                  return Container(
+                                    margin: const EdgeInsets.only(
+                                        top: 10, left: 5, right: 5),
+                                    height: 80,
+                                    width: 80,
+                                    child: Stack(
+                                      alignment: AlignmentDirectional.topEnd,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          child: CachedImage(
+                                            url: image.image ?? "",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(5),
+                                          child: InkWell(
+                                            child: Icon(
+                                              Icons.cancel,
+                                              size: 25,
+                                              color: MyColors.grey,
+                                            ),
+                                            onTap: ()=>makeupArtistMainData.removeImage(context, image.id!),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                );
-                              }).toList(),
-                            ),)
+                                  );
+                                }).toList(),
+                              ),
+                            )
                           : Container(),
                   InkWell(
                     child: Container(

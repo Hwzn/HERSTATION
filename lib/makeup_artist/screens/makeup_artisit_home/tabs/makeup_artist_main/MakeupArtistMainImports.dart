@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,7 @@ import '../../../../../general/models/user_model/update_profile_data.dart';
 import '../../../../../general/models/user_model/user_model.dart';
 import '../../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../../general/resources/GeneralRepoImports.dart';
+import '../../../../../general/utilities/routers/RouterImports.gr.dart';
 import '../../../../../general/utilities/utils_functions/UtilsImports.dart';
 
 part 'MakeupArtistMain.dart';

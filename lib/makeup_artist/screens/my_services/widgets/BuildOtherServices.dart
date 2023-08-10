@@ -7,7 +7,7 @@ class BuildOtherServices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = (MediaQuery.of(context).size.width / 2) - 30;
+    double width = (MediaQuery.of(context).size.width / 2) - 20;
     return Container(
         child: Column(
       children: [

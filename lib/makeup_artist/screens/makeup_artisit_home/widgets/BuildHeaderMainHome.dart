@@ -15,7 +15,7 @@ class BuildHeaderMainHome extends StatelessWidget {
         builder: (context, state) {
           if (state.data == 1) {
             return DefaultAppBar(
-              title: "حجوزاتي",
+              title: tr(context,"myAppointment"),
               haveLeading: false,
               actions: [
                 Container(
@@ -69,7 +69,7 @@ class BuildHeaderMainHome extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MyText(
-                              title: "أهلا ${makeupArtistHomeData.userName}",
+                              title: "${tr(context,"welcome")}  ${makeupArtistHomeData.userName}",
                               color: MyColors.primary,
                               size: 16,
                               fontWeight: FontWeight.bold,

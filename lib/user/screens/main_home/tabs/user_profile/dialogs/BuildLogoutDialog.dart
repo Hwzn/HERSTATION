@@ -56,11 +56,14 @@ class BuildLogoutDialog extends StatelessWidget {
               Container(
                 width: widthCancel,
                 alignment: AlignmentDirectional.center,
-                child: MyText(
-                  title: tr(context, "cancel"),
-                  color: MyColors.grey,
-                  size: 14,
-                  fontWeight: FontWeight.bold,
+                child: InkWell(
+                  child: MyText(
+                    title: tr(context, "cancel"),
+                    color: MyColors.grey,
+                    size: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onTap: ()=>Navigator.of(context).pop(),
                 ),
               ),
             ],

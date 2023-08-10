@@ -1,6 +1,6 @@
 class ApiNames {
   // base
-  static const String baseUrl = "https://admin.herstation.hwzn.sa/api/";
+  static const String baseUrl = "https://herstation.hwzn.sa/api/";
 
   static const String branch = "1";
 
@@ -19,11 +19,13 @@ class ApiNames {
   static const String resetPassword = "reset-password";
   static const String checkCode = "check-code";
   static const String updateAddress = "update-address";
+  static const String changeLang = "change-lang";
 
   static const String completeAccount = "complete-profile";
   static const String contactUs = "contact";
   static const String changePassword = "update-password";
   static const String updateProfile = "update-profile";
+  static const String media = "media";
 
   // home
   static const String home = "home";
