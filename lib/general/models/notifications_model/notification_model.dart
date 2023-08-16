@@ -14,8 +14,7 @@ class NotificationModel {
   String? body;
   // @JsonKey(name: 'data')
   // Data? data;
-  @JsonKey(name: 'status')
-  String? status;
+
   @JsonKey(name: 'time')
   String? time;
 
@@ -25,7 +24,6 @@ class NotificationModel {
       this.title,
       this.body,
       // this.data,
-      this.status,
       this.time});
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>

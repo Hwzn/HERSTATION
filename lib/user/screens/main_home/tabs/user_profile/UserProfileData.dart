@@ -123,7 +123,7 @@ class UserProfileData {
       Storage.clearSavedData();
       context.read<AuthCubit>().onUpdateAuth(false);
       context.read<UserCubit>().onUpdateUserData(UserModel());
-      CustomToast.showSimpleToast(msg: "تم تسجيل الخروج بنجاح");
+      CustomToast.showSimpleToast(msg:tr(context,"logoutSuccess"));
       // Phoenix.rebirth(context);
       AutoRouter.of(context).push(const LoginRoute());
     }

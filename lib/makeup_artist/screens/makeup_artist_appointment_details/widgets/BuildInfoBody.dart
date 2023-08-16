@@ -80,7 +80,7 @@ class BuildInfoBody extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 40,
-                      child: orderModel.paymentMethod == "Visa"
+                      child: orderModel.paymentMethod == "Visa"||orderModel.paymentMethod=="بطاقة إئتمانية"
                           ? SvgPicture.asset(
                               Res.visa,
                               width: 15,

@@ -143,7 +143,6 @@ class GlobalNotification {
   }
 
   static Future flutterNotificationClick(String? payload) async {
-    print("tttttttttt $payload");
 
     int type = context.read<UserCubit>().state.model.userType!.id!;
     if (type == 2) {

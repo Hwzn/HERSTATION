@@ -53,12 +53,12 @@ class MyServicesData {
     int x = 0;
     for (int i = 0; i < services.length; i++) {
       ServiceModel serviceModel = services[i];
-      if (serviceModel.name == "ميكب عروس") {
+      if (serviceModel.name == "ميكب عروس"||serviceModel.name == "Bridal Makeup") {
         brideMakeupCubit.onUpdateData(true);
         brideMakeUpCostController.text = serviceModel.price.toString();
         brideMakeUpDepositController.text = serviceModel.retainer.toString();
       }
-      if (serviceModel.name == "ميكب مرافقات") {
+      if (serviceModel.name == "ميكب مرافقات"||serviceModel.name=="Companions Makeup") {
         bridemadesCubit.onUpdateData(true);
         brideMatesCostController.text = serviceModel.price.toString();
         brideMatesDepositController.text = serviceModel.retainer.toString();

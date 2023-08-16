@@ -8,7 +8,6 @@ class ApiNames {
   static const String setting = "settings";
   static const String userTypes = "user-types";
 
-
   // auth
   static const String login = "login";
   static const String logOut = "logout";
@@ -53,9 +52,3 @@ class ApiNames {
   static const String subscribe = 'subscribe';
   static const String transaction = 'transaction';
 }
-
-  
-
-
-
-

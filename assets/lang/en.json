@@ -221,5 +221,6 @@
   "rateMakeup": "Makeup artist reviews",
   "noReservation": "No reservations",
   "total": "Total amount",
-  "payMethod": "Payment way"
+  "payMethod": "Payment way",
+  "logoutSuccess": "Logout successfully"
 }
