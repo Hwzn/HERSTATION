@@ -66,7 +66,7 @@ class ProviderModel {
   String? instructions;
   // List<dynamic>? schedules;
   List<RateModel>? rates;
-  int? rate;
+  num? rate;
   int? rateCount;
   int? ratesAvg;
   int? isApproved;

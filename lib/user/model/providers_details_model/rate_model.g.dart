@@ -10,7 +10,7 @@ RateModel _$RateModelFromJson(Map<String, dynamic> json) => RateModel(
       id: json['id'] as int?,
       author: json['author'] as String?,
       authorImage: json['author_image'] as String?,
-      rate: json['rate'] as int?,
+      rate: json['rate'] as num?,
       comment: json['comment'] as String?,
     );
 

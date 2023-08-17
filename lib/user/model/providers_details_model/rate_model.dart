@@ -11,7 +11,7 @@ class RateModel {
   @JsonKey(name: 'author_image')
   String? authorImage;
   @JsonKey(name: 'rate')
-  int? rate;
+  num? rate;
   @JsonKey(name: 'comment')
   String? comment;
 

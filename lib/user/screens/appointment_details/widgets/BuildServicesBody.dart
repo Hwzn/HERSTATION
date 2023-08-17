@@ -24,7 +24,8 @@ class BuildServicesBody extends StatelessWidget {
                 itemCount: items.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildServicesItem(context, index);
+                  if(items[index].service!=null){
+                  return buildServicesItem(context, index);}else{return Container();}
                 },
               ),
             ),

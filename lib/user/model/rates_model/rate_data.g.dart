@@ -7,7 +7,7 @@ part of 'rate_data.dart';
 // **************************************************************************
 
 RateData _$RateDataFromJson(Map<String, dynamic> json) => RateData(
-      rate: json['rate'] as int?,
+      rate: json['rate'] as num?,
       comment: json['comment'] as String?,
       providerId: json['provider_id'] as int?,
     );

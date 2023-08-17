@@ -5,7 +5,7 @@ part 'rate_data.g.dart';
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
 class RateData {
   @JsonKey(name: 'rate')
-  int? rate;
+  num? rate;
   @JsonKey(name: 'comment')
   String? comment;
   @JsonKey(name: 'provider_id')
