@@ -2,7 +2,8 @@ part of 'RatesImports.dart';
 
 class Rates extends StatefulWidget {
   final int providerID;
-  const Rates({Key? key,required this.providerID}) : super(key: key);
+
+  const Rates({Key? key, required this.providerID}) : super(key: key);
 
   @override
   State<Rates> createState() => _Rates();
@@ -11,13 +12,11 @@ class Rates extends StatefulWidget {
 class _Rates extends State<Rates> {
   RatesData ratesData = RatesData();
 
-
   @override
   void initState() {
-    ratesData.fetchData(context,widget.providerID, 1);
-    ratesData.pagingController
-        .addPageRequestListener((pageKey) {
-      ratesData.fetchData(context,widget.providerID, pageKey);
+    ratesData.fetchData(context, widget.providerID, 1);
+    ratesData.pagingController.addPageRequestListener((pageKey) {
+      ratesData.fetchData(context, widget.providerID, pageKey);
     });
     super.initState();
   }
@@ -32,33 +31,32 @@ class _Rates extends State<Rates> {
       ),
       body: Container(
         margin: const EdgeInsets.all(10),
-        child: SingleChildScrollView(
-          child: BlocBuilder<GenericBloc<RatesModel?>,
-                  GenericState<RatesModel?>>(
-              bloc: ratesData.ratesCubit,
-              builder: (context, state) {
-                if (state is GenericUpdateState) {
-                  return Column(
-                    children: [
-                      BuildTotalRateBody(
+        child: BlocBuilder<GenericBloc<RatesModel?>, GenericState<RatesModel?>>(
+            bloc: ratesData.ratesCubit,
+            builder: (context, state) {
+              if (state is GenericUpdateState) {
+                return Column(
+                  children: [
+                    BuildTotalRateBody(
+                      ratesData: ratesData,
+                      ratesModel: state.data!,
+                    ),
+                    Container(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      height: MediaQuery.of(context).size.height-250,
+                      child: BuildAllRatesBody(
                         ratesData: ratesData,
-                        ratesModel: state.data!,
-
                       ),
-                      BuildAllRatesBody(
-                        ratesData: ratesData,
-                      ),
-                    ],
-                  );
-                }else{
-                  return Container(
-                    margin: const EdgeInsets.only(top: 80),
-                    child: LoadingDialog.showLoadingView(),
-                  );
-
-                }
-              }),
-        ),
+                    ),
+                  ],
+                );
+              } else {
+                return Container(
+                  margin: const EdgeInsets.only(top: 80),
+                  child: LoadingDialog.showLoadingView(),
+                );
+              }
+            }),
       ),
     );
   }

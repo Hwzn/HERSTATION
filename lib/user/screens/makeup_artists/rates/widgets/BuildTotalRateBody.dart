@@ -13,7 +13,7 @@ class BuildTotalRateBody extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15), color: MyColors.bgPrimary),
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      margin: const EdgeInsets.fromLTRB(5, 10, 5, 10),
       padding: const EdgeInsets.all(15),
       child: Column(
         children: [

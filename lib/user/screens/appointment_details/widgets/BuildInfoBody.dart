@@ -60,6 +60,7 @@ class BuildInfoBody extends StatelessWidget {
                         direction: Axis.horizontal,
                         itemSize: 18,
                         itemCount: 5,
+                        allowHalfRating: true,
                         ignoreGestures: true,
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,

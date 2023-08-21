@@ -11,7 +11,7 @@ class BuildAllRatesBody extends StatelessWidget {
       context: context,
       removeTop: true,
       child: PagedListView<int, RateModel>(
-        padding: const EdgeInsets.only(top: 8, bottom: 150, right: 5, left: 5),
+        padding: const EdgeInsets.only(top: 8, bottom: 10, right: 5, left: 5),
         pagingController: ratesData.pagingController,
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(
