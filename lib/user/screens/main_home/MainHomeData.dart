@@ -90,11 +90,13 @@ class MainHomeData {
     Position position = await Geolocator.getCurrentPosition();
     double longitude = position.longitude;
     double latitude = position.latitude;
-    final coordinates = c1.Coordinates(latitude, longitude);
-    var addresses =
-        await c1.Geocoder.local.findAddressesFromCoordinates(coordinates);
-    String address = addresses.first.addressLine ?? "";
+    // final coordinates = c1.Coordinates(latitude, longitude);
+    // var addresses =
+    //     await c1.Geocoder.local.findAddressesFromCoordinates(coordinates);
+    // String address = addresses.first.addressLine ?? "";
+    LatLng latLng=LatLng(longitude,latitude);
 
+    String address=await MapMethods.getAddress(latLng,context);
     context.read<LocationCubit>().onLocationUpdated(
         LocationModel(lat: latitude ?? 0, lng: longitude ?? 0));
     updateAddress(context, dialogContext, latitude.toString(),
