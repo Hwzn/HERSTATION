@@ -81,7 +81,7 @@ dependencies:
   bloc:
   photo_view:
   intl:
-  flutter_swiper:
+#  flutter_swiper:
   flutter_swiper_null_safety: ^1.0.2
   share:
   material_design_icons_flutter:
@@ -114,8 +114,13 @@ dependencies:
   map: ^1.0.0
   flutter_geocoder: ^0.2.2-nullsafety
   quiver: ^3.2.1
-  time_picker_widget: ^1.0.0+10
 
+
+
+dependency_overrides:
+  package_info_plus: ^4.0.1
+  wakelock_windows: any
+  win32: any
 
 
 

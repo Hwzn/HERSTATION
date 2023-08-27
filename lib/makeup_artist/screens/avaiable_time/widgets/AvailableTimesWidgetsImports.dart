@@ -14,7 +14,6 @@ import 'package:hwzn_herstation/general/packages/localization/Localizations.dart
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/avaiable_time/AvailableTimesImports.dart';
 import 'package:hwzn_herstation/general/helper/validator/Validator.dart';
-import 'package:time_picker_widget/time_picker_widget.dart';
 
 import '../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../general/packages/input_fields/GenericTextField.dart';
