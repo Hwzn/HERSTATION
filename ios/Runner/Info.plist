@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Hwzn Base</string>
+	<string>Her Station</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +27,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Futira would like to save key from the app to your gallery</string>
+	<string>This app would like to save key from the app to your gallery</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app requires calender access to function properly</string>
 	<key>NSCameraUsageDescription</key>
@@ -47,7 +47,7 @@
 	<key>NSMotionUsageDescription</key>
 	<string>This app needs to be able to access your motion use</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Futira would like to save key from the app to your gallery</string>
+	<string>This app would like to save key from the app to your gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to photo library to add user photo and service images.</string>
 	<key>NSRemindersUsageDescription</key>
