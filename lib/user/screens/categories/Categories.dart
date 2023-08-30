@@ -17,9 +17,10 @@ class _Categories extends State<Categories> {
   @override
   void initState() {
     String categoryId = widget.categoryID ?? "";
-    // categoriesData.getProviders(context,categoryId);
 
     // categoriesData.getProviders(context, categoryId, 1);
+
+
     categoriesData.pagingController.addPageRequestListener((pageKey) {
       categoriesData.getProviders(context, categoryId, pageKey);
     });

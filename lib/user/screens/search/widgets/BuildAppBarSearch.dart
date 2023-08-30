@@ -60,14 +60,9 @@ class BuildAppBarSearch extends StatelessWidget {
           // label: tr(context, "searchAbout"),
           fillColor: MyColors.white,
           hint: tr(context, "searchAbout"),
-          onChange: (value) {
-            print("object");
-            searchData.getProviders(context, searchData.textSearch.text, "", 1);
-            searchData.pagingController.addPageRequestListener((pageKey) {
-              print("Page : "+pageKey.toString());
-              searchData.getProviders(
-                  context, searchData.textSearch.text, "", pageKey);
-            });
+          onChange: (value) async{
+           await searchData.getProviders(context, searchData.textSearch.text, "", 1);
+           searchData.showData.onUpdateData(true);
           },
           prefixIcon: Container(
             padding: const EdgeInsets.all(15),

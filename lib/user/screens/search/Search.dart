@@ -8,12 +8,13 @@ class Search extends StatefulWidget {
 }
 
 class _Search extends State<Search> {
-
   SearchData searchData = SearchData();
 
   @override
   void initState() {
-    // TODO: implement initState
+    searchData.pagingController.addPageRequestListener((pageKey) {
+      searchData.getProviders(context, searchData.textSearch.text, "", pageKey);
+    });
     super.initState();
   }
 
@@ -23,8 +24,20 @@ class _Search extends State<Search> {
       backgroundColor: MyColors.greyWhite,
       body: Column(
         children: [
-          BuildAppBarSearch(searchData: searchData,),
-          Expanded(child: BuildSearchResult(searchData: searchData,))
+          BuildAppBarSearch(
+            searchData: searchData,
+          ),
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+              bloc: searchData.showData,
+              builder: (context, state) {
+                return Visibility(
+                  visible: state.data,
+                  child: Expanded(
+                      child: BuildSearchResult(
+                    searchData: searchData,
+                  )),
+                );
+              }),
         ],
       ),
     );

@@ -3,10 +3,11 @@ part of 'SearchImport.dart';
 class SearchData {
   final GlobalKey<CustomButtonState> btnFilter = GlobalKey<CustomButtonState>();
   final GenericBloc<List<ProvidersModel>> providersCubit = GenericBloc([]);
+  final GenericBloc<bool> showData = GenericBloc(false);
   final TextEditingController textSearch = TextEditingController();
 
   final PagingController<int, ProvidersModel> pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
 
   final int pageSize = 10;
 
@@ -48,9 +49,7 @@ class SearchData {
     }
 
     getProviders(context, textSearch.text, order, 1);
-    pagingController.addPageRequestListener((pageKey) {
-      getProviders(context, textSearch.text, order, pageKey);
-    });
+
   }
 
   Future<void> getProviders(
@@ -65,7 +64,7 @@ class SearchData {
       pagingController.itemList = [];
     }
     if (isLastPage) {
-      pagingController.appendLastPage(providers);
+      pagingController.appendLastPage(providers.toSet().toList());
     } else {
       final nextPageKey = page + 1;
       pagingController.appendPage(providers, nextPageKey);
