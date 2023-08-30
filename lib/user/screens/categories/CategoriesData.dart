@@ -2,7 +2,7 @@ part of 'CategoriesImports.dart';
 
 class CategoriesData {
   final PagingController<int, ProvidersModel> pagingController =
-      PagingController(firstPageKey: 1);
+      PagingController(firstPageKey: 0);
 
   final int pageSize = 10;
 
@@ -10,8 +10,10 @@ class CategoriesData {
       BuildContext context, String categoryID, int page) async {
     ProviderData providerData =
         ProviderData(categoryId: categoryID, page: page);
-    List<ProvidersModel> providers = await UserRepository(context).getProviders(providerData);
+    List<ProvidersModel> providers =
+        await UserRepository(context).getProviders(providerData);
     final isLastPage = providers.length < pageSize;
+    print("isLast : " + isLastPage.toString());
     if (page == 1) {
       pagingController.itemList = [];
     }

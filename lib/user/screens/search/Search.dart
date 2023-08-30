@@ -8,7 +8,14 @@ class Search extends StatefulWidget {
 }
 
 class _Search extends State<Search> {
+
   SearchData searchData = SearchData();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

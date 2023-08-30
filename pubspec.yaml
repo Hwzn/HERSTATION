@@ -96,7 +96,7 @@ dependencies:
   flutter_rating_bar:
   flutter_expanded_tile:
   syncfusion_flutter_sliders:
-  infinite_scroll_pagination:
+  infinite_scroll_pagination: 3.2.0
   shimmer:
   webview_flutter:
   modal_bottom_sheet:

@@ -23,18 +23,20 @@ class ServiceRequest extends StatefulWidget {
 class _ServiceRequest extends State<ServiceRequest> {
   int type;
   ServiceRequestData serviceRequestData = ServiceRequestData();
+  PlaceData placeData = PlaceData();
 
   _ServiceRequest(this.type);
 
   @override
   void initState() {
     serviceRequestData.initData(
-        type, widget.serviceModel, widget.bridemadesModel,widget.schedules);
+        type, widget.serviceModel, widget.bridemadesModel, widget.schedules);
 
-
-    RequestOrderData requestOrderData=serviceRequestData.requestOrderCubit.state.data;
-    requestOrderData.providerId=widget.providerID;
+    RequestOrderData requestOrderData =
+        serviceRequestData.requestOrderCubit.state.data;
+    requestOrderData.providerId = widget.providerID;
     serviceRequestData.requestOrderCubit.onUpdateData(requestOrderData);
+
     super.initState();
   }
 
@@ -44,11 +46,14 @@ class _ServiceRequest extends State<ServiceRequest> {
       appBar: DefaultAppBar(
         title: tr(context, "requestService"),
         haveLeading: true,
+        fun: () {
+          serviceRequestData.requestOrderCubit
+              .onUpdateToInitState(RequestOrderData());
+          AutoRouter.of(context).pop();
+        },
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
               BuildHeaderTaps(serviceRequestData: serviceRequestData),

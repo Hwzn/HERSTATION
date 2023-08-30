@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart';
+import 'package:hwzn_herstation/user/model/providers_details_model/week_day_model.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/service_request/pages/payment/PaymentImports.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/service_request/pages/place/PlaceImports.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/service_request/pages/services/ServicesImports.dart';

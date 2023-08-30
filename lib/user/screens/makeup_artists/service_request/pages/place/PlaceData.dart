@@ -71,6 +71,14 @@ class PlaceData {
     return listCities;
   }
 
+  void unSelect() {
+    List<ScheduleModel> selectedList = scheduleCubit.state.data;
+    for (int i = 0; i < selectedList.length; i++) {
+      selectedList[i].selected = false;
+    }
+    scheduleCubit.onUpdateData(selectedList);
+  }
+
   void getDays(int month, ScheduleModel scheduleModel, int index) {
     List<WeekDayModel> listWeekDays = [];
     int currentYear = DateTime.now().year;
@@ -140,8 +148,8 @@ class PlaceData {
     for (int i = 0; i < listWeekDay.length; i++) {
       for (int j = 0; j < days.length; j++) {
         if ((listWeekDay[i].dayNameAr == days[j].name ||
-                listWeekDay[i].dayNameEn == days[j].name) ) {
-          if (thisMonth && int.parse(listWeekDay[i].day!) < currentDay){
+            listWeekDay[i].dayNameEn == days[j].name)) {
+          if (thisMonth && int.parse(listWeekDay[i].day!) < currentDay) {
           } else {
             newListWeekDayModel.add(WeekDayModel(
                 dayName: days[j].name!,

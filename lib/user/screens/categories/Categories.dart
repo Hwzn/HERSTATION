@@ -19,7 +19,7 @@ class _Categories extends State<Categories> {
     String categoryId = widget.categoryID ?? "";
     // categoriesData.getProviders(context,categoryId);
 
-    categoriesData.getProviders(context, categoryId, 1);
+    // categoriesData.getProviders(context, categoryId, 1);
     categoriesData.pagingController.addPageRequestListener((pageKey) {
       categoriesData.getProviders(context, categoryId, pageKey);
     });
@@ -41,7 +41,7 @@ class _Categories extends State<Categories> {
           padding:
               const EdgeInsets.only(top: 8, bottom: 150, right: 5, left: 5),
           pagingController: categoriesData.pagingController,
-          shrinkWrap: true,
+          // shrinkWrap: true,
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
           builderDelegate: PagedChildBuilderDelegate<ProvidersModel>(
@@ -52,17 +52,18 @@ class _Categories extends State<Categories> {
                   providerModel: item,
                 );
               },
-              noMoreItemsIndicatorBuilder: (context) {
-                return Container(
-                  height: 5,
-                );
-              },
+              // noMoreItemsIndicatorBuilder: (context) {
+              //   return Container(
+              //     height: 5,
+              //   );
+              // },
               firstPageProgressIndicatorBuilder: (context) => Container(
                     margin: const EdgeInsets.only(top: 80),
                     child: LoadingDialog.showLoadingView(),
                   ),
               newPageProgressIndicatorBuilder: (context) =>
                   const CupertinoActivityIndicator()),
+
         ),
 
         // BlocBuilder<GenericBloc<List<ProvidersModel>>,

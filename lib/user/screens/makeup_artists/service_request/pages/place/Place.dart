@@ -21,6 +21,7 @@ class _Place extends State<Place> {
   void initState() {
     // widget.schedules[0].selected = true;
     placeData.getCorrectData(widget.schedules);
+    placeData.unSelect();
     // placeData.scheduleCubit.onUpdateData(widget.schedules);
 
     // placeData.daysCubit.onUpdateData(widget.schedules[0]);

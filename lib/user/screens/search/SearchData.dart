@@ -6,7 +6,7 @@ class SearchData {
   final TextEditingController textSearch = TextEditingController();
 
   final PagingController<int, ProvidersModel> pagingController =
-      PagingController(firstPageKey: 1);
+      PagingController(firstPageKey: 0);
 
   final int pageSize = 10;
 
@@ -72,5 +72,4 @@ class SearchData {
     }
     // providersCubit.onUpdateData(providers);
   }
-
 }
