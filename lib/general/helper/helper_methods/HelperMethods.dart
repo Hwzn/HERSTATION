@@ -7,16 +7,16 @@ import 'package:hwzn_herstation/general/utilities/utils_functions/LoadingDialog.
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
-import 'package:telephony/telephony.dart';
+// import 'package:telephony/telephony.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HelperMethods{
-  static Telephony telephony = Telephony.instance;
+  // static Telephony telephony = Telephony.instance;
 
-  static askSmsPermission()async{
-    bool? permissionsGranted = await telephony.requestSmsPermissions;
-    return permissionsGranted;
-  }
+  // static askSmsPermission()async{
+  //   bool? permissionsGranted = await telephony.requestSmsPermissions;
+  //   return permissionsGranted;
+  // }
 
   static void launchURL({required String url}) async {
     await launch(url);

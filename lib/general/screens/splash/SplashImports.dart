@@ -19,7 +19,6 @@ import 'package:hwzn_herstation/general/utilities/utils_functions/UtilsImports.d
 import 'package:hwzn_herstation/res.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:telephony/telephony.dart';
 
 import '../../blocks/lang_cubit/lang_cubit.dart';
 import '../../blocks/setting_cubit/setting_cubit.dart';
