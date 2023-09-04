@@ -42,6 +42,7 @@ class _Place extends State<Place> {
           BlocBuilder<GenericBloc<List<ScheduleModel>>,
                   GenericState<List<ScheduleModel>>>(
               bloc: placeData.scheduleCubit,
+
               builder: (context, state3) {
                 return state3.data.isEmpty
                     ? Container(
