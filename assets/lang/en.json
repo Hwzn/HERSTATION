@@ -223,5 +223,6 @@
   "total": "Total amount",
   "payMethod": "Payment way",
   "logoutSuccess": "Logout successfully",
-  "noTimes": " There are no appointments available currently "
+  "noTimes": " There are no appointments available currently ",
+  "noFavourite": "There are no makeup artists in favourite"
 }

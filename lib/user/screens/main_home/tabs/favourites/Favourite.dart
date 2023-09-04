@@ -32,25 +32,38 @@ class _Favourite extends State<Favourite> {
                 builder: (context, state) {
                   if (state.data) {
                     return BlocBuilder<GenericBloc<List<ProvidersModel>>,
-                            GenericState<List<ProvidersModel>>>(
+                        GenericState<List<ProvidersModel>>>(
                         bloc: favouriteData.favouritesCubit,
                         builder: (context, state) {
                           if (state is GenericUpdateState) {
-                            return GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      childAspectRatio: 0.85),
-                              itemCount: state.data.length,
-                              shrinkWrap: true,
-                              itemBuilder: (BuildContext context, int index) {
-                                return BuildFavouriteItem(
-                                  providersModel: state.data[index],
-                                  categoryID: 1,
-                                );
-                              },
-                            );
+                            if (state.data.isEmpty) {
+                              return Container(
+                                margin: const EdgeInsets.only(top: 200),
+                                child: MyText(
+                                  title: tr(context, "noFavourite"),
+                                  color: MyColors.black,
+                                  size: 16,
+                                  alien: TextAlign.center,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              );
+                            } else {
+                              return GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.85),
+                                itemCount: state.data.length,
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return BuildFavouriteItem(
+                                    providersModel: state.data[index],
+                                    categoryID: 1,
+                                  );
+                                },
+                              );
+                            }
                           } else {
                             return Container(
                               margin: const EdgeInsets.only(top: 80),
@@ -74,7 +87,6 @@ class _Favourite extends State<Favourite> {
                             AutoRouter.of(context).push(const LoginRoute()),
                       ),
                     );
-
                   }
                 }),
           ],
