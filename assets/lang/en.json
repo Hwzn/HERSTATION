@@ -222,5 +222,6 @@
   "noReservation": "No reservations",
   "total": "Total amount",
   "payMethod": "Payment way",
-  "logoutSuccess": "Logout successfully"
+  "logoutSuccess": "Logout successfully",
+  "noTimes": " There are no appointments available currently "
 }

@@ -32,6 +32,7 @@ class _Place extends State<Place> {
 
   @override
   Widget build(BuildContext context) {
+    print("sc : " + placeData.scheduleCubit.state.data.length.toString());
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       child: Column(
@@ -42,65 +43,75 @@ class _Place extends State<Place> {
                   GenericState<List<ScheduleModel>>>(
               bloc: placeData.scheduleCubit,
               builder: (context, state3) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BuildMonthsBody(
-                      placeData: placeData,
-                      schedules: state3.data,
-                    ),
-                    BlocBuilder<GenericBloc<ScheduleModel>,
-                            GenericState<ScheduleModel>>(
-                        bloc: placeData.daysCubit,
-                        builder: (context, state) {
-                          if (state is GenericUpdateState) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                BuildDatesBody(
-                                  placeData: placeData,
-                                  scheduleModel: state.data,
-                                  month: state.data.monthNum ?? 0,
-                                ),
-                                BlocBuilder<GenericBloc<WeekDayModel>,
-                                        GenericState<WeekDayModel>>(
-                                    bloc: placeData.dayCubit,
-                                    builder: (context, state2) {
-                                      if (state is GenericUpdateState) {
-                                        return BuildTimeBody(
-                                            placeData: placeData,
-                                            day: state2.data);
-                                      } else {
-                                        return Container();
-                                      }
-                                    }),
-                              ],
-                            );
-                          } else {
-                            return Container();
-                          }
-                        }),
-                    BuildPlaceForm(
-                      placeData: placeData,
-                    ),
-                  ],
-                );
+                return state3.data.isEmpty
+                    ? Container(
+                  margin: const EdgeInsets.only(top: 100),
+                        child: MyText(
+                          title: tr(context, "noTimes"),
+                          color: MyColors.primary,
+                          size: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BuildMonthsBody(
+                            placeData: placeData,
+                            schedules: state3.data,
+                          ),
+                          BlocBuilder<GenericBloc<ScheduleModel>,
+                                  GenericState<ScheduleModel>>(
+                              bloc: placeData.daysCubit,
+                              builder: (context, state) {
+                                if (state is GenericUpdateState) {
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      BuildDatesBody(
+                                        placeData: placeData,
+                                        scheduleModel: state.data,
+                                        month: state.data.monthNum ?? 0,
+                                      ),
+                                      BlocBuilder<GenericBloc<WeekDayModel>,
+                                              GenericState<WeekDayModel>>(
+                                          bloc: placeData.dayCubit,
+                                          builder: (context, state2) {
+                                            if (state is GenericUpdateState) {
+                                              return BuildTimeBody(
+                                                  placeData: placeData,
+                                                  day: state2.data);
+                                            } else {
+                                              return Container();
+                                            }
+                                          }),
+                                    ],
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              }),
+                          BuildPlaceForm(
+                            placeData: placeData,
+                          ),
+                          LoadingButton(
+                            borderRadius: 15,
+                            borderColor: MyColors.primary,
+                            title: tr(context, "next"),
+                            onTap: () {
+                              placeData.moveToNext(serviceRequestData);
+                            },
+                            color: MyColors.primary,
+                            textColor: MyColors.white,
+                            btnKey: placeData.btnNextPlace,
+                            fontSize: 13,
+                          ),
+                        ],
+                      );
               }),
-          // const Spacer(),
-          LoadingButton(
-            borderRadius: 15,
-            borderColor: MyColors.primary,
-            title: tr(context, "next"),
-            onTap: () {
-              placeData.moveToNext(serviceRequestData);
-            },
-            color: MyColors.primary,
-            textColor: MyColors.white,
-            btnKey: placeData.btnNextPlace,
-            fontSize: 13,
-          ),
         ],
       ),
     );

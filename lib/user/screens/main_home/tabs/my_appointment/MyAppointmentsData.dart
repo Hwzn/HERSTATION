@@ -6,6 +6,7 @@ class MyAppointmentsData {
   final GenericBloc<bool> isMakeupArtistCubit = GenericBloc(false);
   final GenericBloc<bool> showData = GenericBloc(false);
   final GenericBloc<bool> showLayout = GenericBloc(false);
+  final GenericBloc<bool> isAuthCubit = GenericBloc(true);
 
   final PagingController<int, OrderModel> pagingController =
       PagingController(firstPageKey: 1);
@@ -73,7 +74,7 @@ class MyAppointmentsData {
         pagingController.appendPage(orders, nextPageKey);
       }
     } else {
-      CustomToast.showSimpleToast(msg: tr(context, "loginFirst"));
+      isAuthCubit.onUpdateData(false);
       showLayout.onUpdateData(false);
     }
     // providersCubit.onUpdateData(providers);

@@ -14,11 +14,13 @@ import 'package:hwzn_herstation/general/packages/generic_bloc/generic_cubit.dart
 import 'package:hwzn_herstation/general/packages/localization/Localizations.dart';
 import 'package:hwzn_herstation/general/resources/GeneralRepoImports.dart';
 import 'package:hwzn_herstation/general/utilities/routers/RouterImports.gr.dart';
+import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/res.dart';
 import 'package:hwzn_herstation/user/model/general_model.dart';
 import '../../../../../general/blocks/auth_cubit/auth_cubit.dart';
 import '../../../../../general/blocks/setting_cubit/setting_cubit.dart';
 import '../../../../../general/blocks/user_cubit/user_cubit.dart';
+import '../../../../../general/constants/MyColors.dart';
 import '../../../../../general/constants/modals/LoadingDialog.dart';
 import '../../../../../general/helper/dio/utils/GlobalState.dart';
 import '../../../../../general/models/user_model/user_model.dart';

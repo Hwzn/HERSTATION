@@ -15,6 +15,7 @@ import '../../../../../../general/models/dropdown_model/dropdown_model.dart';
 import '../../../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../../general/widgets/LoadingButton.dart';
+import '../../../../../../general/widgets/MyText.dart';
 import '../../../../../model/providers_details_model/schedule_model.dart';
 import '../../../../../model/providers_details_model/time_model.dart';
 import '../../../../../model/providers_details_model/week_day_model.dart';

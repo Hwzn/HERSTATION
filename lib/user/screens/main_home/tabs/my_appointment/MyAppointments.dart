@@ -24,29 +24,50 @@ class _MyAppointments extends State<MyAppointments> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      margin: const EdgeInsets.fromLTRB(15, 5, 15, 10),
-      child: Column(
-        children: [
-          BuildAppointmentHeader(
-            myAppointmentsData: myAppointmentsData,
-          ),
-          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-              bloc: myAppointmentsData.showLayout,
-              builder: (context, state) {
-                if (state.data) {
-                  return Expanded(
-                    child: BuildAppointmentBody(
-                      myAppointmentsData: myAppointmentsData,
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              }),
-        ],
-      ),
-    );
+    return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+        bloc: myAppointmentsData.isAuthCubit,
+        builder: (context, state) {
+          if (state.data) {
+            return Container(
+              alignment: Alignment.topCenter,
+              margin: const EdgeInsets.fromLTRB(15, 5, 15, 10),
+              child: Column(
+                children: [
+                  BuildAppointmentHeader(
+                    myAppointmentsData: myAppointmentsData,
+                  ),
+                  BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                      bloc: myAppointmentsData.showLayout,
+                      builder: (context, state) {
+                        if (state.data) {
+                          return Expanded(
+                            child: BuildAppointmentBody(
+                              myAppointmentsData: myAppointmentsData,
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }),
+                ],
+              ),
+            );
+          } else {
+            return Container(
+              alignment: Alignment.topCenter,
+
+              margin: const EdgeInsets.only(top: 200),
+              child: InkWell(
+                child: MyText(
+                  title: tr(context, "loginFirst"),
+                  color: MyColors.primary,
+                  size: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                onTap: () => AutoRouter.of(context).push(const LoginRoute()),
+              ),
+            );
+          }
+        });
   }
 }

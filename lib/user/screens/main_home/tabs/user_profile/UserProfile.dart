@@ -41,7 +41,21 @@ class _UserProfile extends State<UserProfile> {
                         userProfileData: userProfileData,
                       );
                     } else {
-                      return Container();
+                      return Container(
+                        margin: const EdgeInsets.fromLTRB(15, 20, 15, 0),
+
+                        alignment: Alignment.center,
+                        child: InkWell(
+                          child: MyText(
+                            alien: TextAlign.center,
+                            title: tr(context, "login"),
+                            color: MyColors.grey,
+                            size: 13,
+                          ),
+                          onTap: () =>
+                              AutoRouter.of(context).push(const LoginRoute()),
+                        ),
+                      );
                     }
                   }),
             ],
