@@ -1,6 +1,6 @@
 part of 'PaymentWidgetsImports.dart';
 
-class BuildPaymentWayDialog extends StatelessWidget {
+class BuildPaymentWayDialog extends StatefulWidget {
   final BuildContext buildContext;
   final PaymentData paymentData;
   final ServiceModel serviceModel;
@@ -13,6 +13,12 @@ class BuildPaymentWayDialog extends StatelessWidget {
       required this.serviceModel,
       required this.serviceRequestData})
       : super(key: key);
+
+  @override
+  State<BuildPaymentWayDialog> createState() => _BuildPaymentWayDialog();
+}
+
+class _BuildPaymentWayDialog extends State<BuildPaymentWayDialog> {
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +51,17 @@ class BuildPaymentWayDialog extends StatelessWidget {
                         width: 15,
                         height: 15,
                       ),
-                      onTap: () => paymentData.closeDialog(context),
+                      onTap: () => widget.paymentData.closeDialog(context),
                     ),
                   ],
                 ),
                 BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-                    bloc: paymentData.isVisa,
+                    bloc:  widget.paymentData.isVisa,
                     builder: (context, state) {
                       return Column(
                         children: [
                           GestureDetector(
-                            onTap: () => paymentData.isVisa.onUpdateData(true),
+                            onTap: () =>  widget.paymentData.isVisa.onUpdateData(true),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: state.data
@@ -97,7 +103,7 @@ class BuildPaymentWayDialog extends StatelessWidget {
                           ),
                           GestureDetector(
                               onTap: () =>
-                                  paymentData.isVisa.onUpdateData(false),
+                                  widget.paymentData.isVisa.onUpdateData(false),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: !state.data
@@ -146,11 +152,11 @@ class BuildPaymentWayDialog extends StatelessWidget {
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "completePay"),
-            onTap: () => paymentData.completePay(
-                context, serviceModel, serviceRequestData),
+            onTap: () =>  widget.paymentData.completePay(
+                context,  widget.serviceModel,  widget.serviceRequestData),
             color: MyColors.primary,
             textColor: MyColors.white,
-            btnKey: paymentData.btnChoosePay,
+            btnKey:  widget.paymentData.btnChoosePay,
             fontSize: 13,
           ),
         ],

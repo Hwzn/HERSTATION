@@ -869,6 +869,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  go_sell_sdk_flutter:
+    dependency: "direct main"
+    description:
+      name: go_sell_sdk_flutter
+      sha256: "44f8d2f72bdfccc51f187ecadab79f0ee201113ce6f9b85b66751ff372058bd4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.6"
   google_fonts:
     dependency: "direct main"
     description:

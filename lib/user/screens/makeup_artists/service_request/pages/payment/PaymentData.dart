@@ -50,7 +50,7 @@ class PaymentData {
     return;
   }
 
-  void goPay(BuildContext context, ServiceModel serviceModel,
+  Future<int> goPay(BuildContext context, ServiceModel serviceModel,
       ServiceRequestData serviceRequestData, double amount) async {
     RequestOrderData createOrderData =
         serviceRequestData.requestOrderCubit.state.data;
@@ -61,19 +61,37 @@ class PaymentData {
     LoadingDialog.showLoadingDialog();
     int result = await UserRepository(context).createOrder(createOrderData);
     EasyLoading.dismiss();
-
-    if (result != -1 && context.mounted) {
-      addTransaction(context, amount, result);
-    }
+    return result;
+    // if (result != -1 && context.mounted) {
+    //   return result;
+    //
+    //   // configureSDK(amount, context);
+    //   // startSDK(context).then((value) {
+    //   //   if (sdkStatus == "SUCCESS") {
+    //   //     addTransaction(context, amount, result);
+    //   //
+    //   //     // setState((){
+    //   //     //   loading=false;
+    //   //     // });
+    //   //     // NavigationClass.finalNavigate(
+    //   //     //     context, PaymentSuccessScreen("1"));
+    //   //   } else {
+    //   //     // setState((){
+    //   //     //   loading=false;
+    //   //     // });
+    //     }
+    // });
+    // addTransaction(context, amount, result);
+    // }
   }
 
   Future<void> addTransaction(
-      BuildContext context, double amount, int id) async {
+      BuildContext context, double amount, int id, String transactionId) async {
     PaymentModel paymentModel = PaymentModel(
         status: "success",
         type: "payment",
         gateway: isVisa.state.data ? "visa" : "apple_pay",
-        onlinePaymentId: "646465434656",
+        onlinePaymentId: transactionId,
         transactionableId: id,
         transactionableType: "Order",
         amount: amount);
