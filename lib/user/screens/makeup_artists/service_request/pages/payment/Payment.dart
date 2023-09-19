@@ -23,6 +23,7 @@ class _Payment extends State<Payment> {
   String tabValue = "0";
 
   Future<void> configureSDK(double amount) async {
+    // terminateSession();
     configureApp();
     setupSDKSession(amount);
   }
@@ -32,13 +33,12 @@ class _Payment extends State<Payment> {
 
     GoSellSdkFlutter.configureApp(
         bundleId: "com.hwzn.herstation",
-        productionSecreteKey: "pk_test_AVwu0jRLrIZSqavsdlci4gNx",
+        productionSecreteKey: "sk_live_i5ofT9Ckl7MJzZYBV3tWedDj",
         sandBoxsecretKey: "sk_test_mugCYLbljrOti6D9AoRzGwxW",
         lang: language ?? "ar");
   }
 
-//"sk_live_p6mUMkDtGq0BvO9NgASyKaHh"
-  //"sk_test_Ju3lXB4UFT1I0vREjzf7wk2y"
+
   Future<void> setupSDKSession(double amount) async {
     var user = context.read<UserCubit>().state.model;
     String userName = user.name ?? "";
