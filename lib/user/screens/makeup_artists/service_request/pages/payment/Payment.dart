@@ -22,16 +22,16 @@ class _Payment extends State<Payment> {
 
   String tabValue = "0";
 
-  Future<void> configureSDK(double amount) async {
+  Future<void> configureSDK() async {
     // terminateSession();
-    configureApp();
-    setupSDKSession(amount);
+    await configureApp();
+    setupSDKSession();
   }
 
   Future<void> configureApp() async {
-    var language = await Storage.getLang();
-
+    var language = context.read<LangCubit>().state.locale.languageCode;
     GoSellSdkFlutter.configureApp(
+
         bundleId: "com.hwzn.herstation",
         productionSecreteKey: "sk_live_i5ofT9Ckl7MJzZYBV3tWedDj",
         sandBoxsecretKey: "sk_test_mugCYLbljrOti6D9AoRzGwxW",
@@ -39,7 +39,7 @@ class _Payment extends State<Payment> {
   }
 
 
-  Future<void> setupSDKSession(double amount) async {
+  Future<void> setupSDKSession() async {
     var user = context.read<UserCubit>().state.model;
     String userName = user.name ?? "";
     String phone = user.phone ?? "";
@@ -48,7 +48,7 @@ class _Payment extends State<Payment> {
       GoSellSdkFlutter.sessionConfigurations(
           trxMode: TransactionMode.PURCHASE,
           transactionCurrency: "Sar",
-          amount: "${amount}",
+          amount: "10",
           customer: Customer(
               customerId: "",
               // customer id is important to retrieve cards saved for this customer
@@ -275,20 +275,19 @@ class _Payment extends State<Payment> {
             borderRadius: 15,
             borderColor: MyColors.primary,
             title: tr(context, "goPay"),
-            onTap: () {
-              print("enter");
-              configureSDK(
-                100,
-              );
-              startSDK().then((value) {
-                if (sdkStatus == "SUCCESS") {
-                  print("success");
-                  // widget.paymentData
-                  //     .addTransaction(context, amount, ,transactionId!);
-                } else {}
-              });
-              // paymentData.completePay(
-              //     context, widget.serviceModel, widget.serviceRequestData);
+            onTap: () async{
+              // await configureSDK(
+              //
+              // );
+              // startSDK().then((value) {
+              //   if (sdkStatus == "SUCCESS") {
+              //     print("success");
+              //     // widget.paymentData
+              //     //     .addTransaction(context, amount, ,transactionId!);
+              //   } else {}
+              // });
+              paymentData.completePay(
+                  context, widget.serviceModel, widget.serviceRequestData);
             },
             color: MyColors.primary,
             textColor: MyColors.white,

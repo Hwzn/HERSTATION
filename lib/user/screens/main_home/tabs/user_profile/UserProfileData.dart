@@ -174,9 +174,19 @@ class UserProfileData {
         context.read<SettingCubit>().onUpdateSettingData(result);
         print("Enter");
         await Storage.saveSettings(result);
+        int type = context.read<UserCubit>().state.model.userType!.id!;
+        if (context.mounted) {
+          if (type == 2) {
+            AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
+          } else {
+            AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
+          }
+        }
         print("Enter");
       }
-      Navigator.of(context).pop();
+
+
+      // Navigator.of(context).pop();
     }
   }
 

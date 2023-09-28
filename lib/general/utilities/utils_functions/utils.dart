@@ -101,6 +101,8 @@ class Utils {
     DecorationUtils.lang = lang;
     Storage.setLang(lang);
     context.read<LangCubit>().onUpdateLanguage(lang);
+    print("langxx : "+lang);
+    print("yyyyyyyyyyyyy");
   }
 
   static Future<File?> getImageFile(BuildContext context) async {

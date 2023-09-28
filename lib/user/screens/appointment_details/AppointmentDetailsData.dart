@@ -60,8 +60,8 @@ class AppointmentDetailsData {
     showCancelConfirmDialog(context);
   }
 
-  Future<void> updateOrderStatus(
-      BuildContext context, int id, String status) async {
+  Future<void> updateOrderStatus(BuildContext context, int id,
+      String status) async {
     LoadingDialog.showLoadingDialog();
     bool result = await UserRepository(context).updateOrderStatus(id, status);
     EasyLoading.dismiss();
@@ -93,7 +93,9 @@ class AppointmentDetailsData {
 
   void saveChanges(BuildContext context, int providerID, double rate) async {
     RateData rateData = RateData(
-        providerId: providerID, comment: rateComment.text, rate: rateCubit.state.data.toInt());
+        providerId: providerID,
+        comment: rateComment.text,
+        rate: rateCubit.state.data.toInt());
     LoadingDialog.showLoadingDialog();
     bool result = await UserRepository(context).rateOrder(rateData);
     EasyLoading.dismiss();
@@ -105,7 +107,7 @@ class AppointmentDetailsData {
 
 ////////////////// complete pay //////////////////////
 
-  void showChoosePaymentWayDialog(BuildContext context,int orderID) {
+  void showChoosePaymentWayDialog(BuildContext context, int orderID,double amount) {
     showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
@@ -118,42 +120,61 @@ class AppointmentDetailsData {
             buildContext: context,
             appointmentDetailsData: this,
             orderID: orderID,
+            amount: amount,
           );
         });
     return;
   }
 
   chooseReceipt() {
-    payAppleCubit.onUpdateData(false);
+    //   payAppleCubit.onUpdateData(false);
     payVisaCubit.onUpdateData(false);
     payReceiptCubit.onUpdateData(true);
   }
 
-  choosePayApple() {
-    payAppleCubit.onUpdateData(true);
-    payVisaCubit.onUpdateData(false);
-    payReceiptCubit.onUpdateData(false);
-  }
+  // choosePayApple() {
+  //   payAppleCubit.onUpdateData(true);
+  //   payVisaCubit.onUpdateData(false);
+  //   payReceiptCubit.onUpdateData(false);
+  // }
 
-  chooseVisa() {
-    payAppleCubit.onUpdateData(false);
+  chooseOnline() {
+//    payAppleCubit.onUpdateData(false);
     payVisaCubit.onUpdateData(true);
     payReceiptCubit.onUpdateData(false);
   }
 
   Future<void> executePay(int orderID, BuildContext context) async {
-    if (payReceiptCubit.state.data) {
-      LoadingDialog.showLoadingDialog();
-      bool result =
-          await UserRepository(context).updateOrderMethod(orderID, "cash");
-      EasyLoading.dismiss();
+    LoadingDialog.showLoadingDialog();
+    bool result =
+    await UserRepository(context).updateOrderMethod(orderID, "cash");
+    EasyLoading.dismiss();
 
-      if (result == true && context.mounted) {
-        AutoRouter.of(context).pushAndPopUntil(MainHomeRoute(firstTime: false,index: 2),
-            predicate: (o) => false);
-      }
-    } else {
-      Navigator.of(context).pop();
+    if (result == true && context.mounted) {
+      AutoRouter.of(context).pushAndPopUntil(
+          MainHomeRoute(firstTime: false, index: 2),
+          predicate: (o) => false);
+    }
+  }
+
+
+  Future<void> addTransaction(BuildContext context, double amount, int orderID,
+      String transactionId, String paymentType) async {
+    PaymentModel paymentModel = PaymentModel(
+        status: "success",
+        type: "payment",
+        gateway: paymentType,
+        onlinePaymentId: transactionId,
+        transactionableId: orderID,
+        transactionableType: "Order",
+        amount: amount);
+    if (context.mounted) {
+      LoadingDialog.showLoadingDialog();
+      await MakeUpArtistRepository(context).paymentSubscribe(paymentModel);
+      EasyLoading.dismiss();
+      AutoRouter.of(context).pushAndPopUntil(
+          MainHomeRoute(firstTime: false, index: 2),
+          predicate: (o) => false);
     }
   }
 }

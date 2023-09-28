@@ -20,45 +20,44 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
 
   String sdkStatus = "";
   String? transactionId;
+  String? transactionType;
 
   String tabValue = "0";
 
-  Future<void> configureSDK(double amount) async {
-    configureApp();
+  Future<void> configureSDK(String amount) async {
+     configureApp();
     setupSDKSession(amount);
   }
 
-  Future<void> configureApp() async {
-    var language = await Storage.getLang();
-
+  void configureApp()  {
+    var language = context.read<LangCubit>().state.locale.languageCode;
     GoSellSdkFlutter.configureApp(
         bundleId: "com.hwzn.herstation",
         productionSecreteKey: "sk_live_i5ofT9Ckl7MJzZYBV3tWedDj",
         sandBoxsecretKey: "sk_test_mugCYLbljrOti6D9AoRzGwxW",
-        lang: language ?? "ar");
+        lang: language );
   }
 
-//"sk_live_p6mUMkDtGq0BvO9NgASyKaHh"
-  //"sk_test_Ju3lXB4UFT1I0vREjzf7wk2y"
-  Future<void> setupSDKSession(double amount) async {
+  Future<void> setupSDKSession(String amount) async {
     var user = context.read<UserCubit>().state.model;
     String userName = user.name ?? "";
     String phone = user.phone ?? "";
     String email = user.email ?? "";
+    // String userID = user.id.toString();
     try {
       GoSellSdkFlutter.sessionConfigurations(
           trxMode: TransactionMode.PURCHASE,
           transactionCurrency: "Sar",
-          amount: "${amount}",
+          amount: amount,
           customer: Customer(
               customerId: "",
               // customer id is important to retrieve cards saved for this customer
-              email: "amanyaso123@gmail.com",
+              email: email,
               isdNumber: "965",
-              number: "$phone",
-              firstName: "amany",
-              middleName: "gamal",
-              lastName: "elsayed",
+              number: phone,
+              firstName: userName,
+              middleName: userName,
+              lastName: userName,
               metaData: null),
           paymentItems: <PaymentItem>[],
           // List of taxes
@@ -114,22 +113,21 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
 
   Future<void> startSDK() async {
     tapSDKResult = await GoSellSdkFlutter.startPaymentSDK;
-    //   loaderController.stopWhenFull();
-    //  print("vdfjhfjdhgdshgsdhsd $tapSDKResult");
+    EasyLoading.dismiss();
+
     setState(() {
       switch (tapSDKResult['sdk_result']) {
         case "SUCCESS":
           sdkStatus = "SUCCESS";
           transactionId = tapSDKResult['charge_id'];
+          transactionType = tapSDKResult['card_brand'];
           handleSDKResult();
           break;
         case "FAILED":
           sdkStatus = "FAILED";
           handleSDKResult();
-          showDialogFunc(
-
-              fieldPaymentDialog(
-                  "${tapSDKResult['sdk_result']} ${tapSDKResult['message']}"));
+          showDialogFunc(fieldPaymentDialog(
+              "${tapSDKResult['sdk_result']} ${tapSDKResult['message']}"));
 
           break;
         case "SDK_ERROR":
@@ -144,6 +142,8 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
           print(sdkErrorMessage);
           print(sdkErrorDescription);
           handleSDKResult();
+          CustomToast.showSimpleToast(msg: tr(context, "errors"));
+          EasyLoading.dismiss();
 
           break;
         case "NOT_IMPLEMENTED":
@@ -239,7 +239,7 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                 child: Icon(
                   Icons.error,
                   size: 60,
@@ -369,30 +369,21 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
                     } else {
                       amount = widget.serviceModel.totalPrice ?? 0;
                     }
-                    configureSDK(
-                      100,
-                    );
+                    LoadingDialog.showLoadingDialog();
+                    configureSDK(amount.toString());
                     startSDK().then((value) {
                       if (sdkStatus == "SUCCESS") {
-                        // widget.paymentData
-                        //     .addTransaction(context, amount, ,transactionId!);
-                      } else {}
+                        widget.paymentData
+                            .goPay(context, widget.serviceModel,
+                                widget.serviceRequestData, amount)
+                            .then((result) {
+                          widget.paymentData.addTransaction(context, amount,
+                              result, transactionId!, transactionType!);
+                        });
+                      } else {
+                        // CustomToast.showSimpleToast(msg: tr(context, "errors"));
+                      }
                     });
-                    // widget.paymentData
-                    //     .goPay(context, widget.serviceModel,
-                    //         widget.serviceRequestData, amount)
-                    //     .then((result) {
-                    //   configureSDK(amount, context);
-                    //   startSDK(context).then((value) {
-                    //     if (sdkStatus == "SUCCESS") {
-                    //       widget.paymentData
-                    //           .addTransaction(context, amount, result,transactionId!);
-                    //     } else {
-                    //
-                    //     }
-                    //   });
-                    //
-                    // });
                   },
                   color: MyColors.primary,
                   textColor: MyColors.white,

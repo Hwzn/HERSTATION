@@ -18,7 +18,7 @@ class BuildRequestBody extends StatelessWidget {
     String? date = orderModel.date!.substring(0, indexSpace);
     String? time = orderModel.date!.substring(indexSpace);
     String dayName =
-    DateFormat(DateFormat.WEEKDAY,lang).format(DateTime.parse(date));
+        DateFormat(DateFormat.WEEKDAY, lang).format(DateTime.parse(date));
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 15),
       decoration: BoxDecoration(
@@ -39,7 +39,9 @@ class BuildRequestBody extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: orderModel.statusCode == 5 ||orderModel.statusCode==3||orderModel.statusCode==4
+                      color: orderModel.statusCode == 5 ||
+                              orderModel.statusCode == 3 ||
+                              orderModel.statusCode == 4
                           ? MyColors.bgGreen
                           : orderModel.statusCode == 6
                               ? MyColors.bgRed
@@ -49,7 +51,9 @@ class BuildRequestBody extends StatelessWidget {
                     child: MyText(
                       alien: TextAlign.center,
                       title: orderModel.status ?? "",
-                      color: orderModel.statusCode == 5 ||orderModel.statusCode==3||orderModel.statusCode==4
+                      color: orderModel.statusCode == 5 ||
+                              orderModel.statusCode == 3 ||
+                              orderModel.statusCode == 4
                           ? MyColors.green
                           : orderModel.statusCode == 6
                               ? MyColors.red
@@ -85,7 +89,6 @@ class BuildRequestBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
                   MyText(
                     title: dayName,
                     color: MyColors.black,
@@ -155,7 +158,8 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: " ${orderModel.paidAmount!} ${tr(context,"sr")} ",
+                                title:
+                                    " ${orderModel.paidAmount!} ${tr(context, "sr")} ",
                                 color: MyColors.black,
                                 size: 14,
                               ),
@@ -174,7 +178,8 @@ class BuildRequestBody extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               MyText(
-                                title: " ${orderModel.reserved!} ${tr(context,"sr")} ",
+                                title:
+                                    " ${orderModel.reserved!} ${tr(context, "sr")} ",
                                 color: MyColors.black,
                                 size: 14,
                               ),
@@ -184,7 +189,8 @@ class BuildRequestBody extends StatelessWidget {
                             height: 15,
                           ),
                           Visibility(
-                            visible: orderModel.reserved !=0 &&orderModel.statusCode !=6,
+                            visible: orderModel.reserved != 0 &&
+                                orderModel.statusCode != 6,
                             child: Column(
                               children: [
                                 InkWell(
@@ -198,8 +204,8 @@ class BuildRequestBody extends StatelessWidget {
                                     ),
                                   ),
                                   onTap: () => appointmentDetailsData
-                                      .showChoosePaymentWayDialog(
-                                          context, orderModel.id!),
+                                      .showChoosePaymentWayDialog(context,
+                                          orderModel.id!, orderModel.reserved!),
                                 ),
                                 const SizedBox(
                                   height: 5,

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_sell_sdk_flutter/model/models.dart';
+import 'package:hwzn_herstation/general/blocks/lang_cubit/lang_cubit.dart';
 import 'package:hwzn_herstation/general/blocks/user_cubit/user_cubit.dart';
 import 'package:hwzn_herstation/general/helper/storage/Storage.dart';
 import 'package:hwzn_herstation/res.dart';
 import 'package:hwzn_herstation/user/model/providers_details_model/service_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hwzn_herstation/general/constants/modals/LoadingDialog.dart';
+import 'package:hwzn_herstation/general/utilities/utils_functions/LoadingDialog.dart';
 
 import '../../../../../../../general/constants/MyColors.dart';
 import '../../../../../../../general/packages/generic_bloc/generic_cubit.dart';

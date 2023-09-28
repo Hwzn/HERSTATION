@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hwzn_herstation/general/helper/configration/CustomButtonAnimation.dart';
 import 'package:hwzn_herstation/general/packages/generic_bloc/generic_cubit.dart';
 import 'package:hwzn_herstation/general/packages/localization/Localizations.dart';
+import 'package:hwzn_herstation/makeup_artist/model/payment_model/payment_model.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/my_subsciption/widgets/MySubscriptionWidgetsImports.dart';
 import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryImports.dart';
 

@@ -86,11 +86,12 @@ class PaymentData {
   }
 
   Future<void> addTransaction(
-      BuildContext context, double amount, int id, String transactionId) async {
+      BuildContext context, double amount, int id, String transactionId,String transactionType) async {
+    print("trans : "+transactionType);
     PaymentModel paymentModel = PaymentModel(
         status: "success",
         type: "payment",
-        gateway: isVisa.state.data ? "visa" : "apple_pay",
+        gateway: transactionType=="VISA" ? "visa" : "apple_pay",
         onlinePaymentId: transactionId,
         transactionableId: id,
         transactionableType: "Order",

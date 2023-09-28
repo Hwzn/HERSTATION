@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hwzn_herstation/general/widgets/DefaultAppBar.dart';
+import 'package:hwzn_herstation/makeup_artist/model/payment_model/payment_model.dart';
+import 'package:hwzn_herstation/makeup_artist/resources/MakeupArtistRepositoryImports.dart';
 import 'package:hwzn_herstation/user/model/rates_model/rate_data.dart';
 import 'package:hwzn_herstation/user/screens/appointment_details/widgets/AppointmentDetailsWidgetsImports.dart';
 
