@@ -170,9 +170,7 @@ class UserProfileData {
       var result = await GeneralRepository(context).getAppSetting();
       EasyLoading.dismiss();
       if (context.mounted) {
-        print("Enter");
         context.read<SettingCubit>().onUpdateSettingData(result);
-        print("Enter");
         await Storage.saveSettings(result);
         int type = context.read<UserCubit>().state.model.userType!.id!;
         if (context.mounted) {
@@ -182,7 +180,6 @@ class UserProfileData {
             AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
           }
         }
-        print("Enter");
       }
 
 

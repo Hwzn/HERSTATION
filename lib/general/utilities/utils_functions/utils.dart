@@ -102,6 +102,8 @@ class Utils {
     Storage.setLang(lang);
     context.read<LangCubit>().onUpdateLanguage(lang);
     print("langxx : "+lang);
+    print("langxx : "+ context.read<LangCubit>().state.locale.languageCode);
+
     print("yyyyyyyyyyyyy");
   }
 
