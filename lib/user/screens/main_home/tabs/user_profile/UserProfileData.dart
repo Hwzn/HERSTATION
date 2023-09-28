@@ -19,12 +19,13 @@ class UserProfileData {
   List<GeneralModel> infoList = [];
 
   void checkUser(BuildContext context) async {
-    int type = context.read<UserCubit>().state.model.userType!.id!;
-    if (type == 3) {
-      isMakeupArtistCubit.onUpdateData(true);
-    }
+
     var isAuth = context.read<AuthCubit>().state.authorized;
     if (isAuth) {
+      int type = context.read<UserCubit>().state.model.userType!.id!;
+      if (type == 3) {
+        isMakeupArtistCubit.onUpdateData(true);
+      }
       showLayout.onUpdateData(true);
     } else {
       showLayout.onUpdateData(false);
@@ -123,7 +124,7 @@ class UserProfileData {
       Storage.clearSavedData();
       context.read<AuthCubit>().onUpdateAuth(false);
       context.read<UserCubit>().onUpdateUserData(UserModel());
-      CustomToast.showSimpleToast(msg:tr(context,"logoutSuccess"));
+      CustomToast.showSimpleToast(msg: tr(context, "logoutSuccess"));
       // Phoenix.rebirth(context);
       AutoRouter.of(context).push(const LoginRoute());
     }
@@ -158,8 +159,38 @@ class UserProfileData {
   }
 
   void changeLanguage(BuildContext context, String lang) async {
-    var change = await GeneralRepository(context).changeLanguage(lang);
-    if (change == true && context.mounted) {
+    bool isAuth = context.read<AuthCubit>().state.authorized;
+    if (isAuth) {
+      var change = await GeneralRepository(context).changeLanguage(lang);
+      if (change == true && context.mounted) {
+        Utils.changeLanguage(lang, context);
+        if (lang == "ar") {
+          isArabicLangCubit.onUpdateData(true);
+        } else {
+          isArabicLangCubit.onUpdateData(false);
+        }
+        LoadingDialog.showLoadingDialog();
+        var result = await GeneralRepository(context).getAppSetting();
+        EasyLoading.dismiss();
+        if (context.mounted) {
+          context.read<SettingCubit>().onUpdateSettingData(result);
+          await Storage.saveSettings(result);
+          int type = context.read<UserCubit>().state.model.userType!.id!;
+          if (context.mounted) {
+            if (type == 2) {
+              AutoRouter.of(context).pushAndPopUntil(
+                  MainHomeRoute(firstTime: false, index: 0),
+                  predicate: (o) => false);
+            } else {
+              AutoRouter.of(context).pushAndPopUntil(
+                  MakeupArtistHomeRoute(firstTime: false, index: 0),
+                  predicate: (o) => false);
+            }
+          }
+        }
+      }
+      // Navigator.of(context).pop();
+    } else {
       Utils.changeLanguage(lang, context);
       if (lang == "ar") {
         isArabicLangCubit.onUpdateData(true);
@@ -172,18 +203,10 @@ class UserProfileData {
       if (context.mounted) {
         context.read<SettingCubit>().onUpdateSettingData(result);
         await Storage.saveSettings(result);
-        int type = context.read<UserCubit>().state.model.userType!.id!;
-        if (context.mounted) {
-          if (type == 2) {
-            AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
-          } else {
-            AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
-          }
-        }
+        AutoRouter.of(context).pushAndPopUntil(
+            MainHomeRoute(firstTime: false, index: 0),
+            predicate: (o) => false);
       }
-
-
-      // Navigator.of(context).pop();
     }
   }
 
