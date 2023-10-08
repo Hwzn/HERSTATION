@@ -16,30 +16,29 @@ class _RegisterState extends State<Register> {
     super.initState();
   }
 
-
   @override
   void didChangeDependencies() {
     precacheImage(const AssetImage(Res.bgsignup), context);
     super.didChangeDependencies();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Res.bgsignup),
-            fit: BoxFit.fill,
-          ),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Res.bgsignup),
+          fit: BoxFit.fill,
         ),
-        child: GestureDetector(
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Column(
               children: [
                 InkWell(
@@ -53,10 +52,8 @@ class _RegisterState extends State<Register> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onTap: () =>
-                      registerData.skipRegister(context),
+                  onTap: () => registerData.skipRegister(context),
                 ),
-
                 const HeaderLogo(
                   topPadding: 50,
                 ),
@@ -71,7 +68,7 @@ class _RegisterState extends State<Register> {
                 ),
                 BuildRegisterFields(registerDate: registerData),
                 BuildRegisterButton(registerDate: registerData),
-                 BuildHaveAccount(registerDate: registerData),
+                BuildHaveAccount(registerDate: registerData),
               ],
             ),
           ),

@@ -11,6 +11,7 @@ import 'package:hwzn_herstation/general/models/wallet_model.dart';
 import 'package:hwzn_herstation/general/utilities/utils_functions/ApiNames.dart';
 import 'package:hwzn_herstation/user/model/providers_details_model/schedule_model.dart';
 import 'package:hwzn_herstation/user/model/schedule_days.dart';
+import 'package:hwzn_herstation/makeup_artist/model/wallet_model/wallet_model.dart' as c1;
 
 import '../../general/blocks/user_cubit/user_cubit.dart';
 import '../model/payment_model/payment_model.dart';

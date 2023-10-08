@@ -23,6 +23,7 @@ class MakeUpArtistRepository {
 
   Future<List<SubscriptionModel>> getAllSubscription() =>
       makeUpArtistHttpMethods.getSubscriptions();
+
   Future<List<ServiceModel>> getProviderServices() =>
       makeUpArtistHttpMethods.getProviderServices();
 
@@ -30,8 +31,16 @@ class MakeUpArtistRepository {
       makeUpArtistHttpMethods.getMySubscriptions();
 
   Future<int> subscribe(int id) => makeUpArtistHttpMethods.subscribe(id);
-  Future<bool> paymentSubscribe(PaymentModel paymentModel) => makeUpArtistHttpMethods.paymentSubscribe(paymentModel);
+
+  Future<bool> paymentSubscribe(PaymentModel paymentModel) =>
+      makeUpArtistHttpMethods.paymentSubscribe(paymentModel);
 
   Future<List<ScheduleModel>> getSchedules() =>
       makeUpArtistHttpMethods.getSchedules();
+
+  Future<List<c1.WalletModel>> getWalletRetainers() =>
+      makeUpArtistHttpMethods.getWalletRetainers();
+
+  Future<List<c1.WalletModel>> getWalletTotals() =>
+      makeUpArtistHttpMethods.getWalletTotals();
 }

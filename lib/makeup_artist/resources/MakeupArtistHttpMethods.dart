@@ -83,6 +83,7 @@ class MakeUpArtistHttpMethods {
       returnDataFun: (data) => data["data"]["provider_subscriptions"],
       toJsonFunc: (json) => MySubscriptionModel.fromJson(json),
     );
+    print("Data : "+data.toString());
     return data as List<MySubscriptionModel>;
   }
 
@@ -143,6 +144,30 @@ class MakeUpArtistHttpMethods {
       toJsonFunc: (json) => ScheduleModel.fromJson(json),
     );
     return data as List<ScheduleModel>;
+  }
+
+  Future<List<c1.WalletModel>> getWalletRetainers() async {
+    var data = await GenericHttp<c1.WalletModel>(context).callApi(
+      name: ApiNames.walletRetainers,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["orders"],
+      toJsonFunc: (json) => c1.WalletModel.fromJson(json),
+    );
+    return data as List<c1.WalletModel>;
+  }
+
+  Future<List<c1.WalletModel>> getWalletTotals() async {
+    var data = await GenericHttp<c1.WalletModel>(context).callApi(
+      name: ApiNames.walletTotals,
+      returnType: ReturnType.list,
+      showLoader: false,
+      methodType: MethodType.get,
+      returnDataFun: (data) => data["data"]["orders"],
+      toJsonFunc: (json) => c1.WalletModel.fromJson(json),
+    );
+    return data as List<c1.WalletModel>;
   }
 
 }

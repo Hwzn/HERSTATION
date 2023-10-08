@@ -10,19 +10,37 @@ class BuildUsersBody extends StatelessWidget {
     return MediaQuery.removePadding(
       context: context,
       removeTop: true,
-      child: ListView.builder(
-        itemCount: 3,
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index) {
-          return buildUserItem(context, index);
-        },
+      child: PagedListView<int, WalletModel>(
+        padding: const EdgeInsets.only(top: 8, bottom: 150, right: 5, left: 5),
+        pagingController: walletDetailsData.pagingController,
+        // shrinkWrap: true,
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        builderDelegate: PagedChildBuilderDelegate<WalletModel>(
+            noItemsFoundIndicatorBuilder: (context) => Container(),
+            itemBuilder: (context, item, index) {
+              return buildUserItem(context, index, item.user!,item.paidAmount.toString());
+            },
+            firstPageProgressIndicatorBuilder: (context) => Container(
+                  margin: const EdgeInsets.only(top: 80),
+                  child: LoadingDialog.showLoadingView(),
+                ),
+            newPageProgressIndicatorBuilder: (context) =>
+                const CupertinoActivityIndicator()),
       ),
+      // child: ListView.builder(
+      //   itemCount: 3,
+      //   shrinkWrap: true,
+      //   itemBuilder: (BuildContext context, int index) {
+      //     return buildUserItem(context, index);
+      //   },
+      // ),
     );
   }
 
-  Widget buildUserItem(BuildContext context, int index) {
+  Widget buildUserItem(BuildContext context, int index, User user,String paidAmount) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10,top: 5),
+      margin: const EdgeInsets.only(bottom: 10, top: 5),
       decoration: BoxDecoration(
         color: MyColors.bgPrimary,
         borderRadius: BorderRadius.circular(15),
@@ -33,21 +51,22 @@ class BuildUsersBody extends StatelessWidget {
         children: [
           Row(
             children: [
-              const ClipOval(
+               ClipOval(
                 child: CachedImage(
-                  url:
-                  "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpciUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                  url:user.image??"",
                   width: 40,
                   height: 40,
                   fit: BoxFit.fill,
                 ),
               ),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               MyText(
                 color: MyColors.black,
                 size: 14,
                 fontWeight: FontWeight.bold,
-                title: "مريم جلال",
+                title: user.name??"",
               ),
             ],
           ),
@@ -55,7 +74,7 @@ class BuildUsersBody extends StatelessWidget {
             color: MyColors.black,
             size: 14,
             fontWeight: FontWeight.bold,
-            title: "1300${tr(context,"sr")}",
+            title: "$paidAmount${tr(context, "sr")}",
           ),
         ],
       ),

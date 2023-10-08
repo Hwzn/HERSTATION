@@ -9,6 +9,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final LoginData loginData = LoginData();
+
   @override
   void initState() {
     super.initState();
@@ -16,17 +17,19 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Res.bglogin),
-            fit: BoxFit.fill,
-          ),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Res.bglogin),
+          fit: BoxFit.fill,
         ),
-        child: GestureDetector(
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+
+        body: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -44,8 +47,7 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onTap: () =>
-                        loginData.skipLogin(context),
+                    onTap: () => loginData.skipLogin(context),
                   ),
                   const HeaderLogo(
                     topPadding: 50,
