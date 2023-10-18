@@ -7,6 +7,7 @@ import 'package:hwzn_herstation/general/constants/MyColors.dart';
 import 'package:hwzn_herstation/general/models/WelcomeEntity.dart';
 import 'package:hwzn_herstation/general/utilities/routers/RouterImports.gr.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
+import 'package:hwzn_herstation/general/widgets/CachedImage.dart';
 
 import '../../../../res.dart';
 import '../../../packages/generic_bloc/generic_cubit.dart';

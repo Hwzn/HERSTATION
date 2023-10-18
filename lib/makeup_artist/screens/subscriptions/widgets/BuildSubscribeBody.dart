@@ -101,7 +101,7 @@ class _BuildSubscribeBody extends State<BuildSubscribeBody> {
           // select payments you need to show [Default is all, and you can choose between WEB-CARD-APPLEPAY ]
           paymentType: PaymentType.ALL,
           // Transaction mode
-          sdkMode: SDKMode.Sandbox);
+          sdkMode: SDKMode.Production);
     } on PlatformException {
       // platformVersion = 'Failed to get platform version.';
     }
