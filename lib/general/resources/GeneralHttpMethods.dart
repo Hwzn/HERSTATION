@@ -141,6 +141,20 @@ class GeneralHttpMethods {
     return data;
   }
 
+  Future<bool> deleteAccount() async {
+    var user = context.read<UserCubit>().state.model;
+    LoadingDialog.showLoadingDialog();
+
+    var data = await GenericHttp<bool>(context).callApi(
+      name: "${ApiNames.deleteAccount}/${user.id}",
+      returnType: ReturnType.model,
+      showLoader: true,
+      toJsonFunc: (json) => json["status"],
+      methodType: MethodType.get,
+    );
+    return data;
+  }
+
   Future<String> resendCode(String phone) async {
     Map<String, dynamic> body = {"phone": phone};
     var data = await GenericHttp<String>(context).callApi(

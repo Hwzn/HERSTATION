@@ -163,6 +163,7 @@ flutter:
     - assets/images/active_appointment.png
     - assets/images/active_fav.png
     - assets/images/active_home.png
+    - assets/images/appIcon.jpg
     - assets/images/apple.svg
     - assets/images/appointment.png
     - assets/images/arrow.svg
@@ -218,6 +219,7 @@ flutter:
     - assets/images/upload2.svg
     - assets/images/user.png
     - assets/images/usericon.png
+    - assets/images/userimg.png
     - assets/images/visa.svg
     - assets/images/whatsapp.svg
     - assets/images/white_whats.png

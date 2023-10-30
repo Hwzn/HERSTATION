@@ -121,7 +121,7 @@ class PlaceData {
     } else if (name == "Monday") {
       return "الإثنين";
     } else if (name == "Tuesday") {
-      return "التلاتاء";
+      return "الثلاثاء";
     } else if (name == "Wednesday") {
       return "الأربعاء";
     } else if (name == "Thursday") {

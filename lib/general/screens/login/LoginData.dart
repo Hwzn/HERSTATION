@@ -26,14 +26,25 @@ class LoginData {
         var data =
             await GeneralRepository(context).setUserLogin(phone.text, passEn);
         if (data != null && context.mounted) {
-          await Utils.manipulateLoginData(context, data);
-          int type = context.read<UserCubit>().state.model.userType!.id!;
-          if (context.mounted) {
-            if (type == 2) {
-              AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
-            } else {
-              AutoRouter.of(context).pushAndPopUntil( MakeupArtistHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
+          UserModel user = UserModel.fromJson(data["data"]["user"]);
+          if (user.isActive == 1) {
+            await Utils.manipulateLoginData(context, data);
+            int type = context.read<UserCubit>().state.model.userType!.id!;
+            if (context.mounted) {
+              if (type == 2) {
+                AutoRouter.of(context).pushAndPopUntil(
+                    MainHomeRoute(firstTime: false, index: 0),
+                    predicate: (o) => false);
+              } else {
+                AutoRouter.of(context).pushAndPopUntil(
+                    MakeupArtistHomeRoute(firstTime: false, index: 0),
+                    predicate: (o) => false);
+              }
             }
+          }else{
+            AutoRouter.of(context).popAndPush(VerifyCodeRoute(
+                phone: data["data"]["user"]["phone"],
+                verifyToken: data["data"]["user"]["verfiy_token"]));
           }
         }
       }
@@ -42,8 +53,9 @@ class LoginData {
 
   void setMakeupArtistType(BuildContext context) async {
     await Storage.setUserType(3);
-    if(context.mounted){
-    AutoRouter.of(context).push(const RegisterRoute());}
+    if (context.mounted) {
+      AutoRouter.of(context).push(const RegisterRoute());
+    }
     // userTypeCubit.onUpdateData(3);
   }
 
@@ -54,6 +66,6 @@ class LoginData {
 
   void skipLogin(BuildContext context) async {
     await Storage.setUserType(2);
-    AutoRouter.of(context).push( MainHomeRoute(firstTime: false,index: 0));
+    AutoRouter.of(context).push(MainHomeRoute(firstTime: false, index: 0));
   }
 }

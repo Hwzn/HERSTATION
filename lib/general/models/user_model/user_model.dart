@@ -34,6 +34,8 @@ class UserModel {
   String? lng;
   @JsonKey(name: 'address')
   String? address;
+  @JsonKey(name: 'is_active')
+  int? isActive;
 
   UserModel(
       {this.id,
@@ -46,7 +48,7 @@ class UserModel {
       this.verfiyToken,
       this.token,
       this.userType,
-      this.provider,this.address,this.lat,this.lng});
+      this.provider,this.address,this.lat,this.lng,this.isActive});
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

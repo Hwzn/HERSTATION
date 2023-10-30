@@ -32,7 +32,7 @@ class BuildLocationEnableDialogMakeUp extends StatelessWidget {
           Container(
             margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: MyText(
-              title: tr(context, "addLocation"),
+              title: tr(context, "addLocationMakeupArtist"),
               color: MyColors.grey,
               size: 13,
             ),

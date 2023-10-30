@@ -226,5 +226,6 @@
   "noTimes": " There are no appointments available currently ",
   "noFavourite": "There are no makeup artists in favourite",
   "onlinePay": "Online payment",
-  "errors": "Some thing error try again"
+  "errors": "Some thing error try again",
+  "addLocationMakeupArtist": "Identify the areas where your services are available to make them visible to customers and help them find you."
 }

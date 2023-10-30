@@ -19,7 +19,6 @@ class UserProfileData {
   List<GeneralModel> infoList = [];
 
   void checkUser(BuildContext context) async {
-
     var isAuth = context.read<AuthCubit>().state.authorized;
     if (isAuth) {
       int type = context.read<UserCubit>().state.model.userType!.id!;
@@ -93,9 +92,6 @@ class UserProfileData {
     return;
   }
 
-  void cancelAccount(BuildContext context) {
-    Navigator.of(context).pop();
-  }
 
   //////////////// logout ////////////////
 
@@ -118,6 +114,20 @@ class UserProfileData {
 
   void logout(BuildContext context) async {
     var data = await GeneralRepository(context).logOut();
+    if (data == true && context.mounted) {
+      EasyLoading.dismiss();
+      GlobalState.instance.set("token", "");
+      Storage.clearSavedData();
+      context.read<AuthCubit>().onUpdateAuth(false);
+      context.read<UserCubit>().onUpdateUserData(UserModel());
+      CustomToast.showSimpleToast(msg: tr(context, "logoutSuccess"));
+      // Phoenix.rebirth(context);
+      AutoRouter.of(context).push(const LoginRoute());
+    }
+  }
+
+  void deleteAccount(BuildContext context) async {
+    var data = await GeneralRepository(context).deleteAccount();
     if (data == true && context.mounted) {
       EasyLoading.dismiss();
       GlobalState.instance.set("token", "");

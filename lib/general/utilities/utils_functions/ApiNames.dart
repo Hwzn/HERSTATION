@@ -19,6 +19,7 @@ class ApiNames {
   static const String checkCode = "check-code";
   static const String updateAddress = "update-address";
   static const String changeLang = "change-lang";
+  static const String deleteAccount = "delete-account";
 
   static const String completeAccount = "complete-profile";
   static const String contactUs = "contact";

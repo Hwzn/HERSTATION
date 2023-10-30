@@ -46,7 +46,7 @@ class BuildCancelAccountDialog extends StatelessWidget {
                   borderRadius: 15,
                   borderColor: MyColors.primary,
                   title: tr(context, "yes"),
-                  onTap: () => userProfileData.cancelAccount(context),
+                  onTap: () => userProfileData.deleteAccount(context),
                   color: MyColors.primary,
                   textColor: MyColors.white,
                   btnKey: userProfileData.btnCancelAcc,

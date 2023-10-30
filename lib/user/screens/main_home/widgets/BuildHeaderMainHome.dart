@@ -55,7 +55,7 @@ class BuildHeaderMainHome extends StatelessWidget {
                                   border: Border.all(color: MyColors.primary),
                                   shape: BoxShape.circle,
                                   color: MyColors.offWhite),
-                              child: Image.asset(Res.usericon),
+                              child: Image.asset(Res.userimg),
                             )
                           : CachedImage(
                               width: 60,

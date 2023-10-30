@@ -50,6 +50,7 @@ class GeneralRepository {
       _generalHttpMethods.updateProfile(updateProfileData);
 
   Future<bool> logOut() => _generalHttpMethods.logOut();
+  Future<bool> deleteAccount() => _generalHttpMethods.deleteAccount();
 
   Future<List<NotificationModel>> getNotifications() =>
       _generalHttpMethods.getNotifications();

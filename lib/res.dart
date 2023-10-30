@@ -4,6 +4,7 @@ class Res {
   static const String active_appointment = "assets/images/active_appointment.png";
   static const String active_fav = "assets/images/active_fav.png";
   static const String active_home = "assets/images/active_home.png";
+  static const String appIcon = "assets/images/appIcon.jpg";
   static const String apple = "assets/images/apple.svg";
   static const String appointment = "assets/images/appointment.png";
   static const String ar = "assets/lang/ar.json";
@@ -61,6 +62,7 @@ class Res {
   static const String upload2 = "assets/images/upload2.svg";
   static const String user = "assets/images/user.png";
   static const String usericon = "assets/images/usericon.png";
+  static const String userimg = "assets/images/userimg.png";
   static const String visa = "assets/images/visa.svg";
   static const String whatsapp = "assets/images/whatsapp.svg";
   static const String white_whats = "assets/images/white_whats.png";
