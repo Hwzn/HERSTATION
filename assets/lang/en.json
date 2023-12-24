@@ -41,7 +41,7 @@
   "enterCode": "Enter code",
   "doneVerify": "Send code done successfully to ",
   "getPassword": "Enter recovery data",
-  "enterPhoneOrEmail": "Enter phone or email to get password",
+  "enterPhoneOrEmail": "Enter phone to get password",
   "enterNewPass": "Enter new password",
   "repeatPass": "And confirm New password",
   "enterCodePhone": "Enter code that sent to you through message",

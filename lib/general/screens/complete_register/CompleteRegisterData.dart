@@ -16,6 +16,7 @@ class CompleteRegisterData {
   final GenericBloc<File?> imageCubit = GenericBloc(null);
 
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
+  final GenericBloc<bool> retryPasswordCubit = GenericBloc(false);
 
   void completeAccount(BuildContext context) async {
     await GlobalNotification.instance.setupNotification(context);

@@ -127,7 +127,7 @@ class BuildCompleteRegisterInputs extends StatelessWidget {
                 );
               }),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-              bloc: completeRegisterData.passwordCubit,
+              bloc: completeRegisterData.retryPasswordCubit,
               builder: (context, state) {
                 return GenericTextField(
                   contentPadding:
@@ -144,7 +144,7 @@ class BuildCompleteRegisterInputs extends StatelessWidget {
                   hint: tr(context, "retryPass"),
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: IconButton(
-                    onPressed: () => completeRegisterData.passwordCubit
+                    onPressed: () => completeRegisterData.retryPasswordCubit
                         .onUpdateData(!state.data),
                     icon: Icon(
                       !state.data ? Icons.visibility_off : Icons.visibility,
