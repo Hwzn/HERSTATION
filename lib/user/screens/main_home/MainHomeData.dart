@@ -2,6 +2,7 @@ part of 'MainHomeImports.dart';
 
 class MainHomeData {
   final GenericBloc<int> tabsCubit = GenericBloc(0);
+  GlobalKey<CustomButtonState> btnChoose = GlobalKey();
   GlobalKey scaffoldKey = GlobalKey();
 
   List<HomeModel> listHome = [];
@@ -14,7 +15,7 @@ class MainHomeData {
     tabsCubit.onUpdateData(index);
   }
 
-  void initData(BuildContext context,int index) {
+  void initData(BuildContext context, int index) {
     tabsCubit.onUpdateData(index);
     listHome.add(HomeModel(
         title: "main", activeImg: Res.active_home, unactiveImg: Res.home));
@@ -32,6 +33,10 @@ class MainHomeData {
     ];
 
     initUserData(context);
+  }
+
+  void closeDialog(BuildContext context) {
+    Navigator.of(context).pop();
   }
 
   void initUserData(BuildContext context) {
@@ -90,13 +95,9 @@ class MainHomeData {
     Position position = await Geolocator.getCurrentPosition();
     double longitude = position.longitude;
     double latitude = position.latitude;
-    // final coordinates = c1.Coordinates(latitude, longitude);
-    // var addresses =
-    //     await c1.Geocoder.local.findAddressesFromCoordinates(coordinates);
-    // String address = addresses.first.addressLine ?? "";
-    LatLng latLng=LatLng(longitude,latitude);
+    LatLng latLng = LatLng(longitude, latitude);
 
-    String address=await MapMethods.getAddress(latLng,context);
+    String address = await MapMethods.getAddress(latLng, context);
     context.read<LocationCubit>().onLocationUpdated(
         LocationModel(lat: latitude ?? 0, lng: longitude ?? 0));
     updateAddress(context, dialogContext, latitude.toString(),
@@ -118,7 +119,27 @@ class MainHomeData {
       context.read<AuthCubit>().onUpdateAuth(true);
       CustomToast.showSimpleToast(msg: "تم تحديث العنوان بنجاح");
 
-      AutoRouter.of(context).pushAndPopUntil( MainHomeRoute(firstTime: false,index: 0), predicate: (o) => false);
+      AutoRouter.of(context).pushAndPopUntil(
+          MainHomeRoute(firstTime: false, index: 0),
+          predicate: (o) => false);
     }
   }
+
+  void showCityDialog(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(25.0),
+          ),
+        ),
+        builder: (context) {
+          return BuildCityViewDialog(
+            buildContext: context,
+            mainHomeData: this,
+          );
+        });
+    return;
+  }
+
 }

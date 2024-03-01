@@ -1,63 +1,64 @@
-part of 'PaymentImports.dart';
+part of 'SubscriptionPaymentWidgetImports.dart';
 
-class Payment extends StatefulWidget {
-  final ServiceModel serviceModel;
-  final ServiceRequestData serviceRequestData;
+class BuildPaymentButton extends StatefulWidget {
+  final SubscriptionModel subscriptionModel;
+  final SubscriptionPaymentData subscriptionsData;
 
-  Payment(
-      {Key? key, required this.serviceModel, required this.serviceRequestData})
-      : super(key: key);
+  BuildPaymentButton({
+    super.key,
+    required this.subscriptionModel,
+    required this.subscriptionsData,
+  });
 
   @override
-  State<Payment> createState() => _Payment();
+  State<BuildPaymentButton> createState() => _BuildPaymentButton();
 }
 
-class _Payment extends State<Payment> {
-  PaymentData paymentData = PaymentData();
-
+class _BuildPaymentButton extends State<BuildPaymentButton> {
   late Map<dynamic, dynamic> tapSDKResult;
 
   String sdkStatus = "";
   String? transactionId;
+  String? transactionType;
 
   String tabValue = "0";
 
-  Future<void> configureSDK() async {
-    // terminateSession();
-    await configureApp();
-    setupSDKSession();
+  Future<void> configureSDK(String amount) async {
+    configureApp();
+    setupSDKSession(amount);
   }
 
-  Future<void> configureApp() async {
+  void configureApp() {
     var language = context.read<LangCubit>().state.locale.languageCode;
     GoSellSdkFlutter.configureApp(
-
         bundleId: "com.hwzn.herstation",
         productionSecreteKey: "sk_live_i5ofT9Ckl7MJzZYBV3tWedDj",
         sandBoxsecretKey: "sk_test_mugCYLbljrOti6D9AoRzGwxW",
-        lang: language ?? "ar");
+        lang: language);
   }
 
-
-  Future<void> setupSDKSession() async {
+  Future<void> setupSDKSession(String amount) async {
     var user = context.read<UserCubit>().state.model;
     String userName = user.name ?? "";
     String phone = user.phone ?? "";
     String email = user.email ?? "";
+    // String userID = user.id.toString();
     try {
+      print("Price : x" + amount);
+
       GoSellSdkFlutter.sessionConfigurations(
           trxMode: TransactionMode.PURCHASE,
           transactionCurrency: "Sar",
-          amount: "10",
+          amount: amount,
           customer: Customer(
               customerId: "",
               // customer id is important to retrieve cards saved for this customer
-              email: "amanyaso123@gmail.com",
+              email: email,
               isdNumber: "965",
-              number: "$phone",
-              firstName: "amany",
-              middleName: "gamal",
-              lastName: "elsayed",
+              number: phone,
+              firstName: userName,
+              middleName: userName,
+              lastName: userName,
               metaData: null),
           paymentItems: <PaymentItem>[],
           // List of taxes
@@ -113,13 +114,14 @@ class _Payment extends State<Payment> {
 
   Future<void> startSDK() async {
     tapSDKResult = await GoSellSdkFlutter.startPaymentSDK;
-    //   loaderController.stopWhenFull();
-    //  print("vdfjhfjdhgdshgsdhsd $tapSDKResult");
+    EasyLoading.dismiss();
+
     setState(() {
       switch (tapSDKResult['sdk_result']) {
         case "SUCCESS":
           sdkStatus = "SUCCESS";
           transactionId = tapSDKResult['charge_id'];
+          transactionType = tapSDKResult['card_brand'];
           handleSDKResult();
           break;
         case "FAILED":
@@ -141,6 +143,8 @@ class _Payment extends State<Payment> {
           print(sdkErrorMessage);
           print(sdkErrorDescription);
           handleSDKResult();
+          CustomToast.showSimpleToast(msg: tr(context, "errors"));
+          EasyLoading.dismiss();
 
           break;
         case "NOT_IMPLEMENTED":
@@ -236,7 +240,7 @@ class _Payment extends State<Payment> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                 child: Icon(
                   Icons.error,
                   size: 60,
@@ -257,43 +261,30 @@ class _Payment extends State<Payment> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height - 220,
-      margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BuildDetailsPaymentBody(
-            paymentData: paymentData,
-            serviceModel: widget.serviceModel,
-          ),
-          const Spacer(),
-          LoadingButton(
-            borderRadius: 15,
-            borderColor: MyColors.primary,
-            title: tr(context, "goPay"),
-            onTap: () async{
-              // await configureSDK(
-              //
-              // );
-              // startSDK().then((value) {
-              //   if (sdkStatus == "SUCCESS") {
-              //     print("success");
-              //     // widget.paymentData
-              //     //     .addTransaction(context, amount, ,transactionId!);
-              //   } else {}
-              // });
-              paymentData.completePay(
-                  context, widget.serviceModel, widget.serviceRequestData);
-            },
-            color: MyColors.primary,
-            textColor: MyColors.white,
-            btnKey: paymentData.btnCompletePay,
-            fontSize: 13,
-          ),
-        ],
-      ),
+    return LoadingButton(
+      borderRadius: 20,
+      borderColor: MyColors.secondary,
+      title: tr(context, "confirm"),
+      onTap: () {
+        LoadingDialog.showLoadingDialog();
+        configureSDK(widget.subscriptionModel.price.toString());
+        startSDK().then((value) async {
+          if (sdkStatus == "SUCCESS") {
+            widget.subscriptionsData.subscribe(
+                context,
+                widget.subscriptionModel.id!,
+                widget.subscriptionModel.price!.toDouble(),
+                transactionId ?? "",
+                transactionType ?? "");
+          } else {
+            // await GoSellSdkFlutter.terminateSession();
+          }
+        });
+      },
+      color: MyColors.primary,
+      textColor: MyColors.white,
+      margin: const EdgeInsets.fromLTRB(15, 10, 15, 25),
+      fontSize: 13, btnKey: widget.subscriptionsData.btnSubscribe,
     );
   }
 }

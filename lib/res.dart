@@ -65,5 +65,7 @@ class Res {
   static const String userimg = "assets/images/userimg.png";
   static const String visa = "assets/images/visa.svg";
   static const String whatsapp = "assets/images/whatsapp.svg";
+  static const String select = "assets/images/select.png";
+  static const String unselect = "assets/images/unselect.png";
   static const String white_whats = "assets/images/white_whats.png";
 }

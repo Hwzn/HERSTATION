@@ -376,7 +376,6 @@
   "oct": "اكتوبر",
   "nov": "نوفمبر",
   "dec": "ديسمبر",
-
   "from": "من",
   "to": "الي",
   "saturday": "السبت",
@@ -395,7 +394,15 @@
   "noFavourite": "لا يوجد أي خبيرات تجميل في المفضلة",
   "onlinePay": "دفع أونلاين",
   "errors": "حدث خطأ ما حاول مرة أخري",
-  "addLocationMakeupArtist": "حددي المناطق المتاحة فيها خدماتك لظهورها للزبائن ومساعدتهم للعثور عليك"
+  "addLocationMakeupArtist": "حددي المناطق المتاحة فيها خدماتك لظهورها للزبائن ومساعدتهم للعثور عليك",
+  "chooseLocation": "اختر موقعك",
+  "choose": "اختيار",
+  "addDiscountCode": "أضف كود الخصم",
+  "enterDiscountCode": "ادخل كود الخصم",
+  "discountCodeSpecial": "خصم الكود الخاص",
+  "chooseCities": "تحديد المناطق",
+  "chooseCitiesToService": "تحديد المناطق التي تقدم فيها الخدمة"
 }
+
 
 

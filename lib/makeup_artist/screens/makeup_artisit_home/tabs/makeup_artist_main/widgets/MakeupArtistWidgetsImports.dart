@@ -29,3 +29,4 @@ part 'BuildWaitActiveBody.dart';
 part 'BuildSubscribtionWidget.dart';
 
 part '../../../widgets/BuildLocationEnableDialogMakeUp.dart';
+part 'BuildCitiesBody.dart';

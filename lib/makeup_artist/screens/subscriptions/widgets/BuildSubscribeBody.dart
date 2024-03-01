@@ -101,7 +101,7 @@ class _BuildSubscribeBody extends State<BuildSubscribeBody> {
           // select payments you need to show [Default is all, and you can choose between WEB-CARD-APPLEPAY ]
           paymentType: PaymentType.ALL,
           // Transaction mode
-          sdkMode: SDKMode.Production);
+          sdkMode: SDKMode.Sandbox);
     } on PlatformException {
       // platformVersion = 'Failed to get platform version.';
     }
@@ -296,20 +296,8 @@ class _BuildSubscribeBody extends State<BuildSubscribeBody> {
                   borderColor: MyColors.secondary,
                   title: tr(context, "subscribe"),
                   onTap: () {
-                    LoadingDialog.showLoadingDialog();
-                    configureSDK(widget.subscriptionModel.price.toString());
-                    startSDK().then((value) async {
-                      if (sdkStatus == "SUCCESS") {
-                        widget.subscriptionsData.subscribe(
-                            context,
-                            widget.subscriptionModel.id!,
-                            widget.subscriptionModel.price!.toDouble(),
-                            transactionId ?? "",
-                            transactionType ?? "");
-                      } else {
-                        // await GoSellSdkFlutter.terminateSession();
-                      }
-                    });
+                    AutoRouter.of(context).push(SubscriptionPaymentRoute(
+                        subscriptionModel: widget.subscriptionModel));
                   },
                   color: MyColors.secondary,
                   textColor: MyColors.primary,

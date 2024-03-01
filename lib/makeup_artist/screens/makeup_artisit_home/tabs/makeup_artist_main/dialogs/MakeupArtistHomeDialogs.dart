@@ -8,6 +8,9 @@ import 'package:hwzn_herstation/general/widgets/LoadingButton.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/makeup_artist_main/MakeupArtistMainImports.dart';
 
+import '../../../../../../res.dart';
+
 part 'BuildUploadDialog.dart';
 part 'BuildUpdateGuidesDialog.dart';
+part 'BuildCitiesViewDialog.dart';
 

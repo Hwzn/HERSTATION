@@ -227,5 +227,12 @@
   "noFavourite": "There are no makeup artists in favourite",
   "onlinePay": "Online payment",
   "errors": "Some thing error try again",
+  "chooseLocation": "Choose your location",
+  "choose": "Choose",
+  "addDiscountCode": "Add discount code",
+  "enterDiscountCode": "Enter the discount code",
+  "discountCodeSpecial": "discount code special",
+  "chooseCities": "Select regions",
+  "chooseCitiesToService": "Select the areas where the service is provided",
   "addLocationMakeupArtist": "Identify the areas where your services are available to make them visible to customers and help them find you."
 }

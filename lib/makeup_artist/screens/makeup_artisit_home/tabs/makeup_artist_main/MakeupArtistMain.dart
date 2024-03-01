@@ -27,9 +27,11 @@ class _MakeupArtistMain extends State<MakeupArtistMain> {
         if (state is GenericUpdateState) {
           return state.data?.isApproved == 0
               ? const BuildWaitActiveBody()
-              : state.data?.hasSubscription == false
-                  ? const BuildSubscribtionWidget()
-                  : Container(
+              :
+          // state.data?.hasSubscription == false
+          //         ? const BuildSubscribtionWidget()
+          //         :
+          Container(
                       alignment: Alignment.topCenter,
                       margin: const EdgeInsets.fromLTRB(15, 20, 15, 10),
                       child: SingleChildScrollView(
@@ -40,7 +42,10 @@ class _MakeupArtistMain extends State<MakeupArtistMain> {
                               makeupArtistMainData: makeupArtistMainData,
                               providerModel: state.data,
                             ),
-                            BuildGuidesBody(
+                            BuildCitiesBody(
+                              providerModel: state.data,
+                              makeupArtistMainData: makeupArtistMainData,
+                            ),   BuildGuidesBody(
                               providerModel: state.data,
                               makeupArtistMainData: makeupArtistMainData,
                             ),

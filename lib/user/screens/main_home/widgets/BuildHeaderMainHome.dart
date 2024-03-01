@@ -45,7 +45,6 @@ class BuildHeaderMainHome extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-
                     children: [
                       mainHomeData.userProfile.isEmpty
                           ? Container(
@@ -66,42 +65,42 @@ class BuildHeaderMainHome extends StatelessWidget {
                               url: mainHomeData.userProfile,
                             ),
                       Container(
+                        alignment: AlignmentDirectional.center,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
                             MyText(
-                              title: "${tr(context,"welcome")} ${mainHomeData.userName}",
+                              title:
+                                  "${tr(context, "welcome")} ${mainHomeData.userName}",
                               color: MyColors.primary,
                               size: 16,
                               fontWeight: FontWeight.bold,
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 5,
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width - 140,
-                              child: MyText(
-                                title: mainHomeData.location,
-                                color: MyColors.grey,
-                                size: 14,
+                            InkWell(
+                              onTap: () => mainHomeData.showCityDialog(context),
+                              child: Row(
+                                children: [
+                                  MyText(
+                                    title: tr(context, "chooseLocation"),
+                                    color: MyColors.grey,
+                                    size: 14,
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    size: 15,
+                                    color: MyColors.primary,
+                                  )
+                                ],
                               ),
                             ),
-                            // Row(
-                            //   children: [
-                            //     MyText(
-                            //       title: mainHomeData.location,
-                            //       color: MyColors.grey,
-                            //       size: 14,
-                            //     ),
-                            //     // Icon(
-                            //     //   Icons.arrow_forward_ios,
-                            //     //   size: 15,
-                            //     //   color: MyColors.primary,
-                            //     // )
-                            //   ],
-                            // ),
                           ],
                         ),
                       ),

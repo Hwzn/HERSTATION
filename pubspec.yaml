@@ -224,6 +224,8 @@ flutter:
     - assets/images/visa.svg
     - assets/images/whatsapp.svg
     - assets/images/white_whats.png
+    - assets/images/select.png
+    - assets/images/unselect.png
     - assets/lang/ar.json
     - assets/lang/en.json
   # An image asset can refer to one or more resolution-specific "variants", see

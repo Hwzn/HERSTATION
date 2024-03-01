@@ -4,8 +4,10 @@ class PaymentData {
   GlobalKey<CustomButtonState> btnCompletePay = GlobalKey();
   GlobalKey<CustomButtonState> btnGoPay = GlobalKey();
   GlobalKey<CustomButtonState> btnChoosePay = GlobalKey();
+  GlobalKey<CustomButtonState> btnApplyKey = GlobalKey();
   final GenericBloc<bool> isDepositOnly = GenericBloc(true);
   final GenericBloc<bool> isVisa = GenericBloc(true);
+  TextEditingController discountCountController = TextEditingController();
 
   void closeDialog(BuildContext context) {
     Navigator.of(context).pop();
@@ -85,13 +87,13 @@ class PaymentData {
     // }
   }
 
-  Future<void> addTransaction(
-      BuildContext context, double amount, int id, String transactionId,String transactionType) async {
-    print("trans : "+transactionType);
+  Future<void> addTransaction(BuildContext context, double amount, int id,
+      String transactionId, String transactionType) async {
+    print("trans : " + transactionType);
     PaymentModel paymentModel = PaymentModel(
         status: "success",
         type: "payment",
-        gateway: transactionType=="VISA" ? "visa" : "apple_pay",
+        gateway: transactionType == "VISA" ? "visa" : "apple_pay",
         onlinePaymentId: transactionId,
         transactionableId: id,
         transactionableType: "Order",

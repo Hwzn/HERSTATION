@@ -25,8 +25,8 @@ class AddServicesModel {
   AddServicesModel({
     this.services,
   });
+
   Map<String, dynamic> toJson() => {
-        
         "services": json.encode(services),
       };
 }

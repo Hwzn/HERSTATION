@@ -16,6 +16,13 @@ class BuildDetailsPaymentBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyText(
+            title: tr(context, "addDiscountCode"),
+            color: MyColors.primary,
+            size: 14,
+            fontWeight: FontWeight.bold,
+          ),
+          BuildDiscountCode(paymentData: paymentData),
+          MyText(
             title: tr(context, "services"),
             color: MyColors.primary,
             size: 16,

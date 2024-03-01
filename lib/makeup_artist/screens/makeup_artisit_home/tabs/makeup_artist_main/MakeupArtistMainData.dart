@@ -3,6 +3,7 @@ part of 'MakeupArtistMainImports.dart';
 class MakeupArtistMainData {
   final GlobalKey<CustomButtonState> btnSaveChanges =
       GlobalKey<CustomButtonState>();
+  GlobalKey<CustomButtonState> btnChoose = GlobalKey();
 
   final TextEditingController guide = TextEditingController();
 
@@ -156,4 +157,22 @@ class MakeupArtistMainData {
       }
     }
   }
+
+  void showCityDialog(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(25.0),
+          ),
+        ),
+        builder: (context) {
+          return BuildCitiesViewDialog(
+            buildContext: context,
+            mainHomeData: this,
+          );
+        });
+    return;
+  }
+
 }

@@ -14,6 +14,7 @@ import 'package:hwzn_herstation/general/utilities/utils_functions/LoadingDialog.
 
 import '../../../../../../../general/constants/MyColors.dart';
 import '../../../../../../../general/packages/generic_bloc/generic_cubit.dart';
+import '../../../../../../../general/packages/input_fields/GenericTextField.dart';
 import '../../../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../../../general/widgets/LoadingButton.dart';
 import '../../../../../../../general/widgets/MyText.dart';
@@ -27,3 +28,4 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'BuildDetailsPaymentBody.dart';
 part 'BuildPaymentWayDialog.dart';
 part 'BuildChooseWayPayDialog.dart';
+part 'BuildDiscountCode.dart';
