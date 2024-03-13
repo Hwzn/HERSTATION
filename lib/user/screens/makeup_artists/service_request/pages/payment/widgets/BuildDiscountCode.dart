@@ -2,8 +2,10 @@ part of 'PaymentWidgetsImports.dart';
 
 class BuildDiscountCode extends StatelessWidget {
   final PaymentData paymentData;
+  final ServiceModel serviceModel;
 
-  const BuildDiscountCode({Key? key, required this.paymentData})
+  const BuildDiscountCode(
+      {Key? key, required this.paymentData, required this.serviceModel})
       : super(key: key);
 
   @override
@@ -47,7 +49,12 @@ class BuildDiscountCode extends StatelessWidget {
                 vertical: 0,
               ),
               fontSize: 14,
-              onTap: () {}),
+              onTap: () {
+                paymentData.applyCoupon(
+                    context,
+                    (serviceModel.totalPrice!)
+                        .toString());
+              }),
         ],
       ),
     );

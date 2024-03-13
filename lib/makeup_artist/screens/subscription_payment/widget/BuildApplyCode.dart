@@ -2,8 +2,9 @@ part of 'SubscriptionPaymentWidgetImports.dart';
 
 class BuildApplyCode extends StatelessWidget {
   final SubscriptionPaymentData subscriptionPaymentData;
+  final SubscriptionModel subscriptionModel;
 
-  const BuildApplyCode({required this.subscriptionPaymentData});
+  const BuildApplyCode({required this.subscriptionPaymentData, required this.subscriptionModel});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class BuildApplyCode extends StatelessWidget {
                     vertical: 0,
                   ),
                   fontSize: 14,
-                  onTap: () {}),
+                  onTap: () {subscriptionPaymentData.applyCoupon(context, subscriptionModel.price!.toString());}),
             ],
           ),
         )

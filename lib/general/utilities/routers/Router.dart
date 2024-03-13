@@ -44,6 +44,7 @@ part of 'RouterImports.dart';
     AdaptiveRoute(page: MySubscriptions),
     AdaptiveRoute(page: MyServices),
     AdaptiveRoute(page: MyWallet),
+    AdaptiveRoute(page: SelectRegions),
     AdaptiveRoute(page: SubscriptionPayment),
     AdaptiveRoute(page: WalletDetails,initial: true),
 

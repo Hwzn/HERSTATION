@@ -234,5 +234,13 @@
   "discountCodeSpecial": "discount code special",
   "chooseCities": "Select regions",
   "chooseCitiesToService": "Select the areas where the service is provided",
+  "shouldSelectCities": "You should select the areas in which the service is provided",
+  "shouldSelectCity": "You should select the city",
+  "enterCodeValidation": "Please enter the activation code",
+  "invalidCoupon": "Invalid coupon",
+  "extraAmount": "Added value",
+  "discount15": "The service value is 1.5% on the total amount paid",
+  "detectRegions": "Determine regions",
+  "chooseCity": "Choose cities",
   "addLocationMakeupArtist": "Identify the areas where your services are available to make them visible to customers and help them find you."
 }

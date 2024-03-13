@@ -9,4 +9,6 @@ class HomeData {
     HomeDataModel? homeData = await UserRepository(context).getHomeData();
     homeCubit.onUpdateData(homeData);
   }
+
+
 }

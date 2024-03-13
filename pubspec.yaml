@@ -226,6 +226,7 @@ flutter:
     - assets/images/white_whats.png
     - assets/images/select.png
     - assets/images/unselect.png
+    - assets/images/select_color.png
     - assets/lang/ar.json
     - assets/lang/en.json
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -10,18 +10,9 @@ class BuildCitiesViewDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width -
-        (MediaQuery
-            .of(context)
-            .size
-            .width / 3);
-    double widthCancel = MediaQuery
-        .of(context)
-        .size
-        .width - width - 40;
+    double width = MediaQuery.of(context).size.width -
+        (MediaQuery.of(context).size.width / 3);
+    double widthCancel = MediaQuery.of(context).size.width - width - 40;
     return Container(
       padding: const EdgeInsets.all(15),
       child: SingleChildScrollView(
@@ -50,13 +41,24 @@ class BuildCitiesViewDialog extends StatelessWidget {
             ),
             SizedBox(
               height: 240,
-              child: ListView.builder(
-                itemCount: 10,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return buildCityView(index);
-                },
-              ),
+              child: BlocBuilder<GenericBloc<List<RegionModel>>,
+                      GenericState<List<RegionModel>>>(
+                  bloc: mainHomeData.regionCubit,
+                  builder: (context, state) {
+                    if (state is GenericUpdateState) {
+                      return ListView.builder(
+                        itemCount: state.data.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buildCityView(index, state.data[index]);
+                        },
+                      );
+                    } else {
+                      return Container(
+                        child: LoadingDialog.showLoadingView(),
+                      );
+                    }
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -67,7 +69,9 @@ class BuildCitiesViewDialog extends StatelessWidget {
                     borderRadius: 15,
                     borderColor: MyColors.primary,
                     title: tr(context, "saveChange"),
-                    onTap: () {},
+                    onTap: () {
+                      mainHomeData.updateCities(context);
+                    },
                     color: MyColors.primary,
                     textColor: MyColors.white,
                     btnKey: mainHomeData.btnChoose,
@@ -97,27 +101,33 @@ class BuildCitiesViewDialog extends StatelessWidget {
     );
   }
 
-  Widget buildCityView(int index) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 15),
-      decoration: BoxDecoration(
-        color: MyColors.bgGrey,
-        borderRadius: BorderRadius.circular(8),
+  Widget buildCityView(int index, RegionModel model) {
+    return InkWell(
+      onTap: () {
+        List<RegionModel> regions = mainHomeData.regionCubit.state.data;
+        regions[index].selected = !regions[index].selected!;
+        mainHomeData.regionCubit.onUpdateData(regions);
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 15),
+        decoration: BoxDecoration(
+          color: MyColors.bgGrey,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            MyText(
+              title: model.name ?? "",
+              color: MyColors.grey,
+              size: 14,
+            ),
+            Image.asset(model.selected! ? Res.select : Res.unselect,
+                width: 20, height: 20)
+          ],
+        ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          MyText(
-            title: "الرياض",
-            color: MyColors.grey,
-            size: 14,
-          ),
-          Image.asset(
-              index == 0 ? Res.select : Res.unselect, width: 20, height: 20)
-        ],
-      )
-      ,
     );
   }
 }

@@ -19,6 +19,11 @@ ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) => ServiceModel(
       bridemadesPrice: (json['bridemadesPrice'] as num?)?.toDouble(),
       bridemadesRetainer: (json['bridemadesRetainer'] as num?)?.toDouble(),
       totalPrice: (json['totalPrice'] as num?)?.toDouble() ?? 0,
+      totalAmount: (json['totalAmount'] as num?)?.toDouble() ?? 0,
+      couponDiscount: (json['couponDiscount'] as num?)?.toDouble() ?? 0,
+      extraAmount: (json['extraAmount'] as num?)?.toDouble() ?? 0,
+      couponID: json['couponID'] as int? ?? 0,
+      addedValue: (json['addedValue'] as num?)?.toDouble() ?? 0,
       totalRetainer: (json['totalRetainer'] as num?)?.toDouble() ?? 0,
     );
 
@@ -37,4 +42,9 @@ Map<String, dynamic> _$ServiceModelToJson(ServiceModel instance) =>
       'bridemadesPrice': instance.bridemadesPrice,
       'bridemadesID': instance.bridemadesID,
       'bridemadesRetainer': instance.bridemadesRetainer,
+      'extraAmount': instance.extraAmount,
+      'couponDiscount': instance.couponDiscount,
+      'totalAmount': instance.totalAmount,
+      'addedValue': instance.addedValue,
+      'couponID': instance.couponID,
     };

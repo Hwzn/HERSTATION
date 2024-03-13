@@ -12,6 +12,8 @@ RegionModel _$RegionModelFromJson(Map<String, dynamic> json) => RegionModel(
       cities: (json['cities'] as List<dynamic>?)
           ?.map((e) => CityModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      selected: json['selected'] as bool? ?? false,
+      open: json['open'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$RegionModelToJson(RegionModel instance) =>
@@ -19,4 +21,6 @@ Map<String, dynamic> _$RegionModelToJson(RegionModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'cities': instance.cities,
+      'selected': instance.selected,
+      'open': instance.open,
     };

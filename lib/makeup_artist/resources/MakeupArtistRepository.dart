@@ -21,6 +21,12 @@ class MakeUpArtistRepository {
   Future<bool> addAvailableTime(AddScheduleModel model) =>
       makeUpArtistHttpMethods.addAvailableTime(model);
 
+  Future<ApplyCouponData> applyCoupon(ApplyCouponModel model) =>
+      makeUpArtistHttpMethods.applyCoupon(model);
+
+  Future<bool> updateCities(UpdateCitiesModel model) =>
+      makeUpArtistHttpMethods.updateCities(model);
+
   Future<List<SubscriptionModel>> getAllSubscription() =>
       makeUpArtistHttpMethods.getSubscriptions();
 
@@ -30,7 +36,7 @@ class MakeUpArtistRepository {
   Future<List<MySubscriptionModel>> getMySubscription() =>
       makeUpArtistHttpMethods.getMySubscriptions();
 
-  Future<int> subscribe(int id) => makeUpArtistHttpMethods.subscribe(id);
+  Future<int> subscribe(SupscriptionData  supscriptionData) => makeUpArtistHttpMethods.subscribe(supscriptionData);
 
   Future<bool> paymentSubscribe(PaymentModel paymentModel) =>
       makeUpArtistHttpMethods.paymentSubscribe(paymentModel);

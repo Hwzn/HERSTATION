@@ -14,10 +14,14 @@ import 'package:hwzn_herstation/user/model/schedule_days.dart';
 import 'package:hwzn_herstation/makeup_artist/model/wallet_model/wallet_model.dart' as c1;
 
 import '../../general/blocks/user_cubit/user_cubit.dart';
+import '../model/apply_coupon_data/apply_coupon_data.dart';
+import '../model/apply_coupon_model/apply_coupon_model.dart';
 import '../model/payment_model/payment_model.dart';
 import '../model/services_model/service_model.dart';
+import '../model/subscription_data/supscription_data.dart';
 import '../model/subscription_model/my_subscription_model.dart';
 import '../model/subscription_model/subscription_model.dart';
+import '../model/update_cities_model/update_cities_model.dart';
 
 part 'MakeupArtistRepository.dart';
 part 'MakeupArtistHttpMethods.dart';

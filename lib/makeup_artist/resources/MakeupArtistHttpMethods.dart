@@ -53,13 +53,34 @@ class MakeUpArtistHttpMethods {
       showLoader: false,
       methodType: MethodType.post,
     );
+   return data;
+  }
+  Future<bool> updateCities(UpdateCitiesModel updateCitiesModel) async {
+    dynamic data = await GenericHttp<dynamic>(context).callApi(
+      name: ApiNames.updateCities,
+      json: updateCitiesModel.toJson(),
+      returnType: ReturnType.type,
+      returnDataFun: (data) => data,
+      showLoader: true,
+      methodType: MethodType.post,
+    );
     if (data != null) {
       CustomToast.showSimpleToast(msg: data['message']);
-      //AutoRouter.of(context).pop(true);
       return true;
     } else {
       return false;
     }
+  }
+  Future<ApplyCouponData> applyCoupon(ApplyCouponModel applyCouponModel) async {
+    dynamic data = await GenericHttp<ApplyCouponData>(context).callApi(
+      name: ApiNames.applyCoupon,
+      json: applyCouponModel.toJson(),
+      returnType: ReturnType.model,
+      returnDataFun: (data) => data["data"],
+      showLoader: true,
+      methodType: MethodType.post,
+        toJsonFunc: (json) => ApplyCouponData.fromJson(json));
+    return data;
   }
 
   Future<List<SubscriptionModel>> getSubscriptions() async {
@@ -101,10 +122,10 @@ class MakeUpArtistHttpMethods {
     return data as List<ServiceModel>;
   }
 
-  Future<int> subscribe(int id) async {
+  Future<int> subscribe(SupscriptionData supscriptionData) async {
     dynamic data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.subscribe,
-      json: {"subscription_id": id},
+      json: supscriptionData.toJson(),
       returnType: ReturnType.type,
       returnDataFun: (data) => data,
       methodType: MethodType.post,

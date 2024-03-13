@@ -37,6 +37,8 @@ class OrderModel {
   double? reserved;
   @JsonKey(name: 'total')
   double? total;
+  @JsonKey(name: 'discount')
+  double? discount;
   @JsonKey(name: 'region')
   CityModel? region;
   @JsonKey(name: 'city')
@@ -62,6 +64,7 @@ class OrderModel {
       this.city,
       this.statusCode,
       this.total,
+      this.discount,
       this.address,
       this.selected});
 

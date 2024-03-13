@@ -23,6 +23,7 @@ class _MainHome extends State<MainHome> {
         mainHomeData.showDialogEnable(context);
       }
     });
+    mainHomeData.getRegions(context);
     super.initState();
   }
 

@@ -24,6 +24,12 @@ class ServiceModel {
   int? bridemadesID;
   double? bridemadesRetainer;
 
+  double? extraAmount;
+  double? couponDiscount;
+  double? totalAmount;
+  double? addedValue;
+  int? couponID;
+
   ServiceModel(
       {this.id,
       this.name,
@@ -37,6 +43,11 @@ class ServiceModel {
       this.bridemadesPrice,
       this.bridemadesRetainer,
       this.totalPrice = 0,
+      this.totalAmount = 0,
+      this.couponDiscount = 0,
+      this.extraAmount = 0,
+      this.couponID = 0,
+      this.addedValue = 0,
       this.totalRetainer = 0});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) =>

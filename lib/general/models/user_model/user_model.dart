@@ -2,6 +2,8 @@ import 'package:hwzn_herstation/general/models/user_model/provider_model.dart';
 import 'package:hwzn_herstation/general/models/user_model/user_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../user/model/region_model/region_model.dart';
+
 part 'user_model.g.dart';
 
 @JsonSerializable(nullable: false, ignoreUnannotated: false)
@@ -36,6 +38,16 @@ class UserModel {
   String? address;
   @JsonKey(name: 'is_active')
   int? isActive;
+  @JsonKey(name: 'city_id')
+  int? cityID;
+  @JsonKey(name: 'city_name')
+  String? cityName;
+  @JsonKey(name: 'region_id')
+  int? regionID;
+  @JsonKey(name: 'region_name')
+  String? regionName;
+  @JsonKey(name: 'regions')
+  List<RegionModel>? regions;
 
   UserModel(
       {this.id,
@@ -48,7 +60,14 @@ class UserModel {
       this.verfiyToken,
       this.token,
       this.userType,
-      this.provider,this.address,this.lat,this.lng,this.isActive});
+      this.provider,
+      this.address,
+      this.lat,
+      this.lng,
+      this.isActive,
+      this.cityID,
+      this.cityName,
+      this.regions,this.regionID,this.regionName});
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

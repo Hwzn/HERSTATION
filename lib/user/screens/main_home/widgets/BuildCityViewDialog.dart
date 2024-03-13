@@ -32,13 +32,24 @@ class BuildCityViewDialog extends StatelessWidget {
             ),
             SizedBox(
               height: 270,
-              child: ListView.builder(
-                itemCount: 10,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return buildCityView(index);
-                },
-              ),
+              child: BlocBuilder<GenericBloc<List<RegionModel>>,
+                      GenericState<List<RegionModel>>>(
+                  bloc: mainHomeData.regionCubit,
+                  builder: (context, state) {
+                    if (state is GenericUpdateState) {
+                      return ListView.builder(
+                        itemCount: state.data.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buildCityView(index, state.data[index]);
+                        },
+                      );
+                    } else {
+                      return Container(
+                        child: LoadingDialog.showLoadingView(),
+                      );
+                    }
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -79,18 +90,28 @@ class BuildCityViewDialog extends StatelessWidget {
     );
   }
 
-  Widget buildCityView(int index) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 15),
-      decoration: BoxDecoration(
-        color: index == 0 ? MyColors.primary : MyColors.bgGrey,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: MyText(
-        title: "الرياض",
-        color: index == 0 ? MyColors.white : MyColors.grey,
-        size: 14,
+  Widget buildCityView(int index, RegionModel model) {
+    return InkWell(
+      onTap: (){
+        List<RegionModel> regions = mainHomeData.regionCubit.state.data;
+        for (int i = 0; i < regions.length; i++) {
+          regions[i].selected = false;
+        }
+        regions[index].selected = true;
+        mainHomeData.regionCubit.onUpdateData(regions);
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 15),
+        decoration: BoxDecoration(
+          color: model.selected! ? MyColors.primary : MyColors.bgGrey,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: MyText(
+          title: model.name ?? "",
+          color: model.selected! ? MyColors.white : MyColors.grey,
+          size: 14,
+        ),
       ),
     );
   }

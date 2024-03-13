@@ -4,6 +4,7 @@ class MainHomeData {
   final GenericBloc<int> tabsCubit = GenericBloc(0);
   GlobalKey<CustomButtonState> btnChoose = GlobalKey();
   GlobalKey scaffoldKey = GlobalKey();
+  final GenericBloc<List<RegionModel>> regionCubit = GenericBloc([]);
 
   List<HomeModel> listHome = [];
   List<Widget> viewsList = [];
@@ -142,4 +143,20 @@ class MainHomeData {
     return;
   }
 
+  Future<List<RegionModel>> getRegions(BuildContext context) async {
+    List<RegionModel> regions = await UserRepository(context).getRegions();
+    regionCubit.onUpdateData(regions);
+    return regions;
+  }
+
+  void updateCity(BuildContext context) {
+    RegionModel regionModel = regionCubit.state.data.firstWhere(
+        (element) => element.selected == true,
+        orElse: () => RegionModel());
+    if (regionModel.id == null) {
+      CustomToast.showSimpleToast(msg: tr(context, "chooseCity"));
+    }else{
+
+    }
+  }
 }

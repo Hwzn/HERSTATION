@@ -308,22 +308,25 @@ class _BuildRenewMySubscribeBody extends State<BuildRenewMySubscribeBody> {
                   ),
                 ),
                 onTap: () {
-                  LoadingDialog.showLoadingDialog();
-                  configureSDK(widget.mySubscriptionModel.subscription!.price
-                      .toString());
-                  startSDK().then((value) {
-                    if (sdkStatus == "SUCCESS") {
-                      widget.subscriptionsData.renewSubscribe(
-                          context,
-                          widget.mySubscriptionModel.subscription!.id!,
-                          widget.mySubscriptionModel.subscription!.price!
-                              .toDouble(),
-                          transactionId ?? "",
-                          transactionType ?? "");
-                    } else {
-                      // CustomToast.showSimpleToast(msg: tr(context, "errors"));
-                    }
-                  });
+                  // LoadingDialog.showLoadingDialog();
+                  // configureSDK(widget.mySubscriptionModel.subscription!.price
+                  //     .toString());
+                  // startSDK().then((value) {
+                  //   if (sdkStatus == "SUCCESS") {
+                  //     widget.subscriptionsData.renewSubscribe(
+                  //         context,
+                  //         widget.mySubscriptionModel.subscription!.id!,
+                  //         widget.mySubscriptionModel.subscription!.price!
+                  //             .toDouble(),
+                  //         transactionId ?? "",
+                  //         transactionType ?? "");
+                  //   } else {
+                  //     // CustomToast.showSimpleToast(msg: tr(context, "errors"));
+                  //   }
+                  // });
+                  // AutoRouter.of(context).push(SubscriptionPaymentRoute(
+                  //     subscriptionModel: widget.mySubscriptionModel.subscription!));
+                  AutoRouter.of(context).push(const SubscriptionsRoute());
                 },
               ),
             ],

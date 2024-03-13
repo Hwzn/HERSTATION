@@ -12,8 +12,10 @@ class RegionModel {
   String? name;
   @JsonKey(name: 'cities')
   List<CityModel>? cities;
+  bool? selected;
+  bool? open;
 
-  RegionModel({this.id, this.name, this.cities});
+  RegionModel({this.id, this.name, this.cities,this.selected=false,this.open=false});
 
    factory RegionModel.fromJson(Map<String, dynamic> json) => _$RegionModelFromJson(json);
 

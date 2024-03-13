@@ -45,7 +45,9 @@ class BuildCitiesBody extends StatelessWidget {
                     ),
                   ],
                 ),
-                onTap: () => makeupArtistMainData.showCityDialog(context),
+                onTap: () {
+                  AutoRouter.of(context).push(const SelectRegionsRoute());
+                },
               ),
             ],
           ),
@@ -68,7 +70,9 @@ class BuildCitiesBody extends StatelessWidget {
                     color: MyColors.black,
                     size: 14),
               ),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               Icon(
                 Icons.keyboard_arrow_down_sharp,
                 color: MyColors.primary,

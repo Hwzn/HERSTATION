@@ -14,6 +14,16 @@ class _SubscriptionPaymentState extends State<SubscriptionPayment> {
       SubscriptionPaymentData();
 
   @override
+  void initState() {
+    ApplyCouponData model = ApplyCouponData(
+        totalCost: widget.subscriptionModel.price!,
+        couponDiscount: 0,
+        couponId: 0);
+    subscriptionPaymentData.applyCouponCubit.onUpdateData(model);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
@@ -31,8 +41,11 @@ class _SubscriptionPaymentState extends State<SubscriptionPayment> {
           children: [
             BuildApplyCode(
               subscriptionPaymentData: subscriptionPaymentData,
+              subscriptionModel: widget.subscriptionModel,
             ),
-            BuildServicesView(subscriptionModel: widget.subscriptionModel,),
+            BuildServicesView(
+                subscriptionModel: widget.subscriptionModel,
+                subscriptionPaymentData: subscriptionPaymentData),
           ],
         ),
       ),

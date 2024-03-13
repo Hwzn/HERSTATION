@@ -16,12 +16,17 @@ import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/tabs/m
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../general/blocks/user_cubit/user_cubit.dart';
+import '../../../../../general/constants/modals/LoadingDialog.dart';
 import '../../../../../general/models/user_model/update_profile_data.dart';
 import '../../../../../general/models/user_model/user_model.dart';
 import '../../../../../general/packages/generic_bloc/generic_cubit.dart';
+import '../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../general/resources/GeneralRepoImports.dart';
 import '../../../../../general/utilities/routers/RouterImports.gr.dart';
 import '../../../../../general/utilities/utils_functions/UtilsImports.dart';
+import '../../../../../user/model/region_model/region_model.dart';
+import '../../../../../user/resources/UserRepositoryImports.dart';
+import '../../../../model/update_cities_model/update_cities_model.dart';
 
 part 'MakeupArtistMain.dart';
 part 'MakeupArtistMainData.dart';

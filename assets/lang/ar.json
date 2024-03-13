@@ -401,7 +401,16 @@
   "enterDiscountCode": "ادخل كود الخصم",
   "discountCodeSpecial": "خصم الكود الخاص",
   "chooseCities": "تحديد المناطق",
-  "chooseCitiesToService": "تحديد المناطق التي تقدم فيها الخدمة"
+  "chooseCitiesToService": "تحديد المناطق التي تقدم فيها الخدمة",
+  "shouldSelectCities": "يجب عليك اختيار المناطق التي تقدم فيها الخدمة",
+  "shouldSelectCity": "يجب عليك اختيار المدينة",
+  "enterCodeValidation": "من فضلك ادخل كود التفعيل",
+  "invalidCoupon": "خطأ في بيانات الكوبون",
+  "extraAmount": "القيمة المضافة",
+  "detectRegions": "حدد المناطق",
+  "chooseCity": "أختر المدن",
+
+  "discount15": "قيمة الخدمة 1.5% علي اجمالي المبلغ المدفوع"
 }
 
 

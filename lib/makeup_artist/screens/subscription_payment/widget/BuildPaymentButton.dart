@@ -266,14 +266,15 @@ class _BuildPaymentButton extends State<BuildPaymentButton> {
       borderColor: MyColors.secondary,
       title: tr(context, "confirm"),
       onTap: () {
+        String amount = widget.subscriptionsData.applyCouponCubit.state.data!.totalCost.toString();
         LoadingDialog.showLoadingDialog();
-        configureSDK(widget.subscriptionModel.price.toString());
+        configureSDK(amount);
         startSDK().then((value) async {
           if (sdkStatus == "SUCCESS") {
             widget.subscriptionsData.subscribe(
                 context,
                 widget.subscriptionModel.id!,
-                widget.subscriptionModel.price!.toDouble(),
+                double.parse(amount),
                 transactionId ?? "",
                 transactionType ?? "");
           } else {

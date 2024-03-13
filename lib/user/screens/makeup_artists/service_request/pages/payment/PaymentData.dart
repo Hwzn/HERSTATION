@@ -8,6 +8,8 @@ class PaymentData {
   final GenericBloc<bool> isDepositOnly = GenericBloc(true);
   final GenericBloc<bool> isVisa = GenericBloc(true);
   TextEditingController discountCountController = TextEditingController();
+  final GenericBloc<ApplyCouponData?> applyCouponCubit = GenericBloc(null);
+  final GenericBloc<ServiceModel?> serviceCubit = GenericBloc(null);
 
   void closeDialog(BuildContext context) {
     Navigator.of(context).pop();
@@ -59,32 +61,14 @@ class PaymentData {
     createOrderData.categoryId = serviceModel.categoryId!;
     // createOrderData.date = "2025-07-31 01:00";
     createOrderData.services = getServicesList(serviceModel);
+    createOrderData.coupon_id = serviceModel.couponID;
+    createOrderData.total = serviceModel.totalAmount;
+    createOrderData.discount = serviceModel.couponDiscount;
 
     LoadingDialog.showLoadingDialog();
     int result = await UserRepository(context).createOrder(createOrderData);
     EasyLoading.dismiss();
     return result;
-    // if (result != -1 && context.mounted) {
-    //   return result;
-    //
-    //   // configureSDK(amount, context);
-    //   // startSDK(context).then((value) {
-    //   //   if (sdkStatus == "SUCCESS") {
-    //   //     addTransaction(context, amount, result);
-    //   //
-    //   //     // setState((){
-    //   //     //   loading=false;
-    //   //     // });
-    //   //     // NavigationClass.finalNavigate(
-    //   //     //     context, PaymentSuccessScreen("1"));
-    //   //   } else {
-    //   //     // setState((){
-    //   //     //   loading=false;
-    //   //     // });
-    //     }
-    // });
-    // addTransaction(context, amount, result);
-    // }
   }
 
   Future<void> addTransaction(BuildContext context, double amount, int id,
@@ -151,5 +135,40 @@ class PaymentData {
     }
 
     return services;
+  }
+
+  Future<void> applyCoupon(BuildContext context, String amount) async {
+    if (discountCountController.text.isEmpty) {
+      CustomToast.showSimpleToast(msg: tr(context, "enterCodeValidation"));
+    } else {
+      ApplyCouponModel model = ApplyCouponModel(
+          coupon: discountCountController.text, cost: amount.toString());
+      if (context.mounted) {
+        ApplyCouponData applyCouponData =
+            await MakeUpArtistRepository(context).applyCoupon(model);
+        applyCouponCubit.onUpdateData(applyCouponData);
+        ServiceModel serviceModel = serviceCubit.state.data!;
+        serviceModel.couponDiscount =
+            applyCouponData.couponDiscount!.toDouble();
+        serviceModel.couponID = applyCouponData.couponId!;
+        serviceModel.totalAmount = applyCouponData.totalCost!.toDouble()+serviceModel.addedValue!;
+
+        serviceCubit.onUpdateData(serviceModel);
+        if (applyCouponData.couponId == 0) {
+          CustomToast.showSimpleToast(msg: tr(context, "invalidCoupon"));
+        }
+      }
+    }
+  }
+
+ void calculateAddedAmount(BuildContext context) {
+    ServiceModel serviceModel = serviceCubit.state.data!;
+    double appPercentage =
+        double.parse(context.read<SettingCubit>().state.model.appPercentage!);
+    double addedValue = (serviceModel.totalAmount! * appPercentage) / 100;
+    serviceModel.addedValue = addedValue;
+
+    serviceModel.totalAmount = serviceModel.totalPrice! + addedValue;
+    serviceCubit.onUpdateData(serviceModel);
   }
 }

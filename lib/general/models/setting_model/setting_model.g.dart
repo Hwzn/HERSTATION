@@ -20,6 +20,7 @@ SettingModel _$SettingModelFromJson(Map<String, dynamic> json) => SettingModel(
       socials: (json['socials'] as List<dynamic>?)
           ?.map((e) => SocialModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      appPercentage: json['app_percentage'] as String?,
     );
 
 Map<String, dynamic> _$SettingModelToJson(SettingModel instance) =>
@@ -33,4 +34,5 @@ Map<String, dynamic> _$SettingModelToJson(SettingModel instance) =>
       'ios_link': instance.iosLink,
       'onboarding': instance.onboardPages,
       'socials': instance.socials,
+      'app_percentage': instance.appPercentage,
     };

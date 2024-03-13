@@ -22,12 +22,15 @@ import '../../../general/models/LocationModel.dart';
 import '../../../general/models/update_address_data/update_address_data.dart';
 import '../../../general/models/user_model/user_model.dart';
 import '../../../general/packages/generic_bloc/generic_cubit.dart';
+import '../../../general/packages/localization/Localizations.dart';
 import '../../../general/resources/GeneralRepoImports.dart';
 
 import '../../../general/screens/location_address/location_cubit/location_cubit.dart';
 import '../../../general/utilities/routers/RouterImports.gr.dart';
 import '../../../general/utilities/utils_functions/UtilsImports.dart';
 import '../../../res.dart';
+import '../../model/region_model/region_model.dart';
+import '../../resources/UserRepositoryImports.dart';
 import 'tabs/user_profile/UserProfileImports.dart';
 
 part 'MainHome.dart';

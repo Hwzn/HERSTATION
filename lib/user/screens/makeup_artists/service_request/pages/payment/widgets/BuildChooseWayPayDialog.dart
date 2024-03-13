@@ -339,7 +339,7 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
                             ),
                             MyText(
                               title:
-                                  " ${widget.serviceModel.totalPrice} ${tr(context, "sr")}",
+                                  " ${widget.serviceModel.totalAmount} ${tr(context, "sr")}",
                               color:
                                   state.data ? MyColors.black : MyColors.white,
                               size: 13,
@@ -367,8 +367,9 @@ class _BuildChooseWayPayDialog extends State<BuildChooseWayPayDialog> {
                     if (widget.paymentData.isDepositOnly.state.data) {
                       amount = widget.serviceModel.totalRetainer ?? 0;
                     } else {
-                      amount = widget.serviceModel.totalPrice ?? 0;
+                      amount = widget.serviceModel.totalAmount ?? 0;
                     }
+
                     LoadingDialog.showLoadingDialog();
                     configureSDK(amount.toString());
                     startSDK().then((value) {

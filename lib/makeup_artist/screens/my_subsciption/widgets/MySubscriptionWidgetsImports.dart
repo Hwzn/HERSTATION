@@ -1,4 +1,5 @@
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,7 @@ import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/my_subsciption/MySubscriptionsImports.dart';
 
 import '../../../../general/constants/MyColors.dart';
+import '../../../../general/utilities/routers/RouterImports.gr.dart';
 import '../../../model/subscription_model/my_subscription_model.dart';
 import '../../../model/subscription_model/subscription_model.dart';
 

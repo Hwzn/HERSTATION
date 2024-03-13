@@ -16,6 +16,7 @@ import 'dart:io';
 import 'package:hwzn_herstation/general/helper/storage/Storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../general/blocks/setting_cubit/setting_cubit.dart';
 import '../../../../../../general/constants/MyColors.dart';
 import '../../../../../../general/constants/modals/LoadingDialog.dart';
 import '../../../../../../general/helper/configration/CustomButtonAnimation.dart';
@@ -24,6 +25,8 @@ import '../../../../../../general/packages/localization/Localizations.dart';
 import '../../../../../../general/utilities/routers/RouterImports.gr.dart';
 import '../../../../../../general/utilities/utils_functions/LoadingDialog.dart';
 import '../../../../../../general/widgets/LoadingButton.dart';
+import '../../../../../../makeup_artist/model/apply_coupon_data/apply_coupon_data.dart';
+import '../../../../../../makeup_artist/model/apply_coupon_model/apply_coupon_model.dart';
 import '../../../../../model/request_order_data/request_order_data.dart';
 import '../../../../../resources/UserRepositoryImports.dart';
 import '../../ServiceRequestImports.dart';

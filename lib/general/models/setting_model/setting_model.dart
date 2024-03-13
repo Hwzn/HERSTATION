@@ -23,6 +23,8 @@ class SettingModel {
   List<SocialModel>? onboardPages;
   @JsonKey(name: 'socials')
   List<SocialModel>? socials;
+  @JsonKey(name: 'app_percentage')
+  String? appPercentage;
 
   SettingModel(
       {this.about,
@@ -33,7 +35,8 @@ class SettingModel {
       this.androidLink,
       this.iosLink,
       this.onboardPages,
-      this.socials});
+      this.socials,
+      this.appPercentage});
 
   factory SettingModel.fromJson(Map<String, dynamic> json) =>
       _$SettingModelFromJson(json);

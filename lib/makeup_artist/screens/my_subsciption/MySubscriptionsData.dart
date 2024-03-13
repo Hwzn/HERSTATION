@@ -10,12 +10,13 @@ class MySubscriptionsData {
 
   void renewSubscribe(BuildContext context, int id, double amount,
       String transactionId, String transactionType) async {
+
     await LoadingDialog.showLoadingDialog();
     if (context.mounted) {
-      int data = await MakeUpArtistRepository(context).subscribe(id);
-      if (data != -1 && context.mounted) {
-        addTransaction(context, amount, data, transactionId, transactionType);
-      }
+      // int data = await MakeUpArtistRepository(context).subscribe(id);
+      // if (data != -1 && context.mounted) {
+      //   addTransaction(context, amount, data, transactionId, transactionType);
+      // }
     }
     EasyLoading.dismiss();
   }

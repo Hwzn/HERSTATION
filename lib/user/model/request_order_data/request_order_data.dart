@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:hwzn_herstation/user/model/request_order_data/service_item_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 //
 // part 'request_order_data.g.dart';
 //
@@ -22,6 +23,12 @@ class RequestOrderData {
   @JsonKey(name: 'services')
   // List<ServiceItemModel>?
   List<Map<String, dynamic>>? services;
+  @JsonKey(name: 'coupon_id')
+  int? coupon_id;
+  @JsonKey(name: 'discount')
+  double? discount;
+  @JsonKey(name: 'total')
+  double? total;
 
   RequestOrderData(
       {this.date,
@@ -30,7 +37,10 @@ class RequestOrderData {
       this.regionId,
       this.cityId,
       this.address,
-      this.services});
+      this.services,
+      this.coupon_id,
+      this.discount,
+      this.total});
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
@@ -40,6 +50,9 @@ class RequestOrderData {
       "region_id": regionId,
       "city_id": cityId,
       "address": address,
+      "total": total,
+      "coupon_id": coupon_id,
+      "discount": discount,
       "services": json.encode(services),
     };
     map.removeWhere((key, value) => value == null);
