@@ -26,6 +26,7 @@ import 'package:hwzn_herstation/user/screens/search/SearchImport.dart';
 
 import 'package:hwzn_herstation/user/screens/main_home/MainHomeImports.dart';
 import 'package:hwzn_herstation/user/screens/makeup_artists/makeup_artist_details/MakeupArtistDetailsImports.dart';
+import 'package:hwzn_herstation/user/screens/select_place/SelectPlaceImports.dart';
 import '../../../makeup_artist/screens/my_subsciption/MySubscriptionsImports.dart';
 import '../../../makeup_artist/screens/select_regions/SelectRegionsImports.dart';
 import '../../../makeup_artist/screens/subscription_payment/SubscriptionPaymentImports.dart';

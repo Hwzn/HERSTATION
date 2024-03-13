@@ -8,6 +8,14 @@ class BuildHeaderMainHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String loc = "";
+    var user = context.read<UserCubit>().state.model;
+    if (user.regionID != null && user.regionID != 0) {
+      loc = "${user.regionName!} - ${user.cityName!}";
+    } else {
+      loc = tr(context, "chooseLocation");
+    }
+
     MediaQueryData mediaQuery = MediaQuery.of(context);
     double marginTop = mediaQuery.padding.top;
     return BlocBuilder<GenericBloc<int>, GenericState<int>>(
@@ -85,14 +93,19 @@ class BuildHeaderMainHome extends StatelessWidget {
                               height: 5,
                             ),
                             InkWell(
-                              onTap: () => mainHomeData.showCityDialog(context),
+                              onTap: () => AutoRouter.of(context).push(
+                                const SelectPlaceRoute(),
+                              ),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   MyText(
-                                    title: tr(context, "chooseLocation"),
+                                    title: loc,
                                     color: MyColors.grey,
                                     size: 14,
                                   ),
+                                  const SizedBox(width: 5,),
                                   Icon(
                                     Icons.keyboard_arrow_down_rounded,
                                     size: 15,

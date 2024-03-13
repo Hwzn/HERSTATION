@@ -6,12 +6,13 @@ class MakeupArtistMainData {
   GlobalKey<CustomButtonState> btnChoose = GlobalKey();
 
   final TextEditingController guide = TextEditingController();
-  final GenericBloc<List<RegionModel>> regionCubit = GenericBloc([]);
+  final GenericBloc<List<String>> regionCubit = GenericBloc([]);
 
   final ImagePicker imgPicker = ImagePicker();
   List<File>? imageFiles;
   List<XFile>? imageXFiles;
   List<Map<String, dynamic>> citiesList = [];
+  List<String> regions = [];
 
   ////////////// cubits ///////////////
 
@@ -160,50 +161,19 @@ class MakeupArtistMainData {
     }
   }
 
-  void showCityDialog(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(25.0),
-          ),
-        ),
-        builder: (context) {
-          return BuildCitiesViewDialog(
-            buildContext: context,
-            mainHomeData: this,
-          );
-        });
-    return;
-  }
-
-  Future<List<RegionModel>> getRegions(BuildContext context) async {
-    List<RegionModel> regions = await UserRepository(context).getRegions();
-    regionCubit.onUpdateData(regions);
-    return regions;
-  }
-
-  Future<void> updateCities(BuildContext context) async {
-    List<RegionModel> regions = regionCubit.state.data;
-
-    if (regions.isEmpty) {
-      CustomToast.showToastNotification(tr(context, "chooseCities"));
-    } else {
-      for (int i = 0; i < regions.length; i++) {
-        if (regions[i].selected!) {
-          citiesList.add({
-            "city_id": regions[i].id!,
-          });
-        }
+  void getCities(BuildContext context) {
+    regions = [];
+    var user = context.read<UserCubit>().state.model;
+    List<RegionModel> regionsList = user.regions!;
+    for (int i = 0; i < regionsList.length; i++) {
+      String name = "${regionsList[i].name!}(";
+      for (int j = 0; j < regionsList[i].cities!.length; j++) {
+        name = "$name-${regionsList[i].cities![j].name!}";
       }
-      UpdateCitiesModel citiesModel = UpdateCitiesModel(cities: citiesList);
-      var result =
-          await MakeUpArtistRepository(context).updateCities(citiesModel);
-      if (result) {
-        AutoRouter.of(context).pushAndPopUntil(
-            MakeupArtistHomeRoute(firstTime: false, index: 0),
-            predicate: (route) => false);
-      }
+      name = name.replaceFirst("-", "");
+      name = "$name)";
+      regions.add(name);
     }
+    regionCubit.onUpdateData(regions);
   }
 }

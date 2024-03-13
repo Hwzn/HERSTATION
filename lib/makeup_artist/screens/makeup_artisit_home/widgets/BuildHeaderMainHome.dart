@@ -8,6 +8,14 @@ class BuildHeaderMainHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String loc = "";
+    var user = context.read<UserCubit>().state.model;
+    if (user.regionID != null && user.regionID != 0) {
+      loc = "${user.regionName!} - ${user.cityName!}";
+    } else {
+      loc = tr(context, "chooseLocation");
+    }
     MediaQueryData mediaQuery = MediaQuery.of(context);
     double marginTop = mediaQuery.padding.top;
     return BlocBuilder<GenericBloc<int>, GenericState<int>>(
@@ -68,6 +76,7 @@ class BuildHeaderMainHome extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const SizedBox(height: 10,),
                             MyText(
                               title: "${tr(context,"welcome")}  ${makeupArtistHomeData.userName}",
                               color: MyColors.primary,
@@ -77,14 +86,37 @@ class BuildHeaderMainHome extends StatelessWidget {
                             const SizedBox(
                               height: 2,
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width - 140,
-                              child: MyText(
-                                title: makeupArtistHomeData.location,
-                                color: MyColors.grey,
-                                size: 14,
+                            InkWell(
+                              onTap: () => AutoRouter.of(context).push(
+                                const SelectPlaceRoute(),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  MyText(
+                                    title: loc,
+                                    color: MyColors.grey,
+                                    size: 14,
+                                  ),
+                                  const SizedBox(width: 5,),
+                                  Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    size: 15,
+                                    color: MyColors.primary,
+                                  )
+                                ],
                               ),
                             ),
+
+                            // SizedBox(
+                            //   width: MediaQuery.of(context).size.width - 140,
+                            //   child: MyText(
+                            //     title: makeupArtistHomeData.location,
+                            //     color: MyColors.grey,
+                            //     size: 14,
+                            //   ),
+                            // ),
                             // Row(
                             //   children: [
                             //     MyText(

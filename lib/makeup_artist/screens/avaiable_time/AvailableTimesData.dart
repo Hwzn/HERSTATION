@@ -213,7 +213,6 @@ class AvailableTimesData {
         }
       }
     }
-    await LoadingDialog.showLoadingDialog();
     AddScheduleModel model = AddScheduleModel(
       schedule: scheduleMonthDays,
     );

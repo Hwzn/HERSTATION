@@ -38,6 +38,7 @@ class ApiNames {
   static const String favourite = "favorites";
   static const String regions = "regions";
   static const String updateCities = "update-cities";
+  static const String updateCity = "update-city";
   static const String applyCoupon = "apply-coupon";
 
   //Services

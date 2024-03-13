@@ -155,8 +155,11 @@ class MainHomeData {
         orElse: () => RegionModel());
     if (regionModel.id == null) {
       CustomToast.showSimpleToast(msg: tr(context, "chooseCity"));
-    }else{
+    } else {}
+  }
 
-    }
+  void setCity(BuildContext context) {
+    var user = context.read<UserCubit>().state.model;
+
   }
 }

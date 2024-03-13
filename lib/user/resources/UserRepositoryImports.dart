@@ -7,6 +7,7 @@ import '../../general/constants/modals/LoadingDialog.dart';
 import '../../general/helper/dio/http/GenericHttp.dart';
 import '../../general/models/home_model.dart';
 import '../../general/models/home_model/home_model.dart';
+import '../../general/models/user_model/user_model.dart';
 import '../../general/utilities/utils_functions/ApiNames.dart';
 import '../model/providers_details_model/provider_details_model.dart';
 import '../model/providers_model/provider_data.dart';

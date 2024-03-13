@@ -148,31 +148,54 @@ class BuildRequestBody extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          orderModel.discount != null && orderModel.discount != 0
+                          orderModel.discount != null &&
+                                  orderModel.discount != 0
                               ? Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MyText(
-                                    title: tr(context, "discountCodeSpecial"),
-                                    color: MyColors.black,
-                                    size: 13,
-                                  ),
-                                  MyText(
-                                    title:
-                                    " ${orderModel.discount} ${tr(context, "sr")}",
-                                    color: MyColors.black,
-                                    size: 13,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
-                          )
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        MyText(
+                                          title: tr(
+                                              context, "total"),
+                                          color: MyColors.black,
+                                          size: 13,
+                                        ),
+                                        MyText(
+                                          title:
+                                              " ${orderModel.discount!+orderModel.total!} ${tr(context, "sr")}",
+                                          color: MyColors.black,
+                                          size: 13,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        MyText(
+                                          title: tr(
+                                              context, "discountCodeSpecial"),
+                                          color: MyColors.black,
+                                          size: 13,
+                                        ),
+                                        MyText(
+                                          title:
+                                              " ${orderModel.discount} ${tr(context, "sr")}",
+                                          color: MyColors.black,
+                                          size: 13,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                )
                               : Container(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

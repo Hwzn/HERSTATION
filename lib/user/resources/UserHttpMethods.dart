@@ -25,7 +25,8 @@ class UserHttpMethods {
     String? order = providerData.order ?? "";
     int? page = providerData.page!;
 
-    String params = "?page=$page&category_id=$categoryID&word=$word&order=$order";
+    String params =
+        "?page=$page&category_id=$categoryID&word=$word&order=$order";
     var data = await GenericHttp<ProvidersModel>(context).callApi(
       name: ApiNames.providers + params,
       returnType: ReturnType.list,
@@ -170,6 +171,20 @@ class UserHttpMethods {
     return data["status"];
   }
 
+  Future<dynamic> updateCity(int cityID) async {
+    var data = await GenericHttp<String>(context).callApi(
+      name: ApiNames.updateCity,
+      returnType: ReturnType.type,
+      showLoader: true,
+      json: {"city_id": cityID},
+      returnDataFun: (data) => data,
+      toJsonFunc: (json) => UserModel.fromJson(json),
+
+      methodType: MethodType.post,
+    );
+   return data;
+  }
+
   Future<bool> rateOrder(RateData rateData) async {
     var data = await GenericHttp<String>(context).callApi(
       name: ApiNames.rate,
@@ -185,5 +200,4 @@ class UserHttpMethods {
     }
     return data["status"];
   }
-
 }

@@ -24,7 +24,7 @@ class MakeUpArtistRepository {
   Future<ApplyCouponData> applyCoupon(ApplyCouponModel model) =>
       makeUpArtistHttpMethods.applyCoupon(model);
 
-  Future<bool> updateCities(UpdateCitiesModel model) =>
+  Future<dynamic> updateCities(UpdateCitiesModel model) =>
       makeUpArtistHttpMethods.updateCities(model);
 
   Future<List<SubscriptionModel>> getAllSubscription() =>

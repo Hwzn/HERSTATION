@@ -16,5 +16,4 @@ import '../../../../../../user/model/region_model/region_model.dart';
 
 part 'BuildUploadDialog.dart';
 part 'BuildUpdateGuidesDialog.dart';
-part 'BuildCitiesViewDialog.dart';
 

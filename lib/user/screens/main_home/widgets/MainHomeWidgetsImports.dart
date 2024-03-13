@@ -9,7 +9,9 @@ import 'package:hwzn_herstation/general/packages/localization/Localizations.dart
 import 'package:hwzn_herstation/general/utilities/routers/RouterImports.gr.dart';
 import 'package:hwzn_herstation/general/widgets/MyText.dart';
 import 'package:hwzn_herstation/res.dart';
+import 'package:hwzn_herstation/user/model/region_model/city_model.dart';
 
+import '../../../../general/blocks/user_cubit/user_cubit.dart';
 import '../../../../general/constants/MyColors.dart';
 import '../../../../general/utilities/utils_functions/LoadingDialog.dart';
 import '../../../../general/widgets/CachedImage.dart';
@@ -28,3 +30,4 @@ part 'BuildTabItem.dart';
 part 'BuildHeaderMainHome.dart';
 
 part 'BuildLocationEnableDialog.dart';
+part 'BuildRegionView.dart';

@@ -9,6 +9,7 @@ import 'package:hwzn_herstation/general/packages/localization/Localizations.dart
 import 'package:hwzn_herstation/general/widgets/CachedImage.dart';
 import 'package:hwzn_herstation/makeup_artist/screens/makeup_artisit_home/MakeupArtistHomeImports.dart';
 
+import '../../../../general/blocks/user_cubit/user_cubit.dart';
 import '../../../../general/constants/MyColors.dart';
 import '../../../../general/packages/generic_bloc/generic_cubit.dart';
 import '../../../../general/utilities/routers/RouterImports.gr.dart';

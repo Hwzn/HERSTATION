@@ -23,6 +23,8 @@ class UserRepository {
   Future<bool> rateOrder(RateData rateData) =>
       userHttpMethods.rateOrder(rateData);
 
+  Future<dynamic> updateCity(int cityID) =>
+      userHttpMethods.updateCity(cityID);
   Future<List<RegionModel>> getRegions() => userHttpMethods.getRegions();
 
   Future<List<ProvidersModel>> getFavourites() =>

@@ -15,7 +15,7 @@ class _MakeupArtistMain extends State<MakeupArtistMain> {
   void initState() {
     //makeupArtistMainData.checkingData(context);
     makeupArtistMainData.fetchData(context);
-    makeupArtistMainData.getRegions(context);
+    makeupArtistMainData.getCities(context);
     super.initState();
   }
 

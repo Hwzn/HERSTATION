@@ -52,35 +52,41 @@ class BuildCitiesBody extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: MyColors.bgPrimary),
-          margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-          padding: const EdgeInsets.all(15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                fit: FlexFit.tight,
-                child: MyText(
-                    title: "القصيم - الرياض - الشرقية - نجران - تبوك - مكة",
-                    color: MyColors.black,
-                    size: 14),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Icon(
-                Icons.keyboard_arrow_down_sharp,
-                color: MyColors.primary,
-                size: 20,
-              ),
-            ],
-          ),
-        ),
+        BlocBuilder<GenericBloc<List<String>>, GenericState<List<String>>>(
+            bloc: makeupArtistMainData.regionCubit,
+            builder: (context, state) {
+              return Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: MyColors.bgPrimary),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  padding: const EdgeInsets.all(15),
+                  child: ListView.builder(
+                    itemCount: state.data.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          MyText(
+                            title: state.data[index],
+                            color: MyColors.black,
+                            size: 14,
+                          ),
+                          index == state.data.length - 1
+                              ? Container()
+                              : const SizedBox(
+                                  height: 15,
+                                ),
+                        ],
+                      );
+                    },
+                  ));
+            }),
       ],
     );
   }

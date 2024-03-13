@@ -45,31 +45,32 @@ class MakeUpArtistHttpMethods {
   }
 
   Future<bool> addAvailableTime(AddScheduleModel addScheduleModel) async {
-    dynamic data = await GenericHttp<dynamic>(context).callApi(
+    var data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.schedule,
       json: addScheduleModel.toJson(),
       returnType: ReturnType.type,
-      returnDataFun: (data) => data,
-      showLoader: false,
       methodType: MethodType.post,
+      toJsonFunc: (json) => json["status"],
+      returnDataFun: (data) => data,
     );
-   return data;
+    if (data["status"] == true) {
+      CustomToast.showSimpleToast(msg: data["message"]);
+    }
+    return data["status"];
   }
-  Future<bool> updateCities(UpdateCitiesModel updateCitiesModel) async {
+  Future<dynamic> updateCities(UpdateCitiesModel updateCitiesModel) async {
     dynamic data = await GenericHttp<dynamic>(context).callApi(
       name: ApiNames.updateCities,
       json: updateCitiesModel.toJson(),
       returnType: ReturnType.type,
       returnDataFun: (data) => data,
       showLoader: true,
+      toJsonFunc: (json) => UserModel.fromJson(json),
+
       methodType: MethodType.post,
     );
-    if (data != null) {
-      CustomToast.showSimpleToast(msg: data['message']);
-      return true;
-    } else {
-      return false;
-    }
+    return data;
+
   }
   Future<ApplyCouponData> applyCoupon(ApplyCouponModel applyCouponModel) async {
     dynamic data = await GenericHttp<ApplyCouponData>(context).callApi(
@@ -104,7 +105,6 @@ class MakeUpArtistHttpMethods {
       returnDataFun: (data) => data["data"]["provider_subscriptions"],
       toJsonFunc: (json) => MySubscriptionModel.fromJson(json),
     );
-    print("Data : "+data.toString());
     return data as List<MySubscriptionModel>;
   }
 
